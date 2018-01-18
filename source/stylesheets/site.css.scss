@@ -1,20 +1,67 @@
 body {
-  /* background-color: #fbc547; */
-  /* color: #333; */
-  /* font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", */
-  /*   "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", */
-  /*   "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", */
-  /*   "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif; */
-  /* padding: 18vh 1rem; */
-  text-align: center;
-}
+  background-color: #ffffff;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir",
+    "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans",
+    "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu",
+    "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+  text-align: left;
+  padding-left: 5%;
+  padding-right: 5%;
 
-a {
-  color: rgba(#000, 0.7);
+  div.guide {
+      background-color: #f3fff3;
+      margin-top: 10px;
+      margin-bottom: 40px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
 
-  &:focus,
-  &:hover {
-    color: rgba(#000, 0.6);
+  code {
+      background-color: #f0f0f0;
+  }
+
+  pre {
+      background-color: #f0f0f0;
+      border-radius: 2px;
+      border: 2px solid #e0e0e0;
+      padding: 2px;
+      overflow: auto;
   }
 }
 
+header {
+    nav {
+        li {
+            float: left;
+            a {
+                display: block;
+                padding: 8px;
+                background-color: #cccccc;
+            }
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    }
+}
+
+footer {
+    padding-top: 40px;
+    nav {
+        padding-top: 10px;
+         ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+         }
+        li {
+            display: inline;
+        }
+    }
+}
