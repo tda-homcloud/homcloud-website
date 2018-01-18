@@ -1,7 +1,7 @@
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
-set :markdown_engine, :redcarpet
+set :markdown_engine, :kramdown
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
