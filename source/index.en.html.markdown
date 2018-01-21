@@ -32,7 +32,7 @@ If you want to know the details, please contact our laboratory.
 
 ## Documents
 
-* [Install](how-to-install.html)
+* [Install](how-to-install.en.html)
 <!--- * [基本的な使い方](basic-usage.html) -->
 
 ## License
