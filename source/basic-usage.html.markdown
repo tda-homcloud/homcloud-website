@@ -1,5 +1,6 @@
 ---
 title: 基本的な使い方
+lang: ja
 ---
 {::options parse_block_html="true" /}
 
@@ -10,16 +11,29 @@ title: 基本的な使い方
 * [3次元点集合データ(ポイントクラウド)](#pointcloud)
 * [白黒画像](#binary-image)
 
-を解析する場合について解説します。
+を解析する場合についてチュートリアル的に解説します。
 
 <div class="guide">
 ## <a name="pointcloud"> 3次元点集合データ(ポイントクラウド)の解析
 
+この文章で解説するのは
+
+1. 3次元の点データからパーシステント図を計算する
+2. その図をパラメータを変えながら可視化する
+3. テキストデータにbirth-death pairを出力する
+4. 基本的な逆解析(birth simplex, death simplexの出力)を行う
+
+の4つです。ここまではおよそどのようなポイントクラウドデータでも
+共通ですので、ここまでできるようになると良いでしょう。
+
+### パーシステント図の計算 
+
 まず、[pointcloud-example.zip](donwload/pointcloud-example.zip)をダウンロードし、
-zipファイルを展開してください。すると pointcloud というディレクトリができますので、
+zipファイルを展開してください。すると `pointcloud` というディレクトリができますので、
 ターミナルから `cd` コマンドでこのディレクトリに移動します。
 
-ディレクトリには pointcloud.txt というファイルがあります。これは
+ディレクトリには `pointcloud.txt` というファイルがあります。これは
+[-1, 1]×[-1, 1]×[-1, 1]の立方体領域に
 一様ランダムに点を5000個撒き散らしたものです。これを解析してみましょう。
 
 まず最初に、
@@ -52,7 +66,7 @@ zipファイルを展開してください。すると pointcloud というデ�
 
 すると以下のような図が表示されます。
 
-![PD1 pointcloud](images/pointcloud-pd1-2.png){: width="256"}
+![PD1 pointcloud logscale](images/pointcloud-pd1-2.png){: width="256"}
 
 基本的にはパーシステント図の点は対角線から離れるほど「意味のある」リング構造と対応し、
 またY軸が大きい値になるほど大きなリング構造を表しています。
@@ -68,14 +82,18 @@ HomCloudでは2乗の値が使われます。これを止めたいときはパ�
 半径パラメータそのものがX、Y軸に現れます。
 
 さて、次にbirth-death pairが集中している
-左下の 0.0〜0.1 のあたりを拡大して調べてみましょう。
+左下の 0.0〜0.1 のあたりを拡大して調べてみましょう。デフォルトでは
+すべてのbirth-death pairが含まれるような範囲でプロットするので、これを変更します。
 このときは以下のようなコマンドを使います。
 
     python3 -m homcloud.plot_diagram -d 1 -l -x "[0:0.1]" pointcloud.idiagram
     
 `-x`オプションで範囲を指定します。以下のような図が表示されるでしょう。
+もちろん一様ランダムデータですので意味のあるリング構造があるわけでは
+ないのですが、一様ランダムだとこういうヒストグラムの分布が見えるんだなあ、というのは
+知っておくと役に立ちます。
 
-![PD1 pointcloud](images/pointcloud-pd1-zoomup.png){: width="256"}
+![PD1 pointcloud zoomup](images/pointcloud-pd1-zoomup.png){: width="256"}
 
 `-X`オプションで解像度を変えることができます。デフォルトでは
 128x128でヒストグラムを描きますが、もっと細かく256x256にしてみましょう。
@@ -83,7 +101,7 @@ HomCloudでは2乗の値が使われます。これを止めたいときはパ�
 
     python3 -m homcloud.plot_diagram -d 1 -l -x "[0:0.1]" -X 256 pointcloud.idiagram
 
-![PD1 pointcloud](images/pointcloud-pd1-zoomup-fine.png){: width="256"}
+![PD1 pointcloud zoomup 256x256](images/pointcloud-pd1-zoomup-fine.png){: width="256"}
 
 これらの画像を保存するのには、表示されたウィンドウにあるフロッピーディスクの
 アイコンをクリックします。ただ、これだと何枚も画像を保存したいときには
@@ -164,4 +182,169 @@ death simplexのほうが重要です。death simplexの重心あたりがリン
 
 <div class="guide">
 ## <a name="binary-image"> 白黒画像の解析
+
+ここでは白黒の画像をパーシステントホモロジーで解析します。
+ここで解説する内容は以下の通りです。
+
+1. 画像からパーシステント図を計算する
+2. その図をパラメータを変えながら可視化する
+3. テキストデータにbirth-death pairを出力する
+4. 基本的な逆解析(birth pixle, death pixelの出力)を行う
+
+基本的にやっていることは、与えられた白黒画像の黒い領域を
+膨らませたり萎ませたりして島や穴の生成と消滅を調べています。
+https://arxiv.org/abs/1706.10082 の論文の2.3節、特にFig.2が参考になるでしょう。
+
+
+### パーシステント図の計算
+まず、[binary-image-example.zip](donwload/pointcloud-example.zip)をダウンロードし、
+zipファイルを展開してください。すると `binary-image` というディレクトリができますので、
+ターミナルから `cd` コマンドでこのディレクトリに移動します。
+
+ディレクトリには `binary-image.png` というファイルがあります。以下のような画像です。
+これを解析してみましょう。
+
+![入力画像](images/binary-image.png){: width="256"}
+
+まず最初に、
+
+    python3 -m homcloud.pict.binarize_nd -T picture2d -m black-base -t 128 -I -D -s -o binary-image.idiagram binary-image.png
+    
+とします。すると `binary-image.idiagram` というファイルが生成されます。これが
+パーシステント図の情報を収めたファイルです。
+
+* `-T picture2d` というので入力データが2次元画像であることを指定
+  * 他にもテキストデータ(`text2d`)やnumpyのnpyやnpz(`npy`)などのフォーマットが指定できます。
+* `-m black-base` というので黒の領域に注目することを指定
+* `-t 128` というので白黒の閾値を128に決める(この入力画像では黒=0、白=255なのでどんな値でも
+  あまり問題にはなりません)
+* `-I -D` はHomCloudの便利機能を有効にするもので常に指定しておくと良いです
+* `-o binary-image.idiagram`で出力ファイルを指定
+* `-s` で画像が縮んでいくのと広がっていくのと両方を考慮することを指定(これは
+  白黒画像の解析では常に有効にしておいて良いでしょう)
+
+という意味です。
+
+## パーシステント図の可視化
+
+次に計算結果の0次のパーシステント図、つまり連結成分、島構造、を可視化しましょう。
+上の計算で`-m black-base`と指定したので黒の島構造に注目します。
+
+    python3 -m homcloud.plot_diagram -d 0 -l binary-image.idiagram
+
+と指定します。`-d 0`で0次であることを、`-l`でヒストグラムの色付けを
+log scaleにすることを指定します。このあたりは pointcloud での場合と同じです。
+すると以下のような図が表示されます。
+
+![PD0 binary image](images/binary-image-pd0-1.png){: width="256"}
+
+何か小さい点が図の上にぽうぽつと現れます。実はbirth time、death timeは
+この画像解析ルールだと整数の値しかとりません。デフォルトのヒストグラムは
+128x128で計算しますから、これは細かすぎるのです。またこの図からすべての
+birth time, death timeは-20〜+7 くらいの範囲にあることがわかりますので、
+これらをうまく表示されるようにプロットの領域や解像度を調整します。そこで
+次のようにしてみましょう。
+
+    python3 -m homcloud.plot_diagram -d 0 -l -x "[-20.5:7.5]" -X 28 binary-image.idiagram
+
+`-x "[-20.5:7.5]"`でプロットする範囲を -20.5 から 7.5 に、
+ヒストグラムの分割を28x28に指定します。birth time、death timeは整数値なので、
+ヒストグラムの各ビンの中心が整数になるように、±0.5の余裕を取るようにしています。
+これで以下の図が得られます。
+
+![PD0 binary image](images/binary-image-pd0-2.png){: width="256"}
+
+これを画像に保存するのも、フロッピーのアイコンをクリックするか、以下のように
+`-o`オプションを使うかでできます。
+
+    python3 -m homcloud.plot_diagram -d 0 -l -x "[-20.5:7.5]" -X 28 binary-image.idiagram -o binary-image-pd0.png
+    
+### テキストファイルへの出力
+
+ここはポイントクラウドの場合と同じです。つまり
+
+    python3 -m homcloud.diagram_to_text -d 0 binary-image.idiagram -o binary-image-pd0.txt
+    
+とすると、以下のようなテキストが`binary-image-pd0.txt`に保存されます。
+
+    -19 inf
+    -19 -18
+    -18 -17
+    -18 -17
+    -18 -17
+        :
+        
+この一番最初の行は death time が+∞であるようなbirth death pairです。
+これはある意味で0次のパーシステントホモロジー特有のもので、最初に生まれて
+最後まで生き延びる島を表現しています。データ解析をするにあたっては
+これは特別扱いする必要があるので気をつけてください。
+
+### 逆解析(birth pixel, death pixel)
+
+さて、上のパーシステント図を見ると(-5,-4)の所に何かbirth death pairが
+集中しているようです。これが何か調べてみましょう。HomCloudのbirth pixel、
+death pixel出力機能を使ってみましょう。これは島(連結成分)が生まれた/死んだ
+ときのピクセルの位置を出力するものです。birth/death pixelについて詳しくは
+https://arxiv.org/abs/1706.10082 の論文の2.3節、特にFig.2が参考になる
+と思います(この論文ではbirth/death positionという名前で呼んでいます)。
+birth/death positionを出力するには以下のコマンドをターミナルから実行します。
+`-S yes`によって出力をonにします。
+
+    python3 -m homcloud.diagram_to_text -d 0 -S yes binary-image.idiagram
+
+とすると、以下のようなデータが出力されます。
+
+    -19 -18 (57,121) (56,121)
+    -18 -17 (46,111) (53,119)
+    -18 -17 (47,112) (46,112)
+    -18 -17 (48,113) (47,113)
+          :
+
+これは各行、1列目がbirth time、2列目がdeath time、3列目が
+birth pixelの座標、4列目がdeath pixelの座標です。
+ここで注意すべきは、座標は(y,x)の順に並んでいるということです。
+これはHomCloudの仕様の問題ですが、全体の整合性を保つためどうしても
+こうなっているので気を付けてください。
+
+さて、ここから(-5,-4)に対応するものだけを取り出しましょう。パイプ機能と
+grepというコマンドを利用すると必要なものだけ取り出せます(grepについて詳しくはご自分で
+勉強してください)。
+
+    python3 -m homcloud.diagram_to_text -d 0 -S yes binary-image.idiagram | grep "^-5 -4"
+    
+すると以下のような出力がされます。
+
+    -5 -4 (9,35) (8,35)
+    -5 -4 (10,36) (9,36)
+    -5 -4 (11,37) (10,37)
+    -5 -4 (18,45) (17,45)
+    -5 -4 (19,46) (18,46)
+    -5 -4 (20,48) (19,48)
+    -5 -4 (21,49) (20,49)
+    -5 -4 (25,103) (24,103)
+        :
+        
+うまく行っているようです。0次のパーシステントホモロジーの場合には
+birth pixelのほうが重要です(その構造の中心におよそ対応します)。
+そこでこのピクセルを入力画像の上に表示してみましょう。
+同じディレクトルに入っている `plot-birth-pixel.py` でその機能を実装しています。
+次のようにやってみましょう。
+
+    python3 -m homcloud.diagram_to_text -d 0 -S yes binary-image.idiagram -o binary-image-bdpixels.txt
+    python3 plot_birth_pixel.py -5 -4 binary-image-bdpixels.txt binary-image.png binary-image-birth-pixels.png
+
+以下のような結果が得られます。
+
+![binary image birth pixels](images/binary-image-birth-pixels.png){: width="256"}
+
+黒い道路状の部分に赤い点が表示されています。これは(-5, -4)というのは
+幅の1/2が5ピクセルくらいの道状の形状に対応していることを意味しています。
+
+もしもっと色々なことをこのbirth/death pixelを用いてしたいときは、
+plot-birth-pixel.py を参考にしてご自分でプログラミングをしてください。
+もしくは `homcloud-advanced` には同じようなことをより高度に実現する
+プログラムがあります。
+
+以上で白黒画像解析の解説は終わりです。
+
 </div>

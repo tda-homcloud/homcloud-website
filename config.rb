@@ -33,11 +33,17 @@ page '/*.txt', layout: false
 # Methods defined in the helpers block are available in templates
 # https://middlemanapp.com/basics/helper-methods/
 
-# helpers do
-#   def some_helper
-#     'Helping'
-#   end
-# end
+helpers do
+  def navlink(name, urlbase, postfix="")
+    lang = current_page.data.lang
+    case lang
+    when "ja", nil
+      return link_to(name, "#{urlbase}.html#{postfix}")
+    else
+      return link_to(name, "#{urlbase}.#{lang}.html#{postfix}")
+    end
+  end
+end
 
 # Build-specific configuration
 # https://middlemanapp.com/advanced/configuration/#environment-specific-settings

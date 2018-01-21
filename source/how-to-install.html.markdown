@@ -1,5 +1,6 @@
 ---
 title: Install HomCloud
+lang: ja
 ---
 
 {::options parse_block_html="true" /}

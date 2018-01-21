@@ -1,5 +1,6 @@
 ---
 title: "Homcloud"
+lang: "ja"
 ---
 
 # HomCloud
@@ -38,6 +39,12 @@ HomCloudは基本部分(homcloud-base)
 homcloud-base は GPL 3 もしくは任意のそれ以降のバージョンで配布しています。
 詳しくは [license-base.html](license-base.html) をご覧ください。
 また、GPL version 3について
-詳しくは[FSFのウェブサイト](https://www.gnu.org/licenses/gpl-3.0.ja.html)
+詳しくは <https://www.gnu.org/licenses/gpl-3.0.ja.html>
 をご覧ください。
 
+## 開発者
+
+* 大林一平 (中心的開発者)
+* 和田 智秀 (Window版やドキュメント整備など)
+* 一部[株式会社TNT](http://www.trans-nt.com/)に外注で頼んでいます
+* 平岡 裕章 (ファンディングとか)
