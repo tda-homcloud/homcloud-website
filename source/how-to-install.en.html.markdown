@@ -138,18 +138,18 @@ Type as follows to install:
 You can download dipha by [Git](https://github.com/git/git).
 Install Git by homebrew, download dipha by git, and build it as follows:
 
-    brew install git 
-    git clone https://github.com/DIPHA/dipha.git 
-    cd dipha/   
-    cmake . 
+    brew install git
+    git clone https://github.com/DIPHA/dipha.git
+    cd dipha/
+    cmake
     make
 
-Copy `dipha` executable file to the directory in `PATH` environment variable.
+Copy `dipha` executable file to a directory in `PATH` environment variable.
 
     # EXAMPLE
-    cp ~/dipha/dipha /usr/local/bin/
+    cp dipha /usr/local/bin/
 
-You can find `PATH` directory by:
+You can find `PATH` directories by:
 
     echo $PATH
 
@@ -159,8 +159,8 @@ Download homcloud-base-x.y.z.tar.gz. x, y, z is latest version.
 After downloading, open your terminal, and type as follows to go to the download
 directory, and install HomCloud by `pip` command.
 
-    cd Downloads/ 
-    pip3 install homcloud-base-x.y.z.tar.gz 
+    cd Downloads/
+    pip3 install homcloud-base-x.y.z.tar.gz
 
 </div>
 
