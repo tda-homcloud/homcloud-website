@@ -14,8 +14,21 @@
     <header>
       <nav>
         <%= partial "nav" %>
+        <%= link_to("(Japanese)", "index.html") %>
+        <%= link_to("(English)", "index.en.html") %>
       </nav>
     </header>
     <%= yield %>
+    <footer>
+      <nav>
+        <%= partial "nav" %>
+        <ul>
+          <li><a href="http://www.tohoku.ac.jp/">Tohoku University</a></li>
+          <li><a href="http://www.wpi-aimr.tohoku.ac.jp/">AIMR</a></li>
+          <li>
+            <%= link_to("Hiraoka Laboratory", lab_url) %>
+          </li>
+        </ul>
+    </footer>
   </body>
 </html>

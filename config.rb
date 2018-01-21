@@ -43,6 +43,15 @@ helpers do
       return link_to(name, "#{urlbase}.#{lang}.html#{postfix}")
     end
   end
+
+  def lab_url
+    case current_page.data.lang
+    when "ja", nil
+      "http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/index.html"
+    else # including "en"
+      "http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/index-english.html"
+    end
+  end
 end
 
 # Build-specific configuration

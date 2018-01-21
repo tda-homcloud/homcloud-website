@@ -137,10 +137,10 @@ dipha のソースコードを取得するには [Git](https://github.com/git/gi
 例えば、以下のように homebrew で Git をインストールしてから dipha のソー
 スを取得し、ビルドします。
 
-    brew install git 
-    git clone https://github.com/DIPHA/dipha.git 
-    cd dipha/   
-    cmake . 
+    brew install git
+    git clone https://github.com/DIPHA/dipha.git
+    cd dipha/
+    cmake
     make
 
 作成した実行ファイル dipha の場所を確認し、PATH を通します。
