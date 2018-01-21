@@ -24,7 +24,7 @@ HomCloudは基本部分(homcloud-base)
 企業の方は今のところ共同研究をすることでご利用できます。詳しくは
 我々の研究室までご相談ください。
 
-## <a name="donwload"> ダウンロード
+## <a name="download"> ダウンロード
 
 * [homcloud-base 最新版(1.0.0)](download/homcloud-base-1.0.0.tar.gz)
 * [homcloud-base 最新版(1.0.0)ソースコード](download/homcloud-base-src-1.0.0.zip)
