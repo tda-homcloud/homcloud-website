@@ -133,7 +133,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 
 ### 4. dipha を <http://github.com/DIPHA/dipha> からダウンロードしてインストールします。
 
-dipha のソースコードを取得するには [Git](https://github.com/git/git) を利用すると便利です。
+dipha のソースコードを取得するには [Git](https://git-scm.com/) を利用すると便利です。
 例えば、以下のように homebrew で Git をインストールしてから dipha のソー
 スを取得し、ビルドします。
 

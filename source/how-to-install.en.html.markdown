@@ -135,7 +135,7 @@ Type as follows to install:
 
 ### 4. Download dipha from <http://github.com/DIPHA/dipha> and install it
 
-You can download dipha by [Git](https://github.com/git/git).
+You can download dipha by [Git](https://git-scm.com/).
 Install Git by homebrew, download dipha by git, and build it as follows:
 
     brew install git
