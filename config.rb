@@ -2,6 +2,7 @@
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
 set :markdown_engine, :kramdown
+set :relative_links, true
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
