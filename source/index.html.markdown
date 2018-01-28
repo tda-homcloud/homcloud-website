@@ -27,7 +27,7 @@ HomCloudは基本部分(homcloud-base)
 ## <a name="download"> ダウンロード
 
 * [homcloud-base 最新版(1.0.0)](download/homcloud-base-1.0.0.tar.gz)
-* [homcloud-base 最新版(1.0.0)ソースコード](download/homcloud-base-src-1.0.0.zip)
+* [homcloud-base 最新版(1.0.0)ソースコード](download/homcloud-base-1.0.0-src.tar.gz)
 
 ## ドキュメント
 

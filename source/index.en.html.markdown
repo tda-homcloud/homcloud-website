@@ -28,7 +28,7 @@ If you want to know the details, please contact our laboratory.
 ## <a name="download"> Download
 
 * [homcloud-base latest version(1.0.0)](download/homcloud-base-1.0.0.tar.gz)
-* [homcloud-base latest version(1.0.0) source code](download/homcloud-base-src-1.0.0.zip)
+* [homcloud-base latest version(1.0.0) source code](download/homcloud-base-1.0.0-src.tar.gz)
 
 ## Documents
 
