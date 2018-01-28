@@ -50,7 +50,7 @@ Please type as follows:
 3. Go to the created directory
 4. Type `cmake .`, and create Makefile
 5. Type `make` to build dipha
-6. Copy the dipha exectabule file to the directory in `PATH` environment variable.
+6. Copy the dipha executable file to the directory in `PATH` environment variable.
 
    
 ### 3. Install scikit-learn by pip
@@ -62,12 +62,12 @@ Alternative way is as follows:
 
     python3.6 -m pip install --user scikit-learn
 
-Please note that you should reinstall scikit-learn if python is majorly upgraded
+Please note that you should reinstall scikit-learn if python is major upgraded
 since scikit-learn is installed under the version-dependent directory.
 
 ### 4. [Download](index.html#download) latest HomCloud and install
 
-Download the file `homcloud-base-x.y.z.tar.gz`. x, y, z depened on the version.
+Download the file `homcloud-base-x.y.z.tar.gz`. x, y, z depend on the version.
 
 Go to the downloaded directory, and type as follows:
 
@@ -125,7 +125,7 @@ the python package system. Please following packages by `pip3`.
 * numpy
 * scipy
 * matplotlib
-* scikit-leran
+* scikit-learn
 * msgpack-python
 * Pillow
 
