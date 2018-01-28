@@ -45,6 +45,6 @@ see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 ## Developers
 
 * Ippei Obayashi (main develper)
-* Tomoharu Wada (Window version, documentation)
+* Tomohide Wada (Window version, documentation)
 * Some parts are outsourced to [Trans NT, Inc.](http://www.trans-nt.com/)
-* Yasuaki Hiraoka (funding)
+* Yasuaki Hiraoka
