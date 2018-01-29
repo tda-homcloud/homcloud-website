@@ -19,7 +19,7 @@ The basic part is free software and you can use it freely.
 Only by this part, 
 you can run basic data analysis based on persistent homology.
 
-The advanced analysis part is now not open because of funding issue.
+The advanced analysis part is now not publicly released for some reasons.
 Now we prepare academic license and academic we allow people people to use
 the advanced part freely. If you want academic license, please give us an email.
 For industrial companies, we provide the license for collaborative researches.
