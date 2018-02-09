@@ -197,7 +197,7 @@ https://arxiv.org/abs/1706.10082 の論文の2.3節、特にFig.2が参考にな
 
 
 ### パーシステント図の計算
-まず、[binary-image-example.zip](donwload/pointcloud-example.zip)をダウンロードし、
+まず、[binary-image-example.zip](donwload/binary-image-example.zip)をダウンロードし、
 zipファイルを展開してください。すると `binary-image` というディレクトリができますので、
 ターミナルから `cd` コマンドでこのディレクトリに移動します。
 
@@ -327,7 +327,7 @@ grepというコマンドを利用すると必要なものだけ取り出せま�
 うまく行っているようです。0次のパーシステントホモロジーの場合には
 birth pixelのほうが重要です(その構造の中心におよそ対応します)。
 そこでこのピクセルを入力画像の上に表示してみましょう。
-同じディレクトルに入っている `plot-birth-pixel.py` でその機能を実装しています。
+同じディレクトルに入っている `plot_birth_pixel.py` でその機能を実装しています。
 次のようにやってみましょう。
 
     python3 -m homcloud.diagram_to_text -d 0 -S yes binary-image.idiagram -o binary-image-bdpixels.txt
@@ -341,10 +341,214 @@ birth pixelのほうが重要です(その構造の中心におよそ対応し�
 幅の1/2が5ピクセルくらいの道状の形状に対応していることを意味しています。
 
 もしもっと色々なことをこのbirth/death pixelを用いてしたいときは、
-plot-birth-pixel.py を参考にしてご自分でプログラミングをしてください。
+plot_birth_pixel.py を参考にしてご自分でプログラミングをしてください。
 もしくは `homcloud-advanced` には同じようなことをより高度に実現する
 プログラムがあります。
 
 以上で白黒画像解析の解説は終わりです。
 
 </div>
+
+<div class="guide">
+## <a name="grayscale-image"> グレイスケール画像の解析
+
+ここではグレイスケール画像をパーシステントホモロジーで解析します。
+ここで解説する内容は以下の通りです。白黒画像との共通点は非常に多いです。
+
+1. 画像からパーシステント図を計算する
+2. その図を可視化する
+3. テキストデータにbirth-death pairを出力する
+4. 基本的な逆解析(birth pixle, death pixelの出力)を行う
+
+ここでは入力データとしてはテキストデータを使いますが、
+普通の画像でも基本は同じです。
+
+### データの基本的な情報を調べる
+まず、[grayscale-image-example.zip](donwload/grayscale-example.zip)をダウンロードし、
+zipファイルを展開してください。すると `grayscale-image` というディレクトリができますので、
+ターミナルから `cd` コマンドでこのディレクトリに移動します。
+
+ディレクトリには `grayscale.txt` というファイルがあります。数値が2次元に200x200で並んでいます。これを解析してみましょう。
+
+パーシステント図を計算する前に、このデータの基本的な情報を調べていきましょう。
+ここでは `python` というプログラミング言語を使って解析をします。
+特に `ipython` というツールを使います。データ解析をする際には基本的なプログラミングは
+必須なので適当に勉強してください。
+
+    ipython3
+
+でプログラムを起動します。
+
+    Python 3.5.3 (default, Jan 19 2017, 14:11:04) 
+    Type "copyright", "credits" or "license" for more information.
+
+    IPython 5.1.0 -- An enhanced Interactive Python.
+    ?         -> Introduction and overview of IPython's features.
+    %quickref -> Quick reference.
+    help      -> Python's own help system.
+    object?   -> Details about 'object', use 'object??' for extra details.
+
+    In [1]: 
+
+のように表示されればOKです。まずはテキストデータを読み込みます。
+
+    import numpy as np
+    pict = np.loadtxt("grayscale.txt")
+    
+で読み込みます。まずこれを画像として表示します。
+
+    import scipy.misc
+    scipy.misc.imshow(pict)
+    
+で以下のような画像が表示されるでしょう。
+
+![grayscale picture](images/grayscale.png){: width="256"}
+
+次に画素値の分布を調べましょう。`#`から先は入力しなくて良いです。
+
+    np.max(pict) # => 3.72602997298875
+    np.min(pict) # => -1.8280215091732186
+    np.mean(pict) # => -6.821210263296961e-17
+    np.std(pict) # => 1.0
+
+データの範囲はこの領域にあるようです。次にヒストグラムを表示しましょう。
+
+    import matplotlib.pyplot as plt
+    plt.hist(pict, range=(-4, 4))
+    plt.show()
+
+次のようなヒストグラムが得られます。
+
+![grayscale histogram](images/grayscale-hist.png){: width="256"}
+
+複数のピークが見えています。まったく値がない領域があり
+ちょっと不自然にも見えますがこれは人工的にデータを作ったせいなので
+あまり気にする必要はありません。
+
+一通り見たので、ipython を終了させます。`exit`と打って改行すると終了します。
+
+### パーシステント図の計算
+
+パーシステント図の計算は
+
+    python3 -m homcloud.pict.pixel_levelset_nd -m superlevel -T text2d -I -D grayscale.txt -o grayscale.idiagram
+    
+とします。`grayscale.idiagram`というファイルが生成されます。
+これがパーシステント図の情報を収めたファイルです。
+
+* `-m superlevel` はスーパーレベルフィルトレーションを使うことを意味します。`-m sublevel`とするとサブレベルフィルトレーションを代わりに使います。
+* `-T text2d` で入力データがテキストデータの2次元画像であることを指定します。白黒の場合と同じで二次元画像(`picture2d`)やnumpyのnpyやnpz(`npy`)などのフォーマットが指定できます。
+* `-I -D` はHomCloudの便利機能を有効にするもので常に指定しておくと良いです
+* `-o grayscale.idiagram` で出力ファイルを指定します。
+
+ここでちょっと注意しておくと、スーパーレベルフィルトレーションの計算は
+単純に各ピクセル値の符号を反転させてサブレベルフィルトレーションを計算しています。
+そのため後で符号を反転させたりする必要がある場合があります。詳しくは可視化の
+所で説明します。
+
+### パーシステント図の可視化
+
+次に計算結果の0次のパーシステント図、つまり連結成分、島構造、を可視化しましょう。
+スーパーレベルを使っているので、値の高い部分、つまり白色のピークの構造などが捉えられます。
+
+    python3 -m homcloud.plot_diagram -d 0 -l grayscale.idiagram
+    
+で以下のような図が表示されます。
+
+![grayscale PD0](images/grayscale-superlevel-0.png){: width="256"}
+
+ちょっとヒストグラムのグリッドが細かすぎてわかりにくいようです(デフォルトは
+128x128です)。グリッドを荒くしましょう。
+
+    python3 -m homcloud.plot_diagram -d 0 -l -X 64 grayscale.idiagram
+
+![grayscale PD0](images/grayscale-superlevel-0-1.png){: width="256"}
+
+この図ではbirth-death pairは図の右下のほうに来ています。
+通常は birth < death なので左上のほうに現れるのですが、
+スーパーレベルフィルトレーションを使うということは閾値を大きいほうから
+小さいほうに下げていく過程での島の生成と消滅を見ているので
+birth のほうが閾値では大きくなるのです。
+
+練習問題: birth-death pairは[0,1.5]x[0,1.5]のあたりに多く分布しているようです。
+このあたりを拡大して表示しましょう。また、その画像をファイルに保存しましょう。
+
+### テキストファイルへの出力
+
+これはどの入力データでも同じです。
+
+    python3 -m homcloud.diagram_to_text -d 0 grayscale.idiagram -o grayscale-superlevel-0.txt
+    
+とすると、以下のようなテキストが`grayscale-superlevel-0.txt`に保存されます。
+
+    3.72602997298875 -inf
+    3.72049834765332 3.7197502020373268
+    3.7163519029875003 3.7158144776672444
+    3.621999565745782 3.613981730748671
+    1.2988804792640827 0.2385550375924738
+        :
+        
+1列目がbirth time、2列目がdeath timeです。
+このデータからも birth > death となっていることがわかります。
+この一番最初の行は death time が-∞であるようなbirth death pairです。
+これは白黒の場合と同じ、
+0次のパーシステントホモロジー特有のもので、最初に生まれて
+最後まで生き延びる島を表現しています。上から閾値を変えるので
+「最後まで生き延びる=-∞」となります。
+データ解析をするにあたっては
+これは特別扱いする必要があるので気をつけてください。
+
+### 逆解析(birth pixel, death pixel)
+
+対角線から離れた birth-death pairが重要な構造を表現しているわけなので、上で
+見たパーシステント図から、death - birth < -0.3 となるような点の
+由来を元データに戻って調べてみることにしましょう。下図の
+丸を付けたものです。
+
+逆解析の手法も基本的には白黒画像の場合と同じです。
+HomCloudのbirth pixel、death pixel出力機能を使います。島(連結成分)が生まれた/死んだ
+ときのピクセルの位置を出力します。
+
+    python3 -m homcloud.diagram_to_text -d 0 -S yes grayscale.idiagram
+
+以下のようなテキストが出力されます。
+
+    3.72049834765332 3.7197502020373268 (92,195) (92,196)
+    3.7163519029875003 3.7158144776672444 (94,194) (93,194)
+    3.621999565745782 3.613981730748671 (94,186) (94,188)
+    1.2988804792640827 0.2385550375924738 (199,56) (182,85)
+    1.2152244583757872 0.7406097154584625 (86,100) (96,134)
+
+1列目がbirth time、2列目death time、3列目がbirth pixel、4列目がdeath pixelです。
+0次のパーシステントホモロジーの場合、birth pixelがその島のピーク位置になるので
+重要です。つまり3列目ですね。これを可視化してみましょう。
+このピクセルを入力画像の上に表示してみます。
+同じディレクトルに入っている `plot_birth_pixel.py` でその機能を実装しています。
+次のようにやってみましょう。
+
+    python3 -m homcloud.diagram_to_text -d 0 -S yes grayscale.idiagram -o grayscale-bdpixels.txt
+    python3 plot_birth_pixel.py grayscale-bdpixels.txt grayscale.txt grayscale-birth-pixels.png
+
+以下のような画像が`grayscale-birth-pixels.png`に出力されます。
+赤い丸がbirth pixelの位置です。
+
+![grayscale birth pixels](images/grayscale-birth-pixels.png){: width=256}
+
+画像の特徴的な白のピーク位置が捉えられています。では一番のピークの
+位置はどうなっているのでしょう？実はこれはdeath timeが-∞となるものと対応しています。
+そしてdeath timeが-∞のものに関してはbirth/death pixelが出力されていないので
+こうなっています。
+
+グレイスケール画像の解析はここまででとりあえず完了です。
+ここまでの内容は 同じディレクトリの `run.sh` に含まれています。
+自分のデータを使って解析したい場合にはこのシェルスクリプトを改造して
+いくとよいかもしれません。
+
+また、同じような画像をランダム生成する generate.py、
+ヒストグラムを描画する histogram.py、
+テキストデータから画像を生成する show.py などのプログラムもあります。
+ここまでで説明したものと同じ内容ですが、参考にしてください。
+
+</div>
+
+
