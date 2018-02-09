@@ -3,6 +3,7 @@
 
 set :markdown_engine, :kramdown
 set :relative_links, true
+activate :relative_assets
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
