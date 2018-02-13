@@ -10,6 +10,7 @@ lang: ja
 
 * [3次元点集合データ(ポイントクラウド)](#pointcloud)
 * [白黒画像](#binary-image)
+* [グレイスケール画像](#grayscale-image)
 
 を解析する場合についてチュートリアル的に解説します。
 
@@ -362,6 +363,8 @@ plot_birth_pixel.py を参考にしてご自分でプログラミングをして
 
 ここでは入力データとしてはテキストデータを使いますが、
 普通の画像でも基本は同じです。
+
+注: この解析は HomCloud 1.1.0 が必要です。
 
 ### データの基本的な情報を調べる
 まず、[grayscale-image-example.zip](donwload/grayscale-example.zip)をダウンロードし、
