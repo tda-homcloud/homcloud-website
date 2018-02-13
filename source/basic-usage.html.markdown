@@ -367,7 +367,7 @@ plot_birth_pixel.py を参考にしてご自分でプログラミングをして
 注: この解析は HomCloud 1.1.0 が必要です。
 
 ### データの基本的な情報を調べる
-まず、[grayscale-image-example.zip](donwload/grayscale-example.zip)をダウンロードし、
+まず、[grayscale-example.zip](download/grayscale-example.zip)をダウンロードし、
 zipファイルを展開してください。すると `grayscale-image` というディレクトリができますので、
 ターミナルから `cd` コマンドでこのディレクトリに移動します。
 
