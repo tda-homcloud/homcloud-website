@@ -29,7 +29,7 @@ lang: ja
 
 ### パーシステント図の計算 
 
-まず、[pointcloud-example.zip](donwload/pointcloud-example.zip)をダウンロードし、
+まず、[pointcloud-example.zip](download/pointcloud-example.zip)をダウンロードし、
 zipファイルを展開してください。すると `pointcloud` というディレクトリができますので、
 ターミナルから `cd` コマンドでこのディレクトリに移動します。
 
@@ -198,7 +198,7 @@ https://arxiv.org/abs/1706.10082 の論文の2.3節、特にFig.2が参考にな
 
 
 ### パーシステント図の計算
-まず、[binary-image-example.zip](donwload/binary-image-example.zip)をダウンロードし、
+まず、[binary-image-example.zip](download/binary-image-example.zip)をダウンロードし、
 zipファイルを展開してください。すると `binary-image` というディレクトリができますので、
 ターミナルから `cd` コマンドでこのディレクトリに移動します。
 
