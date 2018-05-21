@@ -14,21 +14,19 @@ HomCloud consists of two parts,
 a basic part (named homcloud-base) and
 a advanced analysis part (homcloud-advanced).
 These two parts work independently. 
-
-The basic part is free software and you can use it freely.
-Only by this part, 
-you can run basic data analysis based on persistent homology.
-
-The advanced analysis part is now not publicly released for some reasons.
-Now we prepare academic license and academic we allow people people to use
-the advanced part freely. If you want academic license, please give us an email.
-For industrial companies, we provide the license for collaborative researches.
-If you want to know the details, please contact our laboratory.
+HomCloud is free software and you can use it freely.
 
 ## <a name="download"> Download
 
-* [homcloud-base latest version(1.2.0)](download/homcloud-base-1.2.0.tar.gz)
-* [homcloud-base latest version(1.2.0) source code](download/homcloud-base-1.2.0-src.tar.gz)
+* [homcloud-base latest version(1.2.2)](download/homcloud-base-1.2.2.tar.gz)
+* [homcloud-advanced latest version(1.2.2)](download/homcloud-advanced-1.2.2.tar.gz)
+
+### Binary files and for Windows (Now these pacakages are not documented yet, sorry)
+
+* [homcloud-base](download/win/homcloud_base-1.2.1-cp36-cp36m-win_amd64.whl)
+* [homcloud-advanced](download/win/homcloud_advanced-1.2.1-py3-none-any.whl)
+* [cgal](download/win/cgal-20180514T003016Z-001.zip)
+* [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
 ## Documents
 
@@ -37,8 +35,8 @@ If you want to know the details, please contact our laboratory.
 
 ## License
 
-homcloud-base is distributed under GPL 3 or any later version.
-Please see [license-base.html](license-base.html) for details.
+HomCloud is distributed under GPL 3 or any later version.
+Please see [license.html](license.html) for details.
 If you want to know the details about GPL, please 
 see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 

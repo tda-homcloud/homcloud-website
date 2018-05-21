@@ -30,14 +30,17 @@ Debian 9 (stretch) 以降を利用してください。古いバージョンは�
 * python3-numpy
 * python3-scipy
 * python3-pip
+* python3-pyqt5
 * python3-msgpack
 * opnempi-bin
 * libopenmpi-dev
 * cmake
+* paraview
 
 apt-getで各パッケージの追加は以下のように行います。
 
-    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-msgpack openmpi-bin libopenmpi-dev cmake
+    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack openmpi-bin libopenmpi-dev cmake paraview
+
 
 ### 2. [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
 
@@ -61,12 +64,14 @@ apt-getで各パッケージの追加は以下のように行います。
 
 ### 4. 最新版のhomcloudを[ダウンロード](index.html#download)し、インストールします。
 
-homcloud-base-x.y.z.tar.gz というファイルをダウンロードしてください。
-x、y、zは最新のバージョン番号に置き換えてください。
+`homcloud-base-x.y.z.tar.gz` と `homcloud-advanced-x.y.z.tar.gz`
+というファイルをダウンロードしてください。
+`x`、`y`、`z`は最新のバージョン番号に置き換えてください。
 
 ダウンロードしたディレクトリに移動し、以下を実行します。
 
     pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
+    pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
 
 もしグローバルにインストールしたくない場合はvirtualenvかvenvを使ってください。
 
@@ -103,11 +108,13 @@ Xcode をインストールした後、引き続き以下のコマンドを入�
 途中、管理者のパスワードを聞かれた場合は適宜入力してください。
 
 ### 2. homebrew で以下の６つのパッケージをインストールします。
-   
+
 * cgal
 * python3
 * cmake
 * open-mpi
+* pyqt5
+* homebrew/science/paraview または caskroom/cask/paraview
 
 homebrew を使うことで、様々なパッケージをターミナルからコマンド入力するだけで、依存関係を考慮したり、必要なパッケージ類をまとめてインストールことができます。
 例えば、ターミナルで以下のコマンドを実行すれば、インストールされます。
@@ -224,13 +231,15 @@ PATH の通っているディレクトリがどこかは
 とすれば新規に .bashrc という名前でテキストファイルが作成できます。  
 
 ### 5. 最新版のhomcloudを[ダウンロード](index.html#download)し、インストールします。
-homcloud-base-x.y.z.tar.gz をダウンロードしてください。
+`homcloud-base-x.y.z.tar.gz` と `homcloud-advanced-x.y.z.tar.gz` をダウンロードしてください。
 x、y、z は最新のバージョン番号に置き換えてください。
 
 上記の二つのファイルをダウンロードしたら、 ターミナルを起動して、以下のように入力して、 ダウンロードしたファイルのあるディレクトリに移動し(ここでは例として~/Donwloads)、homcloud のインストールを行ってください。
    
     cd Downloads/ 
-    pip3 install homcloud-base-x.y.z.tar.gz 
+    pip3 install homcloud-base-x.y.z.tar.gz
+    pip3 install homcloud-advanced-x.y.z.tar.gz
+
 
 以上で、MacOS への homcloud のインストールは完了です。
 
