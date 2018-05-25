@@ -33,8 +33,9 @@ HomCloudは基本部分(homcloud-base)
 
 ## ドキュメント
 
-* [インストール](how-to-install.html)
+* [インストール](homcloud-docs-ja/OS_selects.html)
 * [基本的な使い方](basic-usage.html)
+* [ドキュメント](homcloud-docs-ja/index.html)
 
 ## ライセンス
 
