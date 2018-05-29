@@ -120,14 +120,15 @@ Under any system, python 3.3 or newer versions are requred.
 
         sudo apt-get install libcgal-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack python3-joblib python3-sklearn mpi-default-bin paraview
 
-2. Download The following files from `stretch-amd64-packages` directory in download site
+2. Download The following files from download site
+
    * `dipha_2.1.0-1_amd64.deb`
-   * `python3-homcloud-base_0.8.5_amd64.deb`
-   * `python3-homcloud-advanced_0.8.5_amd64.deb`
+   * `python3-homcloud-base_x.y.z_amd64.deb`
+   * `python3-homcloud-advanced_z.y.z_amd64.deb`
 
 3. Install the above downloaded packages using dpkg as follows:
 
-        sudo dpkg -i dipha_2.1.0-1_amd64.deb python3-homcloud-base_0.8.5_amd64.deb python3-homcloud-advanced_0.8.5_amd64.deb
+        sudo dpkg -i dipha_2.1.0-1_amd64.deb python3-homcloud-base_x.y.z_amd64.deb python3-homcloud-advanced_x.y.z_amd64.deb
     
         # Alternatively, you can install the above packages as follows
         # if you download the above package files in the same direcotry.
@@ -202,8 +203,7 @@ This package requires the following
 
 # USAGE EXAMPLES
 
-In `example` directory, there are some exmaples for homcloud.
-Please download these examples and try them.
+Please download `homcloud-examples.zip` and try them.
 
 # Command aliases
 
@@ -263,7 +263,8 @@ If you get the error, please modify the matplotlibrc file as follows:
 
 You should put the file at `$HOME/.config/matplotlib/matplotlibrc`.
 
-# AUTHOR
+# AUTHORS
 
-Ippei Obayashi (ippei.obayashi.d8@tohoku.ac.jp)
-Hiraoka Lab, WPI-AIMR, Tohoku Univ.
+* Ippei Obayashi
+* Tomohide Wada
+* Hiraoka Lab, WPI-AIMR, Tohoku Univ.

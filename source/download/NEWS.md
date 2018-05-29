@@ -1,3 +1,6 @@
+# News for 1.3.0 (2018/5/28)
+* Relase homcloud-advanced publicly under OSS
+
 # News for 1.2.2 (2018/5/17)
 * Support CGAL 4.12 (follow CGAL's breaking changes)
 
