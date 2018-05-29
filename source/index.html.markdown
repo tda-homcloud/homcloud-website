@@ -25,6 +25,7 @@ HomCloudは基本部分(homcloud-base)
 * [homcloud-advanced 最新版(1.2.2)](download/homcloud-advanced-1.2.2.tar.gz)
 * [README](download/README.md)
 * [NEWS](download/NEWS.md)
+* [homcloud-examples.zip](download/homcloud-examples.zip)
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
