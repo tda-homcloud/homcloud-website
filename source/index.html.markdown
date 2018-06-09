@@ -14,30 +14,36 @@ HomCloudは基本部分(homcloud-base)
 と拡張部分(homcloud-advanced)
 の2つに別れています。この2つは完全に
 独立したソフトウェアで、一方がなくともちゃんと動きます。
+これらのソフトウェアは自由にダウンロードして利用できます。
 
-基本部分は自由にダウンロードして利用できます。また
-基本的な解析はこの基本部分だけで十分可能です。
-
-拡張部分は今のところ一般には公開していません。
-今のところアカデミックライセンスを用意しておりますので
-学術関連の人には無料で利用できます。メールでご連絡ください。
-企業の方は今のところ共同研究をすることでご利用できます。詳しくは
-我々の研究室までご相談ください。
+色々事情があって2つに分かれているのですがちょっと面倒なので
+くっつけてしまうかもしれません。
 
 ## <a name="download"> ダウンロード
 
-* [homcloud-base 最新版(1.2.0)](download/homcloud-base-1.2.0.tar.gz)
-* [homcloud-base 最新版(1.2.0)ソースコード](download/homcloud-base-1.2.0-src.tar.gz)
+* [homcloud-base 最新版(1.3.0)](download/homcloud-base-1.3.0.tar.gz)
+* [homcloud-advanced 最新版(1.3.0)](download/homcloud-advanced-1.3.0.tar.gz)
+* [README](download/README.md)
+* [NEWS](download/NEWS.md)
+* [homcloud-examples.zip](download/homcloud-examples.zip)
+
+### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
+
+* [homcloud-base](download/win/homcloud_base-1.2.1-cp36-cp36m-win_amd64.whl)
+* [homcloud-advanced](download/win/homcloud_advanced-1.2.1-py3-none-any.whl)
+* [cgal](download/win/cgal-20180514T003016Z-001.zip)
+* [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
 ## ドキュメント
 
-* [インストール](how-to-install.html)
+* [インストール](homcloud-docs-ja/OS_selects.html)
 * [基本的な使い方](basic-usage.html)
+* [ドキュメント](homcloud-docs-ja/index.html)
 
 ## ライセンス
 
-homcloud-base は GPL 3 もしくは任意のそれ以降のバージョンで配布しています。
-詳しくは [license-base.html](license-base.html) をご覧ください。
+HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布しています。
+詳しくは [license.html](license.html) をご覧ください。
 また、GPL version 3について
 詳しくは <https://www.gnu.org/licenses/gpl-3.0.ja.html>
 をご覧ください。

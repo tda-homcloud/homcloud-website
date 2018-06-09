@@ -34,14 +34,18 @@ First, you should install python3 and some other packages.
 * python3-numpy
 * python3-scipy
 * python3-pip
+* python3-pyqt5
 * python3-msgpack
 * opnempi-bin
 * libopenmpi-dev
 * cmake
+* paraview
+
 
 Please type as follows:
 
-    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-msgpack openmpi-bin libopenmpi-dev cmake
+    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack openmpi-bin libopenmpi-dev cmake paraview
+
 
 ### 2. Download dipha from <http://github.com/DIPHA/dipha> and install it
 
@@ -67,11 +71,13 @@ since scikit-learn is installed under the version-dependent directory.
 
 ### 4. [Download](index.html#download) latest HomCloud and install
 
-Download the file `homcloud-base-x.y.z.tar.gz`. x, y, z depend on the version.
+Download the file `homcloud-base-x.y.z.tar.gz` and 
+`homcloud-advanced-x.y.z.tar.gz`. `x`, `y`, `z` depend on the version.
 
 Go to the downloaded directory, and type as follows:
 
     pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
+    pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
 
 If you do not want to install the homcloud globally, please use
 virtualenv or venv.
@@ -154,13 +160,15 @@ You can find `PATH` directories by:
     echo $PATH
 
 ### 5. [Download](index.en.html#download) latest HomCloud and install
-Download homcloud-base-x.y.z.tar.gz. x, y, z is latest version.
+Download `homcloud-base-x.y.z.tar.gz` and `homcloud-advanced-x.y.z.tar.gz`. 
+`x`, `y`, `z` is latest version.
 
 After downloading, open your terminal, and type as follows to go to the download
 directory, and install HomCloud by `pip` command.
 
     cd Downloads/
     pip3 install homcloud-base-x.y.z.tar.gz
+    pip3 install homcloud-advanced-x.y.z.tar.gz
 
 </div>
 

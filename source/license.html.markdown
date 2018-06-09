@@ -1,23 +1,23 @@
 ---
-title: "homcloud-base License"
+title: "HomCloud License"
 ---
 
-# homcloud-base license
+# HomCloud license
 
 Copyright 2018 Ippei Obayashi, Hiraoka lab(AIMR, Tohoku University)
 
-homcloud-base is free software: you can redistribute it and/or modify
+HomCloud is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-homcloud-base is distributed in the hope that it will be useful,
+HomCloud is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with homcloud-base.  If not, see <http://www.gnu.org/licenses/>.
+along with HomCloud.  If not, see <http://www.gnu.org/licenses/>.
 
 ## dependent software and their licenses
 
@@ -30,3 +30,4 @@ along with homcloud-base.  If not, see <http://www.gnu.org/licenses/>.
 * [Pillow](http://pillow.readthedocs.io/) (the open source PIL Software License)
 * [dipha](https://github.com/DIPHA/dipha) (LGPL 3)
 * [CGAL](https://www.cgal.org/) (GPL 3+ and LGPL 3+)
+* [pyqt5](https://www.riverbankcomputing.com/software/pyqt/intro) (GNU GPL v3 and the Riverbank Commercial License)
