@@ -24,7 +24,7 @@ HomCloud is free software and you can use it freely.
 * [NEWS](download/NEWS)
 * [homcloud-examples.zip](download/homcloud-examples.zip)
 
-### Binary files and for Windows (Now these pacakages are not documented yet, sorry)
+### Binary files and for Windows (Now these packages are not documented yet, sorry)
 
 * [homcloud-base](download/win/homcloud_base-1.2.1-cp36-cp36m-win_amd64.whl)
 * [homcloud-advanced](download/win/homcloud_advanced-1.2.1-py3-none-any.whl)
@@ -48,4 +48,5 @@ see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 * Ippei Obayashi (main developer)
 * Tomohide Wada (Window version, documentation)
 * Some parts are outsourced to [Trans NT, Inc.](http://www.trans-nt.com/)
+* Jun Miyanaga (documentation)
 * Yasuaki Hiraoka
