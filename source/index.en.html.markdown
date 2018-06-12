@@ -20,8 +20,8 @@ HomCloud is free software and you can use it freely.
 
 * [homcloud-base latest version(1.3.0)](download/homcloud-base-1.3.0.tar.gz)
 * [homcloud-advanced latest version(1.3.0)](download/homcloud-advanced-1.3.0.tar.gz)
-* [README](download/README.md)
-* [NEWS](download/NEWS.md)
+* [README](download/README)
+* [NEWS](download/NEWS)
 * [homcloud-examples.zip](download/homcloud-examples.zip)
 
 ### Binary files and for Windows (Now these pacakages are not documented yet, sorry)
