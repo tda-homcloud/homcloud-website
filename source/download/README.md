@@ -35,11 +35,11 @@ Under any system, python 3.3 or newer versions are requred.
    1. Download latest dipha from "Download ZIP" button.
    2. Unzip it
    3. Change directory to the created directory
-   4. Type "cmake ." to create a makefile
-   5. Type "make" to build
-   6. Copy the executable file of "dipha" to a directory in $PATH environment variable.
+   4. Type `cmake .` to create a makefile
+   5. Type `make` to build
+   6. Copy the executable file of `dipha` to a directory in $PATH environment variable.
 
-3. Type "pip3 install --user scikit-learn"
+3. Type `pip3 install --user scikit-learn`
 
 4. Dowload the following files from the download website:
 
@@ -151,9 +151,9 @@ since probably GUI is not available on such a machine.
     1. Download latest dipha from "Download ZIP" button.
     2. Unzip it
     3. Change directory to the created directory
-    4. Type "cmake ." to create a makefile
-    5. Type "make" to build
-    6. Copy the executable file of "dipha" to a directory in $PATH environment variable.
+    4. Type `cmake .` to create a makefile
+    5. Type `make` to build
+    6. Copy the executable file of `dipha` to a directory in $PATH environment variable.
 
 3. Install pyenv (https://github.com/yyuu/pyenv)
 4. Install anaonda using pyenv: `pyenv install pyenv install anaconda3-4.2.0`
@@ -164,8 +164,8 @@ since probably GUI is not available on such a machine.
 
 6. Install the following packages using `conda` command.
    * gcc
-   * msgpack-python (conda install -c cluster msgpack-python)
-   * cgal (conda install -c conda-forge cgal=4.9)
+   * msgpack-python (`conda install -c cluster msgpack-python`)
+   * cgal (`conda install -c conda-forge cgal=4.9`)
 
 7. Dowload the following files from the download website:
 
@@ -225,7 +225,7 @@ And after that, please install the latest version of homcloud as follows:
     pip3 install homcloud-base-x.y.z.tar.gz
     pip3 install homcloud-advanced-x.y.z.tar.gz
 
-On linux, --user option may be required.
+On linux, `--user` option may be required.
 
 # DOCUMENTS
 
@@ -246,7 +246,7 @@ If you get the following messages on Mac OS X:
     [[46339,0],0] ORTE_ERROR_LOG: Bad parameter in file orted/pmix/pmix_server.c at line 262
     [[46339,0],0] ORTE_ERROR_LOG: Bad parameter in file ess_hnp_module.c at line 666
 
-please change the environment variable TMPDIR to "/tmp" or something short name.
+please change the environment variable TMPDIR to `/tmp` or something short name.
 
 ## RuntimeError: Invalid DISPLAY variable on ssh
 
