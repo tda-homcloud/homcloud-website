@@ -29,8 +29,8 @@ HomCloudは基本部分(homcloud-base)
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [homcloud-base](download/win/homcloud_base-1.2.1-cp36-cp36m-win_amd64.whl)
-* [homcloud-advanced](download/win/homcloud_advanced-1.2.1-py3-none-any.whl)
+* [homcloud-base](download/win/homcloud_base-1.3.0-cp36-cp36m-win_amd64.whl)
+* [homcloud-advanced](download/win/homcloud_advanced-1.3.0-py3-none-any.whl)
 * [cgal](download/win/cgal-20180514T003016Z-001.zip)
 * [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
