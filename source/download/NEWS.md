@@ -1,3 +1,11 @@
+# News for 1.3.1 (2018/7/05)
+* Fix a bug of "-n" option in pc2diphacomplex
+* Support CubicalRipser (https://github.com/CubicalRipser)
+  Set the environmennt variable "HOMCLOUD_USE_CUBICALRIPSER" to "1" if you want to use
+  them.
+* Rewrite pict.tree by C++ for speed up
+* dump_diagram supports -E (--show-essential-pairs) option
+
 # News for 1.3.0 (2018/5/28)
 * Relase homcloud-advanced publicly under OSS
 

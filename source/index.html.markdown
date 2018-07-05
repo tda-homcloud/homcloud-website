@@ -21,8 +21,8 @@ HomCloudは基本部分(homcloud-base)
 
 ## <a name="download"> ダウンロード
 
-* [homcloud-base 最新版(1.3.0)](download/homcloud-base-1.3.0.tar.gz)
-* [homcloud-advanced 最新版(1.3.0)](download/homcloud-advanced-1.3.0.tar.gz)
+* [homcloud-base 最新版(1.3.1)](download/homcloud-base-1.3.1.tar.gz)
+* [homcloud-advanced 最新版(1.3.1)](download/homcloud-advanced-1.3.1.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 * [homcloud-examples.zip](download/homcloud-examples.zip)
