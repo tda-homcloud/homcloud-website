@@ -7,8 +7,7 @@ lang: ja
 
 # インストール
 
-HomCloud は現在 Linux もしくは MacOS X での利用が可能です。
-Windows 版は現在準備中です。
+HomCloud は現在 Linux, MacOS X, Windows での利用が可能です。
 
 * [Linux でのインストール](#linux)
 * [OS X でのインストール](#osx)
@@ -51,27 +50,26 @@ apt-getで各パッケージの追加は以下のように行います。
 5. "make"とタイプし、ビルドします。
 6. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
    
-### 3. pipを使ってscikit-learnを追加します。
+### 3. pipを使って必要なパッケージをインストール
 
-    pip3 install --user scikit-learn
+    pip3 install --user scikit-learn forwardable
 
 または使用している `python` からモジュールとして
 
-    python3.6 -m pip install --user scikit-learn
+    python3.6 -m pip install --user scikit-learn forwardable
 
 とタイプししてください。`pip` でインストールされるパッケージは `python` の各バージョン毎にインストールされている必要があります。`python` のアップデートなどがあった場合に必要なパッケージがそのバージョン用にインストールされているか、注意してください。
 
 
 ### 4. 最新版のhomcloudを[ダウンロード](index.html#download)し、インストールします。
 
-`homcloud-base-x.y.z.tar.gz` と `homcloud-advanced-x.y.z.tar.gz`
+`homcloud-x.y.z.tar.gz`
 というファイルをダウンロードしてください。
 `x`、`y`、`z`は最新のバージョン番号に置き換えてください。
 
 ダウンロードしたディレクトリに移動し、以下を実行します。
 
-    pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
-    pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
+    pip3 install --user --no-deps homcloud-x.y.z.tar.gz
 
 もしグローバルにインストールしたくない場合はvirtualenvかvenvを使ってください。
 
@@ -103,6 +101,7 @@ Xcode 6.1以降では、インストールする際、 Xcode commandline tools �
     xcode-select --install
 
 Xcode をインストールした後、引き続き以下のコマンドを入力すれば、[ruby](https://www.ruby-lang.org/ja/) によって homebrew もインストールされます。
+
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 途中、管理者のパスワードを聞かれた場合は適宜入力してください。
@@ -133,10 +132,11 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 * scikit-leran
 * msgpack-python
 * Pillow
+* forwardable
 
 ターミナルで以下のコマンドを入力すればインストールできます。
 
-    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow
+    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow forwardable
 
 ### 4. dipha を <http://github.com/DIPHA/dipha> からダウンロードしてインストールします。
 
@@ -231,15 +231,13 @@ PATH の通っているディレクトリがどこかは
 とすれば新規に .bashrc という名前でテキストファイルが作成できます。  
 
 ### 5. 最新版のhomcloudを[ダウンロード](index.html#download)し、インストールします。
-`homcloud-base-x.y.z.tar.gz` と `homcloud-advanced-x.y.z.tar.gz` をダウンロードしてください。
+`homcloud-x.y.z.tar.gz` をダウンロードしてください。
 x、y、z は最新のバージョン番号に置き換えてください。
 
-上記の二つのファイルをダウンロードしたら、 ターミナルを起動して、以下のように入力して、 ダウンロードしたファイルのあるディレクトリに移動し(ここでは例として~/Donwloads)、homcloud のインストールを行ってください。
+ターミナルを起動して、以下のように入力して、 ダウンロードしたファイルのあるディレクトリに移動し(ここでは例として~/Donwloads)、homcloud のインストールを行ってください。
    
     cd Downloads/ 
-    pip3 install homcloud-base-x.y.z.tar.gz
-    pip3 install homcloud-advanced-x.y.z.tar.gz
-
+    pip3 install homcloud-x.y.z.tar.gz
 
 以上で、MacOS への homcloud のインストールは完了です。
 

@@ -1,3 +1,14 @@
+# News for 2.0.0 (2018/9/5)
+* Merge `homcloud-base` package and `homcloud-advanced` package
+* Rename `pc2diphacomplex` to `pc_alpha` (`pc2diphacomplex` is now also available for
+  backward compatibility)
+* Support periodic cubical filtration
+  * Use `-p` (`--periodic`) option for `pict.binarize_nd` and `pict.pixel_levelset_nd`
+* Total refactoring
+* Remove `view_birth_death_simplices` module
+* Update `optimal_cycle` module, you should compute a `.idiagram` file 
+  with `-M` option to compute a volume optimal cycle
+  
 # News for 1.3.1 (2018/7/05)
 * Fix a bug of "-n" option in pc2diphacomplex
 * Support CubicalRipser (https://github.com/CubicalRipser)

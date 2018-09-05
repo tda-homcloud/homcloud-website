@@ -7,12 +7,11 @@ lang: en
 
 # Install
 
-HomCloud is now available on Linux or MacOS X.
-Now Windows version is under development.
+HomCloud is now available on Linux, MacOS X, and Windows.
 
 * [Install on Linux](#linux)
 * [Install on OS X](#osx)
-
+* Install guide on Windows is not available now. Sorry!
 
 <div class="guide">
 ## <a name="linux"> Install on Linux(Ubuntu, Debian)
@@ -57,27 +56,26 @@ Please type as follows:
 6. Copy the dipha executable file to the directory in `PATH` environment variable.
 
    
-### 3. Install scikit-learn by pip
-Type as follows to install scikit-learn:
+### 3. Install python packages by pip
+Type as follows to install scikit-learn and forwardable:
 
-    pip3 install --user scikit-learn
+    pip3 install --user scikit-learn forwardable
 
 Alternative way is as follows:
 
-    python3.6 -m pip install --user scikit-learn
+    python3.6 -m pip install --user scikit-learn forwardable
 
 Please note that you should reinstall scikit-learn if python is major upgraded
 since scikit-learn is installed under the version-dependent directory.
 
 ### 4. [Download](index.html#download) latest HomCloud and install
 
-Download the file `homcloud-base-x.y.z.tar.gz` and 
-`homcloud-advanced-x.y.z.tar.gz`. `x`, `y`, `z` depend on the version.
+Download the file `homcloud-x.y.z.tar.gz`.
+`x`, `y`, `z` depend on the version.
 
 Go to the downloaded directory, and type as follows:
 
-    pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
-    pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
+    pip3 install --user --no-deps homcloud-x.y.z.tar.gz
 
 If you do not want to install the homcloud globally, please use
 virtualenv or venv.
@@ -134,10 +132,11 @@ the python package system. Please following packages by `pip3`.
 * scikit-learn
 * msgpack-python
 * Pillow
+* forwadable
 
 Type as follows to install:
 
-    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow
+    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow forwardable
 
 ### 4. Download dipha from <http://github.com/DIPHA/dipha> and install it
 
@@ -160,20 +159,13 @@ You can find `PATH` directories by:
     echo $PATH
 
 ### 5. [Download](index.en.html#download) latest HomCloud and install
-Download `homcloud-base-x.y.z.tar.gz` and `homcloud-advanced-x.y.z.tar.gz`. 
-`x`, `y`, `z` is latest version.
+Download `homcloud-x.y.z.tar.gz`.  `x`, `y`, `z` is latest version.
 
 After downloading, open your terminal, and type as follows to go to the download
 directory, and install HomCloud by `pip` command.
 
     cd Downloads/
-    pip3 install homcloud-base-x.y.z.tar.gz
-    pip3 install homcloud-advanced-x.y.z.tar.gz
+    pip3 install homcloud-x.y.z.tar.gz
 
 </div>
 
-<div class="guide">
-## Plan for windows
-
-Probably, we use Anaconda only on Windows.
-</div>
