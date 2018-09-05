@@ -10,19 +10,9 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 [大林](http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/obayashi/)を中心に
 [平岡研](http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/)で開発されています。
 
-HomCloudは基本部分(homcloud-base)
-と拡張部分(homcloud-advanced)
-の2つに別れています。この2つは完全に
-独立したソフトウェアで、一方がなくともちゃんと動きます。
-これらのソフトウェアは自由にダウンロードして利用できます。
+## <a name="download"> 最新版ダウンロード
 
-色々事情があって2つに分かれているのですがちょっと面倒なので
-くっつけてしまうかもしれません。
-
-## <a name="download"> ダウンロード
-
-* [homcloud-base 最新版(1.3.1)](download/homcloud-base-1.3.1.tar.gz)
-* [homcloud-advanced 最新版(1.3.1)](download/homcloud-advanced-1.3.1.tar.gz)
+* [homcloud 最新版(2.0.0)](download/homcloud-2.0.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 * [homcloud-examples.zip](download/homcloud-examples.zip)

@@ -16,10 +16,9 @@ a advanced analysis part (homcloud-advanced).
 These two parts work independently. 
 HomCloud is free software and you can use it freely.
 
-## <a name="download"> Download
+## <a name="download"> Download latest version
 
-* [homcloud-base latest version(1.3.1)](download/homcloud-base-1.3.1.tar.gz)
-* [homcloud-advanced latest version(1.3.1)](download/homcloud-advanced-1.3.1.tar.gz)
+* [homcloud latest version(2.0.0)](download/homcloud-2.0.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 * [homcloud-examples.zip](download/homcloud-examples.zip)
