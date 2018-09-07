@@ -25,8 +25,7 @@ HomCloud is free software and you can use it freely.
 
 ### Binary files and for Windows (Now these packages are not documented yet, sorry)
 
-* [homcloud-base](download/win/homcloud_base-1.2.1-cp36-cp36m-win_amd64.whl)
-* [homcloud-advanced](download/win/homcloud_advanced-1.2.1-py3-none-any.whl)
+* [homcloud latest version(2.0.0)](download/homcloud-2.0.0-cp36-cp36m-win_amd64.whl)
 * [cgal](download/win/cgal-20180514T003016Z-001.zip)
 * [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
