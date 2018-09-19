@@ -19,8 +19,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [homcloud-base](download/win/homcloud_base-1.3.0-cp36-cp36m-win_amd64.whl)
-* [homcloud-advanced](download/win/homcloud_advanced-1.3.0-py3-none-any.whl)
+* [homcloud 最新版(2.0.0)](download/homcloud-2.0.0-cp36-cp36m-win_amd64.whl)
 * [cgal](download/win/cgal-20180514T003016Z-001.zip)
 * [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
