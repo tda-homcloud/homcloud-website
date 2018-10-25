@@ -1,3 +1,20 @@
+# News for 2.1.0 (2018/10/25)
+* Fix a bug of -P option of `homcloud-pc-alpha` module
+* Fix a bug of -n option of `homcloud-pc-alpha` module
+* Implement the new "eigenvolume" feature in `optimal_cycle` module
+  * Uses can compute three types of eigenvolumes by the following options
+    * `--owned-volume`
+    * `--tightened-volume`
+    * `--tightened-subvolume`
+  * Uses can also compute these types of eigenvolumes from `plot_PD_gui`
+* Add `--no-optimal-volume` option to `optimal_cycle` module
+* Add a new module `pict.slice3d` to show the 3D npy data by 2d slice images.
+* Activate `-S` option in `pict.show_volume_2d`
+* Now `plot_PD_gui` suuports the folloiwng options: `--power`, `-l`, `--loglog`,
+  `-m`, `--colormap`
+* Now `plot_PD_gui` correctly treats `-y` and `-Y` options
+* Add some widgets to `plot_PD_gui`
+
 # News for 2.0.0 (2018/9/5)
 * Merge `homcloud-base` package and `homcloud-advanced` package
 * Rename `pc2diphacomplex` to `pc_alpha` (`pc2diphacomplex` is now also available for
