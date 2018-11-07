@@ -11898,7 +11898,7 @@ log scaleにすることを指定します。
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.plot_PD -d <span class="m">0</span> -l --aspect equal binary-image.idiagram -o binary-image-pd0.png
@@ -11959,7 +11959,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.plot_PD -d <span class="m">0</span> -l -x <span class="s2">&quot;[-20.5:7.5]&quot;</span> -X <span class="m">28</span> --aspect equal binary-image.idiagram -o binary-image-pd0.png
@@ -12014,7 +12014,7 @@ display &lt; binary-image-pd0.png
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.dump_diagram -d <span class="m">0</span> -S no binary-image.idiagram -o binary-image-pd0.txt
@@ -12027,7 +12027,7 @@ display &lt; binary-image-pd0.png
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>head binary-image-pd0.txt
@@ -12083,7 +12083,7 @@ birth/death positionを出力するには以下のコマンドをターミナル
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.dump_diagram -d <span class="m">0</span> -S yes binary-image.idiagram
@@ -12248,7 +12248,7 @@ grepというコマンドを利用すると必要なものだけ取り出せま�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.dump_diagram -d <span class="m">0</span> -S yes binary-image.idiagram <span class="p">|</span> grep <span class="s2">&quot;^-5 -4&quot;</span>
@@ -12343,7 +12343,7 @@ birth pixelのほうが重要です(その構造の中心におよそ対応し�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.view_index_pict -d <span class="m">0</span> -B -f <span class="s2">&quot;birth == -5&quot;</span> -f <span class="s2">&quot;death == -4&quot;</span> --no-label <span class="se">\</span>
@@ -12422,7 +12422,7 @@ display &lt; binary-image-markers.png
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.pict.tree -m black-base -s -t <span class="m">128</span> -T picture2d binary-image.png -o binary-image.p2mt
@@ -12466,10 +12466,10 @@ display &lt; binary-image-markers.png
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.pict.show_volume_2d -d <span class="m">0</span> -f <span class="s2">&quot;birth == -5&quot;</span> -f <span class="s2">&quot;death == -4&quot;</span>  -B -volume --alpha <span class="m">0</span>.5 - <span class="se">\</span>
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.pict.show_volume_2d -d <span class="m">0</span> -f <span class="s2">&quot;birth == -5&quot;</span> -f <span class="s2">&quot;death == -4&quot;</span>  -B --volume --alpha <span class="m">0</span>.5  <span class="se">\</span>
     binary-image.png binary-image.p2mt -o binary-image-volumes.png 
 display &lt; binary-image-volumes.png
 </pre></div>
