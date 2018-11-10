@@ -1,3 +1,10 @@
+# News for 2.2.0 (2018/11/9)
+* Rename optimal_cycle moule to optimal_volume
+  * optimal_cycle is also available for backward compatibility
+* `optimal_volume` supports `--threads` option to specify the number of threads
+  for LP solver.
+* Support older msgpack-python package
+
 # News for 2.1.0 (2018/10/25)
 * Fix a bug of -P option of `homcloud-pc-alpha` module
 * Fix a bug of -n option of `homcloud-pc-alpha` module
