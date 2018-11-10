@@ -57,13 +57,13 @@ Please type as follows:
 
    
 ### 3. Install python packages by pip
-Type as follows to install scikit-learn and forwardable:
+Type as follows to install scikit-learn, imageio, and forwardable:
 
-    pip3 install --user scikit-learn forwardable
+    pip3 install --user scikit-learn imageio forwardable 
 
 Alternative way is as follows:
 
-    python3.6 -m pip install --user scikit-learn forwardable
+    python3.6 -m pip install --user scikit-learn imageio forwardable
 
 Please note that you should reinstall scikit-learn if python is major upgraded
 since scikit-learn is installed under the version-dependent directory.
@@ -133,10 +133,11 @@ the python package system. Please following packages by `pip3`.
 * msgpack-python
 * Pillow
 * forwadable
+* imageio
 
 Type as follows to install:
 
-    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow forwardable
+    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow forwardable imageio
 
 ### 4. Download dipha from <http://github.com/DIPHA/dipha> and install it
 
