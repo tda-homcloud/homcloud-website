@@ -1,5 +1,22 @@
+# NEws for 2.3.0 (2018/11/28)
+* Support +-inf values by superlevel/sublevel filtrations on bitmaps
+* Some bug fixes
+  * Fix package dependencies
+  * Fix build configurations
+* You can represents vertices by symbols
+  * You can specify symbols by `--vertex-symbols` option of `homcloud.pc_alpha`
+  * You can change the output of birth/death simplices of `homcloud.dump_diagram` by
+    `-s` option
+  * The json outputs by `homcloud.optimal_volume` and `homcloud.query_pht`
+    now contains symbolic representations of `points`, `simplices`,
+    `boundary`, `boundary-points`. The names are `points-symbols`,
+    `simplices-symbols`, `boundary-symbols`, and `boundary-points-symbols`.
+* You can visualize birth/death pixels for 3D voxel data by
+  `homcloud.view_index_pict3d`. This program is useful by combining
+  other visualization program `homcloud.pict.pict3d_vtk`
+
 # News for 2.2.0 (2018/11/9)
-* Rename optimal_cycle moule to optimal_volume
+* Rename optimal\_cycle moule to optimal\_volume
   * optimal_cycle is also available for backward compatibility
 * `optimal_volume` supports `--threads` option to specify the number of threads
   for LP solver.
