@@ -66,6 +66,7 @@ Windows を使っている方もコマンドプロンプトから入力するこ
 * [3次元点集合データ(ポイントクラウド)](py-tutorial/pointcloud.html)
 * [白黒画像](py-tutorial/binary-image.html)
 * [グレイスケール画像](py-tutorial/grayscale-image.html)
+* [機械学習との組み合わせ](py-tutorial/ml_pc.html)
 
 [このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や、データファイル等が含まれています。](download/python-tutorial.zip)
 
