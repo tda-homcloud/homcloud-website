@@ -30,6 +30,7 @@ Under any system, python 3.3 or newer versions are requred.
    * libopenmpi-dev
    * cmake
    * paraview
+   * cython3
 
 2. Download dipha from http://github.com/DIPHA/dipha and install it.
    1. Download latest dipha from "Download ZIP" button.
@@ -39,17 +40,15 @@ Under any system, python 3.3 or newer versions are requred.
    5. Type `make` to build
    6. Copy the executable file of `dipha` to a directory in $PATH environment variable.
 
-3. Type `pip3 install --user scikit-learn`
+3. Type `pip3 install --user scikit-learn ripser`
 
 4. Dowload the following files from the download website:
 
-    * `homcloud-base-x.y.z.tar.gz`
-    * `homcloud-advanced-x.y.z.tar.gz`
+    * `homcloud-x.y.z.tar.gz`
 
     After donwloading, go to the "Download" directory and type:
 
-        pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
-        pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
+        pip3 install --user --no-deps homcloud-x.y.z.tar.gz
 
     x,y, and z should be replaced to the latest version number.
 
@@ -75,19 +74,19 @@ Under any system, python 3.3 or newer versions are requred.
    * msgpack-python
    * Pillow
    * pulp
+   * cython
+   * ripser
 
 4. Download dipha from http://github.com/DIPHA/dipha and install it.
    * Same as linux's way
 
 5. Dowload the following files from the download website:
 
-    * `homcloud-base-x.y.z.tar.gz`
-    * `homcloud-advanced-x.y.z.tar.gz`
+    * `homcloud-x.y.z.tar.gz`
 
     After donwloading, go to the "Download" directory and type:
 
-        pip3 install homcloud-base-x.y.z.tar.gz
-        pip3 install homcloud-advanced-x.y.z.tar.gz
+        pip3 install homcloud-x.y.z.tar.gz
 
     x,y, and z should be replaced to the latest version number.
 
@@ -101,6 +100,7 @@ Under any system, python 3.3 or newer versions are requred.
 
         export HOMCLOUD_PARAVIEW_PROGRAMNAME=ParaView-5.4.0.app
 
+<!--
 ## Install on Debian stretch
 1. Install the following pacakges with apt-get
    * libcgal-dev
@@ -134,6 +134,7 @@ Under any system, python 3.3 or newer versions are requred.
         # if you download the above package files in the same direcotry.
         sudo dpkg -i *.deb
 
+-->
 
 ## Install with anaconda on linux
 
@@ -155,12 +156,14 @@ since probably GUI is not available on such a machine.
     5. Type `make` to build
     6. Copy the executable file of `dipha` to a directory in $PATH environment variable.
 
-3. Install pyenv (https://github.com/yyuu/pyenv)
-4. Install anaonda using pyenv: `pyenv install pyenv install anaconda3-4.2.0`
+3. Install anaconda (https:www.anaconda.com)
+4. Generate anaconda environment
+
+    conda create -n py37-homcloud python=3.7
+    
 5. Go into the anaconda environment
 
-   * `pyenv shell anaconda3-4.2.0`
-   * `source $(pyenv which activate) root`
+    conda activate py37-homcloud
 
 6. Install the following packages using `conda` command.
    * gcc
@@ -169,13 +172,11 @@ since probably GUI is not available on such a machine.
 
 7. Dowload the following files from the download website:
 
-    * `homcloud-base-x.y.z.tar.gz`
-    * `homcloud-advanced-x.y.z.tar.gz`
+    * `homcloud-x.y.z.tar.gz`
     
     After donwloading, go to the "Download" directory and type:
 
-        pip install homcloud-base-x.y.z.tar.gz
-        pip install homcloud-advanced-x.y.z.tar.gz
+        pip install homcloud-x.y.z.tar.gz
 
     x,y, and z should be replaced to the latest version number.
 
@@ -218,12 +219,11 @@ If you want to upgrade homcloud to the latest version,
 First uninstalling older versions is recommended.
 The way to uninstall is:
 
-    pip3 uninstall homcloud-base homcloud-advanced
+    pip3 uninstall homcloud
 
 And after that, please install the latest version of homcloud as follows:
 
-    pip3 install homcloud-base-x.y.z.tar.gz
-    pip3 install homcloud-advanced-x.y.z.tar.gz
+    pip3 install homcloud-x.y.z.tar.gz
 
 On linux, `--user` option may be required.
 

@@ -1,4 +1,10 @@
-# NEws for 2.3.0 (2018/11/28)
+# News for 2.4.0 (2018/2/7)
+* Support PI vectorization for superlevel persistence.
+* Fix a bug in `optimal_volume`.
+* Support Vietoris-Rips filtrations by `homcloud.rips` module.
+  * `homcloud.interface` also supports VR filtrations
+
+# News for 2.3.0 (2018/11/28)
 * Support +-inf values by superlevel/sublevel filtrations on bitmaps
 * Some bug fixes
   * Fix package dependencies
