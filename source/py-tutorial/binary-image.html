@@ -11780,8 +11780,8 @@ div#notebook {
 <ol>
 <li>画像からパーシステント図を計算する</li>
 <li>その図をパラメータを変えながら可視化する</li>
-<li>テキストデータにbirth-death pairを出力する</li>
-<li>基本的な逆解析(birth pixle, death pixelの出力)を行う</li>
+<li>birth-death pairの情報を読み込む</li>
+<li>基本的な逆解析(birth pixel, death pixelの出力)を行う</li>
 </ol>
 <p>基本的にやっていることは、与えられた白黒画像の黒い領域を
 膨らませたり萎ませたりして島や穴の生成と消滅を調べています。
@@ -11818,7 +11818,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;binary-image.png&quot;</span><span class="p">))</span>
@@ -11862,7 +11862,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># imageio ライブラリの読み込み</span>
@@ -11876,7 +11876,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 画像の読み込み</span>
@@ -11902,7 +11902,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
@@ -11918,7 +11918,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -11935,7 +11935,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -11949,7 +11949,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">);</span> <span class="kc">None</span>
@@ -11993,7 +11993,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">binary_image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">&lt;</span> <span class="mi">128</span>
@@ -12015,7 +12015,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HomCloudライブラリの読み出し</span>
@@ -12029,7 +12029,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">PDList</span><span class="o">.</span><span class="n">from_bitmap_distance_function</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="s2">&quot;binary-image.idiagram&quot;</span><span class="p">)</span>
@@ -12045,7 +12045,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -12072,7 +12072,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">PDList</span><span class="p">(</span><span class="s2">&quot;binary-image.idiagram&quot;</span><span class="p">)</span>
@@ -12104,7 +12104,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
@@ -12162,7 +12162,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">20.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span> <span class="n">x_bins</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
@@ -12216,7 +12216,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">20.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span> <span class="n">x_bins</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
@@ -12261,7 +12261,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -12278,7 +12278,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -12327,7 +12327,7 @@ death pixel出力機能を使ってみましょう。これは島(連結成分)�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">birth_positions</span>
@@ -12343,7 +12343,7 @@ death pixel出力機能を使ってみましょう。これは島(連結成分)�
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -12484,7 +12484,7 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pairs</span><span class="p">()</span>
@@ -12497,43 +12497,10 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(-19, -18)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_position</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12552,7 +12519,7 @@ pd.pairs()を使うとよいです。</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 57, 121])</pre>
+<pre>(-19, -18)</pre>
 </div>
 
 </div>
@@ -12564,6 +12531,39 @@ pd.pairs()を使うとよいです。</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_position</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 57, 121])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">death_position</span>
@@ -12579,7 +12579,7 @@ pd.pairs()を使うとよいです。</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[20]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -12605,7 +12605,7 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs_m5_m4</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span> <span class="k">if</span> <span class="n">pair</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">pair</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">4</span><span class="p">]</span>
@@ -12618,7 +12618,7 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs_m5_m4</span>
@@ -12634,7 +12634,7 @@ pd.pairs()を使うとよいです。</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[22]:</div>
+<div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -12713,7 +12713,7 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">birth_pixels_image</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">draw_birthdeath_pixels_2d</span><span class="p">(</span>
@@ -12757,6 +12757,157 @@ pd.pairs()を使うとよいです。</p>
 <p>この結果から、
 黒い道路状の部分に赤い点が表示されていることがわかります。これは(-5, -4)というのは
 幅の1/2が5ピクセルくらいの道状の形状に対応していることを意味しています。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;">&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;<a class="anchor-link" href="#&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;">&#182;</a></h2><p>ここでは0次のパーシステント図を見てきました。この図の上の各点は何らかの意味でデータの島構造を表現しているのですが、
+上のbirth pixelではその「中心」とおぼしき一点のみを可視化しています。これはこれで手軽で便利なのですが
+島を具体的に見ることができないのでしょうか。実は2次元画像の場合はそれを計算することが可能です。</p>
+<p><code>BitmapPHTreesPair</code>というクラスを利用します。まず、以下のようにして計算します。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">BitmapPHTreesPair</span><span class="o">.</span><span class="n">from_bitmap_distance_function</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="s2">&quot;binary-image.p2mt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;homcloud.interface.BitmapPHTreesPair at 0x7fc4be7fda20&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>次のようにしてデータを読み出します。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">phtrees</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">BitmapPHTreesPair</span><span class="p">(</span><span class="s2">&quot;binary-image.p2mt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dim_0_trees</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>pair_nodes_in_rectangle</code>というメソッドを使って(-5, -4)に対応する情報だけ取り出します。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="n">phtrees</span><span class="o">.</span><span class="n">pair_nodes_in_rectangle</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>draw_volumes_on_2d_image</code>で可視化します。</p>
+<p>引数は以下の通りです。</p>
+<ul>
+<li>nodes - 上のメソッドで取り出したノード</li>
+<li>binary-image.png" - 下地の画像</li>
+<li>color=(255, 0, 0) - 領域を色付けるための色、(R, G, B)で指定する。ここでは赤。</li>
+<li>alpha=0.5 - 領域を色付けるためのアルファ値。1.0にすると完全に赤で上書きされていまうためわかりにくくなるので、0.5くらいに指定しておくとよい</li>
+<li>birth_position=(255,0,0) - birth position を赤で描画することを指定する。何も指定しないと描画されない。</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">draw_volumes_on_2d_image</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="s2">&quot;binary-image.png&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">birth_position</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>問題の領域は薄い赤、birth positionは濃い赤で描画されます。</p>
+<p>黒い道路状の部分が対応しているということがよりわかりやすく可視化されています。</p>
 <p>以上で白黒画像解析の解説は終わりです。</p>
 
 </div>
