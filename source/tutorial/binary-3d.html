@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>binary-image</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>binary-3d</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,18 +11775,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#30333;&#40658;&#30011;&#20687;&#12398;&#35299;&#26512;">&#30333;&#40658;&#30011;&#20687;&#12398;&#35299;&#26512;<a class="anchor-link" href="#&#30333;&#40658;&#30011;&#20687;&#12398;&#35299;&#26512;">&#182;</a></h2><p>ここでは白黒の画像をパーシステントホモロジーで解析します。
-ここで解説する内容は以下の通りです。</p>
-<ol>
-<li>画像からパーシステント図を計算する</li>
-<li>その図をパラメータを変えながら可視化する</li>
-<li>birth-death pairの情報を読み込む</li>
-<li>基本的な逆解析(birth pixel, death pixelの出力)を行う</li>
-</ol>
-<p>基本的にやっていることは、与えられた白黒画像の黒い領域を
-膨らませたり萎ませたりして島や穴の生成と消滅を調べています。
-<a href="https://arxiv.org/abs/1706.10082">https://arxiv.org/abs/1706.10082</a> の論文の2.3節、特にFig.2が参考になるでしょう
-。</p>
+<h2 id="3&#27425;&#20803;&#20108;&#20516;&#30011;&#20687;&#35299;&#26512;">3&#27425;&#20803;&#20108;&#20516;&#30011;&#20687;&#35299;&#26512;<a class="anchor-link" href="#3&#27425;&#20803;&#20108;&#20516;&#30011;&#20687;&#35299;&#26512;">&#182;</a></h2><p>このチュートリアルでは3次元の画像解析を行ないます。基本的な考え方は2Dの二値画像解析と同じなので、まずそちらのチュートリアルを終わらせてからこちらにトライしてください。</p>
 
 </div>
 </div>
@@ -11795,244 +11784,19 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;<a class="anchor-link" href="#&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;">&#182;</a></h3><p>このnotebookがあるディレクトリには <code>binary-image.png</code> というファイルがあります。これを解析してみましょう。まず画像を表示させます。</p>
+<p>ここでは50x50x50のサイズの画像を解析します。3次元画像の表現方法は色々ありますが、ここでは各層ごとの断面画像を用います。
+つまり50x50の画像を50個用意します。
+<code>data/</code> ディレクトリにファイルが置かれています。ファイル名は断面の順に付けておきます。</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 画像表示に必要なライブラリの読み込み</span>
-<span class="c1"># IPython パッケージは jupyter notebook での各種ライブラリで</span>
-<span class="c1"># そこから画面表示用のモジュールをインポートしている</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;binary-image.png&quot;</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AMOEBEi53B9RQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAUWSURBVHja7V1JbuQwDLSI/v+XPYcMOkEakSWxqkgtviVoWySLu7Zy3/cFekopv/4D/PgwDTxK/hqra3SjUtNO4tpPRQ4WODbj+UvX4GSgPmix+K+n0b2vWFqK8xtBLgt4jHLL2AGWEROo3onJFfZNY/4/iRDAwPNCcOJNxvwxBV0QzoBBzlD8Obrx+F8vJDAIthA11GAwRT5KrwNOahRfCT+6o50xMNlIIRgAvRCJQlOifewgGIAWDOAw6OckUgOQJyyHGNwn7xYCe5KORYraItBCW0SMIs8/VVmh9udHGn/2fl6V19jY3Pf9iMHXDzL78V+0vf/8yVqF/vIoBTbzja7GT4bTCEg6ai06yG4Y7NxALU6LmyskeLSYtODFBnjgVa0hGWpwg7olEmYzheGhPVo8IKWmz379aFgLSDCIMXB6IQ+pr0ry1EUTFolhu8wYZquZdK0QIxkdyg7GxhJ7occhzJ8g8kJ0tvqLkYNZy6gDMAh4ntFHjU/K98IANIVUdgAvyK13+F4YrvNUxWJjWgBpIvr1bgGAzSMUavqc9oG4xLdMzE+NppWWfGYxwAJ6YchgB8odZFIAGtlYwxehuPj6jh1xxJY4tra8sP6HQfzrZOWxGmPrsYRSf+pc7HtcO1osFv0vkqZ3QZ4M8vNdvXUacMj2Tyn5TJv7fqeh+6wDzKb+pRRDDT87hFH0mzj4nN7Dcxq68OrwhI+h8rZNEiddIbaAhubMyjoq4Uayhqk/Xui5Em5cv3/8zzgAnib+Vio8sDyn1QLGNlI3riZH0R0L9psFOAavLv7bV/J+btw5Hv8BgBbhyrYT7RM2DD6YUvohSGMHtQUkMnXua0AhDrx4AoOhRLnqwqmwQqxLoC0/1iM0hU7Yhko3zZFlx6sIALO1PXt++u0oeHYAlnREecKAHVl0EQmfNm8CYGojAB75NN/JuWwgPRJpPFApiws6KenuWRB2DWie8GMaEWg8yXQVw33fu9cB4UZgYltmeJJJY1jMHrGEWkw68ogVhKOOyNJ4eRkG+C1KGme63qERGQ/vjsVPTJ7lkaBzzcukJ3WZXoI5C7oUO2RkOkJ6HWsEVDuAHVdDygj3KcpsUjY8RtCu2gIjsChVmuWqQTYGNq85yzoT1HgQ2YrIWVRXdrayNmiQmAzcO+aMBL33wKgByJPvh0xRYE3BesnCSj82FHtu9kPBYO1yz1noOiF03q4IuMRHrPJKI4BQzsbAqKLXFMbsvsijKDwEWIjWZ4ilvQSIFmZlc/R+CWLN6C8Yxu+0abwHUaDg/uyb+oXHz45Jrwxf38PwME4Jojy10g2YYEhNNnLhbuxWz4jtUNn2BlL2hMw3SQmFS3VEA0hz3cNcAFzQC78ywJA038+JAQOGvAWXDIMr9JAFdfhNi0EUDAH5jxgDQQLqgWGL/QHsEsyTs5bkErmgd6pq2qtdKE4AwIW+11ZweX37QIUqXODsNrwjL5jtqg/6/5A+tnYfDKRB+JNiIA+oXls7bYIuWWQWFH5legYMioYZ7FInxsIp3qyvyALqJMo67MMKG7VxyjSGrHREDKfBc0Qmk75/3pytsHpcvTEA6L7hTZhZgoHaY8JFNjsG6m2qWEe0QEDuPqxDs3cwXFgyRYm5D2AKR3RJdmrUFmZFKftWwaBEFSDizlpaDMJ6QfrOWs7iIO8uSSwGHklRMQieE1YWn54F/jw6S4bD1PQzjleaCZwJALiY69dIqxPbP/sPBNfBPb4GfQQAAAAASUVORK5CYII=
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>まずはimageioを使って画像を読み込みます</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># imageio ライブラリの読み込み</span>
-<span class="kn">import</span> <span class="nn">imageio</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 画像の読み込み</span>
-<span class="c1"># 読み込みデータは R,G,B のそれぞれの成分を持っているので、 [:,:,0]</span>
-<span class="c1"># とすることで R の成分のみを取り出している。</span>
-<span class="c1"># 単純な白黒画像なので R, G, B どれを使っても 0 or 255 の値を持っているのでこれでよい</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;binary-image.png&quot;</span><span class="p">)[:,:,</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>画像の画素値のヒストグラムを確認しておきましょう</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(128, 128)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">);</span> <span class="kc">None</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>画素値は0と255の所に集中しているようです。つまり入力の時点でほぼ二値化された画像といってよいでしょう。HomCloudではTrue/Falseの値を持つ配列を二値画像とみなすので、numpyの比較演算子を使ってこのような配列に変換します。閾値は128にしておけばよいのでそうします。また、ここでは黒い領域に注目するので、128より小さい領域を取り出します。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">binary_image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">&lt;</span> <span class="mi">128</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>以下のようにしてパーシステント図を計算します。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># HomCloudライブラリの読み出し</span>
-<span class="kn">import</span> <span class="nn">homcloud.interface</span> <span class="k">as</span> <span class="nn">hc</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">PDList</span><span class="o">.</span><span class="n">from_bitmap_distance_function</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="s2">&quot;binary-image.idiagram&quot;</span><span class="p">)</span>
+<div class=" highlight hl-bash"><pre><span></span>ls data
 </pre></div>
 
 </div>
@@ -12045,40 +11809,21 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre><span class="ansi-magenta-intense-fg ansi-bold">0000.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0007.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0014.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0021.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0028.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0035.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0042.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0049.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0001.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0008.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0015.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0022.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0029.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0036.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0043.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0002.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0009.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0016.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0023.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0030.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0037.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0044.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0003.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0010.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0017.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0024.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0031.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0038.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0045.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0004.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0011.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0018.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0025.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0032.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0039.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0046.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0005.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0012.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0019.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0026.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0033.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0040.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0047.png</span>
+<span class="ansi-magenta-intense-fg ansi-bold">0006.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0013.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0020.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0027.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0034.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0041.png</span>  <span class="ansi-magenta-intense-fg ansi-bold">0048.png</span>
+</pre>
+</div>
+</div>
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>PDList(path=binary-image.idiagram)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>すると <code>binary-image.idiagram</code> というファイルが生成されます。これがパーシステント図の情報を収めたファイルです。<code>save_to=...</code>で保存先のファイルを指定できます。<code>signed=True</code>は画像が縮んでいくのと広がっていくのと両方を考慮することを指定しています(これは
-  白黒画像の解析では常に有効にしておいて良いでしょう)。以下のようにしてファイルを読み出すことができます。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">PDList</span><span class="p">(</span><span class="s2">&quot;binary-image.idiagram&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
 </div>
 </div>
 
@@ -12087,17 +11832,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>実は <code>hc.PDList.from_bitmap_distance_function</code> の返り値とこれで読みこまれるパーシステント図の情報は同じものなので、ファイルを読みこまずに解析を進めることもできます。ただパーシステント図の計算は比較的高コストなので、計算結果はどこかに保存しておいて解析の歳に改めて読み込むのが良いでしょう。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;<a class="anchor-link" href="#&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;">&#182;</a></h2><p>次に計算結果の0次のパーシステント図、つまり連結成分、島構造、を可視化しましょう。
-上の計算で黒の領域に注目するようにしたので、黒の島構造に注目します。</p>
+<h2 id="&#20837;&#21147;&#12487;&#12540;&#12479;&#12398;&#21487;&#35222;&#21270;">&#20837;&#21147;&#12487;&#12540;&#12479;&#12398;&#21487;&#35222;&#21270;<a class="anchor-link" href="#&#20837;&#21147;&#12487;&#12540;&#12479;&#12398;&#21487;&#35222;&#21270;">&#182;</a></h2><p>解析する前にまずこの画像を3次元で可視化してみましょう。ここでは paraview というソフトウェアを使います。
+paraview は VTK フォーマットの入力を受け付けるため、画像をこのフォーマットに変換します。</p>
 
 </div>
 </div>
@@ -12107,109 +11843,19 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.pict.pict3d_vtk -o bin3d.vtk -T pictures3d data/*.png
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoAAAEYCAYAAAAdwT4RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvhp/UCwAAGE5JREFUeJzt3X+sZGV9x/H3596lSIE2TRcvF1AXDEShqejeQn9pLq3Iom0JRhPG/t6mqyJ/1PSmlZIUqCWmDdWmXotsW2JtpJtGs4hIQWkYaNIfsrRUBnBxZfzBSoqrVl26Xdh7v/1j5u6Od+/cOTN3zjnPOfN5JSc7P87MfLmun/vs9zzPM4oIzMwsP1NlF2BmVncOWjOznDlozcxy5qA1M8uZg9bMLGcOWjOznDlozcxy5qA1M8uZg9bMLGebyi5gHDZv3hxbtmwpu4yjvv4wnDj7HIefOZkztpZdzfCee+45Tj755LLLGFpV64bq1r5e3YcOHeLJJ5/kyJEjByLitHF+7jYpDmQ892G4NyK2jfPzhxYRlT+2bt0aKbmBiNtvvj9uoOxKRnP//feXXcJIqlp3RHVr71f3o48+GqeffnrcfvvtAeyJcf9/HiKmpzIdeXz+sIdbBzm4PmB2a+dPs0nTarW49NJLef/730+j0cjnQwRMK9uRgFq0DswsDYWELACC6azjxKUc68jGQWtmY1FcyNIZ0W7KPFrdLGlPz/2dEbFz/EX156A1sw0rNGSh2zrI3Pk8EBFzOVYzULJBK+nLwPfojPuPlP2DMrO1FR6yKxLpv2aRbNB2XRKReRaHmRWs3W7TaDSKD1kN06MtX+pBaxPuxp5Bi2dxpKXVarGwsMDi4mKxIQvDtg5Kp0j0q2wktYFvAwHcurp5LWkHsANgZmZm665du4ovch0HDx7klFNOKbuMkaRU+zMPH7s9O2DxR0p1D6tqtbfbbRYWFti+fTtvetOb1j33kksueXjcrb+5EzfFntlTM52rr/zP2D9/WCmPaH82IvZLejHwWUlfiIgHV57sBu9OgLm5uZifny+pzLU1m01SqymrlGq/8ZJjtxsDxgQp1T2sKtXearVoNBosLi4yOztbXt3u0W5cROzv/vmspN3ARcCD67/K6sbtgrSsvvDVbDbLKUTApuq0DpKsVNLJkk5duQ28AWiVW5XZZCttdsFalHFVWCKj3lRHtDPAbknQqfH2iLin3JLMJldSIbuiQhfDkgzaiHgKeFXZdZhZoiFbsVkHSQatmaUhyZCFY62DinDQmtmakg3ZFR7RmlmVJR+yK9skZuNNZcwsLcmHLDDcNoneVMbMElKNkKUzMfUHpsuuIjMHrZkBFQrZFb4YZmZVUrmQ9e5dZlYllQvZFQ5aM6uCyobscLMOSuegNZtQlQ1ZcOvAzNJX6ZBd4RGtmaWqFiHrvQ7MLFW1CFnwXgdmlqbahCx0RrResGBmKalVyAJDLsEtnYPWrObqF7J4epeZpaOWIQu+GGZmaahtyAJuHZhZ6eodsnRGtFNuHZhZSWofsiuyj2i98beZjc/EhOxwF8O88beZjcfEhCzgHq2ZFW6yQhZP7zKzYk1cyEJnCe4JXhlmZgWYyJAFz6M1s2JMbMiucOvAzPI08SErwZRHtGaWk4kP2RUe0ZpZHhyyXe7RmlkeHLKreAmumY2TQ3YVfzmjmY2TQ7YPj2jNbBwcsn24R2tm4+CQXYdXhpnZRjlkM3DrwMxG5ZDNwBfDzGxUDtkhVGhEm+yvBEnbJO2VtE/Se8quxyxvDtkhrFwMy3IkII0qVpE0DXwIuBw4H2hIOr/cqszy0263HbJDUWdEm+VIQKqtg4uAfRHxFICkXcAVwOOlVmWWg1arxcLCAouLiw7ZrIQ3lRmDM4Gv9dx/Gri4pFrMcrPSLrj66qsdssPypjL5k7QD2AEwMzNDs9kst6BVDh48mFxNWVW19qrV3W63WVhY4Oqrr+biiy+uVO0rSvuZe5vEsdgPvKTn/lndx47qfl3wToC5ubmYn58vrLgsms0mqdWUVVVrr1LdrVaLRqNxtF1Qpdp7lVa3gBMctBv1EHCupLPpBOxVwNvKLclsPDy7YEyyj2g3S9rTc39nd6BWmCSDNiKOSLoGuBeYBm6LiMdKLstswxyyYyKxnH1GwYGImMuznEGSDFqAiLgbuLvsOszGxSE7PgEsu0drZr0csuM3xIi2dA5as5w5ZMcvJJYSWfWVhYPWLEcO2fx4RGtmDtk8CcI9WrPJ5pDNV+dimEe0ZhPLIVuA4aZ3lc5BazZGDtliBHBkk7/KxmziOGSLExJLco/WbKI4ZIvn1oHZBHHIlsNBazYhHLLlCE/vMpsMDtkyedaBWe05ZEsmbypjVmsO2fIFsCyPaM1qySGbDrcOzGrIIZuOkHhh2gsWzGrFIZsWb/xtVjMO2RSJcI/WrB4csomSe7RmteCQTVdn1oFbB2aV5pBNn0e0ZhXmkK0AyfNozarKIVsNASx51oFZ9Thkq8UjWrOKcchWi5fgmlWMQ7aCJJa8MsysGhyy1eQRrVlFOGSrzUFrljiHbLWF5AULZilzyNaDR7RmiXLI1kNnHq2D1hJyY8/fx+ujWp/5mq9+8ejt/3jpuWuftDKyuflmmJ/v+14O2Rpx68AsPQ7Z+vE2iWYJccjWTwDLOGgtIUW1C/L4zL7tgl7R/bBm87inHLL1VdbFMEnnANcBPxwRb8nymuo0OcyG5JCtr0AcmZrOdGQh6TZJz0pqrXp8m6S9kvZJeg9ARDwVEb81TL0OWqslh2zNCZakTEdGHwG2fd9HSNPAh4DLgfOBhqTzRynXQWu145Ctv5UluFkOYLOkPT3HjuPeL+JB4FurHr4I2NcdwT4P7AKuGKXe5IJW0g2S9kt6pHu8seyarDocspNCLDOV6QAORMRcz7Ez44ecCXyt5/7TwJmSflTSh4FXS7o2yxulejHsAxFxc9lFWLW0220ajYZDdkKUNb0rIr4JvGOY16QatDYBsixqOPDQu4/e3vwTH+j7Xq1Wi4WFBRYXFx2yE6Cg3bv2Ay/puX9W97GhpRq010j6NWAP8LsR8e3VJ3T7LDsAZmZmaK4xtadMBw8eTK6mrIqq/byef7P0+7gj/7v16O1NfU5qt9ssLCywfft2ZmdnK/lzr+rflzLrLmAe7UPAuZLOphOwVwFvG+WNSglaSfcBp6/x1HXALcB76fzSei/wZ8D21Sd2+yw7Aebm5mJ+naWXZWg2m6RWU1ZF1X7jJcduNzKNaH/luOdbrRaNRoPFxUVmZ2f9My9YWXUH412CK+nvgXk6F86eBq6PiL+RdA1wLzAN3BYRj43y/pmDVtJPA1t6XxMRHx3lQyPi9Rk/86+Au0b5DEtflkUNg9oFvRe+qjgitNENMaLdLGlPz/2dqy+IRcSa/aaIuBu4e7QKj8kUtJL+Dng58AiwtFIDMFLQDvis2Yh4pnv3SqC13vk2mTy7YLKF4IXsI9oDETGXZz2DZB3RzgHnR0QRizn/VNKFdIL8y8DbC/hMqxCHrHVaB/Xb66BFp6f6zKATNyoifjXvz7DqcsjaiqjLpjKSPkVnZHkq8LikzwGHV56PiF/KtzyzYxyy1qtO+9F60YAlwSFrvWq1TWJEPAAg6U8i4vd7n5P0J8ADOdZmNffKmw4dvf3EdSf1Pc8ha8dTpYI269j70jUeu3ychZitxSFr/Sx3w3bQQYZNZfI2qEf7TuBq4BxJn+956lTgX/IszMwha/0EDLMFYvLTu24H/hF4H/Cense/FxGrtxQzG4rbBbYRVWodDOrRfgf4DtAAkPRi4EXAKZJOiYiv5l+iTRqHrA0S3W0SqyLryrBfBN4PnAE8C7wMeAK4IL/SbBI5ZC2rpQoFbdZK/xj4SeDJiDgb+Hng33KryiaSQ9ayWpnelfFiWOmyBu0L3c1upyRNRcT9dJblmo2FQ9aGVaWgzboE938knQL8M/AxSc8Cz+VXlk0Sh6wNKxBLiYRoFlmD9grgEPA7wC8DPwz8UV5FWfX90D//99Hb333tTN/zHLI2qiH2Ohi4TWLeMgVtRDwn6WXAuRHxt5J+kM5GuGYjc8jaRgzRFih9Hm2mHq2k3wY+DtzafehM4I68irL6c8jaRgSwFMp0pCBr6+BddL7j/N8BIuKL3Tm1Zmtyu8DylsqFriyyBu3hiHhe3SVvkjbR+aViNhSHrI1DoPrsR9vjAUl/AJwk6VI6+x98Kr+yrI4csjZOtVsZRmefg98CHqXz1TJ3A3+dV1FWPw5ZG6cAXoiaBW1ELEu6A7gjIr6Rc01WMw5ZGz8RiVzoymLdXwnquEHSAWAvsFfSNyT9YTHlWdU5ZC0PVVuCO2hE+27gZ4CfiIg2gKRzgFskvTsiPpB3gZYefzOClS4YZupW8gsWfhW4NCIOrDwQEU9J+hXgM4CD1tbkkLU8DfmdYaUvWBgUtCf0huyKiPiGpBNyqskqziFrRahSj3ZQ0D4/4nNWY24XWPnS6b9mMShoXyXpu2s8LjrftGB2lEPWihLAcl1GtBHhjWMsE4esFS2VfQyyyLpgwawvh6wVrbOpTM0WLJj145C1UiS0M1cWDlobmUPWytLp0ZZdRXYOWhuJQ9bKVqfpXWbHccha2YacdZD8yjCz7+OQtVTUaWWY2VEOWUvFylfZVIWD1jJxyFpSolrbJDpobSCHrKVoedlBazXhkLUUuXVgteGQtWQFLC1XZ2VYKZVKequkxyQtS5pb9dy1kvZJ2ivpsjLqM4espS0Qy5HtSEFZI9oW8Gbg1t4HJZ0PXAVcAJwB3CfpvIhYKr7E+rix5+/a9RlW07TbbRqNhkPWkuaVYQNExBMA0nG/ba4AdkXEYaAtaR9wEfCvxVY4uVqtFgsLCywuLjpkLVkRsOSLYSM7E/i3nvtPdx87jqQdwA6AmZkZms1m7sUN4+DBg8nUdN7Nx26vV1K73WZhYYHt27czOzubTP1ZpfQzH1ZVay+zbk/vAiTdB5y+xlPXRcQnN/r+3SV0OwHm5uZifn5+o285Vs1mk2Rqmh98SqvVotFosLi4yOzsbDq1DyGpn/mQqlp7mXWn0n/NIregjYjXj/Cy/cBLeu6f1X3McrT6wlcVR1Y2WYJqtQ5Smx9xJ3CVpBMlnQ2cC3yu5JpqzbMLrJIyzjjojno3S9rTc+woutxSerSSrgQ+CJwGfFrSIxFxWUQ8JukfgMeBI8C7POMgPw5Zq6oAYjnz6ZO5qUxE7AZ293nuJuCmYiuaPA5Zq7SAI0up/YO8v9RmHVgBHLJWdV6Ca0lzyFpdRIUuhjloJ4hD1urC3xlmSXLIWq2EKjW9y0E7ARyyVjeB96O1hDhkra68BNeS4JC12gpYzj6PtnQO2ppyyFqduXVgpXPIWu15m0Qrk0PWJkEglo44aK0EDlmbGOGVYVYCh6xNEvdobWyyfteXQ9YmkWcdWGEcsjaRwnsdWEEcsjaphmwdbJa0p+f+zu5XYRXGQZswtwvM+ghY8sbflieHrE26QL4YZvlxyJrR6dEuOWgtBw5Zs47Ot+CWXUV2DtqKcMia9Qg44pVhNk4OWbPjKWOPNoUvYnDQluSug7ccvf0Lp7yz73kOWbM1BExn7NEeybmULBy0CXPImq1NwJR7tLZRDlmzdYSY8vQuG8TtArON0VLZFWTnoE2MQ9ZsMAVMe0Rro3DImmXnHq0NzSFrlp0CprwyzIbhkDUbjgI2veCgtYwcsmaj8KwDy8ghazaigCnPOrBBHLJmoxPZl+CmwEFbAoes2QYFTHtEa/04ZM02zktwrS+HrNmYeHqXrcUhazZe8ojWejlkzcZLQ2yTmIKpMj5U0lslPSZpWdJcz+NbJB2S9Ej3+HAZ9Y2TQ9YsH1NL2Y4UlDWibQFvBm5d47kvRcSFBdeTC4esWT4UMJ19ZdhmSXt67u+MiJ05lNVXKUEbEU8ASNUZ+q945U2Hjt5+4rqT+p7XbrdpNBoOWbM8hIZpHRyIiLnBp+WnlNbBAGdL+k9JD0h6bdnFjKLVarGwsOCQNcuJwq0DACTdB5y+xlPXRcQn+7zsGeClEfFNSVuBOyRdEBHfXeP9dwA7AGZmZmg2m2OqfH3XvPzYV701m8f/Rm232ywsLLB9+3ZmZ2cLq2ucDh486LoLVtXay6zb82iBiHj9CK85DBzu3n5Y0peA84A9a5y7E9gJMDc3F/Pz8xuqN6v1PqXVatFoNFhcXGR2dpaiahq3ZrNZydqrWjdUt/bS6g6QZx2MRtJpkqa7t88BzgWeKreqbHzhy6w4orMEN8uRgrKmd10p6Wngp4BPS7q3+9TrgM9LegT4OPCOiPhWGTUOwyFrVjD3aAeLiN3A7jUe/wTwieIrGp1D1qx4wktwJ4ZD1qwk4SW4E8Eha1YeBZzwvEe0teaQNSuZv2Gh3hyyZuXr9GjLriI7B+0QHLJmifB+tPXkkDVLh0e0NeSQNUuMe7T14pA1S5CDtj4csmZpEnKPtg4csmYJ84i2+hyyZmmTgzZNN8exrRUWdGXf8xyyZulTwCavDKsmh6xZdXhEW0EOWbMKcesgTW4XmNWHe7QV45A1qyYHbUU4ZM2qSd7roBocsmbV5hFt4hyyZhXnHm3aHLJm1eeLYSX4+sNwY7ddc330P88ha1YfDtoEOWTN6kPLsOlw2VVkNxFB65A1qx/POijYGVvh+j1rP+eQNasf92gT4pA1qy8HbQIcsmb15RFtAhyyZjXnoC2XQ9ZsMjhoS+KQNZsMbh2UxCFrNkECpo6U89GSTgb+EngeaEbExwa9Zir3qgpw6NAhh6zZBOl8lU22I9P7SbdJelZSa9Xj2yTtlbRP0nu6D78Z+HhE/DbwS1nevxZB++STTzpkzSbM1FK2I6OPANt6H5A0DXwIuBw4H2hIOh84C/ha97RMn6CIdTYHqAhJ3wC+UnYdq2wGDpRdxIiqWntV64bq1p6l7pdFxGnj/FBJ93Q/O4sXAf/Xc39nROxc4z23AHdFxI917/8UcENEXNa9f2331KeBb0fEXZJ2RcRVgwqoRY923P8jjoOkPRExV3Ydo6hq7VWtG6pbe1l1R8S2wWdt2JkcG7lCJ2AvBv4CWJT0JuBTWd6oFkFrZlaUiHgO+M1hXlOLHq2ZWQ72Ay/puX9W97GhOWjzc1wPqEKqWntV64bq1l7VurN4CDhX0tmSfgC4CrhzlDeqxcUwM7ONkPT3wDydC2z/DVwfEX8j6Y3AnwPTwG0RcdNI7++gNTPLl1sHZmY5c9COmaS3SnpM0rKkuZ7Ht0g6JOmR7vHhMutcrV/d3eeu7a6M2SvpsrJqzELSDZL29/yc31h2Tevps/KoEiR9WdKj3Z9zn633DTy9Kw8tOkv0bl3juS9FxIUF15PVmnV3V8JcBVwAnAHcJ+m8iEh5S48PRMTNZRcxSM/Ko0vpzNF8SNKdEfF4uZUN5ZKIqOJCi0J5RDtmEfFEROwtu45hrVP3FcCuiDgcEW1gH3BRsdXV1kXAvoh4KiKeB3bR+XlbzThoi3W2pP+U9ICk15ZdTEZrrY45s6RasrpG0ue7G4X8SNnFrKOKP9teAXxG0sOSdpRdTMrcOhiBpPuA09d46rqI+GSflz0DvDQivilpK3CHpAsi4ru5FbrKiHUnZ73/DuAW4L10QuC9wJ8B24urbqL8bETsl/Ri4LOSvhARD5ZdVIoctCOIiNeP8JrDwOHu7YclfQk4DyjsIsIodTPG1THjkvW/Q9JfAXflXM5GJPezHUZE7O/++ayk3XRaIQ7aNbh1UBBJp3UvfiDpHOBc4Klyq8rkTuAqSSdKOptO3Z8ruaa+JM323L2SzkW+VI1t5VHRJJ0s6dSV28AbSPtnXSqPaMdM0pXAB4HTgE9LeqS7zdrrgD+S9AKwDLwjIr5VYqnfp1/dEfGYpH8AHgeOAO9KfMbBn0q6kE7r4MvA28stp7+IOCLpGuBejq08eqzksrKaAXZLgk6O3B4R95RbUrq8MszMLGduHZiZ5cxBa2aWMwetmVnOHLRmZjlz0JqZ5cxBa4WQtNTd5em/JP2HpJ/uPn6GpI/3ec0WSW/ruf8bkhaLqtlsXBy0VpRDEXFhRLwKuBZ4H0BEfD0i3rL6ZEmbgC3A21Y/Z1Y1XrBgZfgh4NvQGbUCd0XEj0n6DTpbNZ5CZwL/icArJT0C/G33NWdIugd4ObA7In6v8OrNhuSgtaKc1A3MFwGzwM/1Oe81wI9HxLckzQMLEfEL0GkdABcCr6azb8ReSR+MiK/1eS+zJLh1YEVZaR28AtgGfFTd9ZurfHbA0uR/iojvRMT/0VkW/LI8ijUbJwetFS4i/pXOt42etsbTzw14+eGe20v4X2VWAQ5aK5ykV9DpwX5zwKnfA07NvyKzfHk0YEVZ6dECCPj1iFhau3tw1OeBJUn/BXyE7gU0s6rx7l1mZjlz68DMLGcOWjOznDlozcxy5qA1M8uZg9bMLGcOWjOznDlozcxy9v/l6podAtlbiAAAAABJRU5ErkJggg==
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>pdlist</code>自体はすべての次数のパーシステント図の情報を持っているので、<code>.dth_diagram(0)</code>で0次のパーシスント図の情報を取り出し、<code>.histogram()</code>で二次元ヒストグラムを計算、<code>.plot(...)</code>でプロットします。<code>colorbar={"type":"log"}</code>とすることで色付けをlog scaleにします。このあたりは pointcloud での場合と同じです。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>何か小さい点が図の上にぽうぽつと現れます。実はbirth time、death timeは
-この画像解析ルールだと整数の値しかとりません。デフォルトのヒストグラムは
-128x128で計算しますから、これは細かすぎるのです。またこの図からすべての
-birth time, death timeは-20〜+7 くらいの範囲にあることがわかりますので、
-これらをうまく表示されるようにプロットの領域や解像度を調整します。そこで
-次のようにしてみましょう。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">20.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span> <span class="n">x_bins</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>x_range=(-20.5, 7.5)</code>でプロットする範囲を -20.5 から 7.5 に、<code>x_bins=28</code>ヒストグラムの分割を28x28に指定します。birth time、death timeは整数値なので、
-ヒストグラムの各ビンの中心が整数になるように、±0.5の余裕を取るようにしています。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>これを画像に保存するには matplotlib の <code>savefig</code> を使います.このあたりもポイントクラウドの場合と同じです。</p>
+<p>次のコマンドでparaviewを起動します。</p>
 
 </div>
 </div>
@@ -12219,8 +11865,7 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">20.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span> <span class="n">x_bins</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;log&quot;</span><span class="p">})</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;binary-image-pd0.png&quot;</span><span class="p">)</span>
+<div class=" highlight hl-bash"><pre><span></span>paraview bin3d.vtk
 </pre></div>
 
 </div>
@@ -12236,11 +11881,117 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] 18738
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>最初は何も表示されないと思います。まずは左側ペインにある「Apply」というボタンを押してください。
+すると赤青二色で塗られたキューブが表示されると思います。これは画像データが0(青)と255(赤)の二値画像であることから
+このように表示されます。まずはこれを回転させたり拡大縮小させたりして操作に慣れてください。</p>
+<p>ただ、このままだと内部の様子が見れません。そこで paraview の フィルタという機能を使って 255 の値の部分だけを表示しましょう。
+メニューの Filters &gt; Common &gt; Threshold というのを選んでください。すると左側のペイン「Pipeline browser」の所の
+<code>bin3d.vtk</code> の下に <code>Threshold1</code> というのが表示されます。
+この <code>Threshold1</code> をクリックしてその後その下側の「Properties」ペインの中にある「Minimum」というスクロールバーの値を
+大きくします。適当に128くらいにしておけばOKです(すると128より大きい所だけ切り取られるため)。その後 Apply ボタンを押すと
+今いじった部分が反映されます。これで中身が見えるはずです。</p>
+<p>ここで「Minimum」を0、「Maximum」を128などとしてApplyをすると、反転した領域が表示されます。paraviewは後でも使うので
+ちょっと慣れておいてください。</p>
+<p>試し終わったら paraview を閉じてください。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;<a class="anchor-link" href="#&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;">&#182;</a></h2><p>パーシステント図を計算します。<code>homcloud.pict.binarize_nd</code> を用います。オプションの意味は基本的に2Dの場合と同じですが、
+復習も兼ねて以下に説明します。</p>
+<ul>
+<li><code>-T pictures3d</code> というので入力データが2次元画像の積み重ねで3次元画像を表現していることを指定します<ul>
+<li>他にも <code>npy</code> でnumpyのnpyフォーマットが指定できます。ファイル1個で3次元画像を表現できるのでこれも便利でしょう</li>
+</ul>
+</li>
+<li><code>-m white-base</code> というので白の領域に注目することを指定</li>
+<li><code>-t 128</code> というので白黒の閾値を128に決める(この入力画像では黒=0、白=255なのでどんな値でも
+あまり問題にはなりません)</li>
+<li><code>-I -D</code> はHomCloudの便利機能を有効にするもので常に指定しておくと良いです</li>
+<li><code>-o bin3d.idiagram</code>で出力ファイルを指定</li>
+<li><code>-s</code> で画像が縮んでいくのと広がっていくのと両方を考慮することを指定(これは
+白黒画像の解析では常に有効にしておいて良いでしょう)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.pict.binarize_nd -t <span class="m">128</span> -m white-base -T pictures3d -o bin3d.idiagram -I -D -s data/*.png
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1次のパーシステント図を調べていきましょう。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.plot_PD -d <span class="m">1</span> -x <span class="s2">&quot;[-15.5:10.5]&quot;</span> -X <span class="m">26</span> -l --aspect equal -o bin3d-1.png bin3d.idiagram 
+display &lt; bin3d-1.png
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre></pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
+<img src="data:image/png;base64,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"
 >
 </div>
 
@@ -12254,18 +12005,17 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#12487;&#12540;&#12479;&#35299;&#26512;&#12392;&#36870;&#35299;&#26512;(birth-pixel,-death-pixel)">&#12487;&#12540;&#12479;&#35299;&#26512;&#12392;&#36870;&#35299;&#26512;(birth pixel, death pixel)<a class="anchor-link" href="#&#12487;&#12540;&#12479;&#35299;&#26512;&#12392;&#36870;&#35299;&#26512;(birth-pixel,-death-pixel)">&#182;</a></h2><p>birth timeとdeath timeはpdlist.dth_diagram(0)で得られるオブジェクトの births, deaths を見るとわかります。</p>
+<p><code>(-4, 4)</code> の所に2つbirth-death pairがあるようです。これを確認しましょう</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">pdlist</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">deaths</span>
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.dump_diagram -d <span class="m">1</span> -S yes bin3d.idiagram <span class="p">|</span> grep <span class="s2">&quot;^-4 4&quot;</span>
 </pre></div>
 
 </div>
@@ -12278,32 +12028,14 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([-19, -18, -18, -18, -18, -18, -18, -18, -18, -16, -16, -15, -14,
-        -14, -14, -14, -14, -14, -14, -14, -14, -14, -14, -13, -11, -11,
-         -9,  -9,  -8,  -8,  -8,  -8,  -7,  -7,  -7,  -6,  -6,  -6,  -6,
-         -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,  -6,
-         -6,  -6,  -6,  -6,  -6,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,
-         -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,
-         -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,
-         -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,
-         -5,  -5,  -5,  -5,  -5,  -5,  -5]),
- array([-18, -17, -17, -17, -17, -17, -17, -17, -17, -15, -15,   6, -13,
-        -13, -13, -13, -13, -13, -13, -13, -13, -13, -13, -12,  -4, -10,
-         -8,  -8,  -4,  -7,  -7,  -7,  -6,  -5,  -6,   5,  -4,  -5,  -5,
-         -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,  -5,
-         -4,  -5,  -5,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,
-         -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,
-         -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,
-         -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,  -4,
-         -4,  -4,  -4,  -4,  -4,  -4,  -4]))</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-4 4 (16,42,45) (14,36,42)
+-4 4 (49,4,44) (49,14,35)
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -12314,170 +12046,16 @@ birth time, death timeは-20〜+7 くらいの範囲にあることがわかり�
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>さて、ここでそれぞれのbirth-death pairが対応する幾何構造を調べていきましょう。
-上のパーシステント図を見ると(-5,-4)の所に何かbirth death pairが
-集中しているようです。これが何か調べてみましょう。HomCloudのbirth pixel、
-death pixel出力機能を使ってみましょう。これは島(連結成分)が生まれた/死んだ
-ときのピクセルの位置を出力するものです。birth/death pixelについて詳しくは
-<a href="https://arxiv.org/abs/1706.10082">https://arxiv.org/abs/1706.10082</a> の論文の2.3節、特にFig.2が参考になる
-と思います(この論文ではbirth/death positionという名前で呼んでいます)。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">birth_positions</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[array([ 57, 121]),
- array([ 46, 111]),
- array([ 47, 112]),
- array([ 48, 113]),
- array([ 49, 114]),
- array([ 50, 115]),
- array([ 51, 116]),
- array([ 52, 117]),
- array([ 53, 118]),
- array([ 73, 111]),
- array([ 74, 110]),
- array([99, 20]),
- array([ 40, 112]),
- array([ 83, 113]),
- array([ 84, 114]),
- array([ 85, 115]),
- array([ 86, 116]),
- array([ 87, 117]),
- array([ 88, 118]),
- array([ 89, 119]),
- array([ 90, 120]),
- array([ 91, 121]),
- array([ 92, 122]),
- array([ 37, 114]),
- array([  7, 111]),
- array([  9, 112]),
- array([74, 97]),
- array([75, 98]),
- array([44, 32]),
- array([47, 96]),
- array([50, 94]),
- array([71, 95]),
- array([48, 34]),
- array([62, 15]),
- array([68, 93]),
- array([ 4, 29]),
- array([25, 54]),
- array([26, 55]),
- array([ 28, 105]),
- array([36, 30]),
- array([51, 27]),
- array([51, 36]),
- array([52, 26]),
- array([53, 25]),
- array([54, 24]),
- array([55, 23]),
- array([56, 22]),
- array([57, 21]),
- array([58, 11]),
- array([58, 20]),
- array([59, 12]),
- array([59, 19]),
- array([98, 74]),
- array([103,  31]),
- array([104,  32]),
- array([127,  49]),
- array([127, 105]),
- array([ 9, 35]),
- array([10, 36]),
- array([11, 37]),
- array([18, 45]),
- array([19, 46]),
- array([20, 48]),
- array([21, 49]),
- array([ 25, 103]),
- array([27, 15]),
- array([28, 17]),
- array([30, 58]),
- array([31, 23]),
- array([32, 25]),
- array([42, 80]),
- array([44, 79]),
- array([48,  0]),
- array([49,  1]),
- array([50,  3]),
- array([73, 81]),
- array([75, 82]),
- array([82, 85]),
- array([84, 86]),
- array([86, 87]),
- array([87, 67]),
- array([87, 88]),
- array([91, 69]),
- array([92, 48]),
- array([93, 70]),
- array([94, 49]),
- array([94, 71]),
- array([94, 95]),
- array([95, 50]),
- array([96, 51]),
- array([99, 53]),
- array([102,  79]),
- array([103,  81]),
- array([104,  83]),
- array([105,  84]),
- array([106,  85]),
- array([108,  35]),
- array([109,  36]),
- array([111,  37]),
- array([112,  38]),
- array([112,  64]),
- array([114,  39]),
- array([115,  40]),
- array([116,  67]),
- array([117,  41]),
- array([117,  68]),
- array([118,  42]),
- array([119,  98]),
- array([120,  70]),
- array([121,  71]),
- array([124,  73])]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>これで birth position がわかります。death のほうも <code>pd.death_positions</code>で同様のことができます。</p>
-<p>ここで注意すべきは、座標は(y,x)の順に並んでいるということです。
-これはHomCloudの仕様の問題ですが、全体の整合性を保つためどうしても
-こうなっているので気を付けてください。</p>
-<p>ここまでは、birth timeの配列、death timeの配列、birth positionの配列、という形でデータを取り扱ってきましたが、逆に birth time, death time, birth position, death position を一塊のオブジェクオトにしたほうが解析しやすい場合も多いでしょう。そういうときは
-pd.pairs()を使うとよいです。</p>
+<h2 id="&#36870;&#35299;&#26512;">&#36870;&#35299;&#26512;<a class="anchor-link" href="#&#36870;&#35299;&#26512;">&#182;</a></h2><p>この2つのペアがどのような穴を表現しているのか見てみましょう。そのために、このdeathの場所を可視化します。</p>
+<p>1次の場合、deathの場所が穴(3次元上の通路状の形)の場所になるのでそれを調べます。以下のコマンドで paraview で読みこめる
+VTKファイルを生成します。</p>
+<p>オプションの意味などは以下の通りです。</p>
+<ul>
+<li><code>-d 1</code> 1次のPDを対象にしている</li>
+<li><code>-f "birth == -4" -f "death == 4"</code> birth がちょうど -4、 death がちょうど 4 の pair を対象にする</li>
+<li><code>-D</code> death の場所を可視化</li>
+<li><code>--vtk-output death_pos.vtk</code> 出力ファイルを <code>death_pos.vtk</code> に指定</li>
+</ul>
 
 </div>
 </div>
@@ -12487,340 +12065,52 @@ pd.pairs()を使うとよいです。</p>
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pairs</span><span class="p">()</span>
+<div class=" highlight hl-bash"><pre><span></span>python3 -m homcloud.view_index_pict3d -d <span class="m">1</span> -f <span class="s2">&quot;birth == -4&quot;</span> -f <span class="s2">&quot;death == 4&quot;</span> -D --vtk-output death_pos.vtk bin3d.idiagram
 </pre></div>
 
 </div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>これを paraview で可視化します。以下のような手順です。</p>
+<ol>
+<li>paraview を起動する (次のセルを実行)</li>
+<li><p>入力データを読みこみ表示します。以下の手順です。</p>
+<ul>
+<li>メニューの File &gt; Open... で 最初のほうで作った <code>bin3d.vtk</code> を読み込み</li>
+<li>左下ペイン「Properties」の Apply ボタンを押す</li>
+<li>メニューの Filters &gt; Common &gt; Threshold を選択</li>
+<li>左下ペイン「Properties」の「Minimum」を128くらいに変更</li>
+<li>左下ペイン「Properties」の Apply ボタンを押す</li>
+</ul>
+</li>
+<li><p>death_pos.vtk を読み込んで表示</p>
+<ul>
+<li>メニューの File &gt; Open... で 最初のほうで作った <code>death_pos.vtk</code> を読み込み</li>
+<li>左下ペイン「Properties」の Apply ボタンを押す</li>
+</ul>
+</li>
+</ol>
+<p>すると元データと death の場所が表示されます。death の場所は青いボックスで表示されるので
+データを回転させたりして探してください。
+見つからないときは左上ペインの「Threshold1」の隣にある目玉ボタンを押すと元データを
+表示っしたり消したりできるのでそれも使ってみてください。
+見つかったならば、確かにそれが通路状の構造の所に death のピクセルがある、ということがわかると思います。</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[18]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(-19, -18)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">birth_position</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[19]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([ 57, 121])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">death_position</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[20]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([ 56, 121])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>さて、ここから(-5,-4)に対応するものだけを取り出しましょう。Pythonのリスト内包表記を使います。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs_m5_m4</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span> <span class="k">if</span> <span class="n">pair</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">5</span> <span class="ow">and</span> <span class="n">pair</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">==</span> <span class="o">-</span><span class="mi">4</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pairs_m5_m4</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[22]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4),
- Pair(-5, -4)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>確かに (-5, -4) のペアのみが取り出せているようです。最後にここで取り出した birth-death pair の birth position を入力画像の上に描画しましょう。このために便利な<code>draw_birthdeath_pixels_2d</code>という関数があります。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">birth_pixels_image</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">draw_birthdeath_pixels_2d</span><span class="p">(</span>
-    <span class="n">pairs_m5_m4</span><span class="p">,</span> <span class="s2">&quot;binary-image.png&quot;</span><span class="p">,</span> <span class="n">draw_birth</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">birth_pixels_image</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>最初の引数で描画するbirth-death pairを、2番目の引数で下地の画像を指定します。また、birth positionのみ描画したいので<code>draw_birth=True</code>と指定します。<code>draw_death=True</code>などと指定するとdeath positionのほうも描画されます。</p>
-<p>この結果から、
-黒い道路状の部分に赤い点が表示されていることがわかります。これは(-5, -4)というのは
-幅の1/2が5ピクセルくらいの道状の形状に対応していることを意味しています。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;">&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;<a class="anchor-link" href="#&#24375;&#21147;&#12394;&#36870;&#35299;&#26512;">&#182;</a></h2><p>ここでは0次のパーシステント図を見てきました。この図の上の各点は何らかの意味でデータの島構造を表現しているのですが、
-上のbirth pixelではその「中心」とおぼしき一点のみを可視化しています。これはこれで手軽で便利なのですが
-島を具体的に見ることができないのでしょうか。実は2次元画像の場合はそれを計算することが可能です。</p>
-<p><code>BitmapPHTreesPair</code>というクラスを利用します。まず、以下のようにして計算します。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">BitmapPHTreesPair</span><span class="o">.</span><span class="n">from_bitmap_distance_function</span><span class="p">(</span><span class="n">binary_image</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="s2">&quot;binary-image.p2mt&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[24]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;homcloud.interface.BitmapPHTreesPair at 0x7f33ce6e7c88&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>次のようにしてデータを読み出します。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">phtrees</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">BitmapPHTreesPair</span><span class="p">(</span><span class="s2">&quot;binary-image.p2mt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dim_0_trees</span><span class="p">()</span>
+<div class=" highlight hl-bash"><pre><span></span>paraview
 </pre></div>
 
 </div>
@@ -12832,83 +12122,8 @@ pd.pairs()を使うとよいです。</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>pair_nodes_in_rectangle</code>というメソッドを使って(-5, -4)に対応する情報だけ取り出します。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nodes</span> <span class="o">=</span> <span class="n">phtrees</span><span class="o">.</span><span class="n">pair_nodes_in_rectangle</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>draw_volumes_on_2d_image</code>で可視化します。</p>
-<p>引数は以下の通りです。</p>
-<ul>
-<li>nodes - 上のメソッドで取り出したノード</li>
-<li>binary-image.png" - 下地の画像</li>
-<li>color=(255, 0, 0) - 領域を色付けるための色、(R, G, B)で指定する。ここでは赤。</li>
-<li>alpha=0.5 - 領域を色付けるためのアルファ値。1.0にすると完全に赤で上書きされていまうためわかりにくくなるので、0.5くらいに指定しておくとよい</li>
-<li>birth_position=(255,0,0) - birth position を赤で描画することを指定する。何も指定しないと描画されない。</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hc</span><span class="o">.</span><span class="n">draw_volumes_on_2d_image</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="s2">&quot;binary-image.png&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">birth_position</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[27]:</div>
-
-
-
-
-<div class="output_png output_subarea output_execute_result">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>問題の領域は薄い赤、birth positionは濃い赤で描画されます。</p>
-<p>黒い道路状の部分が対応しているということがよりわかりやすく可視化されています。</p>
-<p>以上で二値画像の解析のチュートリアルは終わりです。</p>
+<p>他にも気になる birth-death pair があれば同様に可視化してみましょう。</p>
+<p>以上でこのチュートリアルは終わりです。</p>
 
 </div>
 </div>
