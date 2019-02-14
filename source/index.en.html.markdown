@@ -10,10 +10,6 @@ The software is developed by
 [Hiraoka Laboratory](http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/),
 mainly by [Ippei Obayashi](http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/obayashi/).
 
-HomCloud consists of two parts,
-a basic part (named homcloud-base) and
-a advanced analysis part (homcloud-advanced).
-These two parts work independently. 
 HomCloud is free software and you can use it freely.
 
 ## <a name="download"> Download latest version
@@ -21,7 +17,6 @@ HomCloud is free software and you can use it freely.
 * [homcloud latest version(2.4.0)](download/homcloud-2.4.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
-* [homcloud-examples.zip](download/homcloud-examples.zip)
 
 ### Binary files and for Windows (Now these packages are not documented yet, sorry)
 
@@ -32,7 +27,8 @@ HomCloud is free software and you can use it freely.
 ## Documents
 
 * [Install](how-to-install.en.html)
-<!--- * [基本的な使い方](basic-usage.html) -->
+* [Tutorial](basic-usage.en.html)
+* [Python API reference manual](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
 
 ## License
 

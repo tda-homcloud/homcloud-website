@@ -22,6 +22,7 @@ PythonのAPIを使うものです。
 * [3次元点集合データ(ポイントクラウド)](tutorial/pointcloud.html)
 * [白黒画像](tutorial/binary-image.html)
 * [グレイスケール画像](tutorial/grayscale-image.html)
+* [3次元白黒画像](tutorial/binary-3d.html)
 
 [このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や、データファイル等が含まれています。](donwload/bash-tutorial.zip)
 
@@ -66,12 +67,14 @@ Windows を使っている方もコマンドプロンプトから入力するこ
 * [3次元点集合データ(ポイントクラウド)](py-tutorial/pointcloud.html)
 * [白黒画像](py-tutorial/binary-image.html)
 * [グレイスケール画像](py-tutorial/grayscale-image.html)
+* [3次元白黒画像](py-tutorial/binary-3d.html)
+* [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
 * [機械学習との組み合わせ](py-tutorial/ml_pc.html)
 
 [このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や、データファイル等が含まれています。](download/python-tutorial.zip)
 
-このチュートリアルは jupyter notebook を使っています。そのため実行前に jupyter notebook を
-インストールしてください。
+このチュートリアルはjupyter notebookを使っています。チュートリアルをする前に
+jupyter notebookをインストールしてください。
 
 その後、チュートリアルのnotebookを実行します。
 [python-tutorial.zip](download/python-tutorial.zip)をダウンロードし、
@@ -79,8 +82,8 @@ zipファイルを展開してください。そこで `tutorial/python-interfac
 というディレクトリが
 作られるので、そこにターミナルで`cd`で移動して、
 `jupyter notebook`とするとWebブラウザ上でUIが開かれます。
-そこに3つのディレクトリ(`pointcloud`, `binary-image`, `grayscale-image`)
-があるので、チュートリアルを実行してください。
+そこに各チュートリアルに対応してディレクトリがあるので、それを開いてその下にある
+`.ipynb`ファイルを開いてチュートリアルを実行してください。
 
 また、Python interface の API のドキュメントは 
 [https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)

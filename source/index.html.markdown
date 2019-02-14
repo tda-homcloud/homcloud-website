@@ -15,7 +15,6 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 * [homcloud 最新版(2.4.0)](download/homcloud-2.4.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
-<!-- * [homcloud-examples.zip](download/homcloud-examples.zip) -->
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
@@ -26,8 +25,9 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 ## ドキュメント
 
 * [インストール](homcloud-docs-ja/OS_selects.html)
-* [基本的な使い方](basic-usage.html)
+* [チュートリアル](basic-usage.html)
 * [ドキュメント](homcloud-docs-ja/index.html)
+* [Python API reference manual](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
 
 ## ライセンス
 
