@@ -12,13 +12,13 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ## <a name="download"> 最新版ダウンロード
 
-* [homcloud 最新版(2.4.0)](download/homcloud-2.4.0.tar.gz)
+* [HomCloud 最新版(2.5.0)](download/homcloud-2.5.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [homcloud 最新版(2.4.0)](download/win/homcloud-2.4.0-cp36-cp36m-win_amd64.whl)
+* [HomCloud 最新版(2.4.0)](download/win/homcloud-2.4.0-cp36-cp36m-win_amd64.whl)
 * [cgal](download/win/cgal-20180514T003016Z-001.zip)
 * [dipha](download/win/dipha-20180514T003045Z-001.zip)
 
