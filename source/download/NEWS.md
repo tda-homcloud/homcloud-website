@@ -1,4 +1,11 @@
-# News for 2.4.0 (2018/2/7)
+# News for 2.5.0 (2019/2/14)
+* Add `--dpi` option to `view_vecotrized_PD`.
+* Add a new module named `pict.optimal_one_cycle` and its interface to 
+  `interface` module.
+* Add `marker_size` parameter to `interface.draw_volumes_on_2d_image`.
+* Fix bugs for Vietoris-Rips filtrations
+
+# News for 2.4.0 (2019/2/7)
 * Support PI vectorization for superlevel persistence.
 * Fix a bug in `optimal_volume`.
 * Support Vietoris-Rips filtrations by `homcloud.rips` module.
