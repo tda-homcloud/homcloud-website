@@ -88,3 +88,13 @@ zipファイルを展開してください。そこで `tutorial/python-interfac
 また、Python interface の API のドキュメントは 
 [https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
 から参照できます。
+
+### Jupyter notebookに関する話
+
+jupyter notebook、チュートリアルを動かすのには便利だと思いますが
+自分で使ってみようとすると何か使いにくいと感じられる人も多いと思います。
+ある意味その感覚は妥当で、このソフトウェアはプログラムを書くための
+環境のように見えますがそうではありません。100行以上の普通の
+プログラムを書くのであればjupyter notebookは使うべきではありません。
+まあとりえあえずチュートリアルとかそういうのの専用ツールだと思っておくといいのでは
+ないでしょうか。
