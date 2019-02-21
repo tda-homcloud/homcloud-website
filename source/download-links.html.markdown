@@ -4,6 +4,7 @@ title: "Old version files"
 
 # Old versions
 
+* [download/homcloud-2.5.1.tar.gz](download/homcloud-2.5.1.tar.gz)
 * [download/homcloud-2.5.0.tar.gz](download/homcloud-2.5.0.tar.gz)
 * [download/homcloud-2.4.0.tar.gz](download/homcloud-2.4.0.tar.gz)
 * [download/homcloud-2.3.1.tar.gz](download/homcloud-2.3.1.tar.gz)

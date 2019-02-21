@@ -1,3 +1,6 @@
+# News for 2.5.1 (2019/2/21)
+* Fix a bug in `interface.MaskHistogram`.
+
 # News for 2.5.0 (2019/2/14)
 * Add `--dpi` option to `view_vecotrized_PD`.
 * Add a new module named `pict.optimal_one_cycle` and its interface to 
