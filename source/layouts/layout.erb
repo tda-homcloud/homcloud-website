@@ -14,8 +14,10 @@
     <header>
       <nav>
         <%= partial "nav" %>
-        <%= link_to("(Japanese)", "index.html") %>
-        <%= link_to("(English)", "index.en.html") %>
+        <div class="language">
+          <%= link_to("(Japanese)", "index.html") %>
+          <%= link_to("(English)", "index.en.html") %>
+        </div>
       </nav>
     </header>
     <%= yield %>
