@@ -32,7 +32,7 @@ please use your favorite image viewer.
 * [Grayscale image analysis](py-tutorial/grayscale-image-e.html)
 * [3D binary image analysis, in Japanese](py-tutorial/binary-3d.html)
 * [Distance matrix analysis (Vietoris-Rips), in Japanese](py-tutorial/rips.html)
-* [Machine learning, in Japanese](py-tutorial/ml_pc.html)
+* [Machine learning](py-tutorial/ml_pc-e.html)
 
 [This zip file has jupyter notebooks (.ipynb) and example data](download/python-tutorial.zip)
 
