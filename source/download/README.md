@@ -16,8 +16,8 @@ Under any system, python 3.3 or newer versions are requred.
 
 Please see the following install tutorial:
 
-* https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/homcloud-docs-ja/OS_selects.html for Japanese
-* https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/homcloud-docs-ja/OS_selects.html for English
+* [For Japanese](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/homcloud-docs-ja/OS_selects.html)
+* [For English](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/how-to-install.en.html) 
 
 ## General Information
 This package requires the following
