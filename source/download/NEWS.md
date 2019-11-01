@@ -1,3 +1,19 @@
+# News for 2.7.0 (2019/11/1)
+* `pict.binarize`, `pict.binarize3d`, `pict.pixel_levelset` are now marked as obsolete
+* Support periodic alpha filtration (`--periodic` option)
+* Remove `-u` and `-l` options from `pict.pixel_levelset_nd`
+* `interface.Pair.optimal_volume` raises exception if an optimal volume is not
+  found
+* Enable to visualize a 2D pointcloud from `paraview_interface.PointCloud`
+* Add `paraview_interface.PolyLine` to draw polylines
+* Fix `paraview_interface.PipelineNode.set_color`
+* Fix the handling of Windows file paths in `paraview_interface`
+* Enable to output birth/death positions by `optimal_volume` module
+* Enable to visualize boolean 3D arrays by `pict.slice3d`
+* `-D` option is strongly recommended by `pc_alpha`, `binarize_nd`, 
+  and `pixel_levelset_nd`
+* Improve tutorials
+
 # News for 2.6.0 (2019/7/19)
 * Add new module `idiagram2diagram` to convert a `.idiagram` file to
   a `.diagram` file.
