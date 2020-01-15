@@ -1,6 +1,19 @@
+# News for 2.8.0 (2020/01/16)
+* Support periodic alpha filtration (`--periodic` option)
+* Update self_check
+* Now self_check accept `--no-paraview` option
+* Add interface.PHTrees.StableVolume.to_paraview_node
+* Add interface.PDList.from_boundary_information
+* Add interface.BitmapPHTrees.Node.stable_volume
+
+# News for 2.7.2 (2019/12/2)
+* Update self_check
+
+# News for 2.7.1 (2019/11/29)
+* Fix paraview bugs
+
 # News for 2.7.0 (2019/11/1)
 * `pict.binarize`, `pict.binarize3d`, `pict.pixel_levelset` are now marked as obsolete
-* Support periodic alpha filtration (`--periodic` option)
 * Remove `-u` and `-l` options from `pict.pixel_levelset_nd`
 * `interface.Pair.optimal_volume` raises exception if an optimal volume is not
   found
