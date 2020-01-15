@@ -1,4 +1,0 @@
-[submodule "homcloud-docs-ja"]
-	path = homcloud-docs-ja
-	url = git@bitbucket.org:tda-homcloud/homcloud-docs-ja.git
-        ignore = dirty
