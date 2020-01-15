@@ -2,8 +2,13 @@
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
 set :markdown_engine, :kramdown
-set :relative_links, true
-activate :relative_assets
+set :relative_links, false
+set :strip_index_file, false
+configure :build do
+  set :http_prefix, "/hiraoka_labo/homcloud-test"
+end
+
+
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
@@ -41,9 +46,9 @@ helpers do
     lang = current_page.data.lang
     case lang
     when "ja", nil
-      return link_to(name, "#{urlbase}.html#{postfix}")
+      return link_to(name, "/#{urlbase}.html#{postfix}")
     else
-      return link_to(name, "#{urlbase}.#{lang}.html#{postfix}")
+      return link_to(name, "/#{urlbase}.#{lang}.html#{postfix}")
     end
   end
 

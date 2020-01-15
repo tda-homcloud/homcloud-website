@@ -2,16 +2,14 @@
   <li><%= navlink('HomCloud FrontPage', 'index') %></li>
   <li><%= navlink('Download', 'index', '#download') %></li>
   <% if current_page.data.lang == "ja" %>
-    <li><a href="homcloud-docs-ja/OS_selects.html">How to install</a></li>
+    <li><%= link_to('How to install', '/install-guide/index.html') %></li>
+    <li><%= link_to('FAQ', '/faq.html') %></li>
   <% else %>
     <li><%= navlink('How to Install', 'how-to-install') %></li>
   <% end %>
   <li><%= navlink('Tutorial', 'basic-usage') %></li>
-  <% if current_page.data.lang == "ja" %>
-    <li><a href="homcloud-docs-ja/index.html">Document</a></li>
-  <% end %>
-  <li><a href="cli-doc.html">CLI Manual</a></li>
-  <li><a href="https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/">Python Interface API</a></li>
-  <li><a href="download-links.html">Old versions</a></li>
+  <li><%= link_to('CLI Manual', '/cli-doc.html') %></li>
+  <li><%= link_to('Python Interface API', '/python-api/index.html') %>
+  <li><%= link_to("Old versions", "/download-links.html") %> </li>
 </ul>
 

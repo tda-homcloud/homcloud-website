@@ -7,16 +7,16 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title><%= current_page.data.title || "Homcloud" %></title>
-    <%= stylesheet_link_tag "site", relative: true %>
-    <!--- <%= javascript_include_tag "site", relative: true %> -->
+    <%= stylesheet_link_tag "site" %>
+    <!--- <%= javascript_include_tag "site" %> -->
   </head>
   <body>
     <header>
       <nav>
         <%= partial "nav" %>
         <div class="language">
-          <%= link_to("(Japanese)", "index.html") %>
-          <%= link_to("(English)", "index.en.html") %>
+          <%= link_to("(Japanese)", "/index.html") %>
+          <%= link_to("(English)", "/index.en.html") %>
         </div>
       </nav>
     </header>
@@ -24,13 +24,8 @@
     <footer>
       <nav>
         <%= partial "nav" %>
-        <ul>
-          <li><a href="http://www.tohoku.ac.jp/">Tohoku University</a></li>
-          <li><a href="http://www.wpi-aimr.tohoku.ac.jp/">AIMR</a></li>
-          <li>
-            <%= link_to("Hiraoka Laboratory", lab_url) %>
-          </li>
-        </ul>
+      </nav>
     </footer>
   </body>
 </html>
+
