@@ -1,4 +1,5 @@
 # Activate and configure extensions
+activate :vcs_time
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
 set :markdown_engine, :kramdown
