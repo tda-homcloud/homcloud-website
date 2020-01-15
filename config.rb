@@ -5,7 +5,8 @@ set :markdown_engine, :kramdown
 set :relative_links, false
 set :strip_index_file, false
 configure :build do
-  set :http_prefix, "/hiraoka_labo/homcloud-test"
+  set :http_prefix, "/hiraoka_labo/homcloud"
+  #set :http_prefix, "/hiraoka_labo/homcloud-test"
 end
 
 
@@ -21,10 +22,9 @@ end
 page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
-page '/cli-doc/*', layout: 'cli-doc'
 
 # With alternative layout
-# page '/path/to/file.html', layout: 'other_layout'
+page '/cli-doc/*', layout: 'cli-doc'
 
 # Proxy pages
 # https://middlemanapp.com/advanced/dynamic-pages/
@@ -52,13 +52,8 @@ helpers do
     end
   end
 
-  def lab_url
-    case current_page.data.lang
-    when "ja", nil
-      "http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/index.html"
-    else # including "en"
-      "http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/index-english.html"
-    end
+  def link_to_python_api
+    %[<a href="#{config[:http_prefix]}/python-api/index.html">Python Interface API</a>]
   end
 end
 
