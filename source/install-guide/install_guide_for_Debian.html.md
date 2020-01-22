@@ -5,8 +5,8 @@ lang: ja
 
 # Debian buster でのインストール
 
-ここでは Debian GNU/Linux の buster (10.x) のコンパイル済みパッケージを使って
-インストールします．
+ここでは Debian GNU/Linux amd64 の buster (10.x) のコンパイル済みパッケージを使って
+インストールします．ことガイドは64bit OSにしか対応していないので注意してください．
 
 ## 1. 以下のパッケージをapt-getを用いてインストールします。
 
