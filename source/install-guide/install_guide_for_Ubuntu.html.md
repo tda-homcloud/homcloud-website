@@ -3,7 +3,7 @@ title: Install HomCloud on Ubuntu or Debian
 lang: ja
 ---
 
-# Ubuntuでのインストール
+# UbuntuやDebianでのインストール
 
 ## 1. 以下のパッケージをapt-getでインストールします。
 

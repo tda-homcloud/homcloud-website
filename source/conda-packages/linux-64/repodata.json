@@ -1,0 +1,75 @@
+{
+  "info": {
+    "subdir": "linux-64"
+  },
+  "packages": {
+    "dipha-2.1.0-h6bb024c_0.tar.bz2": {
+      "build": "h6bb024c_0",
+      "build_number": 0,
+      "depends": [
+        "libgcc-ng >=7.3.0",
+        "libstdcxx-ng >=7.3.0",
+        "openmpi >=4.0.2,<4.1.0a0"
+      ],
+      "license": "LGPL3",
+      "license_family": "LGPL",
+      "md5": "5907ad8c9ba0fa5f502b9411e0fca6d4",
+      "name": "dipha",
+      "sha256": "4c8b143535fd6506cfbaab036bd0fbe175a4db891124f8334948e6cb264e01a0",
+      "size": 126523,
+      "subdir": "linux-64",
+      "timestamp": 1579396110338,
+      "version": "2.1.0"
+    },
+    "forwardable-0.4.1-py37_0.tar.bz2": {
+      "build": "py37_0",
+      "build_number": 0,
+      "depends": [
+        "python >=3.7,<3.8.0a0"
+      ],
+      "license": "MIT",
+      "license_family": "MIT",
+      "md5": "39183f9dccae7380b7edb59a16379d4f",
+      "name": "forwardable",
+      "sha256": "e7b8cbe5535c92c6dbb80d42834f9e416c37eedfe8397071366abfcc2e6ba2e8",
+      "size": 12449,
+      "subdir": "linux-64",
+      "timestamp": 1579395797320,
+      "version": "0.4.1"
+    },
+    "homcloud-2.8.0-py37ha8d69ae_0.tar.bz2": {
+      "build": "py37ha8d69ae_0",
+      "build_number": 0,
+      "depends": [
+        "cgal-cpp",
+        "dipha",
+        "forwardable",
+        "imageio",
+        "libgcc-ng >=7.3.0",
+        "libstdcxx-ng >=7.3.0",
+        "matplotlib",
+        "msgpack-python",
+        "numpy",
+        "openmpi",
+        "paraview",
+        "pulp",
+        "pyqt >=5.12.3,<5.13.0a0",
+        "python >=3.7,<3.8.0a0",
+        "ripser",
+        "scipy"
+      ],
+      "license": "GPL3",
+      "license_family": "GPL",
+      "md5": "05a5628a04e9b18ff98504c2bbfd574a",
+      "name": "homcloud",
+      "sha256": "0581502572485db74c12eb50cb25b04c9e417bd45a80ddb4fc1188d6ebbaded7",
+      "size": 743011,
+      "subdir": "linux-64",
+      "timestamp": 1579672901831,
+      "version": "2.8.0"
+    }
+  },
+  "packages.conda": {},
+  "removed": [],
+  "repodata_version": 1
+}

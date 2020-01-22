@@ -1,57 +1,48 @@
-[OS選択に戻る](OS_selects.html) | [戻る](index.html)
+---
+title: Install HomCloud on Debian buster
+lang: ja
+---
 
-# Debian jessie でのインストール
+# Debian buster でのインストール
+
+ここでは Debian GNU/Linux の buster (10.x) のコンパイル済みパッケージを使って
+インストールします．
 
 ## 1. 以下のパッケージをapt-getを用いてインストールします。
 
-   * libcgal-dev
-   * python3-matplotlib
-   * python3-numpy
-   * python3-scipy
-   * python3-pip
-   * python3-pyqt5
-   * python3-msgpack
-   * mpi-default-bin
-   * paraview
+* libcgal13
+* python3
+* python3-imageio
+* python3-matplotlib
+* python3-numpy
+* python3-scipy
+* python3-pyqt5
+* python3-msgpack
+* python3-pulp
+* python3-sklearn
+* cython3
+* openmpi-bin
+* mpi-default-bin
+* paraview
+* jupyter
 
-   apt-getで各パッケージの追加は以下のように行います。
+apt-getで各パッケージの追加は以下のように行います。
 
-   `sudo apt-get install libcgal-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack python3-pulp mpi-default-bin paraview`
+    sudo apt-get install libcgal13 python3 python3-imageio python3-matplotlib python3-numpy python3-scipy python3-pyqt5 python3-msgpack python3-pulp python3-sklearn cython3 openmpi-bin mpi-default-bin paraview jupyter
+
 		
-## 2. 以下のファイルを [jessie-packages directory](https://packages.debian.org/stable/) からダウンロードします。
+## 2. [最新版のhomcloudのDebianのパッケージ](/index.html#download)をダウンロードする
 
-   * dipha_2.1.0-1_amd64.deb
-   * python3-sklearn-lib_0.17.1-2_amd64.deb
-   * python3-sklearn-0.17.1-2_all.deb
-   * python3-homcloud_0.6.7_amd64.deb
-   * python3-joblib_0.9.4-1_all.deb
+ダウンロードした tar.gz ファイルは以下のようにして展開します．
 
-上記のファイルよりも新しいバージョンがある場合は、最新版をダウンロードしてください。
-   
+    tar xf homcloud-2.8.0-debfiles.tar.gz
+
+
 ## 3. ダウンロードしたファイルを以下のようにdpkgを使ってインストールします。
 
-   `sudo dpkg -i dipha_2.1.0-1_amd64.deb python3-joblib_0.9.4-1_all.deb python3-sklearn-lib_0.17.1-2_amd64.deb python-sklearn-doc_0.17.1-2_all.deb python3-sklearn_0.17.1-2_all.deb python3-homcloud_0.6.7_amd64.deb`
+    sudo dpkg -i *.deb
 
-## 4. 最新版のhomcloudを[ウェブサイト](http://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud.html)からダウンロードし、インストールします。
-
-以下の二つをダウンロードします。x、y、zは最新のバージョン番号に置き換えてください。
-
-* homcloud-x.y.z.tar.gz (最新版)
-* homcloud-base-x.y.z.tar.gz (旧バージョン:1.3.1以下)
-* homcloud-advanced-x.y.z.tar.gz (旧バージョン:1.3.1以下)
-
-ダウンロードしたディレクトリに移動し、以下を実行します。
-
-    pip3 install --user --no-deps homcloud-x.y.z.tar.gz
-
-ver. 1.3.1以下をお使いの場合は以下のようにします。特別な事情がない限り、最新版をお使いください。
-
-    pip3 install --user --no-deps homcloud-base-x.y.z.tar.gz
-    pip3 install --user --no-deps homcloud-advanced-x.y.z.tar.gz
-
-もしグローバルにインストールしたくない場合はvirtualenvかvenvを使ってください。
-
-## 5. HomCloudの自己チェックプログラムを動かす
+## 4. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
@@ -66,7 +57,6 @@ ver. 1.3.1以下をお使いの場合は以下のようにします。特別な�
 
 最終的にターミナルに以下のように表示されていたらOKです．
 
-
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Alpha Shape 2 ... ok
@@ -80,5 +70,4 @@ ver. 1.3.1以下をお使いの場合は以下のようにします。特別な�
     Paraview real invoke (VTK voxel) => Click "Apply" button and close opened window ... ok
     Paraview real invoke (python pointcloud) => Close opened window ... ok
 
-- - -
-[OS選択に戻る](OS_selects.html) | [戻る](index.html)
+以上でインストールは終わりです。
