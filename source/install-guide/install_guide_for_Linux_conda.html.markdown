@@ -5,7 +5,7 @@ lang: ja
 
 # Linux & conda でのインストール
 
-conda などでのインストールはそんなにお勧めはしません．ただし，
+conda でのインストールはそんなにお勧めはしません．ただし，
 
 * CentOS などを使っていて Ubuntu や Debian での説明からインストールをするのは難しい
 * 共用の大型計算機を使っていてOSにパッケージをインストールするのが困難
@@ -18,9 +18,12 @@ conda などでのインストールはそんなにお勧めはしません．�
 miniconda3 64bit版 4.7.12 に動作確認しています．32bit版は対応していません．
 
 ## 2. miniconda の設定
-[conda-forge](https://conda-forge.org/) を使います．ターミナル上で
-以下のように入力してください．
+[conda-forge](https://conda-forge.org/) を使います．`homcloud`という名前の環境を
+作ってそこで動かすことにしましょう．
+ターミナル上で以下のように入力してください．
 
+    conda create -n homcloud python=3.7
+    conda activate homcloud
     conda config --add channels conda-forge
     conda config --set channel_priority strict
     conda update --all
