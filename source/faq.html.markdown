@@ -218,6 +218,22 @@ matplotrcの環境設定でGUIをオフにすることで回避できます。
 
 参考: <https://github.com/LLNL/spack/issues/3567>
 
+## Q. Dockerで動かない
+
+### A. root以外で動作させる，もしくはOpenMPIの設定を変える
+
+HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootではデフォルトでは
+動作拒否をします．一方一般的にDockerでは内部的にrootで動かしていることが多いです．
+そのためDockerではエラーが発生して止まります．
+
+対応策は以下のいずれかです．
+
+1. root以外のユーザを使う．詳しくはDockerのドキュメントなどを見てください．
+2. OpenMPIにDockerでの動作を許容させる．OpenMPIのバージョンに依存しますが，以下の2つの環境変数を`1`に指定するとROOTでも動作します．
+
+   * `OMPI_ALLOW_RUN_AS_ROOT`
+   * `OMPI_ALLOW_RUN_AS_ROOT_CONFIRM`
+
 - - -
 [このページのトップへ戻る](#section)
 

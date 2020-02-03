@@ -1,3 +1,6 @@
+# News for 2.8.1 (2020/02/02)
+* Support CGAL 5.0 and later
+
 # News for 2.8.0 (2020/01/16)
 * Support periodic alpha filtration (`--periodic` option)
 * Update self_check
