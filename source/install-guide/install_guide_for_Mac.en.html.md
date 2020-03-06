@@ -117,7 +117,7 @@ HomCloud installation. Please type as follows in the terminal:
 
 Paraview window is opened twice in the program.
 When an window is opened firstly, push the "Apply" button and close the window.
-Wehn an window is opened secondly, confirm the red and white points in the window
+When an window is opened secondly, confirm the red and white points in the window
 and close the window.
 
 After that, the following message is shown in the terminal.
