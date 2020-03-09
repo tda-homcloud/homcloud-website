@@ -22,7 +22,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [HomCloud 2.7.2](download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl)
+* [HomCloud 2.8.1](download/win/homcloud-2.8.1-cp37-cp37m-win_amd64.whl)
 * [ripserのバイナリ](download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl)
 * [cgalとdipha](download/win/winbinaries-20191101.zip)
 

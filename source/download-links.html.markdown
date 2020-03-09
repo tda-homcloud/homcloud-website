@@ -23,5 +23,6 @@ title: "Old version files"
 
 ## Windows pacakges
 
+* [download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl](download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl)
 * [download/win/homcloud-2.7.0-cp37-cp37m-win_amd64.whl](download/win/homcloud-2.7.0-cp37-cp37m-win_amd64.whl)
 * [download/win/homcloud-2.3.1-cp36-cp36m-win_amd64.whl](download/win/homcloud-2.3.1-cp36-cp36m-win_amd64.whl)

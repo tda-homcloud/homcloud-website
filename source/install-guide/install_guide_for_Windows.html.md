@@ -20,7 +20,7 @@ ChromeやFirefoxなど他のブラウザを使ったほうがよいでしょう�
 
 [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
 から64bit版のpythonのインストーラー(ここでは例としてWindows x86-64 web-based installerをとりあげます。)をダウンロードし、クリックしてインストールをします．
-Pythonのバージョンは 3.7 の最新版 (2019/11/1時点では 3.7.5) をインストールしてください．
+Pythonのバージョンは **3.7** の最新版 (2019/11/1時点では 3.7.5) をインストールしてください．
 
 Pythonをインストールする場所(パス)に日本語(全角文字)が入らない場所を選んでください。
 現状では全角文字がパスに含まれてしまうと python からファイルの読み書きを行う時にエラーになります．

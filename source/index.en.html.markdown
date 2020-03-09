@@ -20,7 +20,7 @@ HomCloud is free software and you can use it freely.
 
 ### Binary files and for Windows (Now these packages are not documented yet, sorry)
 
-* [HomCloud latest(2.7.2)](download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl)
+* [HomCloud latest(2.8.1)](download/win/homcloud-2.8.1-cp37-cp37m-win_amd64.whl)
 * [ripser binary package](download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl)
 * [cgal and dipha](download/win/winbinaries-20191101.zip)
 
