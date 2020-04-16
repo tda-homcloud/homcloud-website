@@ -12,13 +12,13 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ## <a name="download"> 最新版ダウンロード
 
-* [HomCloud 最新版(2.8.1)](download/homcloud-2.8.1.tar.gz)
+* [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 
 ### Debian バイナリパッケージ (amd64)
 
-* [HomCloud 最新版(2.8.0)](download/homcloud-2.8.0-debfiles.tar.gz)
+* [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0-debfiles.tar.gz)
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 

@@ -14,7 +14,7 @@ HomCloud is free software and you can use it freely.
 
 ## <a name="download"> Download latest version
 
-* [HomCloud latest(2.8.1)](download/homcloud-2.8.1.tar.gz)
+* [HomCloud latest(2.9.0)](download/homcloud-2.9.0.tar.gz)
 * [README](download/README)
 * [NEWS](download/NEWS)
 
