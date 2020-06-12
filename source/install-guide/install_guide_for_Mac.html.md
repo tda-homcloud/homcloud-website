@@ -40,7 +40,7 @@ Xcode をインストールした後、引き続き以下のコマンドを入�
 * python3
 * cmake
 * open-mpi
-* pyqt5
+* qt
 
 homebrew を使うことで、様々なパッケージをターミナルからコマンド入力するだけで、依存関係を考慮したり、必要なパッケージ類をまとめてインストールことができます。
 例えば、ターミナルで以下のコマンドを実行すれば、インストールされます。
@@ -61,6 +61,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 * numpy
 * scipy
 * matplotlib
+* PyQt5
 * scikit-leran
 * msgpack-python
 * Pillow
@@ -72,7 +73,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 
 ターミナルで以下のコマンドを入力すればインストールできます。
 
-    pip3 install numpy scipy matplotlib scikit-learn msgpack-python Pillow forwardable Cython jupyter
+    pip3 install numpy scipy matplotlib PyQt5 scikit-learn msgpack-python Pillow forwardable Cython jupyter
     pip3 install ripser
 
 ## 5. [dipha](http://github.com/dipha) をダウンロードしてインストールします。
@@ -85,71 +86,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
     cmake . 
     make
 
-   作成した実行ファイル `dipha` の場所を確認し、PATHを通します。
-   以下のコマンドで dipha のある場所が探せます。場所の確認には3通りの方法があります。
-
-### (1) `find` を使う
-
-     find / -name  'dipha'
-
-途中で検索をやめたい場合は `control + c` で止まります。
-
-### (2) `locate` を使う。
-
-ファイルのデータベースを参考に dipha という名前のファイルを探します。
-
-    locate dipha
-
-初めて `locate` を実行した場合、データベースが存在しないというエラーが出ます。
-エラーに基づき以下を実行し、データベースを作成します。
-
-    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
-
-データベースが作成されるまでには時間がかかります。データベースが作成されたら
-以下のコマンドを実行し、データベースを更新してください。
-
-    sudo /usr/libexec/locate.updatedb
-
-これで `locate dipha` が使えるようになります。
-
-### (3) `mdfind` を使う。
-
-以下を実行します。
-
-    mdfind dipha
-
-上記(1)〜(3)のどれかを使って dipha の場所がわかったら、 ~/.bashrc に以下の1行を記述します。
-
-    export PATH=/usr/local/bin:$PATH:dhipaのある場所
-    例) export PATH=/usr/local/bin:$PATH:/Users/username/dipha
-
-設定を反映させるため、以下を実行します。
-
-    source ~/.bashrc
-
-次回以降、常に追加した新しい PATH の設定を反映させるためには
-
-    ~/.bash_profile
-
-というテキストファイルを作成し、中に
-
-    if [ -f ~/.bashrc ]; then
-       . ~/.bashrc
-    fi
-
-と書きます。
-このファイルが存在しない場合は テキストエディット.app(TextEdit.app) な
-どで新規作成します(メニューのフォーマットから、標準テキストにするを選んで
-プレーンテキストファイルにしてください)。
-デフォルトの環境ではファイル名の先頭に.(ドット)がついたファイルをエディタで作成できないことがありますが、この場合は
-
-    open -e /Applications/TextEdit.app/Contents/MacOS/TextEdit ~/.bashrc
-  
-とすれば新規に .bashrc という名前でテキストファイルが作成できます。  
-
-PATHの通す簡単な設定方法として、すでに PATH の通っているディレクトリに dipha を
-コピーするだけでもかまいません。この場合は .bashrc への追記は不要です。
-以下のようにコマンドを打ちます。
+すでに PATH の通っているディレクトリに dipha をコピーします。
 
     cp diphaのある場所/dipha PATHの通っているディレクトリ
     例) cp ~/dipha/dipha /usr/local/bin/
