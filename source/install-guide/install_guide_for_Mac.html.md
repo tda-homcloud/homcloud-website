@@ -112,11 +112,26 @@ PATH の通っているディレクトリがどこかは
 Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でインストールされます。
 これを HomCloud に教えてやる必要があります。
 環境変数 `HOMCLOUD_PARAVIEW_PROGRAMNAME` を設定します。
+
+まずはターミナル上で `echo $SHELL` とすることで使っているシェルを確認します．
+
+### bash の場合 (`/bin/bash`と表示された)
 以下のような行を `~/.bash_profile` に追加します。
 
     export HOMCLOUD_PARAVIEW_PROGRAMNAME=/Applications/ParaView-5.4.0.app
 
 設定を反映させるためにシェルを再起動します．(`exec $SHELL -l`)
+
+### zsh の場合 (`/bin/zsh` と表示された)
+以下のような行を `~/.zshenv` に追加します。
+
+    export HOMCLOUD_PARAVIEW_PROGRAMNAME=/Applications/ParaView-5.4.0.app
+
+設定を反映させるためにシェルを再起動します．(`exec $SHELL -l`)
+
+### それ以外の場合
+
+それ以外を使っている人は自分でなんとかしてください．
 
 ## 8. HomCloudの自己チェックプログラムを動かす
 
