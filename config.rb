@@ -6,7 +6,8 @@ set :markdown_engine, :kramdown
 set :relative_links, false
 set :strip_index_file, false
 configure :build do
-  set :http_prefix, "/hiraoka_labo/homcloud"
+  #set :http_prefix, "/hiraoka_labo/homcloud"
+  set :http_prefix, "/"
   #set :http_prefix, "/hiraoka_labo/homcloud-test"
 end
 
@@ -54,7 +55,7 @@ helpers do
   end
 
   def link_to_python_api
-    %[<a href="#{config[:http_prefix]}/python-api/index.html">Python Interface API</a>]
+    %[<a href="/python-api/index.html">Python Interface API</a>]
   end
 end
 

@@ -86,7 +86,7 @@ zipファイルを展開してください。そこで `tutorial/python-interfac
 `.ipynb`ファイルを開いてチュートリアルを実行してください。
 
 また、Python interface の API のドキュメントは 
-[https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
+[python-api/](python-api/)
 から参照できます。
 
 ### Jupyter notebookに関する話
