@@ -2,7 +2,7 @@
 title: Install HomCloud on Windows
 lang: ja
 ---
- 
+
 # Windows 10 64bitマシンでのインストール
 
 Windowsでインストールするには、以下の2通りあります。お使いの環境に合わせて設定してください。
@@ -62,19 +62,14 @@ paraviewのパスの調べかたは，
 まずは環境構築のためのフォルダを作ります．
 ドキュメントフォルダの下に homcloud というフォルダを作ります．
 
-次に venv をセットアップします．左下のウィンドウメニューから
-`Python 3.7`→`Python 3.7 (64-bit)`を選びます．
-選ぶと新しいウインドウが表示されるので次のように2行打ち込みます．
-`C:\Users\IppeiObayashi\Documents\homcloud`の部分は上で作ったフォルダの
-フルパスに置き換えてください．
+次に venv をセットアップします. pythonのモジュールをしてvenvが追加されたので、これを使ってvenv環境を作っていきます。まず、コマンドプロントを起動します。以下のコマンドを打つことでhomcloudのフォルダ下にvenv37フォルダが作成されます。
 
-    import os
-    os.system(r'python -m venv "C:\Users\IppeiObayashi\Documents\homcloud\venv37"')
+    cd Documents\homcloud
+    python3 -m venv venv37
 
 ## 5. 実行ファイルをコピーする
 
-以上の操作で homcloud フォルダの下に `venv37` というフォルダが作られます．
-このフォルダの下の `Scripts` フォルダに DLL ファイルなどを置きます．
+venv37のフォルダの下の `Scripts` フォルダに DLL ファイルなどを置きます．
 [winbinaries-20191101.zip](/download/win/winbinaries-20191101.zip)
 のzipファイルを展開してその中にある dll ファイルと exe ファイルを `Scripts`
 フォルダの下に置きます．
@@ -84,7 +79,6 @@ paraviewのパスの調べかたは，
 `Windows管理ツール`→`コマンドプロンプト`と探せば見つかるでしょう．
 開いだウィンドウに
 
-    cd Documents\homcloud
     venv37\Scripts\activate
 
 と打ち込むと環境内に移動できます．この操作はコマンドプロンプトを起動するごとに
@@ -158,7 +152,7 @@ paraviewのパスの調べかたは，
 でインストールできます．インストール後，homcloudフォルダで
 
     jupyter notebook
-    
+
 とするとブラウザがポップアップし，jupyter notebookが起動します．
 ここでチュートリアルのフォルダから
 チュートリアルを始めてください．いくつかチュートリアルがありますが，
