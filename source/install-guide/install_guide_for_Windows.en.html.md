@@ -25,7 +25,7 @@ Please choose the place where Japanese (two-byte characters) does not enter in t
 
 ## 2. Installation of MSMPI
 
-MSMPI is used by dipha to parallelize and compute homology. 
+MSMPI is used by dipha to parallelize the computation of homology. 
 
 Download
 
@@ -36,7 +36,7 @@ from [Microsoft MPI page](https://docs.microsoft.com/en-us/message-passing-inter
 
 ## 3. Installation of paraview
 
-paraview is mainly used in homcloud as a viewer when redisplaying point cloud data.
+paraview is mainly used in homcloud as a viewer when displaying point cloud data.
 Download the latest version from [https://www.paraview.org/](https://www.paraview.org/)
 and install it. And where to install it must be set by the environment variable `HOMCLOUD_PARAVIEW_PROGRAMNAME`．
 Check the paraview path like 
@@ -81,8 +81,8 @@ Please check the website etc. for basic commands that can be entered.
 
 The following are the basic commands we often use.
 
-    cd c:\dev\work # カレントフォルダの移動
-    dir # フォルダ内のファイルの一覧表示
+    cd c:\dev\work # Move current folder
+    dir # List files in folder
 
 ## 7. Installation of python package
 Install the required packages using the command prompt launched above.
@@ -135,8 +135,7 @@ Since it is a big deal, let's move the tutorial.
 Download it from [python-tutorial.zip](/download/python-tutorial.zip)
 and extract it to the homcloud folder.
 Next, install the jupyter notebook used in the tutorial.
-You can install it with
-
+You can install it withsd
     pip install jupyter
 
 After installation, 
