@@ -39,6 +39,6 @@ please use your favorite image viewer.
 These tutorials use jupyter notebook. Please install jupyter notebook before the tutorials.
 
 You can see the docuemnt of python interface from
-[https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/).
+[python-api/](python-api/).
 
 Some tutorials are not translated into English.

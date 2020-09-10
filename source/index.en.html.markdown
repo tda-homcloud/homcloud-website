@@ -28,7 +28,7 @@ HomCloud is free software and you can use it freely.
 
 * [Install](how-to-install.en.html)
 * [Tutorial](basic-usage.en.html)
-* [Python API reference manual](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
+* [Python API reference manual](python-api/)
 
 ## License
 

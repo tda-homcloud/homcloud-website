@@ -31,7 +31,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 * [インストール](install-guide/index.html)
 * [チュートリアル](basic-usage.html)
 * [FAQ](faq.html)
-* [Python API reference manual](https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/python-api/)
+* [Python API reference manual](python-api/)
 
 ## ライセンス
 
