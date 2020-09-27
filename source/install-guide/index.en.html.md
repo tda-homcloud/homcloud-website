@@ -9,7 +9,7 @@ lang: en
 |:----:|:----:|:----:|
 |OS X|[install with homebrew](install_guide_for_Mac.en.html)||
 |Ubuntu/Debian|[install with apt-get and pip](install_guide_for_Ubuntu.en.html)|16.04 lts/buster or later|
-|Windows|[install each package directly or install on WSL](install_guide_for_Windows_en.html)|Confirmed operation on WIndows10|
+|Windows|[install each package directly or install on WSL](install_guide_for_Windows.en.html)|Confirmed operation on WIndows10|
 
 # Upgrade
 

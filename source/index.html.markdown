@@ -1,5 +1,5 @@
 ---
-title: "Homcloud"
+title: "HomCloud"
 lang: "ja"
 ---
 
