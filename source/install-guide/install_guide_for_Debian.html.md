@@ -35,7 +35,7 @@ apt-getで各パッケージの追加は以下のように行います。
 
 ダウンロードした tar.gz ファイルは以下のようにして展開します．
 
-    tar xf homcloud-2.8.0-debfiles.tar.gz
+    tar xf homcloud-3.0.0-debfiles.tar.gz
 
 
 ## 3. ダウンロードしたファイルを以下のようにdpkgを使ってインストールします。

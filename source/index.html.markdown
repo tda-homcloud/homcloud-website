@@ -12,19 +12,22 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ## <a name="download"> 最新版ダウンロード
 
+* [HomCloud 最新版(3.0.0)](download/homcloud-3.0.0.tar.gz)
+  * HomCloud 3.0.0 は2.9.x以前から多くの非互換な変更を含んでいます．
+    既存のコードをそのまま利用したい方は古いバージョンを利用してください．
+  * [README](download/README)
+  * [NEWS](download/NEWS)
 * [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0.tar.gz)
-* [README](download/README)
-* [NEWS](download/NEWS)
 
 ### Debian バイナリパッケージ (amd64)
 
-* [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0-debfiles.tar.gz)
+* [HomCloud 最新版(3.0.0)](download/homcloud-3.0.0-debfiles.tar.gz)
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [HomCloud 2.8.1](download/win/homcloud-2.8.1-cp37-cp37m-win_amd64.whl)
-* [ripserのバイナリ](download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl)
-* [cgalとdipha](download/win/winbinaries-20191101.zip)
+* [HomCloud 最新版(3.0.0)](download/win/homcloud-3.0.0-cp37-cp37m-win_amd64.whl)
+<!-- * [ripserのバイナリ](download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl) -->
+<!-- * [cgalとdipha](download/win/winbinaries-20191101.zip) -->
 
 ## ドキュメント
 

@@ -5,4 +5,5 @@
 build/
 source/homcloud-docs-ja/
 source/python-api/
+conda-channel/
 *~

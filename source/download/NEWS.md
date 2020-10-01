@@ -1,3 +1,55 @@
+# News for 3.0.0 (2020/10/01)
+* Major version up!
+* Change the URL from <https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/> to <https://homcloud.dev/>
+* New features:
+  * Introduce a new file format `.pdgm`. This format is more recommended than `.idiagram`.
+  * New module `optvol`. This is the alternative module of `optimal_volume` for `.pdgm` format PD file.
+  * Integrate the new version of homccube (homccube 3) for more efficient bitmap filtration computation
+  * Now self_check accept `--no-dipha` option
+  * Easier installation of HomCloud on Windows
+  * New modules `build_phtrees` and `phtrees`. These are successors of `full_ph_trees`, `query_pht`, and `query_full_phtrees`.
+  * Add `--save-phtrees` option to `pc_alpha`
+  * Now `interface.PDList.from_alpha_filtration` accepts a new parameter `save_phtrees` to save PH-trees to `.pdgm` file.
+  * Now `plot_PD` and `interface` modules can plot essential pairs.
+  * `pict.tree` module can output `.pdgm` format file
+  * Add `load_indexed_pairs` parameter to `interface.PDList.dth_diagram`
+  * Add `HistoSpec.histogram_from_vector`
+  * Add `interface.Pair.ph0_componens` and `interface.PH0Components`
+  * Now you can calculate optimal volumes for rips filtrations and abstract filtrations
+  * `interface.PDList.from_bitmap_levelset` supports periodic boundary condition
+  * `interface.distance_transform` supports periodic boundary condition
+* Breaking changes:
+  * HomCloud drops the support of `.diagram`, `.icomplex` and `.complex` format
+  * `abstract_filtration` module drops the support of `.idiagram` format
+    * The module only supports `.pdgm` for output format
+  * `rips` modules drops the support of `.idiagram` format
+    * The module only supports `.pdgm` for output format
+  * Change the default value of `-S` option to `off` in `dump_diagram`
+  * `pict.optimal_one_cycle` drops the support of `.idiagram` format and only supports `.pdgm` format
+  * `interface.Mesh` is renamed to `interface.HistoSpec`
+    * The old name `interface.Mesh` is marked deprecated, but available now
+  * `interface.PIVectorizerMesh` is renamed to `interface.PIVectorizeSpec`
+    * The old name `interface.PIVectorizerMesh` is marked deprecated, but available now
+  * Remove `interface.PD.check_coefficient_problem`
+    * You should use `interface.PDList.check_coefficient_problem` instead
+  * `interface.Pair.tightened_volume` is renamed to `interface.Pair.stable_volume`
+  * `interface.Pair.tightened_subvolume` is renamed to `interface.Pair.stable_subvolume`
+  * `interface` module now drops the support of `.p2mt` format
+  * Remove `interface.BitmapPHTreesPair`
+    * You should use `interface.BitmapPHTrees.for_bitmap_levelset` instead to build bitmap ph-trees
+    * You should use `interface.PDList.bitmap_phtrees` instead to load bitmap ph-trees
+  * Now `pict.tree` module does not supports `.p2mt` format. Use `.pdgm` format instead
+  * In `interface` module, the default PD file format is changed from `.idiagram` to `.pdgm`
+  * In `interface` module, the following functionalities only support `.pdgm` format and drop the support of `.idiagram` format
+    * Optimal volumes
+    * Stable volumes
+    * PH-trees
+    * Optimal 1-cycles for bitmaps 
+* Update the internal format version of `.idiagram` from 3 to 4.
+
+# News for 2.9.0 (2020/04/06)
+* Integrate homccube for more efficient bitmap filtration
+
 # News for 2.8.1 (2020/02/02)
 * Support CGAL 5.0 and later
 

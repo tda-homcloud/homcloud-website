@@ -25,18 +25,7 @@ Pythonのバージョンは **3.7** の最新版 (2019/11/1時点では 3.7.5) �
 Pythonをインストールする場所(パス)に日本語(全角文字)が入らない場所を選んでください。
 現状では全角文字がパスに含まれてしまうと python からファイルの読み書きを行う時にエラーになります。
 
-## 2. MSMPI のインストール
-
-MSMPIは dipha が並列化してホモロジーを計算するために使います。
-[MicrosoftのMPIのページ](https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi)
-から
-
-* msmpisetup.exe
-* msmpisdk.msi
-
-をダウンロードし、クリックしてインストールをします。
-
-## 3. paraview のインストール
+## 2. paraview のインストール
 
 paraview はhomcloudでは主にポイントクラウドのデータを表示する
 場合のビューワーとして使います。
@@ -56,7 +45,7 @@ paraviewのパスの調べかたは、
 
 などとします。
 
-## 4. venvによる環境構築
+## 3. venvによる環境構築
 
 ここでは venv という環境分離機構を使って環境を設定します。
 まずは環境構築のためのフォルダを作ります。
@@ -67,14 +56,7 @@ paraviewのパスの調べかたは、
     cd Documents\homcloud
     py -3.7 -m venv venv37
 
-## 5. 実行ファイルをコピーする
-
-venv37のフォルダの下の `Scripts` フォルダに DLL ファイルなどを置きます。
-[winbinaries-20191101.zip](/download/win/winbinaries-20191101.zip)
-のzipファイルを展開してその中にある dll ファイルと exe ファイルを `Scripts`
-フォルダの下に置きます。
-
-## 6. venvの環境内に移動する
+## 4. venvの環境内に移動する
 `コマンドプロンプト`を起動します。
 `Windows管理ツール`→`コマンドプロンプト`と探せば見つかるでしょう。
 開いだウィンドウに
@@ -92,28 +74,22 @@ venv37のフォルダの下の `Scripts` フォルダに DLL ファイルなど�
     cd c:\dev\work # カレントフォルダの移動
     dir # フォルダ内のファイルの一覧表示
 
-## 7. python パッケージをインストールする
+## 5. python パッケージをインストールする
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    pip install numpy scipy pyqt5 matplotlib scikit-learn msgpack-python Pillow PuLP forwardable imageio
+    pip install numpy scipy pyqt5 matplotlib scikit-learn msgpack-python Pillow PuLP forwardable imageio ripser
 
-## 8. ripser のインストール
-以下のようにして `ripser` というパッケージをインストールします．
-このパッケージは [ripser-0.4.1-cp37-cp37m-win_amd64.whl](/download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl)からダウンロードして、homcloudフォルダに置きます。
+## 6. HomCloud のインストール
+[homcloud-3.0.0-cp37-cp37m-win_amd64.whl](download/win/homcloud-3.0.0-cp37-cp37m-win_amd64.whl)からダウンロードして、homcloudフォルダに置きます。その後以下のようにインストールします。
 
-    pip install ripser-0.4.1-cp37-cp37m-win_amd64.whl
+    pip install homcloud-3.0.0-cp37-cp37m-win_amd64.whl
 
-## 9. HomCloud のインストール
-[homcloud-2.7.2-cp37-cp37m-win_amd64.whl](/download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl)からダウンロードして、homcloudフォルダに置きます。その後以下のようにインストールします。
-
-    pip install homcloud-2.7.2-cp37-cp37m-win_amd64.whl
-
-## 10. HomCloudの自己チェックプログラムを動かす
+## 7. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにコマンドプロンプトで以下のように実行します。
 
-    python -m homcloud.self_check
+    python -m homcloud.self_check --no-dipha
 
 2回、Paraviewのウィンドウが開かれます。
 最初に開かれたときは、"Apply"ボタンを押して何か表示されてからウィンドウを
@@ -139,7 +115,7 @@ venv37のフォルダの下の `Scripts` フォルダに DLL ファイルなど�
     Paraview real invoke (python pointcloud) => Close opened window ... ok
 
 
-## 11. チュートリアルの実行
+## 8. チュートリアルの実行
 
 せっかくなのでチュートリアルを動かしてみましょう。
 [python-tutorial.zip](/download/python-tutorial.zip)
@@ -157,3 +133,20 @@ venv37のフォルダの下の `Scripts` フォルダに DLL ファイルなど�
 ここでチュートリアルのフォルダから
 チュートリアルを始めてください。いくつかチュートリアルがありますが、
 pointcloudが一番やりやすいでしょう。
+
+
+## 9. (オプショナル) MSMPI と dipha のインストール
+
+ここから先はオプショナルな内容なので必ずしもやる必要はありません．
+Rips filtrationを上限を指定して計算したい場合に使います．
+
+MSMPIは dipha が並列化してホモロジーを計算するために使います。
+[MicrosoftのMPIのページ](https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi)
+から
+
+* msmpisetup.exe
+* msmpisdk.msi
+
+をダウンロードし、クリックしてインストールをします。
+
+dipha は [dipha.exe](/donwload/win/dipha.exe) からダウンロードし，`venv37\Scripts` にコピーしてください．
