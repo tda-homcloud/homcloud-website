@@ -1,5 +1,5 @@
 #!/bin/bash
-#bundle exec middleman build
+bundle exec middleman build
 
 rm -r conda-channel
 mkdir conda-channel
