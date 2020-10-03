@@ -15,6 +15,8 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 * [HomCloud 最新版(3.0.0)](download/homcloud-3.0.0.tar.gz)
   * HomCloud 3.0.0 は2.9.x以前から多くの非互換な変更を含んでいます．
     既存のコードをそのまま利用したい方は古いバージョンを利用してください．
+  * 出力ファイル名を`.idiagram`から`.pdgm`に変更すればそれ以外の非互換性には
+    あまり遭遇しないはずです
   * [README](download/README)
   * [NEWS](download/NEWS)
 * [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0.tar.gz)
