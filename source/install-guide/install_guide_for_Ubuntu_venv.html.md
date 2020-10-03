@@ -3,20 +3,16 @@ title: Install HomCloud on Ubuntu or Debian
 lang: ja
 ---
 
-# UbuntuやDebianでのインストール
+# UbuntuやDebianでのインストール(venv使用)
+
+ここでは python の venv という環境分離ツールを使ってインストールします．
+homcloudをインストールする環境を分離することでバージョンの使い分けなどが
+簡単になります．
 
 ## 1. 以下のパッケージをapt-getでインストールします。
 
 * libcgal-dev
 * libpython3-dev
-* python3-matplotlib
-* python3-numpy
-* python3-scipy
-* python3-pip
-* python3-pyqt5
-* python3-msgpack
-* python3-pulp
-* python3-sklearn
 * opnempi-bin
 * libopenmpi-dev
 * cmake
@@ -25,7 +21,8 @@ lang: ja
 
 apt-getで各パッケージの追加は以下のように行います。
 
-    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack python3-pulp python3-sklearn openmpi-bin libopenmpi-dev cmake paraview jupyter
+    sudo apt-get install libcgal-dev libpython3-dev openmpi-bin libopenmpi-dev cmake paraview jupyter
+
 
 ## 2. [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
 
@@ -36,32 +33,59 @@ apt-getで各パッケージの追加は以下のように行います。
 5. "make"とタイプし、ビルドします。
 6. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
 
-## 3. pipを使ってscikit-learn、forwardable、imageio、Cython、ripserを追加します。
+
+## 3. venvで環境を新しく作る
+
+まず作業用のディレクトリを作ります．ここでは`homcloud`という名前にしましょう．
+
+    mkdir homcloud
+    cd homcloud
+
+次のようにして venv の設定を作ります．
+
+    python3 -m venv venv
+    
+以下のようにして venv の環境に入ります．
+
+    source ./venv/bin/activate
+    
+## 4. pipを使ってCython，numpy，wheelを追加します。
 
 以下のようにタイプしてインストールします．
 
-    pip3 install --user forwardable imageio Cython cached-property
-    pip3 install --user ripser
+    pip3 install Cython numpy wheel
+    
+GUIを使いたい場合は PyQt5 もインストールする必要があります．
 
-または使用している `python` からモジュールとして 
+    pip3 install pyqt5
 
-    python3.6 -m pip install --user forwardable imageio Cython
-    python3.6 -m pip install --user ripser
+次のようなエラーが出た場合は `pip3 install PyQt5==5.14` としてください．これは
+PyQtの特定のバージョンでの問題です．
 
-とタイプししてください。`pip` でインストールされるパッケージは `python` の各バージョン毎にインストールされている必要があります。`python` のアップデートなどがあった場合に必要なパッケージがそのバージョン用にインストールされているか、注意してください。
+    Collecting pyqt5
+      Installing build dependencies ... done
+        Complete output from command python setup.py egg_info:
+        Traceback (most recent call last):
+          File "<string>", line 1, in <module>
+          File "/usr/lib/python3.7/tokenize.py", line 447, in open
+            buffer = _builtin_open(filename, 'rb')
+        FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pip-install-bvg6_fyh/pyqt5/setup.py'
+
+        ----------------------------------------
+    Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-install-bvg6_fyh/pyqt5/
 
 
-## 4. 最新版のhomcloudをダウンロードし、インストールします。
+## 5. 最新版のhomcloudをダウンロードし、インストールします。
 
 [最新版のhomcloudをダウンロード](/index.html#download)してください．
 
 ダウンロードしたディレクトリに移動し、以下を実行します。
 
-    pip3 install --user --no-deps homcloud-x.y.z.tar.gz
+    pip3 install homcloud-x.y.z.tar.gz
 
 もしグローバルにインストールしたくない場合はvenvなどを使ってください。
 
-## 5. HomCloudの自己チェックプログラムを動かす
+## 6. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
