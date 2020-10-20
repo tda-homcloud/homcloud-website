@@ -19,7 +19,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
     あまり遭遇しないはずです
   * [README](download/README)
   * [NEWS](download/NEWS)
-* [HomCloud 最新版(2.9.0)](download/homcloud-2.9.0.tar.gz)
+* [HomCloud 2.9.0](download/homcloud-2.9.0.tar.gz)
 
 ### Debian バイナリパッケージ (amd64)
 
