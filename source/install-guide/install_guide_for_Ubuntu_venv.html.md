@@ -23,18 +23,11 @@ apt-getで各パッケージの追加は以下のように行います。
 
     sudo apt-get install libcgal-dev libpython3-dev openmpi-bin libopenmpi-dev cmake paraview jupyter
 
+新しい Ubuntu (20.04など) では python3-paraview もインストールする必要があります．
 
-## 2. [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
+    sudo apt-get install python3-paraview
 
-1. <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からダウンロードしてください。
-2. ダウンロードしたファイルを解凍してください。
-3. 解凍時に作られたディレクトリに移動してください。
-4. "cmake ."とタイプし、makefileを作成します。
-5. "make"とタイプし、ビルドします。
-6. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
-
-
-## 3. venvで環境を新しく作る
+## 2. venvで環境を新しく作る
 
 まず作業用のディレクトリを作ります．ここでは`homcloud`という名前にしましょう．
 
@@ -49,7 +42,7 @@ apt-getで各パッケージの追加は以下のように行います。
 
     source ./venv/bin/activate
     
-## 4. pipを使ってCython，numpy，wheelを追加します。
+## 3. pipを使ってCython，numpy，wheelを追加します。
 
 以下のようにタイプしてインストールします．
 
@@ -75,20 +68,24 @@ PyQtの特定のバージョンでの問題です．
     Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-install-bvg6_fyh/pyqt5/
 
 
-## 5. 最新版のhomcloudをダウンロードし、インストールします。
+## 4. 最新版のhomcloudをインストールします。
 
-[最新版のhomcloudをダウンロード](/index.html#download)してください．
+以下を実行します。
 
-ダウンロードしたディレクトリに移動し、以下を実行します。
+    pip3 install homcloud
 
-    pip3 install homcloud-x.y.z.tar.gz
+### 古いバージョンをインストールする場合
 
-## 6. HomCloudの自己チェックプログラムを動かす
+古いバージョンのHomCloud (2.9.0など) をインストールする場合には代わりに次のようにします．
 
-最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
+    pip3 install --user homcloud==2.9.0
+
+## 5. HomCloudの自己チェックプログラムを動かす
+
+後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
 
-    python3 -m homcloud.self_check
+    python3 -m homcloud.self_check --no-dipha
 
 2回，Paraviewのウィンドウが開かれます．
 最初に開かれたときは，"Apply"ボタンを押して何か表示されてからウィンドウを
@@ -116,3 +113,18 @@ PyQtの特定のバージョンでの問題です．
 
 以上でインストールは終わりです。
 
+## 6. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
+
+Veitoris-Rips 複体(距離行列)や高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします。
+もしこれらを使わない場合はここは飛ばしてよいです。
+
+1. <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からダウンロードしてください。
+2. ダウンロードしたファイルを解凍してください。
+3. 解凍時に作られたディレクトリに移動してください。
+4. "cmake ."とタイプし、makefileを作成します。
+5. "make"とタイプし、ビルドします。
+6. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
+
+インストール終了後，以下のようにしてHomCloudが正常に動くかチェックします。
+
+    python3 -m homcloud.self_check

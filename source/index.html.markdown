@@ -12,8 +12,8 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ## <a name="download"> 最新版ダウンロード
 
-* [HomCloud 最新版(3.0.0)](download/homcloud-3.0.0.tar.gz)
-  * HomCloud 3.0.0 は2.9.x以前から多くの非互換な変更を含んでいます．
+* [HomCloud 最新版(3.0.1)](download/homcloud-3.0.1.tar.gz)
+  * HomCloud 3.0.x は2.9.y以前から多くの非互換な変更を含んでいます．
     既存のコードをそのまま利用したい方は古いバージョンを利用してください．
   * 出力ファイル名を`.idiagram`から`.pdgm`に変更すればそれ以外の非互換性には
     あまり遭遇しないはずです
@@ -27,7 +27,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ### ウィンドウズ用のバイナリパッケージやバイナリファイルなど
 
-* [HomCloud 最新版(3.0.0)](download/win/homcloud-3.0.0-cp37-cp37m-win_amd64.whl)
+* [HomCloud 最新版(3.0.1)](download/win/homcloud-3.0.1-cp37-cp37m-win_amd64.whl)
 <!-- * [ripserのバイナリ](download/win/ripser-0.4.1-cp37-cp37m-win_amd64.whl) -->
 <!-- * [cgalとdipha](download/win/winbinaries-20191101.zip) -->
 

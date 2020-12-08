@@ -1,3 +1,7 @@
+# News for 3.0.1 (2020/11/22)
+* Fix a bug about paraview's .vtk output
+* Upload to pypi
+
 # News for 3.0.0 (2020/10/01)
 * Major version up!
 * Change the URL from <https://www.wpi-aimr.tohoku.ac.jp/hiraoka_labo/homcloud/> to <https://homcloud.dev/>

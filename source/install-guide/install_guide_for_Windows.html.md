@@ -10,12 +10,6 @@ Windowsでインストールするには、以下の2通りあります。お使
  * Windows用の個々のパッケージをインストール (以下の説明を参考にインストールをすすめる)
  * WSL(Windows Subsystem for Linux)の ubuntu linux などのlinux 環境でインストールする ([ubuntu用のインストールガイド](install_guide_for_Ubuntu.html)にしたがってインストールをすすめる)。ubuntu linux以外での WSL をお使いの場合は必要な各パッケージをそれぞれのOS用に置き換えてインストールをお試しください。GUIツールを使うためには Xwindow の動作環境が必要になります
 
-## インストールの前に
-
-Microsoft Edgeを使うとはこのガイドで指示されているファイルをダウンロードしようとすると
-`.whl`という識別子のファイルが`.man`という識別子でダウンロードされてしまう場合があります。
-ChromeやFirefoxなど他のブラウザを使ったほうがよいでしょう。
-
 ## 1. Pythonのインストール
 
 [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
@@ -78,12 +72,12 @@ paraviewのパスの調べかたは、
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    pip install numpy scipy pyqt5 matplotlib scikit-learn msgpack-python Pillow PuLP forwardable imageio ripser
+    pip install numpy pyqt5
 
 ## 6. HomCloud のインストール
-[homcloud-3.0.0-cp37-cp37m-win_amd64.whl](download/win/homcloud-3.0.0-cp37-cp37m-win_amd64.whl)からダウンロードして、homcloudフォルダに置きます。その後以下のようにインストールします。
+以下のようにインストールします。
 
-    pip install homcloud-3.0.0-cp37-cp37m-win_amd64.whl
+    pip install homcloud
 
 ## 7. HomCloudの自己チェックプログラムを動かす
 
