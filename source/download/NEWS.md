@@ -1,3 +1,7 @@
+# News for 3.1.0 (2021/02/01)
+* New feature: optimal 1-cycle
+* Speedup visualization of voxel data
+
 # News for 3.0.1 (2020/11/22)
 * Fix a bug about paraview's .vtk output
 * Upload to pypi

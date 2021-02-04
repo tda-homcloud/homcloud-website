@@ -40,8 +40,8 @@ apt-getで各パッケージの追加は以下のように行います。
 
 または使用している `python` からモジュールとして 
 
-    python3.6 -m pip install --user forwardable imageio Cython wheel
-    python3.6 -m pip install --user ripser
+    python3.9 -m pip install --user forwardable imageio Cython wheel
+    python3.9 -m pip install --user ripser
 
 とタイプししてください。`pip` でインストールされるパッケージは `python` の各バージョン毎にインストールされている必要があります。`python` のアップデートなどがあった場合に必要なパッケージがそのバージョン用にインストールされているか、注意してください。
 
