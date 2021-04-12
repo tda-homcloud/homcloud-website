@@ -22,10 +22,6 @@ HomCloud is free software and you can use it freely.
 
 * [HomCloud 2.9.0](download/homcloud-2.9.0.tar.gz)
 
-### Binary files and for Windows (Now these packages are not documented yet, sorry)
-
-* [HomCloud latest(3.0.1)](download/win/homcloud-3.0.1-cp37-cp37m-win_amd64.whl)
-
 ## Documents
 
 * [Install](how-to-install.en.html)
