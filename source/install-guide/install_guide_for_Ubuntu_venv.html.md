@@ -78,7 +78,7 @@ PyQtの特定のバージョンでの問題です．
 
 古いバージョンのHomCloud (2.9.0など) をインストールする場合には代わりに次のようにします．
 
-    pip3 install --user homcloud==2.9.0
+    pip3 install homcloud==2.9.0
 
 ## 5. HomCloudの自己チェックプログラムを動かす
 
