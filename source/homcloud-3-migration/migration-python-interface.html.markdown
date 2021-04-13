@@ -74,7 +74,7 @@ HomCloud 2以前では`.idiagram`という拡張子のファイルにPDの情報
     pd1 = pdlist.dth_diagram(1)
     pd1.histogram((0, 0.01)).plot(colorbar={"type": "log"})
     print(pd1.births)
-    print(pd2.births)
+    print(pd2.deaths)
     
 ## optimal volume(逆解析の一種)について
 
@@ -157,6 +157,84 @@ optimal volumeは`.pdgm`への移行が完了しているならば問題なく�
     print(node.boundary_points())
 
 
-## ビットマップデータの逆解析について
+## ビットマップデータについて
 
-未執筆
+画像データの解析についてもまずはファイル拡張子を `.pdgm` に変更することが移行の第一歩です．
+
+    import homcloud.interface as hc
+    import imageio # これは画像読み込みのために必要
+
+    # 画像の読み込み
+    image = imageio.imread("binary-image.png", as_gray=True)
+    
+ここまでは同じです．PDの計算の所で
+
+    # PD計算(2.x の方式)
+    hc.PDList.from_bitmap_levelset(hc.distance_transform(image < 128, signed=True),
+                                   save_to="binary-image.idiagram")
+    # PD読み込み
+    pdlist = hc.PDList("binary-image.idiagram")
+
+を
+
+    # PD計算(3.x の方式)
+    hc.PDList.from_bitmap_levelset(hc.distance_transform(image < 128, signed=True),
+                                   save_to="binary-image.pdgm")
+    # PD読み込み
+    pdlist = hc.PDList("binary-image.pdgm")
+
+と変更します．ここから先，PDの読み出しなどは同じです．
+
+    # PD1 の birth と death を表示 (ここは変えなくて良い)
+    pd1 = pdlist.dth_diagram(1)
+    print(pd1.births)
+    print(pd1.deaths)
+
+大きく変更があったのは逆解析の部分です．2.x では `BitmapPHTreesPair` というクラスを使って
+逆解析の情報を`.p2mt`というファイルに保存していました．その語`dim_0_trees`などのメソッドを使って
+`BitmapPHTrees`のオブジェクトを取り出します．
+
+    import homcloud.interface as hc
+    import imageio
+    
+    # 画像読み込み
+    image = imageio.imread("binary-image.png", as_gray=True)
+    # 逆解析情報(内部的には木構造をしている)を計算し，binary-image.p2mt に保存
+    hc.BitmapPHTreesPair.from_bitmap_levelset(hc.distance_transform(image < 128, signed=True), save_to="binary-image.p2mt")
+    # 計算した情報を読み込み，0次元PDのほうの情報を読み込む
+    # これは BitmapPHTrees クラスのオブジェクトを返す
+    phtrees = hc.BitmapPHTreesPair("binary-image.p2mt").dim_0_trees()
+
+この後例えば次のようにして逆解析の結果を可視化していました．
+
+    nodes = phtrees.pair_nodes_in_rectangle(-5, -5, -4, -4)
+    inv_analysis_image = hc.draw_volumes_on_2d_image(nodes, "binary-image.png", color=(255, 0, 0), alpha=0.5, birth_position=(0, 255, 0))
+    inv_analysis_image.save("inv_analysis_image.png")
+
+HomCloud 3.x では次のような変更がなされています．
+
+* `BitmapPHTreesPair` は廃止，`BitmapPHTrees` に統合された．
+* 逆解析情報は `.pdgm` フィアル (つまりPD情報ファイル) に保存される．
+* 逆解析情報を読み込むときは `PDList()` を使う
+* `PDList.bitmap_phtrees(d)` というメソッドで `BitmapPHTrees` オブジェクトを取り出す (`d`はPDの次元)
+
+上のコード例は次のように変更する必要があります．
+
+    import homcloud.interface as hc
+    import imageio
+        
+    # 画像読み込み
+    image = imageio.imread("binary-image.png", as_gray=True)
+    # PDと逆解析情報を両方計算し，binary-image-tree.pdgm に保存
+    hc.BitmapPHTrees.for_bitmap_levelset(hc.distance_transform(image < 128, signed=True), save_to="binary-image-tree.pdgm")
+    # 計算した情報を読み出す
+    pdlist = hc.PDList("binary-image-tree.pdgm")
+    # 逆解析情報の木構造を取り出す(0はPDの次元を意味する)
+    phtrees = pdlist.bitmap_phtrees(0)
+
+ここから先は変更なしに利用できます．
+
+    # ここから先の可視化などは同様
+    nodes = phtrees.pair_nodes_in_rectangle(-5, -5, -4, -4)
+    inv_analysis_image = hc.draw_volumes_on_2d_image(nodes, "binary-image.png", color=(255, 0, 0), alpha=0.5, birth_position=(0, 255, 0))
+    inv_analysis_image.save("inv_analysis_image.png")
