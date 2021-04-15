@@ -45,7 +45,7 @@ Xcode をインストールした後、引き続き以下のコマンドを入�
 homebrew を使うことで、様々なパッケージをターミナルからコマンド入力するだけで、依存関係を考慮したり、必要なパッケージ類をまとめてインストールことができます。
 例えば、ターミナルで以下のコマンドを実行すれば、インストールされます。
 
-    brew install パッケージ名
+    brew install cgal python3 cmake opem-mpi qt
 
 ## 3. Paraviewをインストールします
 
@@ -76,38 +76,13 @@ homebrew を使うことで、様々なパッケージをターミナルから�
     pip3 install numpy scipy matplotlib PyQt5 scikit-learn msgpack-python Pillow forwardable Cython jupyter
     pip3 install ripser
 
-## 5. [dipha](http://github.com/dipha) をダウンロードしてインストールします。
+## 5. 最新版のhomcloud をインストールします。
 
-<https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からzipファイルを
-ダウンロードしてきてインストールします．
-
-    unzip dipha-dipha-2.1.0.zip
-    cd dipha-dipha-2.1.0
-    cmake . 
-    make
-
-すでに PATH の通っているディレクトリに dipha をコピーします。
-
-    cp diphaのある場所/dipha PATHの通っているディレクトリ
-    例) cp ~/dipha/dipha /usr/local/bin/
-
-PATH の通っているディレクトリがどこかは
-
-    echo $PATH
-
-というコマンドで確認することができます。
-
-## 6. 最新版のhomcloud をダウンロードし、インストールします。
-
-[最新版の homcloud をダウンロード](/index.html#download)します。
-上記のファイルをダウンロードしたら、 ターミナルを起動して、以下のように入力して、 ダウンロードしたファイルのあるディレクトリに移動し(ここでは例として~/Donwloads)、homcloud のインストールを行ってください。x、y、z は最新のバージョン番号に置き換えてください。
-
-    cd Downloads/
-    pip3 install homcloud-x.y.z.tar.gz 
+    pip3 install homcloud
 
 以上で、MacOS への homcloud のインストールは完了です。
 
-## 7. Paraviewの設定をする
+## 6. Paraviewの設定をする
 
 Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でインストールされます。
 これを HomCloud に教えてやる必要があります。
@@ -133,12 +108,12 @@ Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でイ�
 
 それ以外を使っている人は自分でなんとかしてください．
 
-## 8. HomCloudの自己チェックプログラムを動かす
+## 7. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
 
-    python3 -m homcloud.self_check
+    python3 -m homcloud.self_check --no-dipha
 
 2回，Paraviewのウィンドウが開かれます．
 最初に開かれたときは，"Apply"ボタンを押して何か表示されてからウィンドウを
@@ -156,7 +131,6 @@ Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でイ�
     Grayscale 2D bitmap ... ok
     Binary 2D bitmap ... ok
     Binary 2D periodic bitmap ... ok
-    Rips filtration ... ok
     Plotting PD ... ok
     Paraview path: /usr/bin/paraview
     Paraview fake invoke ... ok
@@ -165,4 +139,29 @@ Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でイ�
 
 
 以上でインストールは終わりです。
+
+## 8. [dipha](http://github.com/dipha) をダウンロードしてインストールします (任意)
+
+一部の計算を高速化するために dipah というプログラムをインストールすることができます
+(しなくとも大半のことはできます)．
+
+<https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からzipファイルを
+ダウンロードしてきてインストールします．
+
+    unzip dipha-dipha-2.1.0.zip
+    cd dipha-dipha-2.1.0
+    cmake . 
+    make
+
+すでに PATH の通っているディレクトリに dipha をコピーします。
+
+    cp diphaのある場所/dipha PATHの通っているディレクトリ
+    例) cp ~/dipha/dipha /usr/local/bin/
+
+PATH の通っているディレクトリがどこかは
+
+    echo $PATH
+
+というコマンドで確認することができます。
+
 
