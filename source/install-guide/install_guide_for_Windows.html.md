@@ -29,15 +29,7 @@ paraview はhomcloudでは主にポイントクラウドのデータを表示す
 `C:\Program Files\ParaView 5.6.0-Windows-msvc2015-64bit\bin\paraview.exe`のような
 paraviewのパスを調べて環境変数を設定してください。
 
-環境変数の設定の仕方は検索エンジンなどで調べてください。
-paraviewのパスの調べかたは、
-
-* エクスプローラーを開く
-* PC→ローカルディスク→Program Filesと移動して右上の検索フィールドに
-  paraview.exeとうちこむ
-* みつかったファイルを右クリックして「ファイルの場所を開く」
-
-などとします。
+あまり詳しくない方は[WindowsでのParaviewの環境変数の設定](windows_envvar_paraview.html)を参照してください．
 
 ## 3. venvによる環境構築
 
