@@ -7,6 +7,7 @@ This package contains many software for the computation of persistence homology.
 <http://homcloud.dev/index.en.html>
 
 # REQUIRE
+
 HomCloud supports the following computing environments.
 
 * Ubuntu (newer than 18.04 lts)
@@ -15,7 +16,7 @@ HomCloud supports the following computing environments.
 * Mac OS X with homebrew
 * Windows
 
-Under any system, python 3.5 or newer versions are requred.
+Under any system, python 3.5 or newer versions are required.
 
 # INSTALL
 
@@ -28,7 +29,7 @@ Please see the following install tutorial:
 
 * If you don't want to install the software globally, please use virtualenv or venv.
 
-# Upgrading homcloud
+# Upgrading HomCloud
 
 See the following documents.
 

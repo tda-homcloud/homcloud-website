@@ -1,3 +1,7 @@
+# News for 3.2.0 (2021/04/30)
+* New feature: Wasserstein and botlleneck distance (by using hera <https://bitbucket.org/grey_narn/hera>)
+* Bug fix: `homcloud.pict.pixel_levelset_nd`
+
 # News for 3.1.0 (2021/02/01)
 * New feature: optimal 1-cycle
 * Speedup visualization of voxel data
