@@ -1,3 +1,6 @@
+# News for 3.2.1 (2021/05/02)
+* Bug fix: Optimal volumes for periodic alpha filtrations
+
 # News for 3.2.0 (2021/04/30)
 * New feature: Wasserstein and botlleneck distance (by using hera <https://bitbucket.org/grey_narn/hera>)
 * Bug fix: `homcloud.pict.pixel_levelset_nd`
