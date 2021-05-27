@@ -1,3 +1,6 @@
+# News for 3.3.0 (2021/05/28)
+* Implement efficient optimal 1-cycle for rips filtrations
+
 # News for 3.2.1 (2021/05/02)
 * Bug fix: Optimal volumes for periodic alpha filtrations
 

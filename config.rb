@@ -53,10 +53,6 @@ helpers do
       return link_to(name, "/#{urlbase}.#{lang}.html#{postfix}")
     end
   end
-
-  def link_to_python_api
-    %[<a href="/python-api/index.html">Python Interface API</a>]
-  end
 end
 
 # Build-specific configuration
