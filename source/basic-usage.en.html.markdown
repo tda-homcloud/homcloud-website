@@ -30,7 +30,7 @@ please use your favorite image viewer.
 * [3D pointcloud analysis](py-tutorial/pointcloud-e.html)
 * [Binary image analysis](py-tutorial/binary-image-e.html)
 * [Grayscale image analysis](py-tutorial/grayscale-image-e.html)
-* [3D binary image analysis, in Japanese](py-tutorial/binary-3d.html)
+* [3D binary image analysis](py-tutorial/binary-3d-e.html)
 * [Distance matrix analysis (Vietoris-Rips)](py-tutorial/rips-e.html)
 * [Machine learning](py-tutorial/ml_pc-e.html)
 

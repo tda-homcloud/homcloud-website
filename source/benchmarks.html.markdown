@@ -1,3 +1,8 @@
+---
+title: Basic Tutorial
+lang: ja
+---
+
 # HomCloud Benchmarks
 
 This document shows the benchmark scores of HomCloud.
@@ -52,7 +57,7 @@ and the order makes the computation faster.
 
 ### Remark
 
-The algorithm for computing the PD from 2D/3D Bitmap is separated into the [homccube3 library](https://bitbucket.org/tda-homcloud/homccube3/).
+The algorithm for computing the PD from 2D/3D bitmap is separated into the [homccube3 library](https://bitbucket.org/tda-homcloud/homccube3/).
 
 ## Rips
 
