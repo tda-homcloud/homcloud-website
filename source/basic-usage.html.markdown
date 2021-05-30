@@ -69,6 +69,7 @@ Windows を使っている方もコマンドプロンプトから入力するこ
 * [グレイスケール画像](py-tutorial/grayscale-image.html)
 * [3次元白黒画像](py-tutorial/binary-3d.html)
 * [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
+* [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_periodic.html)
 * [機械学習との組み合わせ](py-tutorial/ml_pc.html)
 
 [このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や、データファイル等が含まれています。](download/python-tutorial.zip)

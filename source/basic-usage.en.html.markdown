@@ -32,6 +32,7 @@ please use your favorite image viewer.
 * [Grayscale image analysis](py-tutorial/grayscale-image-e.html)
 * [3D binary image analysis](py-tutorial/binary-3d-e.html)
 * [Distance matrix analysis (Vietoris-Rips)](py-tutorial/rips-e.html)
+* [3D periodic pointcloud analysis](py-tutorial/pointcloud_periodic-e.html)
 * [Machine learning](py-tutorial/ml_pc-e.html)
 
 [This zip file has jupyter notebooks (.ipynb) and example data](download/python-tutorial.zip)

@@ -1,3 +1,6 @@
+# News for 3.3.1 (2021/05/31)
+* Activate console_scripts for windows
+
 # News for 3.3.0 (2021/05/28)
 * Implement efficient optimal 1-cycle for rips filtrations
 
