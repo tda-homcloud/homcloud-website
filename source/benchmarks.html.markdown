@@ -63,8 +63,7 @@ and the order makes the computation faster.
 * 100x100x100 - 1.6sec 310MB
 * 300x300x300 - 50sec 6.4GB
 * 600x600x600 - 530sec 60GB
-* 800x800x800 - 1130sec 120GB
-* 1000x1000x1000 - not comuputable because of memoly limitation. We plan to try bigger computer
+* 800x800x800 - not comuputable because of memoly limitation. We plan to try bigger computer
 
 ### Remark
 
@@ -78,9 +77,12 @@ distance matrix with Euclidean distance is computed.
 * 1000 points
   * maxdim=1: 1.6sec 210MB
   * maxdim=2: 90sec 10GB <!-- * optimal 1-cycle: 0.5sec 140MB -->
+  * maxdim=3: Memory limitation
 * 10000 points,
   * maxdim=1: 500sec, 16GB <!-- optimal 1-cycle (1d cycle) 8sec, 4GB -->
-
+  * maxdim=2: Memory limitation
+* 50000 points
+  * maxdim=1: Memory limitation
 
 ### Remark
 
