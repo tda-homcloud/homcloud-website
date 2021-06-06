@@ -1,5 +1,5 @@
 ---
-title: Basic Tutorial
+title: HomCloud Benchmark
 lang: ja
 ---
 
@@ -23,13 +23,14 @@ the average time and memory.
 
 Each point is randomly drawn from a uniform distribution on (-1,1)^3.
 
-* 10000 points - 2.4sec 350MB (pdgm file size: 13MB)
+* 10,000 points - 2.4sec 350MB (pdgm file size: 13MB)
   * 1d optimal volume with `cutoff_radius=0.1` - 3.5sec 240MB <!-- (0.004754372380611359, 0.011357401613097931) -->
-* 100000 points - 23sec 3GB (pdgm file size: 136MB)
+* 100,000 points - 23sec 3GB (pdgm file size: 136MB)
   * 1d optimal volume with `cutoff_radius=0.1` - 32sec 1.6GB <!-- (0.00048184003477194203, 0.0024763523144140038) -->
-* 1000000 points - 260sec, 27GB (pdgm file size: 1.5GB)
+* 1,000,000 points - 260sec, 27GB (pdgm file size: 1.5GB)
   * 1d optimal volume with `cutoff_radius=0.1` - 190sec 15GB <!-- (0.00011187889212818131, 0.0005480027994254226) -->
-
+* 3,000,000 points - 800sec, 80GB (pdgm file size: 4.4GB)
+  * 1d optimal volume with `cutoff_radius=0.1` - 310sec 43GB <!-- Pair(0.00015036854456581476, 0.00033002057082796464) -->
 ## Periodic alpha filtration from 3D pointcloud
 
 Each point is randomly drawn from a uniform distribution on (-1,1)^3.
@@ -78,9 +79,11 @@ distance matrix with Euclidean distance is computed.
   * maxdim=1: 1.6sec 210MB
   * maxdim=2: 90sec 10GB <!-- * optimal 1-cycle: 0.5sec 140MB -->
   * maxdim=3: Memory limitation
-* 10000 points,
+* 10000 points
   * maxdim=1: 500sec, 16GB <!-- optimal 1-cycle (1d cycle) 8sec, 4GB -->
   * maxdim=2: Memory limitation
+* 20000 points
+  * maxdim=1: 2000sec, 65GB
 * 50000 points
   * maxdim=1: Memory limitation
 
