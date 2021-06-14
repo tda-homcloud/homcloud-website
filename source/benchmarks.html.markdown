@@ -31,6 +31,7 @@ Each point is randomly drawn from a uniform distribution on (-1,1)^3.
   * 1d optimal volume with `cutoff_radius=0.1` - 190sec 15GB <!-- (0.00011187889212818131, 0.0005480027994254226) -->
 * 3,000,000 points - 800sec, 80GB (pdgm file size: 4.4GB)
   * 1d optimal volume with `cutoff_radius=0.1` - 310sec 43GB <!-- Pair(0.00015036854456581476, 0.00033002057082796464) -->
+
 ## Periodic alpha filtration from 3D pointcloud
 
 Each point is randomly drawn from a uniform distribution on (-1,1)^3.
