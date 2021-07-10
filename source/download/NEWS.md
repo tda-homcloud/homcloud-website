@@ -1,3 +1,13 @@
+# News for 3.4.1 (2021/07/10)
+* New 3D visualization tools using plotly
+
+# News for 3.4.0 (2021/06/25)
+* Breaking change: Change the output format of optvol
+  * `results` field is renamed to `result`
+
+# News for 3.3.2 (2021/06/22)
+* `interface.Optimal1Cycle.to_pvnode` is now available for alpha filtration
+
 # News for 3.3.1 (2021/05/31)
 * Activate console_scripts for windows
 

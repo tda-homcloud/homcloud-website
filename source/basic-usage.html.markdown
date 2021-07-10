@@ -90,6 +90,19 @@ zipファイルを展開してください。そこで `tutorial/python-interfac
 [python-api/](python-api/)
 から参照できます。
 
+これらのチュートリアルでは Paraview を使って3次元の可視化をします．
+
+### Plotlyによる3次元可視化
+
+Paraview はインストールが面倒，リモートで動かしずらい，等の問題があります．HomCloudは
+[plotly](https://plotly.com/python/)による3次元可視化も可能です．以下のチュートリアルでは
+Paraviewの代わりにplotlyで逆解析結果など可視化しています．
+
+* [3次元点集合データ(ポイントクラウド)](py-tutorial/pointcloud-3d-visualization-by-plotly.html)
+* [3次元白黒画像](py-tutorial/binary-3d-3d-visualization-by-plotly.html)
+* [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_periodic-3d-visualization-by-plotly.html)
+* [機械学習との組み合わせ](py-tutorial/ml_pc-3d-visualization-by-plotly.html)
+
 ### Jupyter notebookに関する話
 
 jupyter notebook、チュートリアルを動かすのには便利だと思いますが
