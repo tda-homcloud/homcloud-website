@@ -48,9 +48,11 @@ See [FAQ](https://homcloud.dev/faq.html).
 
 # AUTHORS
 
-Ippei Obayashi and HomCloud development team including:
+Ippei Obayashi and HomCloud development team.
+
+## Contributers
 
 * Tomohide Wada
 * Tian Tunhua
+* National Institute of Advanced Industrial Science and Technology (AIST)
 
-Some codes about peridic alpha filtrations are contributed by AIST.

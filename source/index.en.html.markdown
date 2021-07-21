@@ -33,7 +33,7 @@ The latest version is also available on [pypi](https://pypi.org/project/homcloud
 ## License
 
 HomCloud is distributed under GPL 3 or any later version.
-Please see [license.html](license.html) for details.
+Please see [LICENSE](download/LICENSE) for details.
 If you want to know the details about GPL, please 
 see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 

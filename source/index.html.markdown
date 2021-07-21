@@ -37,7 +37,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 ## ライセンス
 
 HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布しています。
-詳しくは [license.html](license.html) をご覧ください。
+詳しくは [LICENSE](download/LICENSE) をご覧ください。
 また、GPL version 3について
 詳しくは <https://www.gnu.org/licenses/gpl-3.0.ja.html>
 をご覧ください。
