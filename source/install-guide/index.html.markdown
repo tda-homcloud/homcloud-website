@@ -8,6 +8,7 @@ lang: ja
 |OS|インストール法|動作するOSバージョン|
 |:----:|:----:|:----:|
 |OS X|[homebrewによるインストール](install_guide_for_Mac.html)||
+|OS X (Apple Silicon)|[M1 Macへのインストール](install_guide_for_M1Mac.html)||
 |Ubuntu/Debian|[apt-get、pipによるインストール](install_guide_for_Ubuntu.html)|18.04 lts/buster 以降|
 |Ubuntu/Debian|[venvを使いpipでインストール](install_guide_for_Ubuntu_venv.html)|18.04 lts/buster 以降|
 |Debian|[apt-getによるインストール](install_guide_for_Debian.html)|buster|
