@@ -20,6 +20,31 @@ conda は妙なところが多いのであまりお勧めしませんがこれ�
 
 とするとインストールできます．
 
+### anaconda
+
+anacondaはHomebrew と併用すると問題を起こす等，面倒な問題が多いです．そのため
+anacondaの利用は最低限にしたいことは多いでしょう．その場合は以下のようにするとよいでしょう．
+
+インストール時に
+
+    Do you wish the installer to initialize Miniforge3
+    by running conda init? [yes|no]
+    
+と聞かれるので，このときに no と答えます．すると
+
+    You have chosen to not have conda modify your shell scripts at all.
+    To activate conda's base environment in your current shell session:
+    
+    eval "$(/Users/YOUR_ID/miniforge3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+        :
+
+というメッセージが流れると思います．そこにあるようにcondaを利用するときだけターミナルで
+
+    eval "$(/Users/YOUR_ID/miniforge3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+    
+とするとそのセッションでだけ有効になります(`YOUR_ID`と`YOUR_SHELL_NAME`は適切なものに
+置き換えてください．`YOUR_SHELL_NAME`はおそらく`zsh`でしょう)．
+
 ## 2. condaの環境を作る
 
 HomCloud用の環境を作ります．homcloudという名前にします．ターミナルで以下のようにします．
