@@ -4,7 +4,8 @@
   <li class="main-menu-item-dropdown">
     <div class="main-menu-title">Documents</div>
     <ul class="sub-menu">
-      <li class="sub-menu-item doc"><%= link_to('▷ How to install', '/install-guide/index.html') %></li>
+      <li class="sub-menu-item doc"><%= navlink('▷ How to install', 'install-guide/index') %></li>
+      </li>
       <% if current_page.data.lang == "ja" %>
         <li class="sub-menu-item doc"><%= link_to('▷ FAQ', '/faq.html') %></li>
       <% end %>
