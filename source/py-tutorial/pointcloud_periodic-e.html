@@ -13332,7 +13332,11 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We compute the persistence diagram from the data using <code>hc.PDList.from_alpha_filtration</code>.</p>
 <p>By passing the argument <code>periodicity=[(0, 1), (0, 1), (0, 1)]</code> to the method, we can calculate the diagram on the periodic boundary in the cube $[0, 1]\times[0, 1]\times[0, 1]$.</p>
-<h3 id="Remarks">Remarks<a class="anchor-link" href="#Remarks">&#182;</a></h3><p>Now HomCloud supports cubical periodic boundary since CGAL only supports cubical periodic boundary.</p>
+<h3 id="Remarks">Remarks<a class="anchor-link" href="#Remarks">&#182;</a></h3><ul>
+<li>Now HomCloud supports cubical periodic boundary since CGAL only supports cubical periodic boundary.</li>
+<li>If the point cloud is too small, the periodic boundary may not work well. In this case, you should duplicate the periodic copy several times in the X, Y, and Z directions.</li>
+<li>If three points are on the same line or four points are on the same plane, the calculation may not work. This situation often occurs in the case of crystal data. To solve the problem, you should add a small noise to the coordinates of eahc point.</li>
+</ul>
 
 </div>
 </div>
