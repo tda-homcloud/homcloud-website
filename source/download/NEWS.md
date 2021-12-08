@@ -1,3 +1,15 @@
+# News for 3.5.1 (2021/12/08)
+* Fix a bug in plotly3d.Cubes2d
+* Add workaround for paraview
+* Enable to compute optimal 1-cycle with respect to graph weights
+
+# News for 3.5.0 (2021/09/27)
+* Support M1 Mac
+* New parameter `bgcolor` in `paraview_interface.show`. We can specify the background color by this paramter
+* New methods
+  * `interface.PHTrees.all_nodes` to get all nodes of the tree
+  * `interface.PHTrees.Node.stable_volume_information`
+
 # News for 3.4.1 (2021/07/10)
 * New 3D visualization tools using plotly
 

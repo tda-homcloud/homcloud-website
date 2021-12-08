@@ -42,11 +42,11 @@ apt-getで各パッケージの追加は以下のように行います。
 
     source ./venv/bin/activate
     
-## 3. pipを使ってCython，numpy，wheelを追加します。
+## 3. pipを使ってCython，numpy，wheel，plotlyを追加します。
 
 以下のようにタイプしてインストールします．
 
-    pip3 install Cython numpy wheel
+    pip3 install Cython numpy wheel plotly
     
 GUIを使いたい場合は PyQt5 もインストールする必要があります．
 
