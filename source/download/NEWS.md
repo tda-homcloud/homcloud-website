@@ -1,3 +1,9 @@
+# News for 3.5.2 (2021/03/09)
+* New methods:
+  * interface.PHTrees.roots
+* Add `save_cocycles` argument to `interface.PDList.from_rips_filtration`
+* Add `torelance` argument to `interaface.Pair.optimal_1_cycle`
+
 # News for 3.5.1 (2021/12/08)
 * Fix a bug in plotly3d.Cubes2d
 * Add workaround for paraview
