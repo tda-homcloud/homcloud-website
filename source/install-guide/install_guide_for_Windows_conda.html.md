@@ -5,7 +5,7 @@ lang: ja
 
 # Windows 64bitマシンでCondaを使う場合のインストール
 
-以下のような方法でAnaconda/Minicondaを用いてインストールできます．
+HomCloudの作者としてはあまりcondaの利用は勧めませんが，以下のような方法でAnaconda/Minicondaを用いてインストールできます．
 
 HomCloudはcondaのパッケージが<https://homcloud.dev/conda-channel/>に用意されており，[conda-forge](https://conda-forge.org/)のパッケージと組み合わせて利用できます．
 
