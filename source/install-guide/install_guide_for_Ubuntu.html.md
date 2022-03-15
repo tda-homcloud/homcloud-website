@@ -31,16 +31,16 @@ apt-getで各パッケージの追加は以下のように行います。
 
     sudo apt-get install python3-paraview
 
-## 2. pipを使ってscikit-learn、forwardable、imageio、Cython、ripserを追加します。
+## 2. pipを使ってscikit-learn、forwardable、imageio、Cython、ripser、plotlyを追加します。
 
 以下のようにタイプしてインストールします．
 
-    pip3 install --user forwardable imageio Cython cached-property
+    pip3 install --user forwardable imageio Cython cached-property plotly
     pip3 install --user ripser
 
 または使用している `python` からモジュールとして 
 
-    python3.9 -m pip install --user forwardable imageio Cython wheel
+    python3.9 -m pip install --user forwardable imageio Cython wheel plotly
     python3.9 -m pip install --user ripser
 
 とタイプししてください。`pip` でインストールされるパッケージは `python` の各バージョン毎にインストールされている必要があります。`python` のアップデートなどがあった場合に必要なパッケージがそのバージョン用にインストールされているか、注意してください。

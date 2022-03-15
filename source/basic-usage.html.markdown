@@ -112,3 +112,12 @@ jupyter notebook、チュートリアルを動かすのには便利だと思い�
 プログラムを書くのであればjupyter notebookは使うべきではありません。
 まあとりえあえずチュートリアルとかそういうのの専用ツールだと思っておくといいのでは
 ないでしょうか。
+
+## Google Colaboratoryによるチュートリアル
+
+最近 HomCloud は[Google Colaboratory](colab.research.google.com/)でも動作するようになりました．
+現在Colabへのチュートリアルの移植を進行中です．
+
+* [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
+* [原子配置データ(3次元点集合データ)](https://colab.research.google.com/drive/1R9mQx5Ui_RZNXfJUwm97N9dXClZALFbB?usp=sharing)
+* [Machine learning](https://colab.research.google.com/drive/1Qhw7Tof0hoiTH6_pnLi3j6VNcUjbR-Sc?usp=sharing)

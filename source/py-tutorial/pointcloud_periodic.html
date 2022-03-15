@@ -13385,6 +13385,18 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#27880;&#24847;">&#27880;&#24847;<a class="anchor-link" href="#&#27880;&#24847;">&#182;</a></h2><ul>
+<li>ポイントクラウドデータが小さすぎる場合には周期境界がうまく動作しない場合があります．その場合には周期的なコピーをX，Y，Z方向にそれぞれ何倍か複製すると良いでしょう．</li>
+<li>今のところ周期境界条件は立方体，つまりX,Y,Zの幅が等しい場合にしか対応していません</li>
+<li>周期境界でない場合でも同様ですが，ポイントクラウドが整いすぎている，例えば3点が同じ直線にのったり4点が同じ平面にのったりする場合には計算がうまくいかない場合があります．結晶データの場合には特この状況が発生します．解決策としては各点の座標に小さなノイズを加えてください．</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;<a class="anchor-link" href="#&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#21487;&#35222;&#21270;">&#182;</a></h2><p>次に、ここからパーシステント図をプロットしてみましょう。</p>
 <p>まず、ファイルを読み込みます。</p>
 

@@ -7,12 +7,12 @@ lang: ja
 
 M1 Macは新しいアーキテクチャを採用しているため，様々な科学技術ソフトウェアの対応が途上にあります．
 numpy, scipy, matplotlibのようなPythonの基本的科学技術ソフトウェアも色々対応が中途半端な状態です．
-HomCloudで可視化に使っている　Paraview などは 2021/08 現在では対応していません．
+HomCloudで可視化に使っている Paraview などは 2021/08 現在では対応していません．
 そのためあまりM1 MacでのHomCloudの利用はお勧めしませんが，それでも利用したい場合には以下のようにしてください．
 
-## 1. conda を miniforge でインストールする
+## 1. Conda を miniforge でインストールする
 conda-forge のパッケージは M1 Mac　への対応が比較的進んでいるのでこれを利用します．
-conda　は妙なところが多いのであまりお勧めしませんがこれ以外の選択肢は今のところないので利用します．
+Conda は妙なところが多いのであまりお勧めしませんがこれ以外の選択肢は今のところないので利用します．
 <https://github.com/conda-forge/miniforge> を見てインストールしてください．リンク先の Web サイトに書いているようにターミナルで
 
     curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh
@@ -20,10 +20,10 @@ conda　は妙なところが多いのであまりお勧めしませんがこれ
 
 とするとインストールできます．
 
-### anaconda
+### Conda
 
-anacondaはHomebrew と併用すると問題を起こす等，面倒な問題が多いです．そのため
-anacondaの利用は最低限にしたいことは多いでしょう．その場合は以下のようにするとよいでしょう．
+CondaはHomebrew と併用すると問題を起こす等，面倒な問題が多いです．そのため
+Condaの利用は最低限にしたいことは多いでしょう．その場合は以下のようにするとよいでしょう．
 
 インストール時に
 
@@ -83,3 +83,6 @@ HomCloud用の環境を作ります．homcloudという名前にします．タ�
 
 もし上手くいかなかった場合は詳しい人に聞いてください．
 
+## 5. チュートリアルについて
+
+上で書いたように Paraview は動きません．可視化にPlotlyを使ってるほうのチュートリアルをやりましょう．
