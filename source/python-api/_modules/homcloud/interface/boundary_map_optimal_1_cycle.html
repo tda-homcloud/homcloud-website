@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>homcloud.interface.boundary_map_optimal_1_cycle &#8212; homcloud  documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for homcloud.interface.boundary_map_optimal_1_cycle</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">homcloud.visualize_3d</span> <span class="kn">import</span> <span class="n">ParaViewSparseCubeDrawer</span><span class="p">,</span> <span class="n">ParaViewSimplexDrawer</span>
+<span class="kn">import</span> <span class="nn">homcloud.paraview_interface</span> <span class="k">as</span> <span class="nn">pv_interface</span>
+<span class="kn">import</span> <span class="nn">homcloud.plotly_3d</span> <span class="k">as</span> <span class="nn">p3d</span>
+
+
+<div class="viewcode-block" id="Optimal1Cycle"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle">[docs]</a><span class="k">class</span> <span class="nc">Optimal1Cycle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The class represents an optimal (not volume-optimal) 1-cycle.</span>
+
+<span class="sd">    This class is available only for alpha, cubical, rips, and abstract filtration</span>
+<span class="sd">    with boundary map information.</span>
+
+<span class="sd">    You can aquaire an optimal one cycle by :meth:`Pair.optimal_1_cycle`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="n">pair</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span> <span class="o">=</span> <span class="n">path</span>
+
+<div class="viewcode-block" id="Optimal1Cycle.birth_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.birth_time">[docs]</a>    <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the birth time of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The birth time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.death_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.death_time">[docs]</a>    <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the death time of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The death time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.birth_position"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.birth_position">[docs]</a>    <span class="k">def</span> <span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Birth position of the birth-death pair&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">birth_position</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.path"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.path">[docs]</a>    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list of cell: All edges in the optimal 1-cycle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.path_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.path_symbols">[docs]</a>    <span class="k">def</span> <span class="nf">path_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list of ssimplex: All edges in the optimal 1-cycle</span>
+<span class="sd">            in the form of the symbolic representation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.boundary_points"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.boundary_points">[docs]</a>    <span class="k">def</span> <span class="nf">boundary_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list of point: All vertices in the optimal 1-cycle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_vertices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Optimal1Cycle.boundary_points_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.boundary_points_symbols">[docs]</a>    <span class="k">def</span> <span class="nf">boundary_points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list of string: All vertices in the optimal 1-cycle</span>
+<span class="sd">            in the form of the symbolic representation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_vertices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">geometry_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_symbol</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="n">use_symbol</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">geom_resolver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry_resolver</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;cubical&quot;</span><span class="p">:</span>
+            <span class="n">drawer</span> <span class="o">=</span> <span class="n">ParaViewSparseCubeDrawer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;isboundary&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
+            <span class="n">drawer</span> <span class="o">=</span> <span class="n">ParaViewSimplexDrawer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">geom_resolver</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;isboundary&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unsupported filtration type&quot;</span><span class="p">))</span>
+
+        <span class="n">geom_resolver</span><span class="o">.</span><span class="n">draw_cells</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path_edges</span><span class="p">,</span> <span class="n">drawer</span><span class="o">.</span><span class="n">various_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+        <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span>
+
+    <span class="n">to_pvnode</span> <span class="o">=</span> <span class="n">to_paraview_node</span>
+
+<div class="viewcode-block" id="Optimal1Cycle.to_plotly3d_trace"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Optimal1Cycle.to_plotly3d_trace">[docs]</a>    <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs a plotly&#39;s trace object to visualize the optimal 1-cycle</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            color (string or None): The name of the color</span>
+<span class="sd">            width (int): The width of the lines</span>
+<span class="sd">            name (string): The name of the object</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            plotly.graph_objects.Scatter3d: Plotly&#39;s trace object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">Simplices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">(),</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;cubical&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">Cubes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">(),</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unsupported filtration type </span><span class="si">{self.filtration_type}</span><span class="s2"> for plotly3d&quot;</span><span class="p">))</span></div>
+
+    <span class="n">to_plotly3d</span> <span class="o">=</span> <span class="n">to_plotly3d_trace</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">filtration_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

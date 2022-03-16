@@ -1,0 +1,380 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>homcloud.interface &#8212; homcloud  documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for homcloud.interface</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;HomCloud python interface</span>
+
+<span class="sd">This module provides the interface to HomCloud from python program.</span>
+
+<span class="sd">The API document is written by sphinx with Napolen.</span>
+<span class="sd">http://www.sphinx-doc.org/ja/stable/ext/napoleon.html</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">TemporaryDirectory</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">homcloud.pict.utils</span> <span class="k">as</span> <span class="nn">pict_utils</span>
+<span class="kn">import</span> <span class="nn">homcloud.view_index_pict</span> <span class="k">as</span> <span class="nn">view_index_pict</span>
+<span class="kn">import</span> <span class="nn">homcloud.pict.slice3d</span> <span class="k">as</span> <span class="nn">pict_slice3d</span>
+
+<span class="kn">from</span> <span class="nn">homcloud.license</span> <span class="kn">import</span> <span class="n">LICENSE_TERMS</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;LICENSE_TERMS&quot;</span><span class="p">,</span>  <span class="c1"># .homcloud.licence</span>
+    <span class="s2">&quot;HomCloudError&quot;</span><span class="p">,</span> <span class="s2">&quot;VolumeNotFound&quot;</span><span class="p">,</span>  <span class="c1"># .exceptions</span>
+    <span class="s2">&quot;PDList&quot;</span><span class="p">,</span> <span class="s2">&quot;PD&quot;</span><span class="p">,</span> <span class="s2">&quot;Pair&quot;</span><span class="p">,</span>  <span class="c1"># .pd</span>
+    <span class="s2">&quot;HistoSpec&quot;</span><span class="p">,</span> <span class="s2">&quot;Mesh&quot;</span><span class="p">,</span> <span class="s2">&quot;PIVectorizeSpec&quot;</span><span class="p">,</span> <span class="s2">&quot;PIVectorizerMesh&quot;</span><span class="p">,</span> <span class="s2">&quot;Histogram&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaskHistogram&quot;</span><span class="p">,</span> <span class="s2">&quot;SliceHistogram&quot;</span><span class="p">,</span>  <span class="c1"># .histogram</span>
+    <span class="s2">&quot;Volume&quot;</span><span class="p">,</span> <span class="s2">&quot;OptimalVolume&quot;</span><span class="p">,</span> <span class="s2">&quot;EigenVolume&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;StableVolume&quot;</span><span class="p">,</span> <span class="s2">&quot;StableSubvolume&quot;</span><span class="p">,</span>  <span class="c1"># .optimal_volume</span>
+    <span class="s2">&quot;PHTrees&quot;</span><span class="p">,</span>  <span class="c1"># .phtrees</span>
+    <span class="s2">&quot;BitmapPHTrees&quot;</span><span class="p">,</span>  <span class="c1"># .bitmap_phtrees</span>
+    <span class="s2">&quot;distance_transform&quot;</span><span class="p">,</span>  <span class="c1"># .distance_transform</span>
+    <span class="s2">&quot;BitmapOptimal1Cycle&quot;</span><span class="p">,</span>  <span class="c1"># .bitmap_optimal_1_cycle</span>
+    <span class="s2">&quot;GraphOptimal1Cycle&quot;</span><span class="p">,</span>  <span class="c1"># .graph_optimal_1_cycle</span>
+    <span class="s2">&quot;Optimal1Cycle&quot;</span><span class="p">,</span>  <span class="c1"># .optimal_1_cycle</span>
+    <span class="s2">&quot;example_data&quot;</span><span class="p">,</span> <span class="s2">&quot;loadtxt_nd&quot;</span><span class="p">,</span> <span class="s2">&quot;draw_volumes_on_2d_image&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;draw_birthdeath_pixels_2d&quot;</span><span class="p">,</span> <span class="s2">&quot;show_slice3d&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.pd</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.histogram</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.optimal_volume</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.phtrees</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.bitmap_phtrees</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.bitmap_optimal_1_cycle</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.distance_transform</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bitmap</span> <span class="k">as</span> <span class="n">bitmap</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">distance</span>
+
+
+<div class="viewcode-block" id="example_data"><a class="viewcode-back" href="../../interface.html#homcloud.interface.example_data">[docs]</a><span class="k">def</span> <span class="nf">example_data</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns example data.</span>
+
+<span class="sd">    Returns the tetrahedron 3D pointcloud for name == &quot;tetrahedron&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: Name of the data</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">        &gt;&gt;&gt; hc.example_data(&quot;tetrahedron&quot;)</span>
+<span class="sd">        array([[ 0.,  0.,  0.],</span>
+<span class="sd">               [ 8.,  0.,  0.],</span>
+<span class="sd">               [ 5.,  6.,  0.],</span>
+<span class="sd">               [ 4.,  2.,  6.]])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;tetrahedron&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+        <span class="p">])</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;bitmap_01_5x5x5&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+        <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;bitmap_levels_5x5&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown example name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="loadtxt_nd"><a class="viewcode-back" href="../../interface.html#homcloud.interface.loadtxt_nd">[docs]</a><span class="k">def</span> <span class="nf">loadtxt_nd</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load a n-dimensional data from text.</span>
+
+<span class="sd">    The format of the text file is as follows.</span>
+
+<span class="sd">    * First line represents the shape of data. For example, if the shape of your d</span>
+<span class="sd">      ata is 200x230x250, first line should be `200 230 250`.</span>
+<span class="sd">    * The following lines are floating point number values in x-fastest direction</span>
+<span class="sd">    * A line starting with `#` is skipped as a comment</span>
+<span class="sd">    * An empty line is also skipped.</span>
+
+<span class="sd">    The following is an example::</span>
+
+<span class="sd">        # 4x3x2 3D voxel data</span>
+<span class="sd">        4 3 2</span>
+
+<span class="sd">        1 2 3 4</span>
+<span class="sd">        5 6 7 8</span>
+<span class="sd">        9 10 11 12</span>
+
+<span class="sd">        13 14 15 16</span>
+<span class="sd">        17 18 19 20</span>
+<span class="sd">        21 22 23 24</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (string): The path of the text file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pict_utils</span><span class="o">.</span><span class="n">load_nd_picture_from_text</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">draw_pixels_on_2d_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="n">blended_color</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span>
+                               <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">blended_color</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">image</span>
+
+
+<div class="viewcode-block" id="draw_volumes_on_2d_image"><a class="viewcode-back" href="../../interface.html#homcloud.interface.draw_volumes_on_2d_image">[docs]</a><span class="k">def</span> <span class="nf">draw_volumes_on_2d_image</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                             <span class="n">birth_position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">death_position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draws optimal volumes for bitmap filtration on an image.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nodes (list of :class:`BitmapPHTrees.Node`):</span>
+<span class="sd">            The tree nodes to be drawn.</span>
+<span class="sd">        image (string or numpy.ndarray or PIL.Image.Image):</span>
+<span class="sd">            The base image data.</span>
+
+<span class="sd">            * string: The image file whose name is `image` is used.</span>
+<span class="sd">            * numpy.ndarray: 2D array is treated as grayscale image.</span>
+<span class="sd">            * PIL.Image.Image: The image data</span>
+
+<span class="sd">            If PIL.Image.Image object is given, the object is overwrited.</span>
+<span class="sd">        color (tuple[int, int, int]): The color (RGB) of the volumes.</span>
+<span class="sd">        alpha (float): The alpha value.</span>
+<span class="sd">           The volume is drawn by using alpha blending.</span>
+<span class="sd">        birth_position (tuple[int, int, int] or None): If not None,</span>
+<span class="sd">           birth positions are drawn by the given color</span>
+<span class="sd">        death_position (tuple[int, int, int] or None): If not None,</span>
+<span class="sd">           death positions are drawn by the given color</span>
+<span class="sd">        marker_size (int): The marker size of birth positions and death positions.</span>
+<span class="sd">           1, 3, 5, ... are available.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        PIL.Image.Image: The image data which optimal volumes are drawn.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">to_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">draw_marker</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">marker_size</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">pixels</span> <span class="o">=</span> <span class="p">[(</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="p">,</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span>
+                  <span class="k">for</span> <span class="n">dx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">dy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="n">draw_pixels_on_2d_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+    <span class="n">pixels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">([</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">volume</span><span class="p">())</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">]))</span>
+    <span class="n">draw_pixels_on_2d_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">birth_position</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">draw_marker</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">birth_position</span><span class="p">(),</span> <span class="n">birth_position</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">death_position</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">draw_marker</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">death_position</span><span class="p">(),</span> <span class="n">death_position</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">image</span></div>
+
+
+<div class="viewcode-block" id="draw_birthdeath_pixels_2d"><a class="viewcode-back" href="../../interface.html#homcloud.interface.draw_birthdeath_pixels_2d">[docs]</a><span class="k">def</span> <span class="nf">draw_birthdeath_pixels_2d</span><span class="p">(</span>
+        <span class="n">pairs</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">draw_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">draw_death</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">draw_line</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker_type</span><span class="o">=</span><span class="s2">&quot;filled-diamond&quot;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">with_label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">birth_color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">death_color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+        <span class="n">line_color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Draw birth/death pixels on the given image.</span>
+
+<span class="sd">    This function returns PIL.Image.Image object.</span>
+<span class="sd">    Please see the `document of pillow</span>
+<span class="sd">    &lt;https://pillow.readthedocs.io/en/latest/reference/Image.html&gt;`_</span>
+<span class="sd">    to know how to treat this object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pairs (list of :class:`Pair`): The birth-death pairs.</span>
+<span class="sd">        image (string or numpy.ndarray or PIL.Image.Image):</span>
+<span class="sd">            The image data.</span>
+
+<span class="sd">            * string: The image file whose name is `image` is used.</span>
+<span class="sd">            * numpy.ndarray: 2D array is treated as grayscale image.</span>
+<span class="sd">            * PIL.Image.Image: The image data</span>
+<span class="sd">        draw_birth (bool): Birth pixels are drawn if True.</span>
+<span class="sd">        draw_death (bool): Death pixels are drawn if True.</span>
+<span class="sd">        draw_line (bool): The lines connecting each birth pixels and</span>
+<span class="sd">            death pixels are drawn.</span>
+<span class="sd">        scale (int): Image scaling factor.</span>
+<span class="sd">        marker_type (string): The type of the markers. You can choose</span>
+<span class="sd">            one of the followings:</span>
+
+<span class="sd">            * &quot;filled-diamond&quot;</span>
+<span class="sd">            * &quot;point&quot;</span>
+<span class="sd">            * &quot;square&quot;</span>
+<span class="sd">            * &quot;filled-square&quot;</span>
+<span class="sd">            * &quot;circle&quot;</span>
+<span class="sd">            * &quot;filled-circle&quot;</span>
+<span class="sd">        marker_size (int): The size of the marker.</span>
+<span class="sd">        with_label (bool): Show birth and death times beside</span>
+<span class="sd">            each birth/death pixel marker.</span>
+<span class="sd">        birth_color (tuple[int, int, int]): The color of birth pixel markers.</span>
+<span class="sd">        death_color (tuple[int, int, int]): The color of death pixel markers.</span>
+<span class="sd">        line_color (tuple[int, int, int]): The color of lines.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PIL.Image.Image: The image data which birth/death pixels are drawn.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">to_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="n">output_image</span><span class="p">,</span> <span class="n">marker_drawer</span> <span class="o">=</span> <span class="n">view_index_pict</span><span class="o">.</span><span class="n">setup_images</span><span class="p">(</span>
+        <span class="n">image</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="ow">not</span> <span class="n">with_label</span>
+    <span class="p">)</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">marker_size</span> <span class="o">=</span> <span class="n">marker_size</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">should_draw_birth_pixel</span> <span class="o">=</span> <span class="n">draw_birth</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">should_draw_death_pixel</span> <span class="o">=</span> <span class="n">draw_death</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">should_draw_line</span> <span class="o">=</span> <span class="n">draw_line</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">no_label</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">with_label</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">birth_color</span> <span class="o">=</span> <span class="n">birth_color</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">death_color</span> <span class="o">=</span> <span class="n">death_color</span>
+    <span class="n">marker_drawer</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="n">line_color</span>
+
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="n">marker_drawer</span><span class="o">.</span><span class="n">draw_pair</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">output_image</span></div>
+
+
+<span class="k">def</span> <span class="nf">to_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(((</span><span class="n">image</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span> <span class="o">*</span> <span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">image</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> cannot be converted to PIL.Image&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">image</span><span class="p">))))</span>
+
+
+<div class="viewcode-block" id="show_slice3d"><a class="viewcode-back" href="../../interface.html#homcloud.interface.show_slice3d">[docs]</a><span class="k">def</span> <span class="nf">show_slice3d</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="nb">slice</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">spacer</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image_viewer</span><span class="o">=</span><span class="s2">&quot;eog -n&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display slices of 3D bitmap data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        volumes (list of numpy.ndarray): multiple 3D bitmap data. These data are</span>
+<span class="sd">            aligned horizontally.</span>
+<span class="sd">        slice (int): The direction of slicing: 0, 1, or 2 for z, y, x direction.</span>
+<span class="sd">        spacer (int): The number of pixels between horizontally aligned slices.</span>
+<span class="sd">        range (None or tuple[int, int]): The range of the slices.</span>
+<span class="sd">        image_viewer (str): Command line of the image viewer to see slices.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
+        <span class="n">pict_slice3d</span><span class="o">.</span><span class="n">write_volume_slices</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="nb">slice</span><span class="p">,</span> <span class="n">spacer</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="n">tmpdir</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">image_viewer</span><span class="p">,</span> <span class="n">tmpdir</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
