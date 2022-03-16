@@ -95,13 +95,13 @@ Pythonのバージョンは3.8，3.9が利用できます(20220315現在，ア�
 
 せっかくなのでチュートリアルを動かしてみましょう。
 [python-tutorial.zip](/download/python-tutorial.zip)
-からダウンロードして homcloud フォルダに展開してください。
+からダウンロードして展開してください。
 
 次にチュートリアルで利用する jupyter notebook をインストールします。
 
     conda install jupyter
 
-でインストールできま。　インストール後、homcloudフォルダで
+でインストールできます。インストール後、tutorialフォルダで
 
     jupyter notebook
 
