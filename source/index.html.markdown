@@ -34,6 +34,13 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 * [FAQ](faq.html)
 * [Python API reference manual](python-api/)
 
+## トポロジカルデータ解析コミュニティ
+材料科学と位相的データ解析の組み合わせに関する情報共有，発信の場として
+[トポロジカルデータ解析コミュニティ](https://www.wpi-aimr.tohoku.ac.jp/TDA/)が活動をしています．
+HomCloudのチュートリアルなどもやっていますので，材料科学データの解析にHomCloudを使いたい，という方は
+参加するとよいでしょう．
+
+
 ## ライセンス
 
 HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布しています。
@@ -41,6 +48,11 @@ HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布�
 また、GPL version 3について
 詳しくは <https://www.gnu.org/licenses/gpl-3.0.ja.html>
 をご覧ください。
+
+## 論文でHomCloudを参照する方法
+
+[HomCloudの日本語解説論文](http://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/2166-23.pdf)もしくは
+[英語での解説論文](https://doi.org/10.7566/JPSJ.91.091013)を参考文献に入れてください．
 
 ## 開発者
 

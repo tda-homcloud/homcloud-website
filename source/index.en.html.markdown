@@ -30,6 +30,10 @@ The latest version is also available on [pypi](https://pypi.org/project/homcloud
 * [Tutorial](basic-usage.en.html)
 * [Python API reference manual](python-api/)
 
+## How to cite HomCloud from your paper
+
+Please cite [our JPSJ's review paper about persistent homology](https://doi.org/10.7566/JPSJ.91.091013).
+
 ## License
 
 HomCloud is distributed under GPL 3 or any later version.
