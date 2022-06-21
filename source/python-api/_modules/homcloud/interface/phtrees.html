@@ -1,0 +1,427 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>homcloud.interface.phtrees &#8212; homcloud  documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for homcloud.interface.phtrees</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">homcloud.phtrees</span> <span class="k">as</span> <span class="nn">phtrees</span>
+<span class="kn">import</span> <span class="nn">homcloud.paraview_interface</span> <span class="k">as</span> <span class="nn">pv_interface</span>
+<span class="kn">import</span> <span class="nn">homcloud.plotly_3d</span> <span class="k">as</span> <span class="nn">p3d</span>
+<span class="kn">from</span> <span class="nn">homcloud.spatial_searcher</span> <span class="kn">import</span> <span class="n">SpatialSearcher</span>
+
+
+<div class="viewcode-block" id="PHTrees"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees">[docs]</a><span class="k">class</span> <span class="nc">PHTrees</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents PH trees computed from an alpha filtration.</span>
+
+<span class="sd">    Please see `&lt;https://arxiv.org/abs/1712.05103&gt;`_ if you want to know</span>
+<span class="sd">    the details of optimal volumes and volume optimal cycles.</span>
+
+<span class="sd">    You can compute the PH trees by :meth:`PDList.from_alpha_filtration`</span>
+<span class="sd">    with ``save_boundary_map=True`` and ``save_phtrees=True`` arguments.</span>
+
+<span class="sd">    .. You can compute the PH trees by :meth:`PD.phtrees` from the diagram.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">        &gt;&gt;&gt; pointcloud = hc.example_data(&quot;tetrahedron&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; # Compute PDs and PHTrees</span>
+<span class="sd">        &gt;&gt;&gt; pdlist = hc.PDList.from_alpha_filtration(pointcloud, save_boundary_map=True, save_phtrees=True)</span>
+<span class="sd">        &gt;&gt;&gt; # Load phtrees</span>
+<span class="sd">        &gt;&gt;&gt; phtrees = pdlist.dth_diagram(2).load_phtrees()</span>
+<span class="sd">        &gt;&gt;&gt; # Query the node whose birth-death pair is nearest to (19, 21).</span>
+<span class="sd">        &gt;&gt;&gt; node = phtrees.pair_node_nearest_to(19, 21)</span>
+<span class="sd">        &gt;&gt;&gt; # Show birth time and death time</span>
+<span class="sd">        &gt;&gt;&gt; node.birth_time()</span>
+<span class="sd">        19.600000000000005</span>
+<span class="sd">        &gt;&gt;&gt; node.death_time()</span>
+<span class="sd">        21.069444444444443</span>
+<span class="sd">        &gt;&gt;&gt; node.boundary_points()</span>
+<span class="sd">        [[0.0, 0.0, 0.0], [8.0, 0.0, 0.0], [5.0, 6.0, 0.0], [4.0, 2.0, 6.0]]</span>
+<span class="sd">        &gt;&gt;&gt; node.boundary()</span>
+<span class="sd">        [[[0.0, 0.0, 0.0], [5.0, 6.0, 0.0], [4.0, 2.0, 6.0]],</span>
+<span class="sd">         [[0.0, 0.0, 0.0], [8.0, 0.0, 0.0], [5.0, 6.0, 0.0]],</span>
+<span class="sd">         [[8.0, 0.0, 0.0], [5.0, 6.0, 0.0], [4.0, 2.0, 6.0]],</span>
+<span class="sd">         [[0.0, 0.0, 0.0], [8.0, 0.0, 0.0], [4.0, 2.0, 6.0]]]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig</span><span class="p">,</span> <span class="n">spatial_searcher</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig</span> <span class="o">=</span> <span class="n">orig</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span> <span class="o">=</span> <span class="n">spatial_searcher</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_pdgm</span><span class="p">(</span><span class="n">pdgm</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PHTrees</span><span class="p">(</span>
+            <span class="n">phtrees</span><span class="o">.</span><span class="n">PHTrees</span><span class="o">.</span><span class="n">from_pdgm</span><span class="p">(</span><span class="n">pdgm</span><span class="p">,</span> <span class="n">PHTrees</span><span class="o">.</span><span class="n">Node</span><span class="p">),</span>
+            <span class="n">SpatialSearcher</span><span class="p">(</span><span class="n">pdgm</span><span class="o">.</span><span class="n">death_indices</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">deaths</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">all_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all nodes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of :class:`PHTrees.Node`: The nodes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">roots</span>
+
+<div class="viewcode-block" id="PHTrees.nodes_of"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.nodes_of">[docs]</a>    <span class="k">def</span> <span class="nf">nodes_of</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the nodes of trees corresponding to birth-death pairs</span>
+<span class="sd">        in `pairs`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pairs (list of Pair): The list of pairs.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of :class:`PHTrees.Node`: The nodes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolver</span><span class="p">()</span><span class="o">.</span><span class="n">phtree</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">pair</span><span class="o">.</span><span class="n">death_index</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PHTrees.pair_node_nearest_to"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.pair_node_nearest_to">[docs]</a>    <span class="k">def</span> <span class="nf">pair_node_nearest_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the node corresponding the pair which is nearest to</span>
+<span class="sd">        (`x`, `y`).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): The birth-axis coordinate.</span>
+<span class="sd">            y (float): The death-axis coordinate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PHTrees.Node: The nearest node.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">nearest_pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="PHTrees.pair_nodes_in_rectangle"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.pair_nodes_in_rectangle">[docs]</a>    <span class="k">def</span> <span class="nf">pair_nodes_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the list of nodes corresponding to the birth-death</span>
+<span class="sd">        pairs in the given rectangle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           xmin (float): The minimum of the birth-axis of the rectangle.</span>
+<span class="sd">           xmax (float): The maximum of the birth-axis of the rectangle.</span>
+<span class="sd">           ymin (float): The minimum of the death-axis of the rectangle.</span>
+<span class="sd">           ymax (float): The maximum of the death-axis of the rectangle.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">           list of :class:`PHTrees.Node`: The nodes in the rectangle.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">death_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">death_index</span>
+            <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">in_rectangle</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+        <span class="p">]</span></div>
+
+<div class="viewcode-block" id="PHTrees.to_paraview_node_from_nodes"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.to_paraview_node_from_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">to_paraview_node_from_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a :class:`homcloud.paraview_interface.PipelineNode`</span>
+<span class="sd">        object to visulize optimal volumes of the nodes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nodes (list of :class:`PHTrees.Node`): The list of nodes to be visualized.</span>
+<span class="sd">            gui_name (string or None): The name shown in Pipeline Browser</span>
+<span class="sd">                in paraview&#39;s GUI.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            homcloud.paraview_interface.VTK: Paraview Pipeline node object.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            All nodes should be nodes of `self` PHTrees.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+        <span class="n">drawer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">build_paraview_drawer</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span> <span class="p">{})</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">draw_volume</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span></div>
+
+    <span class="n">to_pvnode_from_nodes</span> <span class="o">=</span> <span class="n">to_paraview_node_from_nodes</span>
+
+<div class="viewcode-block" id="PHTrees.Volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume">[docs]</a>    <span class="k">class</span> <span class="nc">Volume</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The superclass of :class:`PHTrees.Node` and :class:`PHTrees.StableVolume`.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            birth_time()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    float: The birth time of the corresponding birth-death pair.</span>
+
+<span class="sd">            death_time()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    float: The death time of the corresponding birth-death pair.</span>
+
+<span class="sd">            lifetime()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    float: The lifetime of the corresponding birth-death pair.</span>
+
+<span class="sd">            simplices()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    list of list of list of float, a.k.a list of simplex:</span>
+<span class="sd">                        The simplices in the optimal volume.</span>
+
+<span class="sd">            boundary()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    list of list of float, a.k.a. list of points:</span>
+<span class="sd">                        Points in the volume optimal cycle.</span>
+
+<span class="sd">            birth_simplex()</span>
+<span class="sd">                Returns the birth simplex.</span>
+
+<span class="sd">            death_simplex()</span>
+<span class="sd">                Returns the death simplex.</span>
+
+<span class="sd">            ancestors()</span>
+<span class="sd">                Returns:</span>
+<span class="sd">                    list of :class:`PHTrees.Node`:</span>
+<span class="sd">                        The ancestors of the tree node include itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PHTrees.Volume.points"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.points">[docs]</a>        <span class="k">def</span> <span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of list of float, a.k.a list of points:</span>
+<span class="sd">                    Points in the optimal volume.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">()</span></div>
+
+        <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume_nodes</span>
+
+<div class="viewcode-block" id="PHTrees.Volume.boundary_points"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.boundary_points">[docs]</a>        <span class="k">def</span> <span class="nf">boundary_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of list of float, a.k.a list of points:</span>
+<span class="sd">                    Points in the volume optimal cycle.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_vertices</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.points_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.points_symbols">[docs]</a>        <span class="k">def</span> <span class="nf">points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of string: All vertices in the optimal volume</span>
+<span class="sd">                in the form of the symbolic representation.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">(</span><span class="s2">&quot;symbols&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.volume_simplices_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.volume_simplices_symbols">[docs]</a>        <span class="k">def</span> <span class="nf">volume_simplices_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of list of string: All simplices in volume optimal cycles</span>
+<span class="sd">                in the form of the symbolic representation.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">simplices</span><span class="p">(</span><span class="s2">&quot;symbols&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.boundary_points_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.boundary_points_symbols">[docs]</a>        <span class="k">def</span> <span class="nf">boundary_points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of string: All vertices in the volume optimal cycle</span>
+<span class="sd">                in the form of the symbolic representation.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_vertices</span><span class="p">(</span><span class="s2">&quot;symbols&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.boundary_symbols"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.boundary_symbols">[docs]</a>        <span class="k">def</span> <span class="nf">boundary_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of list of string: All simplices in the volume optimal cycle</span>
+<span class="sd">                in the form of the symbolic representation.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">(</span><span class="s2">&quot;symbols&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.living"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.living">[docs]</a>        <span class="k">def</span> <span class="nf">living</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                bool: True if the birth time and death time of the node</span>
+<span class="sd">                are different.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PHTrees.Volume.to_paraview_node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.to_paraview_node">[docs]</a>        <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Construct a :class:`homcloud.paraview_interface.PipelineNode`</span>
+<span class="sd">            object to visulize an optimal volume of the node.</span>
+
+<span class="sd">            gui_name (string or None): The name shown in Pipeline Browser</span>
+<span class="sd">                in paraview&#39;s GUI.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                homcloud.paraview_interface.VTK: Paraview Pipeline node object.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+            <span class="n">drawer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">build_paraview_drawer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">draw_volume</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span></div>
+
+        <span class="n">to_pvnode</span> <span class="o">=</span> <span class="n">to_paraview_node</span>
+
+<div class="viewcode-block" id="PHTrees.Volume.to_plotly3d_trace"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.to_plotly3d_trace">[docs]</a>        <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructs a plotly&#39;s trace object to visualize the optimal volume</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                color (string or None): The name of the color</span>
+<span class="sd">                width (int): The width of the line</span>
+<span class="sd">                name (string): The name of the object</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                plotly.graph_objects.Scatter3d: Plotly&#39;s trace object</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">Simplices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">(),</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+        <span class="n">to_plotly3d</span> <span class="o">=</span> <span class="n">to_plotly3d_trace</span>
+
+<div class="viewcode-block" id="PHTrees.Volume.to_plotly3d_mesh"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Volume.to_plotly3d_mesh">[docs]</a>        <span class="k">def</span> <span class="nf">to_plotly3d_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructs a plotly&#39;s trace object to visualize the face of an optimal volume</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                color (string or None): The name of the color</span>
+<span class="sd">                name (string): The name of the object</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                plotly.graph_objects.Mesh3d: Plotly&#39;s trace object</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">SimplicesMesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary</span><span class="p">(),</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="PHTrees.Node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Node">[docs]</a>    <span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">Volume</span><span class="p">,</span> <span class="n">phtrees</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The class represents a tree node of :class:`PHTrees`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">ancestors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="o">.</span><span class="n">parent_of</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">ret</span>
+
+<div class="viewcode-block" id="PHTrees.Node.living_descendants"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Node.living_descendants">[docs]</a>        <span class="k">def</span> <span class="nf">living_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of :class:`PHTrees.Node`: All descendant nodes with positive lifetime</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume_nodes</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">living</span><span class="p">()]</span></div>
+
+<div class="viewcode-block" id="PHTrees.Node.stable_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.Node.stable_volume">[docs]</a>        <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Args:</span>
+<span class="sd">                epsilon (float): Duration noise strength</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PHTrees.StableVolume`: The stable volume</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">stable_volume</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">PHTrees</span><span class="o">.</span><span class="n">StableVolume</span><span class="p">)</span></div>
+
+        <span class="k">def</span> <span class="nf">stable_volume_information</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="n">child</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+            <span class="p">])</span>
+            <span class="n">volumes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="n">child</span><span class="o">.</span><span class="n">volume_size</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span>
+            <span class="p">])</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">volumes</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;PHTrees.Node(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="PHTrees.StableVolume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.StableVolume">[docs]</a>    <span class="k">class</span> <span class="nc">StableVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">,</span> <span class="n">phtrees</span><span class="o">.</span><span class="n">StableVolume</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The class represents a stable volume in :class:`PHTrees`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

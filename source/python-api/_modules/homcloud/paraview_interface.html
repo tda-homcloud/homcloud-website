@@ -1,0 +1,659 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>homcloud.paraview_interface &#8212; homcloud  documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for homcloud.paraview_interface</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides the paraview interface from homcloud.interface module.</span>
+
+<span class="sd">The basic model of this module is &quot;pipeline&quot; model. A data object is</span>
+<span class="sd">filtered by the chain of pipeline nodes, and the result is shown.</span>
+<span class="sd">The objects of :class:`PipelineNode` correspond the node of the pipeline,</span>
+<span class="sd">and you can adjust visualization by these objects.</span>
+
+<span class="sd">You can use many methods of :class:`PipelineNode` to adjust the visualization,</span>
+<span class="sd">and you can construct a new pipeline node by the following methods:</span>
+
+<span class="sd">* :meth:`PipelineNode.threshold`</span>
+<span class="sd">* :meth:`PipelineNode.clip_sphere`</span>
+
+<span class="sd">Todo:</span>
+
+<span class="sd">* Add clip_box method</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">forwardable</span> <span class="kn">import</span> <span class="n">forwardable</span>
+
+<span class="kn">import</span> <span class="nn">homcloud.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">homcloud.pict.pict3d_vtk</span> <span class="k">as</span> <span class="nn">pict3d_vtk</span>
+<span class="kn">from</span> <span class="nn">homcloud.visualize_3d</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ParaViewPolyLineDrawer</span><span class="p">,</span> <span class="n">ParaView3DSurfaceDrawer</span><span class="p">,</span> <span class="n">ParaViewLinesDrawer</span>
+<span class="p">)</span>
+
+
+<span class="nd">@forwardable</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">TempFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suffix</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">named_tempfile</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_done</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">def_delegators</span><span class="p">(</span><span class="s2">&quot;named_tempfile&quot;</span><span class="p">,</span> <span class="s2">&quot;name, close, write&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_done</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_done</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+    <span class="c1"># NOTE: __enter__ and __exit__ are not implemented since</span>
+    <span class="c1"># in this module with statement is used to the class</span>
+
+
+<div class="viewcode-block" id="PipelineNode"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode">[docs]</a><span class="k">class</span> <span class="nc">PipelineNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class represents elements in a pipeline in ParaView.</span>
+
+<span class="sd">    This class is the base class for paraview interface classes.</span>
+<span class="sd">    You should not create an instance of this class directly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">new_index</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_representation</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colorbar_range</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointsize</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linewidth</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">variable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;s&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PipelineNode.to_paraview_node"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.to_paraview_node">[docs]</a>    <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_representation</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_representation</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">representation</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">write_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">,</span> <span class="n">isleaf</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">()</span> <span class="ow">in</span> <span class="n">already_written</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">already_written</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">write_code</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_constructor</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">isleaf</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Show(</span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_specialized_code</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">isleaf</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_displayproperty_code</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_displayproperty_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp = GetDisplayProperties(</span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.Representation = &#39;</span><span class="si">{}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.Opacity = </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opacity</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pointsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.PointSize = </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pointsize</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_color_filed</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.AmbientColor = (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.DiffuseColor = (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">))</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.ColorArrayName = [dp.ColorArrayName[0], r&#39;&#39;]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linewidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.LineWidth = </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linewidth</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">write_color_filed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">colorbar_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                <span class="s2">&quot;dp.LookupTable = MakeBlueToRedLT(*</span><span class="si">{}</span><span class="s2">.&quot;</span>
+                <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">[r&#39;</span><span class="si">{}</span><span class="s2">&#39;].GetRange())</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_attr_name</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.LookupTable = MakeBlueToRedLT(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">colorbar_range</span>
+            <span class="p">))</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;dp.ColorArrayName = [r&#39;</span><span class="si">{}</span><span class="s2">&#39;, r&#39;</span><span class="si">{}</span><span class="s2">&#39;]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">color_array_type</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span>
+        <span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">write_specialized_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="PipelineNode.threshold"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.threshold">[docs]</a>    <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new pipeline node for thresholding whose parent</span>
+<span class="sd">        is `self`.</span>
+
+<span class="sd">        Only the elements whose `field` are in the `range` when</span>
+<span class="sd">        the returned object is passed to :meth:`show`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            field (string): The name of the field which have the</span>
+<span class="sd">                thresholded value.</span>
+<span class="sd">            range (tuple[float, float] or float): The upper and lower bounds</span>
+<span class="sd">                of the values.</span>
+<span class="sd">                If an float number is given, the threshold is (range, range).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Threshold: A new PipelineNode object for thresholding.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+            <span class="nb">range</span> <span class="o">=</span> <span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PipelineNode.clip_sphere"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.clip_sphere">[docs]</a>    <span class="k">def</span> <span class="nf">clip_sphere</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">inside_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new pipeline node to clip the object with a</span>
+<span class="sd">        sphere shape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            center (tuple[float, float, float]): The center of the</span>
+<span class="sd">                clipping sphere</span>
+<span class="sd">            radius (float): The radius of the clipping sphere</span>
+<span class="sd">            inside_out (bool): If True, only the elements</span>
+<span class="sd">                *in* the shpere are shown.</span>
+<span class="sd">                If False, only the elements *outside* of the sphere is</span>
+<span class="sd">                shown.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            SphereClip: A new PipelineNode object for sphere clipping.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SphereClip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">inside_out</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PipelineNode.color_by"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.color_by">[docs]</a>    <span class="k">def</span> <span class="nf">color_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the coloring by field name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            field (string or int): The name of the field.</span>
+<span class="sd">            range (tuple[float, float] or None): The upper and lower bounds</span>
+<span class="sd">                of the colorbar. If None, the minimal and maximal values</span>
+<span class="sd">                of the field are used.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="s2">&quot;Field </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colorbar_range</span> <span class="o">=</span> <span class="nb">range</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">data_attr_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">data_attr_name</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">color_array_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">color_array_type</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PipelineNode.set_opacity"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.set_opacity">[docs]</a>    <span class="k">def</span> <span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opacity</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the opacity.</span>
+
+<span class="sd">        * 0.0 - completely transparent</span>
+<span class="sd">        * 1.0 - completely opaque</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            opacity (float): The opacity.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">opacity</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="PipelineNode.set_color"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.set_color">[docs]</a>    <span class="k">def</span> <span class="nf">set_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the color.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            color (tuple[float, float, float]): The RGB values (0.0 to 1.0)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="PipelineNode.set_pointsize"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.set_pointsize">[docs]</a>    <span class="k">def</span> <span class="nf">set_pointsize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the pointsize.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pointsize (float): The size of the points</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pointsize</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">set_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rep</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rep</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">,</span> <span class="s2">&quot;Points&quot;</span><span class="p">,</span> <span class="s2">&quot;Surface&quot;</span><span class="p">,</span> <span class="s2">&quot;Surface With Edges&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Representation </span><span class="si">{}</span><span class="s2"> is not acceptable&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rep</span><span class="p">)</span>
+            <span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_representation</span> <span class="o">=</span> <span class="n">rep</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="PipelineNode.set_linewidth"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PipelineNode.set_linewidth">[docs]</a>    <span class="k">def</span> <span class="nf">set_linewidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the linewidth.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            width (float): The width of the lines</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linewidth</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">debug_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">write_python_code</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="VTK"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.VTK">[docs]</a><span class="k">class</span> <span class="nc">VTK</span><span class="p">(</span><span class="n">PipelineNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a VTK data source in paraview.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span> <span class="o">=</span> <span class="n">gui_name</span> <span class="k">if</span> <span class="n">gui_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">write_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = LegacyVTKReader(FileNames=r&#39;</span><span class="si">{}</span><span class="s2">&#39;,&quot;</span>
+                  <span class="s2">&quot; guiName=r&#39;</span><span class="si">{}</span><span class="s2">&#39;)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span>
+                  <span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">data_attr_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;CellData&quot;</span>
+
+    <span class="k">def</span> <span class="nf">color_array_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;CELLS&quot;</span></div>
+
+
+<div class="viewcode-block" id="XMLVTI"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.XMLVTI">[docs]</a><span class="k">class</span> <span class="nc">XMLVTI</span><span class="p">(</span><span class="n">PipelineNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a VTI data source in XML format in paraview.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span> <span class="o">=</span> <span class="n">gui_name</span> <span class="k">if</span> <span class="n">gui_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_representation</span> <span class="o">=</span> <span class="s2">&quot;Surface&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_field</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">write_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = XMLImageDataReader(FileName=r&#39;</span><span class="si">{}</span><span class="s2">&#39;, &quot;</span>
+                  <span class="s2">&quot;guiName=r&#39;</span><span class="si">{}</span><span class="s2">&#39;)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span>
+                  <span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">data_attr_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;CellData&quot;</span>
+
+    <span class="k">def</span> <span class="nf">color_array_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;CELLS&quot;</span></div>
+
+
+<div class="viewcode-block" id="VoxelData"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.VoxelData">[docs]</a><span class="k">def</span> <span class="nf">VoxelData</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offsets</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns :class:`PipelineNode` object representing a voxel data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        array (numpy.ndarray): An array.</span>
+<span class="sd">        gui_name (string or None): The name shown in Pipeline Browser</span>
+<span class="sd">            in paraview&#39;s GUI.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        VTK: A pipeline node object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vti&quot;</span><span class="p">)</span>
+    <span class="n">pict3d_vtk</span><span class="o">.</span><span class="n">write_vti_xmlfile</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">offsets</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">XMLVTI</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PolyLine"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PolyLine">[docs]</a><span class="k">def</span> <span class="nf">PolyLine</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns :class:`PipelineNode` object representing a polyline.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        array (numpy.ndarray): An array of points.</span>
+<span class="sd">        gui_name (string or None): The name shown in Pipeline Browser</span>
+<span class="sd">            in paraview&#39;s GUI.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        VTK: A pipeline node object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+    <span class="n">drawer</span> <span class="o">=</span> <span class="n">ParaViewPolyLineDrawer</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">Lines</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+    <span class="n">drawer</span> <span class="o">=</span> <span class="n">ParaViewLinesDrawer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">drawer</span><span class="o">.</span><span class="n">draw_line</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">Surface</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+    <span class="n">drawer</span> <span class="o">=</span> <span class="n">ParaView3DSurfaceDrawer</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">surface</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Surface&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PointCloud"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PointCloud">[docs]</a><span class="k">class</span> <span class="nc">PointCloud</span><span class="p">(</span><span class="n">PipelineNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a pointcloud data source in paraview.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (string): The filepath of the pointcloud.</span>
+<span class="sd">        dim (int): The dimension of the space in which the pointcloud lives.</span>
+<span class="sd">        delimiter (string): The delimiter of elements in a pointcloud file.</span>
+<span class="sd">           If you want to show a CSV file, please specify &quot;,&quot;.</span>
+<span class="sd">        gui_name (string or None): The name shown in Pipeline Browser</span>
+<span class="sd">            in paraview&#39;s GUI.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">       This is constructed by CSVReader and TableToPoints.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delimiters</span> <span class="o">=</span> <span class="n">delimiters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span> <span class="o">=</span> <span class="n">gui_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="k">assert</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PointCloud.from_array"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.PointCloud.from_array">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a pipeline node for pointcloud from an ndarray object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            array (nupmy.ndarray): The pointcloud data.</span>
+<span class="sd">            dim (int): The dimension of the space in which the</span>
+<span class="sd">                pointcloud lives.</span>
+<span class="sd">            gui_name (string): The name shown in Pipeline Browser in paraview&#39;s</span>
+<span class="sd">                GUI.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PointCloud: A pipeline node object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">array</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">PointCloud</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Points&quot;</span>
+
+    <span class="k">def</span> <span class="nf">write_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">quote</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">translate</span><span class="p">({</span>
+                <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">t&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s2">&quot;s = CSVReader(FileName=r&#39;</span><span class="si">{}</span><span class="s2">&#39;, FieldDelimiterCharacters=&#39;</span><span class="si">{}</span><span class="s2">&#39;,&quot;</span>
+            <span class="s2">&quot; guiName=r&#39;</span><span class="si">{}</span><span class="s2">&#39;, HaveHeaders=0)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">quote</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delimiters</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gui_name</span>
+            <span class="p">))</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_to_points_template</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">table_to_points_template</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = TableToPoints(s, XColumn=&#39;Field 0&#39;, YColumn=&#39;Field 1&#39;, ZColumn=&#39;Field 2&#39;)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = TableToPoints(s, XColumn=&#39;Field 0&#39;, YColumn=&#39;Field 1&#39;, ZColumn=&#39;Field 0&#39;, a2DPoints=1)</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">data_attr_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;PointData&quot;</span>
+
+    <span class="k">def</span> <span class="nf">color_array_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;POINTS&quot;</span></div>
+
+
+<div class="viewcode-block" id="Threshold"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.Threshold">[docs]</a><span class="k">class</span> <span class="nc">Threshold</span><span class="p">(</span><span class="n">PipelineNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a pipeline node for thresholding.</span>
+
+<span class="sd">    You should construct the instance of this class by</span>
+<span class="sd">    :meth:`PipelineNode.threshold`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">field</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="nb">range</span>
+
+    <span class="k">def</span> <span class="nf">write_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = Threshold(</span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">variable</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">write_specialized_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.Scalars = [&#39;CELLS&#39;, r&#39;</span><span class="si">{}</span><span class="s2">&#39;]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">field</span>
+        <span class="p">))</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.ThresholdRange = (</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="SphereClip"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.SphereClip">[docs]</a><span class="k">class</span> <span class="nc">SphereClip</span><span class="p">(</span><span class="n">PipelineNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a pipeline node for sphere clipping.</span>
+
+<span class="sd">    You should construct the instance of this class</span>
+<span class="sd">    by :meth:`PipelineNode.clip_sphere`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">inside_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inside_out</span> <span class="o">=</span> <span class="n">inside_out</span>
+
+    <span class="k">def</span> <span class="nf">write_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> = Clip(</span><span class="si">{}</span><span class="s2">, InsideOut=</span><span class="si">{}</span><span class="s2">, ClipType=&#39;Sphere&#39;)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inside_out</span><span class="p">),</span>
+        <span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">write_specialized_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.ClipType.Center = [</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span>
+        <span class="p">))</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.ClipType.Radius = </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+        <span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="write_python_code"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.write_python_code">[docs]</a><span class="k">def</span> <span class="nf">write_python_code</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="n">bgcolor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write a python code generated by `sources` to `out`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        out (io-like): The output IO object.</span>
+<span class="sd">        sources (list of PipelineNode): Pipeline nodes to be output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">already_written</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;from paraview.simple import *</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">write_code</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">already_written</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;view = GetActiveView()</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bgcolor</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;view.Background = [</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">bgcolor</span><span class="p">))</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Render()</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="show"><a class="viewcode-back" href="../../paraview_interface.html#homcloud.paraview_interface.show">[docs]</a><span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bgcolor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shows `sources` by invoking paraview.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sources (list of PipelineNode): Pipeline nodes to be output.</span>
+<span class="sd">        path (string or None): The output filename. If this parameter</span>
+<span class="sd">            is None, a temporary filepath is generated and use it.</span>
+<span class="sd">            If `path` is not None, the file remains after stopping paraview.</span>
+<span class="sd">        wait (bool): If True, this function returns after paraview stops.</span>
+<span class="sd">            If False, this function returns immediately after</span>
+<span class="sd">            paraview is invoked by using backgroup process mechanism.</span>
+<span class="sd">        bgcolor (None or tuple[float, float, float]): Background color.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">path</span> <span class="k">else</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">)</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">to_paraview_node</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">]</span>
+    <span class="n">write_python_code</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">bgcolor</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># sp.run([&quot;cmd.exe&quot;, &quot;/k&quot;, &quot;type&quot;, path])</span>
+
+    <span class="k">def</span> <span class="nf">finalize</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">TempFile</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+    <span class="n">utils</span><span class="o">.</span><span class="n">invoke_paraview</span><span class="p">(</span><span class="s2">&quot;--script=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait</span><span class="p">,</span> <span class="n">finalize</span><span class="o">=</span><span class="n">finalize</span><span class="p">)</span></div>
+
+
+<span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">new_index</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">current_index</span>
+    <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">current_index</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

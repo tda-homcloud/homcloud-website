@@ -1,0 +1,97 @@
+HomCloud Python API Outline
+===========================
+
+In HomCloud, Python API is integrated into one module, :doc:`interface`.
+If you want to use the API from python, first you sholud import the module
+as follows::
+
+  import homcloud.interface as hc
+
+To learn HomCloud's Python API, you first see :class:`homcloud.interface.PDList`
+class and
+:class:`homcloud.interface.PD` class.
+You can get access to all of HomCloud's functionality through these two classes.
+
+:class:`homcloud.interface.PDList`
+----------------------------------
+
+This class represents the list of 0, 1, .., n-th persistence diagrams
+from a single input.
+In HomCloud, all of these diagrams are stored into one file, a file with ``.pdmg``.
+You can use ``.idiagram`` extension for backward compatibility, but some
+HomCloud's functionaties are not available with ``.idiagram`` file.
+You can compute the list of PDs by the folloiwng static methods.
+
+* :meth:`homcloud.interface.PDList.from_alpha_filtration` for pointclouds
+* :meth:`homcloud.interface.PDList.from_bitmap_levelset` for grayscale bitmap data
+* :meth:`homcloud.interface.PDList.from_bitmap_levelset`
+  with :meth:`homcloud.interface.distance_transform` for binary bitmap data
+* :meth:`homcloud.interface.PDList.from_rips_filtration` for a distance matrix
+* :meth:`homcloud.interface.PDList.from_boundary_information` for a boundary map
+  and levels.
+
+These methods computes a list of PDs, and return a :class:`homcloud.interface.PDList`
+object. You can store the data into a file by using ``save_to`` parameter.
+
+You can create a :class:`homcloud.interface.PDList` object from the file by using
+the constructor of the class.
+
+You can get the q-th PD object by :meth:`homcloud.interface.PDList.dth_diagram`.
+This method returns :class:`homcloud.interface.PD` object.
+
+:class:`homcloud.interface.PD`
+-------------------------------
+
+This class represents a q-th PD and the object has all information
+about the PD. You can get access to the birth times ,death times and some
+other information from the object. For example, the following methods
+are available.
+
+* :meth:`homcloud.interface.PD.births`
+* :meth:`homcloud.interface.PD.essential_births`
+* :meth:`homcloud.interface.PD.deaths`
+* :meth:`homcloud.interface.PD.birth_positions`
+* :meth:`homcloud.interface.PD.essential_birth_positions`
+* :meth:`homcloud.interface.PD.death_positions`
+
+Many other methods are available for your analysis.
+
+You can also compute a histogram by one of the following methods
+
+* :meth:`homcloud.interface.PD.histogram`
+* :meth:`homcloud.interface.HistoSpec.pd_histogram`
+
+On one hand, :meth:`homcloud.interface.PD.histogram`
+is a straightforwad way to compute a histogram. Only you should do is
+to give the range and the number of bins and
+you get a :class:`homcloud.interface.Histogram` object.
+On the other hand, :meth:`homcloud.interface.HistoSpec.pd_histogram` is more indirect way.
+You should create a :class:`homcloud.interface.HistoSpec` object and
+call :meth:`homcloud.interface.HistoSpec.pd_histogram` with a PD object.
+:class:`homcloud.interface.HistoSpec` will be useful if you need to compute many
+hitograms with the same binsize.
+
+You can plot the histogram by :meth:`homcloud.interface.Histogram.plot`.
+In this method, matplotlib is used, therefore you can save the figure
+by ``matplotlib.pyplot.savefig`` and you can popup a window by ``matplotlib.pyplot.show``.
+If you use jupyter notebook, the figure is automatically shown in the notebook.
+
+Other classes
+-------------
+
+In HomCloud's python API, there are many other classes and methods.
+
+If you want to construct a vector by persitence image method
+([#PersistenceImage]_, [#LinearMLwithPI]_),
+to apply machine learning,
+please use :class:`homcloud.interface.PIVectorizeSpec`.
+
+If you want to compute an optimal volume (the optimal volume shows the geometric
+origin of each birth-death pair, please see
+https://epubs.siam.org/doi/abs/10.1137/17M1159439 for the detail),
+please use :meth:`homcloud.interface.Pair.optimal_volume`. This method
+returns an object of :class:`homcloud.interface.OptimalVolume`.
+
+
+.. [#PersistenceImage] https://dl.acm.org/citation.cfm?id=3122017
+.. [#LinearMLwithPI] https://link.springer.com/article/10.1007%2Fs41468-018-0013-5

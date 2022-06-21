@@ -1,0 +1,515 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>homcloud.interface.histogram &#8212; homcloud  documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for homcloud.interface.histogram</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">forwardable</span> <span class="kn">import</span> <span class="n">forwardable</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">homcloud.plot_PD</span> <span class="k">as</span> <span class="nn">plot_PD</span>
+<span class="kn">import</span> <span class="nn">homcloud.histogram</span> <span class="k">as</span> <span class="nn">homhisto</span>
+<span class="kn">import</span> <span class="nn">homcloud.vectorize_PD</span> <span class="k">as</span> <span class="nn">vectorize_PD</span>
+<span class="kn">import</span> <span class="nn">homcloud.plot_PD_slice</span> <span class="k">as</span> <span class="nn">plot_PD_slice</span>
+<span class="kn">import</span> <span class="nn">homcloud.pdgm</span> <span class="k">as</span> <span class="nn">pdgm</span>
+
+
+<div class="viewcode-block" id="HistoSpec"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec">[docs]</a><span class="nd">@forwardable</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">HistoSpec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a 2D mesh on the plane of birth-death pairs.</span>
+
+<span class="sd">    This class is useful to compute histograms from many diagrams</span>
+<span class="sd">    with the same setting.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_range (tuple(float, float) or None): The lower and upper range</span>
+<span class="sd">            of the bins on x-axis.</span>
+<span class="sd">        y_range (int): The number of bins on x-axis.</span>
+<span class="sd">        y_range (tuple(float, float) or None): The lower and upper range</span>
+<span class="sd">            of the bins on y-axis. Same as `x_range` if None is given.</span>
+<span class="sd">        y_bins (int or None): The number of bins on y-axis.</span>
+<span class="sd">            Same as `x_bins` if None is given.</span>
+<span class="sd">        superlevel (bool): This should be True if your PDs come</span>
+<span class="sd">            from superlevel filtrations, otherwise this should be False.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; pc = np.array([[0, 0, 0], [8, 0, 0], [5, 6, 0], [4, 2, 6],])</span>
+<span class="sd">        &gt;&gt;&gt; pd = hc.PDList.from_alpha_filtration(pc).dth_diagram(1)</span>
+<span class="sd">        &gt;&gt;&gt; histospec = hc.HistoSpec((0, 20), 128)</span>
+<span class="sd">        &gt;&gt;&gt; histogram = histospec.pd_histogram(pd)</span>
+<span class="sd">        &gt;&gt;&gt; histogram.plot(colorbar={&quot;type&quot;: &quot;log&quot;}, title=&quot;1st PD&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        -&gt; The histogram is displayed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">rulers</span> <span class="o">=</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">Ruler</span><span class="o">.</span><span class="n">create_xy_rulers</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span>
+                                                 <span class="n">y_range</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span> <span class="n">pd</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spec</span> <span class="o">=</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">HistoSpec</span><span class="o">.</span><span class="n">from_rulers</span><span class="p">(</span><span class="n">rulers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rulers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">superlevel</span><span class="p">)</span>
+        <span class="c1"># self.rulers = rulers</span>
+        <span class="c1"># self.sign_flipped = superlevel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_histoinfo</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">def_delegators</span><span class="p">(</span><span class="s2">&quot;spec&quot;</span><span class="p">,</span> <span class="s2">&quot;sign_flipped&quot;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_histoinfo</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">histoinfo</span><span class="p">):</span>
+        <span class="n">new_mesh</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">((</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                       <span class="nb">len</span><span class="p">(</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                       <span class="p">(</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;y-edges&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;y-edges&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                       <span class="nb">len</span><span class="p">(</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;y-edges&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,)</span>
+        <span class="n">new_mesh</span><span class="o">.</span><span class="n">_histoinfo</span> <span class="o">=</span> <span class="n">histoinfo</span>
+        <span class="k">return</span> <span class="n">new_mesh</span>
+
+<div class="viewcode-block" id="HistoSpec.pd_histogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.pd_histogram">[docs]</a>    <span class="k">def</span> <span class="nf">pd_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructs a 2D histogram of `pd`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pd (:class:`PD`): The diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Histogram`: The histogram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_diagram</span><span class="p">(</span><span class="n">pd</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="HistoSpec.histogram_from_vector"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.histogram_from_vector">[docs]</a>    <span class="k">def</span> <span class="nf">histogram_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a histogram from a vector.</span>
+
+<span class="sd">        The histogram is constructed by the rule of persistence image method.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            vector (numpy.ndarray): A vector.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Histogram`: The histogram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="HistoSpec.mask_from_vector"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.mask_from_vector">[docs]</a>    <span class="k">def</span> <span class="nf">mask_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a mask histogram from a boolean vector.</span>
+
+<span class="sd">        The histogram is constructed by the rule of persistence image method.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            vector (numpy.ndarray): A boolean vector.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`MaskHistogram`: The &quot;histogram&quot; whose values in bins are</span>
+<span class="sd">                True or False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">MaskHistogram</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">BinaryHistogram</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">mask_from_2darray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">MaskHistogram</span><span class="p">(</span><span class="n">homhisto</span><span class="o">.</span><span class="n">BinaryHistogram</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="p">))</span>
+
+<div class="viewcode-block" id="HistoSpec.vector_size"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.vector_size">[docs]</a>    <span class="k">def</span> <span class="nf">vector_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the size of the vector generated by self.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The size of the vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">vector_size</span><span class="p">()</span></div></div>
+
+
+<span class="n">Mesh</span> <span class="o">=</span> <span class="n">HistoSpec</span>
+
+
+<div class="viewcode-block" id="PIVectorizeSpec"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec">[docs]</a><span class="k">class</span> <span class="nc">PIVectorizeSpec</span><span class="p">(</span><span class="n">HistoSpec</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a 2D mesh on the plane of birth-death pairs</span>
+<span class="sd">    with information about vectorization by persistence image (PI) method.</span>
+
+<span class="sd">    You can construct PI vectors from diagrams.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_range (tuple[float, float] or None): The lower and upper range</span>
+<span class="sd">            of the bins on x-axis.</span>
+<span class="sd">        xbins (int): The number of bins on x-axis.</span>
+<span class="sd">        y_range (tuple[float, float] or None): The lower and upper range</span>
+<span class="sd">            of the bins on y-axis. Same as `x_range` if None is given.</span>
+<span class="sd">        ybins (int or None): The number of bins on y-axis.</span>
+<span class="sd">            Same as `x_bins` if None is given.</span>
+<span class="sd">        weight (tuple or string): The information of the weight function.</span>
+<span class="sd">            You can use one of the followings:</span>
+
+<span class="sd">            * &quot;none&quot;: A constant weight function</span>
+<span class="sd">            * (&quot;atan&quot;, `c`, `p`): An arctangent weight function,</span>
+<span class="sd">              `c` and `p` should be floats. The weight function</span>
+<span class="sd">              is atan(c * (death - birth)**p) .</span>
+<span class="sd">            * (&quot;linear&quot;, `a`): A linear weight function. `a` should be</span>
+<span class="sd">              a float. The weight function is a*(death - birth) .</span>
+<span class="sd">        sigma (float): The standard deviation for the Gaussian distribution</span>
+<span class="sd">            used by PI.</span>
+<span class="sd">        superlevel (bool): This should be True if your PDs come</span>
+<span class="sd">            from superlevel filtrations, otherwise this should be False.</span>
+<span class="sd">            Internally, This parameter should be True if the PD has</span>
+<span class="sd">            birth-death pairs with birth &gt; death, and otherwise</span>
+<span class="sd">            the parameter should be False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_function</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">weight_function</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">params</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;atan&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">vectorize_PD</span><span class="o">.</span><span class="n">atan_weight_function</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">vectorize_PD</span><span class="o">.</span><span class="n">linear_weight_function</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown weight type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+        <span class="k">return</span> <span class="n">params</span>
+
+<div class="viewcode-block" id="PIVectorizeSpec.vectorize"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec.vectorize">[docs]</a>    <span class="k">def</span> <span class="nf">vectorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Vectroize `pd`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pd (:class:`PD`): A persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The vectorized diagram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">pd</span><span class="o">.</span><span class="n">sign_flipped</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">sign_flipped</span>
+        <span class="n">histo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_diagram</span><span class="p">(</span><span class="n">pd</span><span class="p">)</span>
+        <span class="n">histo</span><span class="o">.</span><span class="n">apply_weight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="n">histo</span><span class="o">.</span><span class="n">apply_gaussian_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">histo</span><span class="o">.</span><span class="n">vectorize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PIVectorizeSpec.vectorize_pair"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec.vectorize_pair">[docs]</a>    <span class="k">def</span> <span class="nf">vectorize_pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Vectorize a PD with a signle pair.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pd (:class:`Pair` or tuple[double, double]): A birth-death pair</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The vectorized diagram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">birth_time</span><span class="p">,</span> <span class="n">death_time</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">pdgm</span><span class="o">.</span><span class="n">SimplePDGM</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">birth_time</span><span class="p">],</span> <span class="p">[</span><span class="n">death_time</span><span class="p">]))</span></div></div>
+
+
+<span class="n">PIVectorizerMesh</span> <span class="o">=</span> <span class="n">PIVectorizeSpec</span>
+
+
+<div class="viewcode-block" id="Histogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Histogram">[docs]</a><span class="nd">@forwardable</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Histogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The class represents a histogram on birth-death plane.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        x_range()</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                (tuple[int, int]): The lower and upper range of x-axis.</span>
+
+<span class="sd">        x_bins()</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                (int): The number of bins on x-axis.</span>
+
+<span class="sd">        y_range()</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                (tuple[int, int]): The lower and upper range of y-axis.</span>
+<span class="sd">        y_bins()</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                (int): The number of bins on y-axis.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        xedges (numpy.ndarray[x_bins + 1]): The edges of bins on x-axis</span>
+<span class="sd">            in ascending order.</span>
+<span class="sd">        yedges (numpy.ndarray[y_bins + 1]): The edges of bins on y-axis</span>
+<span class="sd">            in ascending order.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig</span> <span class="o">=</span> <span class="n">orig</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (numpy.ndarary, shape (x_bins, y_bins)): 2-dimensional array of values</span>
+<span class="sd">        in the bins.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="nd">@values</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
+
+    <span class="n">def_delegators</span><span class="p">(</span><span class="s1">&#39;orig&#39;</span><span class="p">,</span> <span class="s1">&#39;x_range,y_range,x_bins,y_bins,xedges,yedges&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Histogram.plot"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Histogram.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="p">{},</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;colorhistogram&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+             <span class="n">unit_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">levels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_ess</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plot a histogram by matplotlib.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            colorbar (dict): The specification of the histogram colors and</span>
+<span class="sd">                the colorbar.</span>
+
+<span class="sd">                The following fields are available for this dictionary.</span>
+
+<span class="sd">                * &quot;type&quot; - The name of colorbar type. One of the followings</span>
+<span class="sd">                  is available. The default type is &quot;linear&quot;.</span>
+
+<span class="sd">                  * &quot;linear&quot; - linear scale</span>
+<span class="sd">                  * &quot;log&quot; - log scale</span>
+<span class="sd">                  * &quot;loglog&quot; - log(log(n+1)+1)</span>
+<span class="sd">                  * &quot;linear-midpoint&quot; - linear scale with midpoint.</span>
+<span class="sd">                    You should specify the value of midpoint</span>
+<span class="sd">                    by the &quot;midpoint&quot; field.</span>
+<span class="sd">                  * &quot;power&quot; - n^p. You should specify p by &quot;p&quot; field.</span>
+<span class="sd">                * &quot;min&quot; - The minimum of the colorbar. If this value is not</span>
+<span class="sd">                  specified, the value is determined by the minimum of</span>
+<span class="sd">                  histogram values.</span>
+<span class="sd">                * &quot;max&quot; - The maximum of the colorbar. If this value is not</span>
+<span class="sd">                  specified, the value is determined by the maximum of</span>
+<span class="sd">                  histogram values.</span>
+<span class="sd">                * &quot;colormap&quot; - matplotlib&#39;s colormap name</span>
+
+<span class="sd">            style (string): The plotting style. &quot;colorhistogram&quot; or &quot;contour&quot;</span>
+<span class="sd">                is available.</span>
+<span class="sd">            title (string): The title of the output figure.</span>
+<span class="sd">            unit_name (string or None): The unit name of the x-axis</span>
+<span class="sd">                and y-axis.</span>
+<span class="sd">            font_size (float or None): The font size.</span>
+<span class="sd">                The font size is automatically determined if None is given.</span>
+<span class="sd">            aspect (string): The X-Y aspect. &quot;equal&quot; or &quot;auto&quot; is available.</span>
+<span class="sd">            ax (matplotlib.axes.Axes or None):</span>
+<span class="sd">                The axes to be plotted on. By default (if None),</span>
+<span class="sd">                `matplotlib.pyplot.subplot()` is used.</span>
+<span class="sd">            levels (list of floats or None):</span>
+<span class="sd">                The levels for coutour plotting. This argument is used</span>
+<span class="sd">                only if `style` is &quot;contour&quot;.</span>
+<span class="sd">            plot_ess (bool): Essential pairs are plotted if True.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt;    :</span>
+<span class="sd">            &gt;&gt;&gt; histogram.plot(colorbar={&quot;type&quot;: &quot;log&quot;, &quot;max&quot;: 100},</span>
+<span class="sd">            &gt;&gt;&gt;                title=&quot;Title string&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()  # To show the histogram on your display</span>
+<span class="sd">            &gt;&gt;&gt; plt.savefig(&quot;histogram.png&quot;)  # To save the histogram figure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">PDPlotter</span><span class="o">.</span><span class="n">find_plotter</span><span class="p">(</span><span class="n">style</span><span class="p">)(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zspec</span><span class="p">(</span><span class="n">colorbar</span><span class="p">),</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">AuxPlotInfo</span><span class="p">(</span>
+                <span class="n">title</span><span class="p">,</span> <span class="n">unit_name</span><span class="p">,</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">aspect</span><span class="p">,</span> <span class="n">plot_ess</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">levels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">levels</span> <span class="o">=</span> <span class="n">levels</span>
+
+        <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">))</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_zspec</span><span class="p">(</span><span class="n">colorbar</span><span class="p">):</span>
+        <span class="n">ztype</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;colormap&quot;</span> <span class="ow">in</span> <span class="n">colorbar</span><span class="p">:</span>
+            <span class="n">colormap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">colorbar</span><span class="p">[</span><span class="s2">&quot;colormap&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">colormap</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">ztype</span> <span class="o">==</span> <span class="s2">&quot;linear&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">ZSpec</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">colormap</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ztype</span> <span class="o">==</span> <span class="s2">&quot;log&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">ZSpec</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">colormap</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ztype</span> <span class="o">==</span> <span class="s2">&quot;loglog&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">ZSpec</span><span class="o">.</span><span class="n">LogLog</span><span class="p">(</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">colormap</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ztype</span> <span class="o">==</span> <span class="s2">&quot;linear-midpoint&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">ZSpec</span><span class="o">.</span><span class="n">LinearMidPoint</span><span class="p">(</span><span class="n">colorbar</span><span class="p">[</span><span class="s2">&quot;midpoint&quot;</span><span class="p">],</span>
+                                                <span class="n">vmax</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">colormap</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ztype</span> <span class="o">==</span> <span class="s2">&quot;power&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">ZSpec</span><span class="o">.</span><span class="n">Power</span><span class="p">(</span><span class="n">colorbar</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">],</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">colormap</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unknown colorbar type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ztype</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_fig_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">(),</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="MaskHistogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram">[docs]</a><span class="k">class</span> <span class="nc">MaskHistogram</span><span class="p">(</span><span class="n">Histogram</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class represents a histogram on birth-death plane whose values</span>
+<span class="sd">    are booleans.</span>
+
+<span class="sd">    This class is helpful to pick up all birth-death pairs in an area.</span>
+<span class="sd">    meth:`HistoSpec.mask_from_vector` and meth:`HistoSpec.mask_from_2darray` is</span>
+<span class="sd">    available for this purpose.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MaskHistogram.filter_pairs"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram.filter_pairs">[docs]</a>    <span class="k">def</span> <span class="nf">filter_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all pairs in the area of bins whose values are True.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pairs (sequence of :class:`Pair`): Pairs to be filtered.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of :class:`Pair`: The filtered pairs.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            In fact, this method can filter the list of :class:`OptimalVolume`</span>
+<span class="sd">            by their birth and death times.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">pair</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">value_at</span><span class="p">(</span><span class="n">pair</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">pair</span><span class="o">.</span><span class="n">death_time</span><span class="p">())]</span></div>
+
+<div class="viewcode-block" id="MaskHistogram.filter_pd"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram.filter_pd">[docs]</a>    <span class="k">def</span> <span class="nf">filter_pd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all pairs of the persistence diagram</span>
+<span class="sd">        in the area of bins whose values are True.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pd (:class:`PD`): A persistence diagram which has</span>
+<span class="sd">               pairs to be filtered.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of :class:`Pair`: The filtered pairs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_pairs</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">pairs</span><span class="p">())</span></div></div>
+
+
+<div class="viewcode-block" id="SliceHistogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.SliceHistogram">[docs]</a><span class="k">class</span> <span class="nc">SliceHistogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a 1D histogram of birth-death pairs</span>
+<span class="sd">    in the thin strip on a persistence diagram.</span>
+
+<span class="sd">    You can create an instance by :meth:`PD.slice_histogram`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">       values (numpy.ndarary): The histogram values.</span>
+<span class="sd">       edges (nump.ndarray): The histogram bin edges.</span>
+<span class="sd">       x1 (float): The x-coordinate of the one end of the strip.</span>
+<span class="sd">       y1 (float): The y-coordinate of the one end of the strip.</span>
+<span class="sd">       x2 (float): The x-coordinate of the another end of the strip.</span>
+<span class="sd">       y2 (float): The y-coordinate of the another end of the strip.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">x1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y1</span> <span class="o">=</span> <span class="n">y1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">x2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y2</span> <span class="o">=</span> <span class="n">y2</span>
+
+<div class="viewcode-block" id="SliceHistogram.plot"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.SliceHistogram.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots the historam.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            left_label (string): The label text at (x1, y1)</span>
+<span class="sd">            right_label (string): The label text at (x2, y2)</span>
+<span class="sd">            logscale (bool): Linear scale is used if False, and</span>
+<span class="sd">               Log scale is used if True.</span>
+<span class="sd">            ax (matplotlib.axes.Axes or None):</span>
+<span class="sd">                The axes to be plotted on. By default (if None),</span>
+<span class="sd">                `matplotlib.pyplot.gca()` is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;edge&quot;</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">logscale</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span>
+            <span class="n">plot_PD_slice</span><span class="o">.</span><span class="n">construct_label</span><span class="p">(</span><span class="n">left_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y1</span><span class="p">),</span>
+            <span class="n">plot_PD_slice</span><span class="o">.</span><span class="n">construct_label</span><span class="p">(</span><span class="n">right_label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">),</span>
+        <span class="p">])</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Author.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

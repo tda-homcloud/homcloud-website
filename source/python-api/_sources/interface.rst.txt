@@ -1,0 +1,11 @@
+homcloud.interface module
+=========================
+
+.. automodule:: homcloud.interface
+    :members:
+    :special-members: __getitem__
+    :show-inheritance:
+
+.. automodule:: homcloud.interface.distance
+    :members:
+

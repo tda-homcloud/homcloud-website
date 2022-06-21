@@ -36,7 +36,12 @@ Windows へのインストールにあたって，
 [Anaconda](https://www.anaconda.com/products/individual)をインストールします．
 **64bit版**をインストールしてください．32bit版は対応していません．
 
-## 2. Conda-forgeのセットアップ
+## 2. Anaconda promptの起動
+
+Anaconda promptを起動します．以下の操作はすべてここからやります．
+スタートメニューなどから起動できます．
+
+## 3. Conda-forgeのセットアップ
 
 conda-forgeは公開的なコミュニティ主体で運営されているAnaconda互換パッケージの
 リポジトリです．以下のようにしてconda-forgeを利用可能にします．
@@ -44,7 +49,7 @@ conda-forgeは公開的なコミュニティ主体で運営されているAnacon
     conda config --add channels conda-forge
     conda config --set channel_priority strict 
 
-## 3. Condaの設定
+## 4. Condaの設定
 
 `homcloud`という名前の環境を
 作ってそこで動かすことにしましょう．
@@ -55,13 +60,13 @@ conda-forgeは公開的なコミュニティ主体で運営されているAnacon
 
 Pythonのバージョンは3.8，3.9が利用できます(20220315現在，アップグレードでバージョンは変更されます)．
 
-## 3. HomCloudパッケージをインストールする
+## 5. HomCloudパッケージをインストールする
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
     conda install -c https://homcloud.dev/conda-channel/ paraview homcloud
 
-## 4. HomCloudの自己チェックプログラムを動かす
+## 6. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにコマンドプロンプトで以下のように実行します。
 
@@ -91,17 +96,17 @@ Pythonのバージョンは3.8，3.9が利用できます(20220315現在，ア�
     Paraview real invoke (python pointcloud) => Close opened window ... ok
 
 
-## 5. チュートリアルの実行
+## 7. チュートリアルの実行
 
 せっかくなのでチュートリアルを動かしてみましょう。
 [python-tutorial.zip](/download/python-tutorial.zip)
-からダウンロードして homcloud フォルダに展開してください。
+からダウンロードして展開してください。
 
 次にチュートリアルで利用する jupyter notebook をインストールします。
 
     conda install jupyter
 
-でインストールできま。　インストール後、homcloudフォルダで
+でインストールできます。インストール後、tutorialフォルダで
 
     jupyter notebook
 
