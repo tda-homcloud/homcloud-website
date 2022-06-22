@@ -45,7 +45,7 @@ Xcode をインストールした後、引き続き以下のコマンドを入�
 homebrew を使うことで、様々なパッケージをターミナルからコマンド入力するだけで、依存関係を考慮したり、必要なパッケージ類をまとめてインストールことができます。
 例えば、ターミナルで以下のコマンドを実行すれば、インストールされます。
 
-    brew install cgal python3 cmake opem-mpi qt
+    brew install cgal python3 cmake open-mpi qt
 
 ## 3. Paraviewをインストールします
 
