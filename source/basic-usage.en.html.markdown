@@ -50,5 +50,8 @@ Now HomCloud supports [Google Colaboratory](colab.research.google.com/).
 We are in the progress of porting the tutorial to Colab.
 
 * [3D pointcloud analysis](https://colab.research.google.com/drive/1DAKPeZSCjVLxHu3EVxVkguRwZyLgIvmO?usp=sharing)
+* [2D binary image analysis](https://colab.research.google.com/drive/1q9s37BLSePEXdyiFI5DisDGpGeHs9uGN?usp=sharing)
+* [3D binary image analysis](https://colab.research.google.com/drive/11R_OCEz_wpO8W4eGh5OWH8my6JErjNas?usp=sharing)
+* [2D grayscale image analysis](https://colab.research.google.com/drive/1Z3YKsv9QFUWbjKKDVxer5F3k1ePRw6QS?usp=sharing)
 * [Atomic configuration anlaysis(3D pointcloud)](https://colab.research.google.com/drive/1R9mQx5Ui_RZNXfJUwm97N9dXClZALFbB?usp=sharing)
 * [Machine learning](https://colab.research.google.com/drive/1b6XS_UaUR3tKndB52QJzMOymblk77iDx?usp=sharing)

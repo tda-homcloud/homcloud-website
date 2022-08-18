@@ -119,6 +119,9 @@ jupyter notebook、チュートリアルを動かすのには便利だと思い�
 現在Colabへのチュートリアルの移植を進行中です．
 
 * [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
+* [白黒画像の解析](https://colab.research.google.com/drive/1Zu51FPnGyLGLwZeck3_79euQFTYTk5A8?usp=sharing)
+* [グレイスケール画像の解析](https://colab.research.google.com/drive/1BzrPy3Cq2rgnz1dhBu6xqPEFO3qUkaiB?usp=sharing)
+* [三次元二値画像の解析](https://colab.research.google.com/drive/1oxcWPZhlktb-z2vGU9Q35ZrY10VKg2NC?usp=sharing)
 * [原子配置データ(3次元点集合データ)](https://colab.research.google.com/drive/14flPjPRuzvxIxqBKsB2za5vD7EYr3__E?usp=sharing)
   * [英語版](https://colab.research.google.com/drive/1R9mQx5Ui_RZNXfJUwm97N9dXClZALFbB?usp=sharing)
 * [機械学習](https://colab.research.google.com/drive/1Qhw7Tof0hoiTH6_pnLi3j6VNcUjbR-Sc?usp=sharing)
