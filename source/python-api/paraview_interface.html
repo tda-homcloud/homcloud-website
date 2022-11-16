@@ -1,20 +1,19 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>homcloud.paraview_interface module &#8212; homcloud  documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +35,8 @@
         <li class="right" >
           <a href="interface.html" title="homcloud.interface module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">homcloud  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">homcloud  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">homcloud.paraview_interface module</a></li> 
       </ul>
     </div>  
 
@@ -45,7 +45,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-homcloud.paraview_interface">
+  <section id="module-homcloud.paraview_interface">
 <span id="homcloud-paraview-interface-module"></span><h1>homcloud.paraview_interface module<a class="headerlink" href="#module-homcloud.paraview_interface" title="Permalink to this headline">¶</a></h1>
 <p>This module provides the paraview interface from homcloud.interface module.</p>
 <p>The basic model of this module is “pipeline” model. A data object is
@@ -55,358 +55,315 @@ and you can adjust visualization by these objects.</p>
 <p>You can use many methods of <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineNode</span></code></a> to adjust the visualization,
 and you can construct a new pipeline node by the following methods:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.threshold" title="homcloud.paraview_interface.PipelineNode.threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.threshold()</span></code></a></li>
-<li><a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="homcloud.paraview_interface.PipelineNode.clip_sphere"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.clip_sphere()</span></code></a></li>
+<li><p><a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.threshold" title="homcloud.paraview_interface.PipelineNode.threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.threshold()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="homcloud.paraview_interface.PipelineNode.clip_sphere"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.clip_sphere()</span></code></a></p></li>
 </ul>
 <p>Todo:</p>
 <ul class="simple">
-<li>Add clip_box method</li>
+<li><p>Add clip_box method</p></li>
 </ul>
-<dl class="class">
-<dt id="homcloud.paraview_interface.PipelineNode">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">PipelineNode</code><span class="sig-paren">(</span><em>parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">PipelineNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class represents elements in a pipeline in ParaView.</p>
 <p>This class is the base class for paraview interface classes.
 You should not create an instance of this class directly.</p>
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.clip_sphere">
-<code class="descname">clip_sphere</code><span class="sig-paren">(</span><em>center</em>, <em>radius</em>, <em>inside_out=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.clip_sphere"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.clip_sphere">
+<span class="sig-name descname"><span class="pre">clip_sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inside_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.clip_sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new pipeline node to clip the object with a
 sphere shape.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>center</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – The center of the
-clipping sphere</li>
-<li><strong>radius</strong> (<em>float</em>) – The radius of the clipping sphere</li>
-<li><strong>inside_out</strong> (<em>bool</em>) – If True, only the elements
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – The center of the
+clipping sphere</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – The radius of the clipping sphere</p></li>
+<li><p><strong>inside_out</strong> (<em>bool</em>) – If True, only the elements
 <em>in</em> the shpere are shown.
 If False, only the elements <em>outside</em> of the sphere is
-shown.</li>
+shown.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A new PipelineNode object for sphere clipping.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#homcloud.paraview_interface.SphereClip" title="homcloud.paraview_interface.SphereClip">SphereClip</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new PipelineNode object for sphere clipping.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.paraview_interface.SphereClip" title="homcloud.paraview_interface.SphereClip">SphereClip</a></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.color_by">
-<code class="descname">color_by</code><span class="sig-paren">(</span><em>field</em>, <em>range=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.color_by"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.color_by" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.color_by">
+<span class="sig-name descname"><span class="pre">color_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.color_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.color_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the coloring by field name.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>field</strong> (<em>string</em><em> or </em><em>int</em>) – The name of the field.</li>
-<li><strong>range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] or </em><em>None</em>) – The upper and lower bounds
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>string</em><em> or </em><em>int</em>) – The name of the field.</p></li>
+<li><p><strong>range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] or </em><em>None</em>) – The upper and lower bounds
 of the colorbar. If None, the minimal and maximal values
-of the field are used.</li>
+of the field are used.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">self</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.set_color">
-<code class="descname">set_color</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_color"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_color" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.set_color">
+<span class="sig-name descname"><span class="pre">set_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_color" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the color.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>color</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – The RGB values (0.0 to 1.0)</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">self</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – The RGB values (0.0 to 1.0)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.set_linewidth">
-<code class="descname">set_linewidth</code><span class="sig-paren">(</span><em>width</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_linewidth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_linewidth" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.set_linewidth">
+<span class="sig-name descname"><span class="pre">set_linewidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_linewidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_linewidth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the linewidth.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>width</strong> (<em>float</em>) – The width of the lines</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">self</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>width</strong> (<em>float</em>) – The width of the lines</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.set_opacity">
-<code class="descname">set_opacity</code><span class="sig-paren">(</span><em>opacity</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_opacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_opacity" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.set_opacity">
+<span class="sig-name descname"><span class="pre">set_opacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opacity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_opacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_opacity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the opacity.</p>
 <ul class="simple">
-<li>0.0 - completely transparent</li>
-<li>1.0 - completely opaque</li>
+<li><p>0.0 - completely transparent</p></li>
+<li><p>1.0 - completely opaque</p></li>
 </ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opacity</strong> (<em>float</em>) – The opacity.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">self</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>opacity</strong> (<em>float</em>) – The opacity.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.set_pointsize">
-<code class="descname">set_pointsize</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_pointsize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_pointsize" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.set_pointsize">
+<span class="sig-name descname"><span class="pre">set_pointsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.set_pointsize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.set_pointsize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the pointsize.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pointsize</strong> (<em>float</em>) – The size of the points</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">self</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pointsize</strong> (<em>float</em>) – The size of the points</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.threshold">
-<code class="descname">threshold</code><span class="sig-paren">(</span><em>field</em>, <em>range</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.threshold" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new pipeline node for thresholding whose parent
 is <cite>self</cite>.</p>
 <p>Only the elements whose <cite>field</cite> are in the <cite>range</cite> when
 the returned object is passed to <a class="reference internal" href="#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>field</strong> (<em>string</em>) – The name of the field which have the
-thresholded value.</li>
-<li><strong>range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] or </em><em>float</em>) – The upper and lower bounds
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>string</em>) – The name of the field which have the
+thresholded value.</p></li>
+<li><p><strong>range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] or </em><em>float</em>) – The upper and lower bounds
 of the values.
-If an float number is given, the threshold is (range, range).</li>
+If an float number is given, the threshold is (range, range).</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A new PipelineNode object for thresholding.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#homcloud.paraview_interface.Threshold" title="homcloud.paraview_interface.Threshold">Threshold</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new PipelineNode object for thresholding.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.paraview_interface.Threshold" title="homcloud.paraview_interface.Threshold">Threshold</a></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="homcloud.paraview_interface.PipelineNode.to_paraview_node">
-<code class="descname">to_paraview_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.to_paraview_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.to_paraview_node" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode.to_paraview_node">
+<span class="sig-name descname"><span class="pre">to_paraview_node</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode.to_paraview_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode.to_paraview_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns self.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="homcloud.paraview_interface.PointCloud">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">PointCloud</code><span class="sig-paren">(</span><em>path</em>, <em>dim=3</em>, <em>delimiters=' '</em>, <em>gui_name=None</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PointCloud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PointCloud" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PointCloud">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">PointCloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PointCloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PointCloud" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a></p>
 <p>This class represents a pointcloud data source in paraview.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>path</strong> (<em>string</em>) – The filepath of the pointcloud.</li>
-<li><strong>dim</strong> (<em>int</em>) – The dimension of the space in which the pointcloud lives.</li>
-<li><strong>delimiter</strong> (<em>string</em>) – The delimiter of elements in a pointcloud file.
-If you want to show a CSV file, please specify “,”.</li>
-<li><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
-in paraview’s GUI.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>string</em>) – The filepath of the pointcloud.</p></li>
+<li><p><strong>dim</strong> (<em>int</em>) – The dimension of the space in which the pointcloud lives.</p></li>
+<li><p><strong>delimiter</strong> (<em>string</em>) – The delimiter of elements in a pointcloud file.
+If you want to show a CSV file, please specify “,”.</p></li>
+<li><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
+in paraview’s GUI.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This is constructed by CSVReader and TableToPoints.</p>
-<dl class="staticmethod">
-<dt id="homcloud.paraview_interface.PointCloud.from_array">
-<em class="property">static </em><code class="descname">from_array</code><span class="sig-paren">(</span><em>array</em>, <em>dim=3</em>, <em>gui_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PointCloud.from_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PointCloud.from_array" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PointCloud.from_array">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PointCloud.from_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PointCloud.from_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a pipeline node for pointcloud from an ndarray object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>array</strong> (<em>nupmy.ndarray</em>) – The pointcloud data.</li>
-<li><strong>dim</strong> (<em>int</em>) – The dimension of the space in which the
-pointcloud lives.</li>
-<li><strong>gui_name</strong> (<em>string</em>) – The name shown in Pipeline Browser in paraview’s
-GUI.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>nupmy.ndarray</em>) – The pointcloud data.</p></li>
+<li><p><strong>dim</strong> (<em>int</em>) – The dimension of the space in which the
+pointcloud lives.</p></li>
+<li><p><strong>gui_name</strong> (<em>string</em>) – The name shown in Pipeline Browser in paraview’s
+GUI.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A pipeline node object.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#homcloud.paraview_interface.PointCloud" title="homcloud.paraview_interface.PointCloud">PointCloud</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pipeline node object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.paraview_interface.PointCloud" title="homcloud.paraview_interface.PointCloud">PointCloud</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="homcloud.paraview_interface.PolyLine">
-<code class="descclassname">homcloud.paraview_interface.</code><code class="descname">PolyLine</code><span class="sig-paren">(</span><em>array</em>, <em>gui_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PolyLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.PolyLine" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PolyLine">
+<span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">PolyLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PolyLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PolyLine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineNode</span></code></a> object representing a polyline.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – An array of points.</li>
-<li><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
-in paraview’s GUI.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – An array of points.</p></li>
+<li><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
+in paraview’s GUI.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A pipeline node object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">VTK</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pipeline node object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">VTK</a></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="homcloud.paraview_interface.SphereClip">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">SphereClip</code><span class="sig-paren">(</span><em>parent</em>, <em>center</em>, <em>radius</em>, <em>inside_out=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SphereClip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.SphereClip" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.SphereClip">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SphereClip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inside_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SphereClip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SphereClip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a></p>
 <p>This class represents a pipeline node for sphere clipping.</p>
 <p>You should construct the instance of this class
 by <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="homcloud.paraview_interface.PipelineNode.clip_sphere"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.clip_sphere()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="class">
-<dt id="homcloud.paraview_interface.Threshold">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">Threshold</code><span class="sig-paren">(</span><em>parent</em>, <em>field</em>, <em>range</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#Threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.Threshold" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.Threshold">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">Threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#Threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.Threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a></p>
 <p>This class represents a pipeline node for thresholding.</p>
 <p>You should construct the instance of this class by
 <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.threshold" title="homcloud.paraview_interface.PipelineNode.threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.threshold()</span></code></a>.</p>
 </dd></dl>
 
-<dl class="class">
-<dt id="homcloud.paraview_interface.VTK">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">VTK</code><span class="sig-paren">(</span><em>path</em>, <em>gui_name=None</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#VTK"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.VTK" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.VTK">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">VTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#VTK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.VTK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a></p>
 <p>This class represents a VTK data source in paraview.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="homcloud.paraview_interface.VoxelData">
-<code class="descclassname">homcloud.paraview_interface.</code><code class="descname">VoxelData</code><span class="sig-paren">(</span><em>array, gui_name=None, offsets=[0, 0, 0]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#VoxelData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.VoxelData" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.VoxelData">
+<span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">VoxelData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#VoxelData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.VoxelData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineNode</span></code></a> object representing a voxel data.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>array</strong> (<em>numpy.ndarray</em>) – An array.</li>
-<li><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
-in paraview’s GUI.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>array</strong> (<em>numpy.ndarray</em>) – An array.</p></li>
+<li><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
+in paraview’s GUI.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A pipeline node object</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">VTK</a></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pipeline node object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">VTK</a></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="homcloud.paraview_interface.XMLVTI">
-<em class="property">class </em><code class="descclassname">homcloud.paraview_interface.</code><code class="descname">XMLVTI</code><span class="sig-paren">(</span><em>path</em>, <em>gui_name</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#XMLVTI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.XMLVTI" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.XMLVTI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">XMLVTI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#XMLVTI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.XMLVTI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a></p>
 <p>This class represents a VTI data source in XML format in paraview.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="homcloud.paraview_interface.show">
-<code class="descclassname">homcloud.paraview_interface.</code><code class="descname">show</code><span class="sig-paren">(</span><em>sources</em>, <em>path=None</em>, <em>wait=True</em>, <em>bgcolor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.show" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.show">
+<span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sources</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#show"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.show" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows <cite>sources</cite> by invoking paraview.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sources</strong> (<em>list of PipelineNode</em>) – Pipeline nodes to be output.</li>
-<li><strong>path</strong> (<em>string</em><em> or </em><em>None</em>) – The output filename. If this parameter
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sources</strong> (<em>list of PipelineNode</em>) – Pipeline nodes to be output.</p></li>
+<li><p><strong>path</strong> (<em>string</em><em> or </em><em>None</em>) – The output filename. If this parameter
 is None, a temporary filepath is generated and use it.
-If <cite>path</cite> is not None, the file remains after stopping paraview.</li>
-<li><strong>wait</strong> (<em>bool</em>) – If True, this function returns after paraview stops.
+If <cite>path</cite> is not None, the file remains after stopping paraview.</p></li>
+<li><p><strong>wait</strong> (<em>bool</em>) – If True, this function returns after paraview stops.
 If False, this function returns immediately after
-paraview is invoked by using backgroup process mechanism.</li>
-<li><strong>bgcolor</strong> (<em>None</em><em> or </em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – Background color.</li>
+paraview is invoked by using backgroup process mechanism.</p></li>
+<li><p><strong>bgcolor</strong> (<em>None</em><em> or </em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>, </em><em>float</em><em>]</em>) – Background color.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="homcloud.paraview_interface.write_python_code">
-<code class="descclassname">homcloud.paraview_interface.</code><code class="descname">write_python_code</code><span class="sig-paren">(</span><em>out</em>, <em>sources</em>, <em>bgcolor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#write_python_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#homcloud.paraview_interface.write_python_code" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.write_python_code">
+<span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">write_python_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#write_python_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.write_python_code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a python code generated by <cite>sources</cite> to <cite>out</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>out</strong> (<em>io-like</em>) – The output IO object.</li>
-<li><strong>sources</strong> (<em>list of PipelineNode</em>) – Pipeline nodes to be output.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out</strong> (<em>io-like</em>) – The output IO object.</p></li>
+<li><p><strong>sources</strong> (<em>list of PipelineNode</em>) – Pipeline nodes to be output.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -426,17 +383,15 @@ paraview is invoked by using backgroup process mechanism.</li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -456,12 +411,13 @@ paraview is invoked by using backgroup process mechanism.</li>
         <li class="right" >
           <a href="interface.html" title="homcloud.interface module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">homcloud  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">homcloud  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">homcloud.paraview_interface module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Author.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
