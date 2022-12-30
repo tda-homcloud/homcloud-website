@@ -1,4 +1,12 @@
-# News for 3.5.2 (2021/03/09)
+# News for 3.6.0 (2022/11/02)
+* New methods:
+  * `interface.BitmapPHTrees.roots`
+  * `interface.PD.torch_tensor_tensor_birth_death` (for bitmap and alpha)
+* New properties
+  * `interface.PD.alpha_squared`
+* New parameter `squared` in `interface.PDList.from_alpha_filtration`. This paramter is equivalent to `not no_square`.
+
+# News for 3.5.2 (2022/03/09)
 * New methods:
   * interface.PHTrees.roots
 * Add `save_cocycles` argument to `interface.PDList.from_rips_filtration`

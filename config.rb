@@ -28,6 +28,7 @@ page '/*.txt', layout: false
 # With alternative layout
 page '/cli-doc/*', layout: 'cli-doc'
 page '/misc/ph-nmf-figures/*', layout: 'plain'
+page '/hyperorder-book-ph/*', layout: 'empty'
 
 # Proxy pages
 # https://middlemanapp.com/advanced/dynamic-pages/

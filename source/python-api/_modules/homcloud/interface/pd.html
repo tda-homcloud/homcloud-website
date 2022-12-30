@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>homcloud.interface.pd &#8212; homcloud  documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -30,7 +28,8 @@
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">homcloud.interface.pd</a></li> 
       </ul>
     </div>  
 
@@ -50,6 +49,7 @@
 <span class="kn">import</span> <span class="nn">enum</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -112,8 +112,11 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PDList(path=</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
 
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="viewcode-block" id="PDList.close"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dispose PDList object and release resources.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
@@ -158,14 +161,13 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">save_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">NamedTemporaryFile</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_to</span><span class="p">,</span> <span class="s2">&quot;w+b&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PDList.from_alpha_filtration"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_filtration">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_alpha_filtration</span><span class="p">(</span><span class="n">pointcloud</span><span class="p">,</span>
-                              <span class="n">weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_squared</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                              <span class="n">subsets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_acyclicity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">from_alpha_filtration</span><span class="p">(</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_squared</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>
+                              <span class="n">squared</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subsets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_acyclicity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                               <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                               <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">indexed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">periodicity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -179,9 +181,10 @@
 <span class="sd">                the last column of the pointcloud ndarray is regarded as</span>
 <span class="sd">                weights. Please note that the weight paramters of points</span>
 <span class="sd">                should be the square of their own radii.</span>
-<span class="sd">            no_squared (bool): By default, all birth/death times are squared.</span>
-<span class="sd">                If no_squared is True, all computed birth/death times are</span>
+<span class="sd">            squared (bool): By default, all birth/death times are squared.</span>
+<span class="sd">                If squared is False, all computed birth/death times are</span>
 <span class="sd">                not squared.</span>
+<span class="sd">            no_squared (bool): See `squared` parameter.</span>
 <span class="sd">            subsets (list[int] or bool or None):</span>
 <span class="sd">                This parameter is used to compute relative homology.</span>
 <span class="sd">                This parameter allows you to analyze the interspace structures</span>
@@ -251,6 +254,15 @@
         <span class="k">assert</span> <span class="n">indexed</span>
         <span class="k">assert</span> <span class="p">(</span><span class="n">save_phtrees</span> <span class="ow">and</span> <span class="n">save_boundary_map</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">save_phtrees</span><span class="p">)</span>
 
+        <span class="k">def</span> <span class="nf">squared_parameter</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">squared</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">squared</span>
+            <span class="k">if</span> <span class="n">no_squared</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="ow">not</span> <span class="n">no_squared</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">squared</span> <span class="o">=</span> <span class="n">squared_parameter</span><span class="p">()</span>
+            
         <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">num_points</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">dim</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">subsets</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span>
@@ -272,7 +284,7 @@
         <span class="k">if</span> <span class="n">subsets</span><span class="p">:</span>
             <span class="n">alpha_shape</span><span class="o">.</span><span class="n">become_partial_shape</span><span class="p">()</span>
 
-        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_shape</span><span class="o">.</span><span class="n">create_filtration</span><span class="p">(</span><span class="n">no_squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span>
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_shape</span><span class="o">.</span><span class="n">create_filtration</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span>
                                                    <span class="n">save_boundary_map</span><span class="p">,</span> <span class="n">save_phtrees</span><span class="p">)</span>
 
         <span class="n">output_filetype</span> <span class="o">=</span> <span class="n">PDList</span><span class="o">.</span><span class="n">estimate_format</span><span class="p">(</span><span class="n">output_filetype</span><span class="p">,</span> <span class="n">save_to</span><span class="p">)</span>
@@ -712,7 +724,7 @@
     <span class="n">def_delegators</span><span class="p">(</span><span class="s2">&quot;pd&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;degree,births,deaths,birth_positions,death_positions,&quot;</span>
                    <span class="s2">&quot;essential_births,essential_birth_positions,sign_flipped,&quot;</span>
-                   <span class="s2">&quot;filtration_type&quot;</span><span class="p">)</span>
+                   <span class="s2">&quot;filtration_type,alpha_weighted,alpha_radii_squared&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PD.histogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.histogram">[docs]</a>    <span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x_bins</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -874,7 +886,51 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cutoff is not available for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span>
-                <span class="p">)))</span></div>
+                <span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;bitmap&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
+        <span class="k">raise</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Now torch_tensor_births_deaths supports only bitmap or alpha filtrations&quot;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_bitmap</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">torch</span>
+
+        <span class="n">births</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+        <span class="n">deaths</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span>
+
+    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_pointcloud</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="kn">import</span> <span class="nn">homcloud.geometry.torch_utils</span> <span class="k">as</span> <span class="nn">torch_utils</span>
+
+
+        <span class="k">def</span> <span class="nf">circumradius</span><span class="p">(</span><span class="n">simplex</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="n">torch_simplex</span> <span class="o">=</span> <span class="n">torch_pointcloud</span><span class="p">[</span><span class="n">simplex</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">edge_squared_circumradius</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">triangle_squared_circumradius_2d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">triangle_squared_circumradius_3d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">tetrahedron_squared_circumradius_3d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_weighted</span><span class="p">,</span> <span class="s2">&quot;weighted alpha filtration is not supported&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_radii_squared</span><span class="p">,</span> <span class="s2">&quot;non-squared alpha filtration is not supported&quot;</span>
+
+        <span class="n">index_to_simplex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_coord_resolver</span><span class="o">.</span><span class="n">index_to_simplex</span>
+
+        <span class="n">births</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">circumradius</span><span class="p">(</span><span class="n">index_to_simplex</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">birth_indices</span><span class="p">])</span>
+        <span class="n">deaths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">circumradius</span><span class="p">(</span><span class="n">index_to_simplex</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_indices</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span></div>
 
 
 <div class="viewcode-block" id="Pair"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair">[docs]</a><span class="k">class</span> <span class="nc">Pair</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -942,13 +998,13 @@
     <span class="k">def</span> <span class="nf">birth_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; list of string: Birth simplex for the birth-death pair by symbols. Only available for alpha filtrations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="p">()</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">death_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; list of string: Death simplex for the birth-death pair by symbols. Only available for alpha filtrations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="p">()</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Pair.optimal_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_volume">[docs]</a>    <span class="k">def</span> <span class="nf">optimal_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">solver_options</span><span class="o">=</span><span class="p">[],</span>
                        <span class="n">constrain_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_retry</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
@@ -1126,23 +1182,22 @@
         <span class="k">return</span> <span class="n">PH0Components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
 </pre></div>
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -1158,12 +1213,13 @@
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">homcloud.interface.pd</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Author.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
