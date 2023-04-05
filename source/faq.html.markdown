@@ -91,3 +91,28 @@ HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootで
    * `OMPI_ALLOW_RUN_AS_ROOT`
    * `OMPI_ALLOW_RUN_AS_ROOT_CONFIRM`
 
+## Q. RHELやその互換ディストリビューション(Rocky Linuxなど)でインストールできませんか？
+
+### A. condaを使うのがよいでしょう
+
+[CGAL](https://www.cgal.org/index.html) のパッケージがないようなのでインストールが面倒です．どうしてもRHELやRocky Linuxが使いたい場合は[condaを使う](/install-guide/install_guide_for_Linux_conda.html)ほうがいいかもしれません．
+
+## Q. PyQt のインストールで問題が生じる
+
+`pip install pyqt5`とすると次のようなエラーがでる．
+
+    Collecting pyqt5
+      Installing build dependencies ... done
+        Complete output from command python setup.py egg_info:
+        Traceback (most recent call last):
+          File "<string>", line 1, in <module>
+          File "/usr/lib/python3.7/tokenize.py", line 447, in open
+            buffer = _builtin_open(filename, 'rb')
+        FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pip-install-bvg6_fyh/pyqt5/setup.py'
+
+        ----------------------------------------
+    Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-install-bvg6_fyh/pyqt5/
+
+### A. PyQtの特定のバージョンの問題なので，問題ないバージョンを指定します
+
+`pip install pyqt5`の代わりに`pip3 install pyqt5==5.14`としてください．
