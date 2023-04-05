@@ -6,17 +6,15 @@ lang: ja
 # Apple Silicon (M1) Mac へのインストール
 
 M1 Macは新しいアーキテクチャを採用しているため，様々な科学技術ソフトウェアの対応が途上にあります．
-numpy, scipy, matplotlibのようなPythonの基本的科学技術ソフトウェアも色々対応が中途半端な状態です．
-HomCloudで可視化に使っている Paraview などは 2021/08 現在では対応していません．
-そのためあまりM1 MacでのHomCloudの利用はお勧めしませんが，それでも利用したい場合には以下のようにしてください．
 
 ## 1. Conda を miniforge でインストールする
 conda-forge のパッケージは M1 Mac　への対応が比較的進んでいるのでこれを利用します．
-Conda は妙なところが多いのであまりお勧めしませんがこれ以外の選択肢は今のところないので利用します．
-<https://github.com/conda-forge/miniforge> を見てインストールしてください．リンク先の Web サイトに書いているようにターミナルで
+Conda は妙なところが多いのであまりお勧めしませんがcondaが一番ちゃんとしているようなのでこれを利用します．
+<https://github.com/conda-forge/miniforge> を見てインストールしてください．
+リンク先の Web サイトに書いているようにターミナルで
 
-    curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh
-    bash Miniforge3-$(uname)-$(uname -m).sh
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
+    bash Mambaforge-$(uname)-$(uname -m).sh
 
 とするとインストールできます．
 
@@ -27,7 +25,7 @@ Condaの利用は最低限にしたいことは多いでしょう．その場合
 
 インストール時に
 
-    Do you wish the installer to initialize Miniforge3
+    Do you wish the installer to initialize Mambaforge
     by running conda init? [yes|no]
     
 と聞かれるので，このときに no と答えます．すると
@@ -35,12 +33,12 @@ Condaの利用は最低限にしたいことは多いでしょう．その場合
     You have chosen to not have conda modify your shell scripts at all.
     To activate conda's base environment in your current shell session:
     
-    eval "$(/Users/YOUR_ID/miniforge3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+    eval "$(/Users/YOUR_ID/mambaforge/bin/conda shell.YOUR_SHELL_NAME hook)" 
         :
 
 というメッセージが流れると思います．そこにあるようにcondaを利用するときだけターミナルで
 
-    eval "$(/Users/YOUR_ID/miniforge3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+    eval "$(/Users/YOUR_ID/mambaforge/bin/conda shell.YOUR_SHELL_NAME hook)" 
     
 とするとそのセッションでだけ有効になります(`YOUR_ID`と`YOUR_SHELL_NAME`は適切なものに
 置き換えてください．`YOUR_SHELL_NAME`はおそらく`zsh`でしょう)．
@@ -64,12 +62,17 @@ HomCloud用の環境を作ります．homcloudという名前にします．タ�
 
 以下のようにして自己チェックプログラムを動かします．
 
-    python -m homcloud.self_check --no-dipha --no-paraview
+    python -m homcloud.self_check --pyvista
 
-すると以下のような内容が表示されるはずです．
+以下のような画像が表示されたウィンドウが開かれます．
+開かれたウィンドウは閉じてください．
 
-    HomCloud version: 3.4.1
-    Python version: 3.9.6 | packaged by conda-forge | (default, Jul 11 2021, 03:35:11)  [Clang 11.1.0 ]
+![PyVistaのウィンドウ](/images/screenshot-selfcheck-pyvista.png){: width="600px" }
+
+最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
+
+    HomCloud version: 4.0.0
+    Python version: 3.9.16 | packaged by conda-forge | (main, Feb 1 2022, 21:38:11)  [Clang 14.0.6 ]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
@@ -80,9 +83,7 @@ HomCloud用の環境を作ります．homcloudという名前にします．タ�
     Rips filtration ... ok
     Plotting PD ... ok
     Optimal Volume ... ok
+    PyVista 3D drawing (close the pop-up window)... ok
 
-もし上手くいかなかった場合は詳しい人に聞いてください．
 
-## 5. チュートリアルについて
-
-上で書いたように Paraview は動きません．可視化にPlotlyを使ってるほうのチュートリアルをやりましょう．
+以上でインストールは終わりです。

@@ -64,37 +64,38 @@ Pythonのバージョンは3.8，3.9が利用できます(20220315現在，ア�
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    conda install -c https://homcloud.dev/conda-channel/ paraview homcloud
+    conda install -c https://homcloud.dev/conda-channel/ homcloud
 
 ## 6. HomCloudの自己チェックプログラムを動かす
 
-最後に正常にインストールされているかどうかを調べるためにコマンドプロンプトで以下のように実行します。
+最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
+実行します．
 
-    python -m homcloud.self_check --no-dipha
+    python3 -m homcloud.self_check --pyvista
 
-2回、Paraviewのウィンドウが開かれます。
-最初に開かれたときは、"Apply"ボタンを押して何か表示されてからウィンドウを
-閉じてください。
-2回目に開かれたときは，赤と白の点が表示されていることを確認してからウィンドウを
-閉じてください。
+以下のような画像が表示されたウィンドウが開かれます．
+開かれたウィンドウは閉じてください．
 
-最終的にコマンドプロンプトに以下のように表示されていたらOKです。
-`/usr/bin/paraview`
-は異なる表示になっていると思いますが、okが以下のように表示されていれば問題ありません。
+![PyVistaのウィンドウ](/images/screenshot-selfcheck-pyvista.png){: width="600px" }
 
+最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
+
+    HomCloud version: 4.0.0
+    Python version: 3.8.4 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
+    Periodic Alpha Shape 3 with weights ... ok
     Alpha Shape 2 ... ok
     Grayscale 2D bitmap ... ok
     Binary 2D bitmap ... ok
     Binary 2D periodic bitmap ... ok
     Rips filtration ... ok
     Plotting PD ... ok
-    Paraview path: /usr/bin/paraview
-    Paraview fake invoke ... ok
-    Paraview real invoke (VTK voxel) => Click "Apply" button and close opened window ... ok
-    Paraview real invoke (python pointcloud) => Close opened window ... ok
+    Optimal Volume ... ok
+    PyVista 3D drawing (close the pop-up window)... ok
 
+
+以上でインストールは終わりです。
 
 ## 7. チュートリアルの実行
 

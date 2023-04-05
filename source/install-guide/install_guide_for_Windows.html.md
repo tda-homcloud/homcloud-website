@@ -7,7 +7,7 @@ lang: ja
 
 Windowsでインストールするには、以下の2通りあります。お使いの環境に合わせて設定してください。
 
- * Windows用の個々のパッケージをインストール (以下の説明を参考にインストールをすすめる)
+ * Windows用の個々のパッケージをインストール (以下の説明を参考にインストールをする)
  * WSL(Windows Subsystem for Linux)の ubuntu linux などのlinux 環境でインストールする ([ubuntu用のインストールガイド](install_guide_for_Ubuntu.html)にしたがってインストールをすすめる)。ubuntu linux以外での WSL をお使いの場合は必要な各パッケージをそれぞれのOS用に置き換えてインストールをお試しください。GUIツールを使うためには Xwindow の動作環境が必要になります
 
 ## 0. 環境チェック
@@ -35,24 +35,13 @@ Windows へのインストールにあたって，
 
 [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
 から**64bit版**のpythonのインストーラー(ここでは例としてWindows x86-64 web-based installerをとりあげます。)をダウンロードし、クリックしてインストールをします。
-Pythonのバージョンは **3.7** の最新版をインストールしてください。
+Pythonのバージョンは **3.8**，**3.9**, **3.10** のいずれかを選んでください．
+以下では3.10を使う例を示します．
 
 Pythonをインストールする場所(パス)に日本語(全角文字)が入らない場所を選んでください。
 現状では全角文字がパスに含まれてしまうと python からファイルの読み書きを行う時にエラーになります。
 
-## 2. paraview のインストール
-
-paraview はhomcloudでは主にポイントクラウドのデータを表示する
-場合のビューワーとして使います。
-[https://www.paraview.org/](https://www.paraview.org/)
-から最新版をダウンロードし、インストールをします。そしてインストール先を
-環境変数 `HOMCLOUD_PARAVIEW_PROGRAMNAME` によって設定する必要があります。
-`C:\Program Files\ParaView 5.6.0-Windows-msvc2015-64bit\bin\paraview.exe`のような
-paraviewのパスを調べて環境変数を設定してください。
-
-あまり詳しくない方は[WindowsでのParaviewの環境変数の設定](windows_envvar_paraview.html)を参照してください．
-
-## 3. venvによる環境構築
+## 2. venvによる環境構築
 
 ここでは venv という環境分離機構を使って環境を設定します。
 まずは環境構築のためのフォルダを作ります。まずは homcloud というフォルダを作ります。
@@ -60,18 +49,18 @@ paraviewのパスを調べて環境変数を設定してください。
 
     mkdir homcloud
 
-次に venv をセットアップします。 コマンドプロントを起動して、以下のコマンドを打つことでhomcloudのフォルダ下にvenv37フォルダが作成されます。
+次に venv をセットアップします。 コマンドプロントを起動して、以下のコマンドを打つことでhomcloudのフォルダ下にvenv310フォルダが作成されます。
 
     cd homcloud
-    py -3.7 -m venv venv37
+    py -3.10 -m venv venv310
 
 ここでの注意として，フォルダ名に英数字以外の文字が含まれているとうまく動きません．親フォルダも含んでいていはいけないことに注意してください．
 
-## 4. venvの環境内に移動する
+## 3. venvの環境内に移動する
 
 次のように打ち込むと環境内に移動できます。
 
-    venv37\Scripts\activate
+    venv310\Scripts\activate
 
 この操作はコマンドプロンプトを起動するごとに
 やる必要があることに注意してください。
@@ -79,53 +68,49 @@ paraviewのパスを調べて環境変数を設定してください。
 コマンドプロンプトを素早く起動するためにショートカット等を作成しておくとよいでしょう。
 入力できる基本コマンドについてはウェブサイトなどで確認してください。
 
-よく使う基本的なコマンドとして以下を紹介します
-
-    cd c:\dev\work # カレントフォルダの移動
-    dir # フォルダ内のファイルの一覧表示
-
-## 5. python パッケージをインストールする
+## 4. pythonのパッケージをインストールする
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    pip install numpy pyqt5 wheel
+    pip install numpy pyqt5 wheel pyvista
 
-## 6. HomCloud のインストール
+## 5. HomCloudのインストール
 以下のようにインストールします。
 
     pip install homcloud
 
-## 7. HomCloudの自己チェックプログラムを動かす
+## 6. HomCloudの自己チェックプログラムを動かす
 
-最後に正常にインストールされているかどうかを調べるためにコマンドプロンプトで以下のように実行します。
+最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
+実行します．
 
-    python -m homcloud.self_check --no-dipha
+    python3 -m homcloud.self_check --pyvista
 
-2回、Paraviewのウィンドウが開かれます。
-最初に開かれたときは、"Apply"ボタンを押して何か表示されてからウィンドウを
-閉じてください。
-2回目に開かれたときは，赤と白の点が表示されていることを確認してからウィンドウを
-閉じてください。
+以下のような画像が表示されたウィンドウが開かれます．
+開かれたウィンドウは閉じてください．
 
-最終的にコマンドプロンプトに以下のように表示されていたらOKです。
-`/usr/bin/paraview`
-は異なる表示になっていると思いますが、okが以下のように表示されていれば問題ありません。
+![PyVistaのウィンドウ](/images/screenshot-selfcheck-pyvista.png){: width="600px" }
 
+最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
+
+    HomCloud version: 4.0.0
+    Python version: 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
+    Periodic Alpha Shape 3 with weights ... ok
     Alpha Shape 2 ... ok
     Grayscale 2D bitmap ... ok
     Binary 2D bitmap ... ok
     Binary 2D periodic bitmap ... ok
     Rips filtration ... ok
     Plotting PD ... ok
-    Paraview path: /usr/bin/paraview
-    Paraview fake invoke ... ok
-    Paraview real invoke (VTK voxel) => Click "Apply" button and close opened window ... ok
-    Paraview real invoke (python pointcloud) => Close opened window ... ok
+    Optimal Volume ... ok
+    PyVista 3D drawing (close the pop-up window)... ok
 
 
-## 8. チュートリアルの実行
+以上でインストールは終わりです。
+
+## 7. チュートリアルの実行
 
 せっかくなのでチュートリアルを動かしてみましょう。
 [python-tutorial.zip](/download/python-tutorial.zip)
@@ -145,7 +130,19 @@ paraviewのパスを調べて環境変数を設定してください。
 pointcloudが一番やりやすいでしょう。
 
 
-## 9. (オプショナル) MSMPI と dipha のインストール
+## (Optional) paraview のインストール
+
+paraview はhomcloudでは主にポイントクラウドのデータを表示する場合のビューワーとして使います。
+[https://www.paraview.org/](https://www.paraview.org/)
+から最新版をダウンロードし、インストールをします。そしてインストール先を
+環境変数 `HOMCLOUD_PARAVIEW_PROGRAMNAME` によって設定する必要があります。
+`C:\Program Files\ParaView 5.6.0-Windows-msvc2015-64bit\bin\paraview.exe`のような
+paraviewのパスを調べて環境変数を設定してください。
+
+あまり詳しくない方は[WindowsでのParaviewの環境変数の設定](windows_envvar_paraview.html)を参照してください．
+
+
+## (Optional) MSMPI と dipha のインストール
 
 ここから先はオプショナルな内容なので必ずしもやる必要はありません．
 Rips filtrationを上限を指定して計算したい場合に使います．
