@@ -71,7 +71,7 @@ Pythonのバージョンは3.8，3.9が利用できます(20220315現在，ア�
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
 
-    python3 -m homcloud.self_check --pyvista
+    python -m homcloud.self_check --pyvista
 
 以下のような画像が表示されたウィンドウが開かれます．
 開かれたウィンドウは閉じてください．
