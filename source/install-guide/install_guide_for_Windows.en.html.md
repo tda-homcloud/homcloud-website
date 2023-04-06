@@ -3,136 +3,99 @@ title: Install HomCloud on Windows
 lang: ja
 ---
 
-# Installation on Windows 10 64bit machine
+# Installation on Windows 64bit OS
 
-There are two ways to install on windows. Set it according to your environment.
+There are two ways to install it on Windows. Please choose a preferred manner.
 
  * Install individual packages for Windows (Refer to the following instructions to install)
- * Install in a linux environment such as ubuntu linux of WSL(Windows Subsystem of linux)(install acording to [the installation guide for ubuntu](install_guide_for_Ubuntu.html)). If you are using WSL other than ubuntu linux, please replace each required package for each OS and try installation. Xwindow operating environment is required to use GUI tools.
+ * Install in a virtual Linux environment such as ubuntu Linux of WSL(Windows Subsystem of Linux)(install according to [the installation guide for ubuntu](install_guide_for_Ubuntu.html)). If you use WSL other than Ubuntu Linux, please replace each required package for each OS and try the installation. Xwindow operating environment is required to use GUI tools.
+
+
+## 0. Paths with whitespaces
+
+Some Python tools have trouble with paths that have whitespaces. 
+Before installing HomCloud, please check your username and other paths for spaces.
 
 ## 1. Python installation
 
-Download the 64-bit python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
-For the Python version, please install the latest version of Python **3.7** (3.7.5 as of November 1, 2019)．
+Download the **64-bit** python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
+HomCloud supports Python **3.8**，**3.9**, and **3.10** (April 10, 2023).
+This installation guide uses Python 3.10.
 
-Please choose the place where Japanese (two-byte characters) does not enter in the place (path) installing Python．
+## 2. Create a new virtual environment by `venv`
 
-## 2. Installation of paraview
+On this page, we install HomCloud using `venv`, which can create lightweight virtual environments.
+You can easily use different versions of HomCloud using `venv`.
 
-paraview is mainly used in homcloud as a viewer when displaying point cloud data.
-Download the latest version from [https://www.paraview.org/](https://www.paraview.org/)
-and install it. And where to install it must be set by the environment variable `HOMCLOUD_PARAVIEW_PROGRAMNAME`．
-Check the paraview path like 
-`C:\Program Files\ParaView5.6.0-Windows-msvc2015-64bit\bin\paraview.exe`
-and set the environment variables.
-Plaease use a search engine to find out how to set environment variables.
-How to find the path of paraview is
-
-* Open explorer
-* Go to PC→Local Disk→Program Files and enter paraview.exe in the search field in the upper rigth.
-* Right-click the file you found and "Open File Location"
-
-## 3. Environment construction by venv
-
-Here, the environment is set using the environment separation mechanism called venv.
-First, create a folder for environment construction.
-Create a folder called homcloud under the document folder.
-Next, set up venv. 
-Since venv has been added as a python module, I will use this to create a venv environment.
-Start the command prompt and type the following command to create the venv37 folder under the homcloud folder.
-
-    cd Documents\homcloud
-    py -3.7 -m venv venv37
-
-## 4. Move into the environment of venv
 Start the `command prompt`．
 You can find it by searching for `Windows administration tools`→`command prompt`．
-You can move into the environment by typing
+First, you should make a working directory. In this example, let's name the directory `homcloud`:
 
-    venv37\Scripts\activate
+    mkdir homcloud
+    cd homcloud
 
-in the opened  window．Note that this operation needs to be done each time  you start the command prompt.
+You can create a new virtual environment in the working directory:
 
-It is a good idea to create a shortcut etc. to start the command prompt quickly.
-Please check the website etc. for basic commands that can be entered.
+    py -3.10 -m venv venv310
 
-The following are the basic commands we often use.
+Then, a directory whose name is `venv310` is created. The files in the virtual environment are stored in this directory.
+Note that if the folder name contains non-alphanumeric characters, it will not work. Note that the parent folder must not also be included.
 
-    cd c:\dev\work # Move current folder
-    dir # List files in folder
 
-## 5. Installation of python package
-Install the required packages using the command prompt launched above.
-Type as follows. You can also copy and paste．
+## 3. Enter the venv's virtual environment
 
-    pip install numpy scipy
+Type as follows to enter the virtual environment:
 
-## 6. HomCloud Installation
-Install as follows.
+    venv310\Scripts\activate
 
+*This operation is required every time the command prompt is launched.*
+
+## 4. Installation of Python packages and HomCloud
+
+Install the required package as follows in the virtual environment.
+
+    pip install numpy pyqt5 wheel pyvista
     pip install homcloud
 
-## 7. Run HomCloud's self-checking program
+## 5. Run HomCloud's self-checking program
 
-Finally run the following in a command prompt to find out if it was successfully installed.
+Finally, run the following in a command prompt to find out if it was successfully installed.
 
-    python -m homcloud.self_check --no-dipha
+    python -m homcloud.self_check --pyvista
 
-The Paraview window will open twice.
-When first opened, press the "Apply" button to display something and then close the window.
-When it is opened the second time, make sure that the red and white dots are displayed, then close the window.
+After starting, a window with the following image will be opened. Please close the window.
 
-Finally, it is OK if the following is displayed in the command prompt.
-I think that `/usr/bin/paraview` is displayed differently, but if ok is displayed as follows, there is no problem.
+![PyVista's window](/images/screenshot-selfcheck-pyvista.png){: width="600px" }
 
+The installation succeeds if the following message is shown in the terminal.
+
+    HomCloud version: 4.0.0
+    Python version: 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
+    Periodic Alpha Shape 3 with weights ... ok
     Alpha Shape 2 ... ok
     Grayscale 2D bitmap ... ok
     Binary 2D bitmap ... ok
     Binary 2D periodic bitmap ... ok
     Rips filtration ... ok
     Plotting PD ... ok
-    Paraview path: /usr/bin/paraview
-    Paraview fake invoke ... ok
-    Paraview real invoke (VTK voxel) => Click "Apply" button and close opened window ... ok
-    Paraview real invoke (python pointcloud) => Close opened window ... ok
+    Optimal Volume ... ok
+    PyVista 3D drawing (close the pop-up window)... ok
 
+The installation is now complete!
 
-## 8. Running the tutorial
+## 6. Running the tutorial
 
-Since it is a big deal, let's move the tutorial. First, install jupyter as follows:
+Now we try HomCloud tutorials. 
+First, install jupyter as follows:
 
     pip install jupyter
 
-Download the tutorials from [python-tutorial.zip](/download/python-tutorial.zip)
-and extract it to the homcloud folder.
-Next, install the jupyter notebook used in the tutorial.
-You can install it withsd
-    pip install jupyter
-
-After installation, 
+Next, download the tutorial from [python-tutorial.zip](/download/python-tutorial.zip) and extract it to the homcloud folder.
+After that, type the following in `homcloud` folder:
 
     jupyter notebook
 
-in homcloud folder.
-Then, the browser will pop up and the jupyter notebook will start.
+Then, the browser will pop up, and the jupyter notebook will start.
 Start the tutorial here from the tutorials folder. There are some tutorials, but pointcloud is the easiest to do.
-
-## 9. (Optional) Installation of MSMPI and dipha
-
-The following instruction is optional. 
-
-MSMPI is used by dipha to parallelize the computation of homology. 
-
-Download
-
-* msmpisetup.exe
-* msmpisdk.msi
-
-from [Microsoft MPI page](https://docs.microsoft.com/en-us/message-passing-interface/microsoft-mpi) and click to install.
-
-Place DLL files etc. in the `Scripts` folder under the venv37 folder.
-Extract the zip file of [winbinaries-20191101.zip](/download/win/winbinaries-20191101.zip)
-and put the dll file and exe file in it under the  `Scripts` folder.
-
