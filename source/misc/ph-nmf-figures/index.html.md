@@ -4,6 +4,7 @@ lang: en
 ---
 
 This page shows 3D figures for the paper "Persistent homology analysis with nonnegative matrixfactorization for 3D voxel data of iron ore sinters".
+You can zoom, pan, and rotate the figures on your browser.
 
 * [Fig 3(a)](fig3a.html)
 * [Fig 3(b)](fig3b.html)

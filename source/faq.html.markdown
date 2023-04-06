@@ -126,3 +126,31 @@ HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootで
 ### A. PyQtの特定のバージョンの問題なので，問題ないバージョンを指定します
 
 `pip install pyqt5`の代わりに`pip3 install pyqt5==5.14`としてください．
+
+## Q. 3次元可視化が遅い
+
+もっと高速に動かしたい．特に3次元ボクセルデータの描画がするまでが遅い．
+
+### A. PyVista インターフェースで別ウィンドウで動かすのが一番高速
+
+次のように `pyvista.Plotter` に `notebook=False` を渡すと，Jupyter notebook の inline *ではなく*別のウィンドウで描画されます．
+これが現状では一番高速のようです．
+
+    import pyvsta as pv
+    
+    pl = pv.Plotter(notebook=False)
+    pl.add_mesh(...)
+    pl.show()
+    
+## Q. ポイントクラウドデータ解析で，異なる半径を持つ粒子を解析したい．
+
+### A. `homcloud.interface.PDList.from_alpha_filtration` の `weight` パラメータに半径の二乗を渡す
+
+`homcloud.interface.PDList.from_alpha_filtration`のweightパラメータを使うと各粒子の初期半径を指定できます．
+初期半径の二乗を渡してください．詳しくは[リファレンスマニュアルの`from_alpha_filtration`の項](https://homcloud.dev/python-api/interface.html#homcloud.interface.PDList.from_alpha_filtration)を参考にしてください．
+
+## Q. HomCloud は商用利用可能か？
+
+### A. HomCloudはGPL3ライセンスの下で配布されている
+HomCloud は [GPL 3](https://www.gnu.org/licenses/gpl-3.0.ja.html) で配布されており，それを使うことは常に自由です．HomCloudを組み込んだソフトウェアを配布する場合には，GPL3に従わなければなりません．詳しくはライセンスを読んでください．またあなたの所属する組織の法務部に相談してください．
+>>>>>>> refs/remotes/origin/master
