@@ -153,4 +153,3 @@ HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootで
 
 ### A. HomCloudはGPL3ライセンスの下で配布されている
 HomCloud は [GPL 3](https://www.gnu.org/licenses/gpl-3.0.ja.html) で配布されており，それを使うことは常に自由です．HomCloudを組み込んだソフトウェアを配布する場合には，GPL3に従わなければなりません．詳しくはライセンスを読んでください．またあなたの所属する組織の法務部に相談してください．
->>>>>>> refs/remotes/origin/master
