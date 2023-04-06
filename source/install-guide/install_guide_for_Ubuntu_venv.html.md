@@ -1,5 +1,5 @@
 ---
-title: Install HomCloud on Ubuntu or Debian
+title: Install HomCloud under venv envrinment on Ubuntu or Debian 
 lang: ja
 ---
 
@@ -38,17 +38,17 @@ apt-getで各パッケージの追加は以下のように行います。
 
     source ./venv/bin/activate
     
-## 3. pipを使ってCython，numpy，wheel，plotlyを追加します。
+## 3. pipを使ってCython，numpy，wheel，pyvistaを追加します。
 
 以下のようにタイプしてインストールします．
 
-    pip install Cython numpy wheel plotly
+    pip install Cython numpy wheel pyvista
     
 GUIを使いたい場合は PyQt5 もインストールする必要があります．
 
     pip install pyqt5
 
-## 4. 最新版のhomcloudをインストールします。
+## 4. 最新版のHomCloudをインストールします。
 
 以下を実行します。
 

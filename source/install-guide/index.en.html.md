@@ -7,22 +7,20 @@ lang: en
 
 |OS|Description|OS version|
 |:----:|:----:|:----:|
-|OS X|[install with homebrew](install_guide_for_Mac.en.html)||
-|Ubuntu/Debian|[install with apt-get and pip](install_guide_for_Ubuntu.en.html)|16.04 lts/buster or later|
-|Windows|[install each package directly or install on WSL](install_guide_for_Windows.en.html)|Confirmed operation on WIndows10|
+|Ubuntu/Debian|[Install HomCloud with apt-get and pip](install_guide_for_Ubuntu.en.html)||
+|Ubuntu/Debian|[Install HomCloud into venv's virtual environment](install_guide_for_Ubuntu_venv.en.html)||
+|Windows|[Install on Windows](install_guide_for_Windows.en.html)|Confirmed operation on Windows10|
+|OS X (Intel Mac)|[Install with homebrew](install_guide_for_Mac.en.html)||
+|OS X (Apple Silicon Mac)|[Install with miniforge](install_guide_for_M1Mac.en.html)||
 
-# Upgrade
+# Upgrading HomCloud
 
-You can manage HomCloud in your computer by `pip` command. 
-HomCloud developers recommend that install newer HomCloud after uninstalling
-old version.
+You can upgrade HomCloud as follows if you have installed HomCloud using the pip command.
 
-For uninstallation:
+    pip install -U homcloud
+    
+If you have installed HomCloud using conda, the following command will update HomCloud:
 
-    pip3 uninstall homcloud
+    conda update -c https://homcloud.dev/conda-channel/ homcloud
 
-For installation of newer version:
-
-	pip3 install homcloud-x.y.z.tar.gz
-
-
+However, it is recommended to create a new conda virtual environment for the new HomCloud:
