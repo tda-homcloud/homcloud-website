@@ -42,7 +42,7 @@ Type as follows to enter the virtual environment:
 
 Type as follows to install Cython, NumPy, wheel, and PyVista:
 
-    pip install Cython numpy wheel pyvista
+    pip install Cython numpy wheel "pyvista[all,trame]"
 
 If you want to use HomCloud's GUI plotter, you need to install PyQt5:
 

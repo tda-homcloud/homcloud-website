@@ -15,7 +15,7 @@ Type the following to install Debian packages:
 
 Type as follows to install imageio, Cython, Ripser, and PyVista:
 
-    pip3 install --user wheel Cython pyvista
+    pip3 install --user wheel Cython "pyvista[all,trame]"
     pip3 install --user ripser
 
 ## 3. Install latest HomCloud

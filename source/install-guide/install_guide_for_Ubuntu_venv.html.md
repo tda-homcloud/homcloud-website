@@ -42,7 +42,7 @@ apt-getで各パッケージの追加は以下のように行います。
 
 以下のようにタイプしてインストールします．
 
-    pip install Cython numpy wheel pyvista
+    pip install Cython numpy wheel "pyvista[all,trame]"
     
 GUIを使いたい場合は PyQt5 もインストールする必要があります．
 

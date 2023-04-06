@@ -54,7 +54,7 @@ HomCloud用の環境を作ります．homcloudという名前にします．タ�
 ターミナルで以下のようにします．
 
     conda activate homcloud
-    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ homcloud
+    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ pyvista panel trame homcloud
 
 以上でインストールは完了です．
 

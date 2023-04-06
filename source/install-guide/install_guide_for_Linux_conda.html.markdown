@@ -24,7 +24,7 @@ miniconda3 64bit版 4.7.12 で動作確認しています．Linux 64bit版であ
 `homcloud`という名前の環境を作ってそこで動かすことにしましょう．
 ターミナル上で以下のように入力してください．
 
-    conda create -n homcloud python=3.9
+    conda create -c conda-forge -n homcloud python=3.9
     conda activate homcloud
 
 ## 3. HomCloudのインストール
@@ -32,7 +32,7 @@ miniconda3 64bit版 4.7.12 で動作確認しています．Linux 64bit版であ
 [conda-forge](https://conda-forge.org/) を組み合わせてインストールします．
 以下のようにしてインストールします．
 
-    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ ripser msgpack-python pulp imageio pyvista forwardable homcloud
+    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ pyvista trame homcloud
 
 
 ## 4. HomCloudの自己チェックプログラムを動かす

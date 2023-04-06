@@ -15,7 +15,7 @@ lang: ja
 
 以下のようにタイプしてインストールします．
 
-    pip install --user wheel Cython pyvista
+    pip install --user wheel Cython "pyvista[all,trame]"
     pip install --user ripser
 
 ## 3. 最新版のhomcloudをインストールします。

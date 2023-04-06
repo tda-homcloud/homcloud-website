@@ -71,7 +71,7 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    pip install numpy pyqt5 wheel pyvista
+    pip install numpy pyqt5 wheel "pyvista[all,trame]"
 
 ## 5. HomCloudのインストール
 以下のようにインストールします。

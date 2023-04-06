@@ -55,7 +55,7 @@ conda-forgeは公開的なコミュニティ主体で運営されているAnacon
 作ってそこで動かすことにしましょう．
 ターミナル上で以下のように入力してください．
 
-    conda create -n homcloud python=3.8
+    conda create -n homcloud python=3.9
     conda activate homcloud
 
 Pythonのバージョンは3.8，3.9が利用できます(20220315現在，アップグレードでバージョンは変更されます)．
@@ -64,7 +64,7 @@ Pythonのバージョンは3.8，3.9が利用できます(20220315現在，ア�
 必要なパッケージを上で起動したコマンドプロンプトよりインストールします。
 以下のように打ち込みます．コピー&ペーストでもOKです。
 
-    conda install -c https://homcloud.dev/conda-channel/ homcloud
+    conda install -c https://homcloud.dev/conda-channel/ pyvista trame homcloud
 
 ## 6. HomCloudの自己チェックプログラムを動かす
 

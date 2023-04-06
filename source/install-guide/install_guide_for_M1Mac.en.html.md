@@ -52,7 +52,7 @@ Create a virtual environment for HomCloud, and name it `homcloud`. In a terminal
 In a terminal, type the following.
 
     conda activate homcloud
-    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ homcloud
+    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ pyvista panel trame homcloud
 
 The above commands complete the installation.
 
