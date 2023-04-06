@@ -65,7 +65,7 @@ GUIを使いたい場合は PyQt5 もインストールする必要がありま�
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
 
-    python3 -m homcloud.self_check --pyvista
+    python -m homcloud.self_check --pyvista
 
 以下のような画像が表示されたウィンドウが開かれます．
 開かれたウィンドウは閉じてください．

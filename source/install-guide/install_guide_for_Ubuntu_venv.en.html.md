@@ -64,7 +64,7 @@ If you want to install an older version, such as 3.6.0, type the following inste
 
 Finally, to check whether the installation process was successful, run the self-check program as follows in the terminal:
 
-    python3 -m homcloud.self_check --pyvista
+    python -m homcloud.self_check --pyvista
 
 After starting, a window with the following image will be opened. Please close the window.
 
