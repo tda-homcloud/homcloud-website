@@ -149,6 +149,14 @@ HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootで
 `homcloud.interface.PDList.from_alpha_filtration`のweightパラメータを使うと各粒子の初期半径を指定できます．
 初期半径の二乗を渡してください．詳しくは[リファレンスマニュアルの`from_alpha_filtration`の項](https://homcloud.dev/python-api/interface.html#homcloud.interface.PDList.from_alpha_filtration)を参考にしてください．
 
+## Q. 3次元のグレイスケール画像は解析できる？
+
+チュートリアルには3次元白黒画像と2次元グレイスケール画像の例しかないのですが，3次元のグレイスケール画像は解析できますか？
+
+### A. できます
+
+チュートリアルは準備されていませんが可能です．解析法については2次元グレイスケール画像のチュートリアルを，可視化については3次元白黒画像のチュートリアルを，それぞれ参考にしてください．
+
 ## Q. HomCloud は商用利用可能か？
 
 ### A. HomCloudはGPL3ライセンスの下で配布されている

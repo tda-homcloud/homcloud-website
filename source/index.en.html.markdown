@@ -7,8 +7,8 @@ lang: "en"
 
 HomCloud is a data analysis software based on persistent homology.
 The software is developed 
-mainly by [Ippei Obayashi](https://i-obayashi.info/)
-in [Hiraoka Laboratory](https://aip.riken.jp/labs/generic_tech/topology_data_anl/?lang=en).
+mainly by [Ippei Obayashi](https://i-obayashi.info/).
+
 
 HomCloud is free software and you can use it freely.
 
@@ -48,4 +48,4 @@ see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 * Tian Tunhua (Tutorial, new features, debug)
 * Some parts are outsourced to [Trans NT, Inc.](http://www.trans-nt.com/)
 * Jun Miyanaga (documentation)
-* Yasuaki Hiraoka
+* Yasuaki Hiraoka and his laboratory members

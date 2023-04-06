@@ -7,8 +7,7 @@ lang: "ja"
 
 HomCloud はパーシステントホモロジー(persistent homology)にもとづいた
 データ解析ソフトウェアです。
-[大林](https://i-obayashi.info/)を中心に
-[平岡研](https://aip.riken.jp/labs/generic_tech/topology_data_anl/?lang=ja)で開発されています。
+[大林](https://i-obayashi.info/)を中心に開発されています．
 
 ## <a name="download"> 最新版ダウンロード
 
@@ -61,4 +60,4 @@ HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布�
 * 田暾華 (チュートリアルの整備やデバッグ，機能追加など)
 * 一部[株式会社TNT](http://www.trans-nt.com/)に外注で頼んでいます
 * 宮永 潤 (日本語ドキュメント整備)
-* 平岡 裕章
+* 平岡研究室の皆様
