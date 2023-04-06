@@ -18,8 +18,8 @@ Before installing HomCloud, please check your username and other paths for space
 
 ## 1. Python installation
 
-Download the **64-bit** python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
-HomCloud supports Python **3.8**，**3.9**, and **3.10** (April 10, 2023).
+Download the *64-bit* python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
+HomCloud supports Python *3.8*，*3.9*, and *3.10* (April 10, 2023).
 This installation guide uses Python 3.10.
 
 ## 2. Create a new virtual environment by `venv`
