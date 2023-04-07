@@ -45,38 +45,41 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 
     brew install cgal python3 cmake open-mpi qt
 
-## 3. 続いてpip3で以下のパッケージをインストールします。
+## 3. venv
+
+    mkdir homcloud
+    python3 -m venv venv
+
+## 4. venv activate
+
+    cd ~/homcloud
+    source ./venv/bin/activate
+
+## 5. 続いてpip3で以下のパッケージをインストールします。
 
 手順2で Python がインストールされると pythonのパッケージ管理システム
 である、`pip` が使えるようになります。必要な以下の Python パッケージは
 `pip` を使ってインストールします。
 
 * numpy
-* scipy
-* matplotlib
-* PyQt5
-* scikit-leran
-* msgpack-python
-* Pillow
-* PuLP
-* forwardable
 * Cython
-* ripser
+* wheel
 * jupyter
+* pyvista
 
 ターミナルで以下のコマンドを入力すればインストールできます。
 
-    pip3 install numpy scipy matplotlib PyQt5 scikit-learn msgpack-python Pillow forwardable Cython jupyter pyvista
-    pip3 install ripser
+    pip install numpy wheel jupyter Cython "pyvista[all,trame]"
 
-## 4. 最新版のhomcloud をインストールします。
+## 6. 最新版のhomcloud をインストールします。
 
     pip3 install homcloud
 
 以上で、MacOS への homcloud のインストールは完了です。
 
+### 最新版でないHomCloudを使いたい場合
 
-## 5. HomCloudの自己チェックプログラムを動かす
+## 7. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
@@ -91,7 +94,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
 
     HomCloud version: 4.0.0
-    Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+    Python version: 3.11.2 (main, Mar 24 2023, 00:30:50) [Clang 13.0.0 (clang-1300.0.29.30)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
@@ -104,37 +107,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
     Optimal Volume ... ok
     PyVista 3D drawing (close the pop-up window)... ok
 
-
 以上でインストールは終わりです。
-
-
-## (Optional) Paraview のインストールと設定
-
-以下はParaviewを使う必要のある人だけ設定してください．
-
-
-[Paraview](https://www.paraview.org/)をインストールします．
-<https://www.paraview.org/download/>から適当なパッケージを探してインストールしてください．
-
-Paraview は例えば /Applications/ParaView-5.4.0.app といった名前でインストールされます。
-これを HomCloud に教えてやる必要があります。
-環境変数 `HOMCLOUD_PARAVIEW_PROGRAMNAME` を設定します。
-
-まずはターミナル上で `echo $SHELL` とすることで使っているシェルを確認します．
-
-### bash の場合 (`/bin/bash`と表示された)
-以下のような行を `~/.bash_profile` に追加します。
-
-    export HOMCLOUD_PARAVIEW_PROGRAMNAME=/Applications/ParaView-5.4.0.app
-
-設定を反映させるためにシェルを再起動します．(`exec $SHELL -l`)
-
-### zsh の場合 (`/bin/zsh` と表示された)
-以下のような行を `~/.zshenv` に追加します。
-
-    export HOMCLOUD_PARAVIEW_PROGRAMNAME=/Applications/ParaView-5.4.0.app
-
-設定を反映させるためにシェルを再起動します．(`exec $SHELL -l`)
 
 ## (Optional) [dipha](http://github.com/dipha) をダウンロードしてインストールします
 
