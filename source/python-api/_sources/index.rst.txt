@@ -13,8 +13,10 @@ Contents:
 
    outline
    interface
-   paraview_interface
+   pyvistahelper
    plotly_3d
+   paraview_interface
+
 
 Indices and tables
 ==================

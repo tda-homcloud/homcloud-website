@@ -1,5 +1,5 @@
-HomCloud Python API Outline
-===========================
+API Outline
+===========
 
 In HomCloud, Python API is integrated into one module, :doc:`interface`.
 If you want to use the API from python, first you sholud import the module
@@ -81,8 +81,7 @@ Other classes
 
 In HomCloud's python API, there are many other classes and methods.
 
-If you want to construct a vector by persitence image method
-([#PersistenceImage]_, [#LinearMLwithPI]_),
+If you want to construct a vector by persitence image method [#PersistenceImage]_  [#LinearMLwithPI]_,
 to apply machine learning,
 please use :class:`homcloud.interface.PIVectorizeSpec`.
 

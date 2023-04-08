@@ -1,44 +1,318 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>homcloud.interface.bitmap_phtrees &#8212; homcloud  documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    
-    <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../interface.html" accesskey="U">homcloud.interface</a> &#187;</li> 
-      </ul>
-    </div>  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/bitmap_phtrees';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">homcloud  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../outline.html">
+                        API Outline
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../interface.html">
+                        homcloud.interface module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../vis3d.html">
+                        3D visualization helper modules
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../outline.html">
+                        API Outline
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../interface.html">
+                        homcloud.interface module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../vis3d.html">
+                        3D visualization helper modules
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">homcloud.interface.bitmap_phtrees</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <h1>Source code for homcloud.interface.bitmap_phtrees</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -50,7 +324,7 @@
 
 
 <div class="viewcode-block" id="BitmapPHTrees"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees">[docs]</a><span class="k">class</span> <span class="nc">BitmapPHTrees</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents PH trees computed from a bitmap filtration.</span>
 
 <span class="sd">    You can create an instance of this class by :meth:`PDList.bitmap_phtrees`.</span>
@@ -60,11 +334,12 @@
 <span class="sd">        nodes (list of :class:`BitmapPHTrees.Node`): All nodes</span>
 <span class="sd">        essential_nodes (list of :class:`BitmapPHTrees.Node`): All essential nodes</span>
 <span class="sd">        nonessential_nodes (list of :class:`BitmapPHTrees.Node`): All nonessential nodes</span>
+<span class="sd">        roots (list of :class:`BitmapPHTrees.Node`): All root nodes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="BitmapPHTrees.for_bitmap_levelset"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.for_bitmap_levelset">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">for_bitmap_levelset</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;sublevel&quot;</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Computes a PH trees from 0-th and (n-1)-st persistent homology</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes a PH trees from 0-th and (n-1)-st persistent homology</span>
 <span class="sd">        from levelset filtration of the bitmap.</span>
 
 <span class="sd">        Args:</span>
@@ -77,6 +352,7 @@
 <span class="sd">            :class:`PDList`: The 0th and (n-1)st PDs with PH-trees.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">.pd</span> <span class="kn">import</span> <span class="n">PDList</span>
+
         <span class="n">is_superlevel</span> <span class="o">=</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;superlevel&quot;</span>
         <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="n">pict_tree</span><span class="o">.</span><span class="n">construct_mergetrees</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">is_superlevel</span><span class="p">)</span>
 
@@ -89,13 +365,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">treedict</span> <span class="o">=</span> <span class="n">treedict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_superlevel</span> <span class="o">=</span> <span class="n">is_superlevel</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_trivial_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_trivial_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">essential_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">essential</span><span class="p">()]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nonessential_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">essential</span><span class="p">()]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_spatial_searcher</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roots</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">isroot</span><span class="p">()]</span>
 
     <span class="k">def</span> <span class="nf">node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">][</span><span class="nb">id</span><span class="p">])</span>
@@ -110,14 +384,14 @@
         <span class="k">return</span> <span class="n">SpatialSearcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nonessential_nodes</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BitmapPHTrees.degree"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.degree">[docs]</a>    <span class="k">def</span> <span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The degree of the persistent homology.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;degree&quot;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="BitmapPHTrees.nearest_pair_node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.nearest_pair_node">[docs]</a>    <span class="k">def</span> <span class="nf">nearest_pair_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Searches a tree node corresponding the birth-death pair</span>
 <span class="sd">        nearest to (x, y).</span>
 
@@ -130,7 +404,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">nearest_pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BitmapPHTrees.pair_nodes_in_rectangle"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.pair_nodes_in_rectangle">[docs]</a>    <span class="k">def</span> <span class="nf">pair_nodes_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Searches tree nodes corresponding the birth-death pairs</span>
 <span class="sd">        which the given rectangle contains.</span>
 
@@ -149,132 +423,15 @@
     <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_superlevel</span> <span class="k">else</span> <span class="mi">1</span>
 
-<div class="viewcode-block" id="BitmapPHTrees.Node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node">[docs]</a>    <span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This class represents a tree node of PH trees for a bitmap filtration.</span>
+<div class="viewcode-block" id="BitmapPHTrees.Volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Volume">[docs]</a>    <span class="k">class</span> <span class="nc">Volume</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This class is the superclass of :class:`Node` and :class:`StableVolume`.</span>
 
-<span class="sd">        You can draw the optimal volume corresponding to the node</span>
-<span class="sd">        on an image by :meth:`draw_volumes_on_2d_image`.</span>
+<span class="sd">        This class defines common methods for these two classes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mt</span><span class="p">,</span> <span class="n">dic</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mt</span> <span class="o">=</span> <span class="n">mt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="n">dic</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.birth_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.birth_time">[docs]</a>        <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                float: The birth time.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;birth-time&quot;</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.death_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.death_time">[docs]</a>        <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                float: The death time. May be infinity.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">essential</span><span class="p">():</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-time&quot;</span><span class="p">]</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.lifetime"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.lifetime">[docs]</a>        <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                float: The lifetime of the pair.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
-
-        <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.birth_position"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.birth_position">[docs]</a>        <span class="k">def</span> <span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Returns the birth pixel.</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">               list of int: The coordinate of the birth pixel.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;birth-pixel&quot;</span><span class="p">]</span></div>
-
-        <span class="n">birth_pixel</span> <span class="o">=</span> <span class="n">birth_position</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.death_position"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.death_position">[docs]</a>        <span class="k">def</span> <span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Returns the death pixel.</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">               list of int: The coordinate of the death pixel.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-pixel&quot;</span><span class="p">]</span></div>
-
-        <span class="n">death_pixel</span> <span class="o">=</span> <span class="n">death_position</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.volume">[docs]</a>        <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the optimal volume.</span>
-
-<span class="sd">            In fact, for degree 0 node, this method returns</span>
-<span class="sd">            optimal 0-cohomological volume (this means</span>
-<span class="sd">            maximal connected conponents in the filtration)</span>
-<span class="sd">            and for degree (n-1),</span>
-<span class="sd">            this method returns optimal (n-1)-homological volume.</span>
-<span class="sd">            This fact is quite mathematical problem, so if you feel that</span>
-<span class="sd">            it is too difficult to understand, you can ignore the fact.</span>
-<span class="sd">            You can understand the volume information without the understanding</span>
-<span class="sd">            of such mathematical background.</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                list of list of int: The coordinates of all pixels</span>
-<span class="sd">                in the optimal volume.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;volume&quot;</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.stable_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.stable_volume">[docs]</a>        <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the stable volume of the optimal volume.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                epsilon (float): Duration noise strength</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                :class:`BitmapPHTrees.StableVolume`: The stable volume</span>
-
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">StableVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.essential"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.essential">[docs]</a>        <span class="k">def</span> <span class="nf">essential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                bool: True if the death time is infinity.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.parent"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.parent">[docs]</a>        <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                BitmapPHTrees.Node: The parent node of the node in the PH tree.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">parent_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;parent&quot;</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span>
-                                      <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">][</span><span class="n">parent_id</span><span class="p">])</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.children"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.children">[docs]</a>        <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns:</span>
-<span class="sd">                list of :class:`BitmapPHTrees.Node`: All children nodes.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">child_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">child_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">is_trivial_id</span><span class="p">(</span><span class="n">child_id</span><span class="p">)</span>
-            <span class="p">]</span></div>
-
-        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">mt</span><span class="p">)</span> <span class="ow">and</span>
-                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]))</span>
-
-        <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">return</span> <span class="s2">&quot;BitmapPHTrees.Node(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.Node.to_paraview_node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.to_paraview_node">[docs]</a>        <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="BitmapPHTrees.Volume.to_paraview_node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Volume.to_paraview_node">[docs]</a>        <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Construct a :class:`homcloud.paraview_interface.PipelineNode` object</span>
 <span class="sd">            to visulize :meth:`volume`.</span>
 
@@ -294,8 +451,8 @@
 
         <span class="n">to_pvnode</span> <span class="o">=</span> <span class="n">to_paraview_node</span>
 
-<div class="viewcode-block" id="BitmapPHTrees.Node.to_plotly3d_trace"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.to_plotly3d_trace">[docs]</a>        <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="BitmapPHTrees.Volume.to_plotly3d_trace"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Volume.to_plotly3d_trace">[docs]</a>        <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Constructs a plotly&#39;s trace object to visualize the volume</span>
 
 <span class="sd">            Args:</span>
@@ -307,10 +464,147 @@
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">Voxels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">(),</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-        <span class="n">to_plotly3d</span> <span class="o">=</span> <span class="n">to_plotly3d_trace</span></div>
+        <span class="n">to_plotly3d</span> <span class="o">=</span> <span class="n">to_plotly3d_trace</span>
 
-<div class="viewcode-block" id="BitmapPHTrees.StableVolume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.StableVolume">[docs]</a>    <span class="k">class</span> <span class="nc">StableVolume</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="BitmapPHTrees.Volume.to_pyvista_mesh"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Volume.to_pyvista_mesh">[docs]</a>        <span class="k">def</span> <span class="nf">to_pyvista_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructs a PyVista&#39;s mesh object to visualize an optimal/stable volume</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                pyvista.PolyData: PyVista&#39;s mesh object</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="kn">import</span> <span class="nn">homcloud.pyvistahelper</span> <span class="k">as</span> <span class="nn">pvhelper</span>
+
+            <span class="k">return</span> <span class="n">pvhelper</span><span class="o">.</span><span class="n">SparseVoxels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">())</span></div></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node">[docs]</a>    <span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This class represents a tree node of PH trees for a bitmap filtration.</span>
+
+<span class="sd">        You can draw the optimal volume corresponding to the node</span>
+<span class="sd">        on an image by :meth:`draw_volumes_on_2d_image`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mt</span><span class="p">,</span> <span class="n">dic</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mt</span> <span class="o">=</span> <span class="n">mt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="n">dic</span>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.birth_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.birth_time">[docs]</a>        <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                float: The birth time.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;birth-time&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.death_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.death_time">[docs]</a>        <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                float: The death time. May be infinity.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">essential</span><span class="p">():</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-time&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.lifetime"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.lifetime">[docs]</a>        <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                float: The lifetime of the pair.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
+
+        <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.birth_position"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.birth_position">[docs]</a>        <span class="k">def</span> <span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Returns the birth pixel.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">               list of int: The coordinate of the birth pixel.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;birth-pixel&quot;</span><span class="p">]</span></div>
+
+        <span class="n">birth_pixel</span> <span class="o">=</span> <span class="n">birth_position</span>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.death_position"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.death_position">[docs]</a>        <span class="k">def</span> <span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Returns the death pixel.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">               list of int: The coordinate of the death pixel.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-pixel&quot;</span><span class="p">]</span></div>
+
+        <span class="n">death_pixel</span> <span class="o">=</span> <span class="n">death_position</span>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.volume">[docs]</a>        <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the optimal volume.</span>
+
+<span class="sd">            In fact, for degree 0 node, this method returns</span>
+<span class="sd">            optimal 0-cohomological volume (this means</span>
+<span class="sd">            maximal connected conponents in the filtration)</span>
+<span class="sd">            and for degree (n-1),</span>
+<span class="sd">            this method returns optimal (n-1)-homological volume.</span>
+<span class="sd">            This fact is quite mathematical problem, so if you feel that</span>
+<span class="sd">            it is too difficult to understand, you can ignore the fact.</span>
+<span class="sd">            You can understand the volume information without the understanding</span>
+<span class="sd">            of such mathematical background.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                list of list of int: The coordinates of all pixels</span>
+<span class="sd">                in the optimal volume.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;volume&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.stable_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.stable_volume">[docs]</a>        <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the stable volume of the optimal volume.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                epsilon (float): Duration noise strength</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`BitmapPHTrees.StableVolume`: The stable volume</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">StableVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.essential"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.essential">[docs]</a>        <span class="k">def</span> <span class="nf">essential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                bool: True if the death time is infinity.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;death-time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.parent"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.parent">[docs]</a>        <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                BitmapPHTrees.Node: The parent node of the node in the PH tree.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">parent_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;parent&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">treedict</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">][</span><span class="n">parent_id</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.isroot"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.isroot">[docs]</a>        <span class="k">def</span> <span class="nf">isroot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">               bool: True if the node is a root node.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;parent&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.Node.children"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.Node.children">[docs]</a>        <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                list of :class:`BitmapPHTrees.Node`: All children nodes.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">child_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">child_id</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="o">.</span><span class="n">is_trivial_id</span><span class="p">(</span><span class="n">child_id</span><span class="p">)]</span></div>
+
+        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">mt</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+
+        <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;BitmapPHTrees.Node(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="BitmapPHTrees.StableVolume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.StableVolume">[docs]</a>    <span class="k">class</span> <span class="nc">StableVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This class represents a stable volume in :class:`BitmapPHTrees`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -336,53 +630,17 @@
                 <span class="k">return</span> <span class="n">child_dic</span><span class="p">[</span><span class="s2">&quot;birth-time&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">epsilon</span>
 
 <div class="viewcode-block" id="BitmapPHTrees.StableVolume.volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.StableVolume.volume">[docs]</a>        <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Returns the pixels of the stable volume.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                set of tuple(int,...): The coordinates of all pixels.</span>
+<span class="sd">                list[tuple[int,...]]: The coordinates of all pixels.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_volume</span></div>
-
-<div class="viewcode-block" id="BitmapPHTrees.StableVolume.to_paraview_node"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.StableVolume.to_paraview_node">[docs]</a>        <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Construct a :class:`homcloud.paraview_interface.PipelineNode` object</span>
-<span class="sd">            to visulize :meth:`volume`.</span>
-
-<span class="sd">            You can show the volume by</span>
-<span class="sd">            :meth:`homcloud.paraview_interface.show`. You can also</span>
-<span class="sd">            adjust the visual by the methods of</span>
-<span class="sd">            :class:`homcloud.paraview_interface.PipelineNode`.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                gui_name (string or None): The name shown in Pipeline Browser</span>
-<span class="sd">                    in paraview&#39;s GUI.</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                homcloud.paraview_interface.PipelineNode: A PipelineNode object.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="o">.</span><span class="n">to_paraview_node_from_nodes</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">gui_name</span><span class="p">)</span></div>
-
-        <span class="n">to_pvnode</span> <span class="o">=</span> <span class="n">to_paraview_node</span>
-
-<div class="viewcode-block" id="BitmapPHTrees.StableVolume.to_plotly3d_trace"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.StableVolume.to_plotly3d_trace">[docs]</a>        <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Constructs a plotly&#39;s trace object to visualize the stable volume</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                color (string or None): The name of the color</span>
-<span class="sd">                name (string): The name of the object</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                plotly.graph_objects.Mesh3d: Plotly&#39;s trace object</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="n">p3d</span><span class="o">.</span><span class="n">Voxels</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">()),</span> <span class="n">color</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
-
-        <span class="n">to_plotly3d</span> <span class="o">=</span> <span class="n">to_plotly3d_trace</span></div>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_volume</span><span class="p">)</span></div></div>
 
 <div class="viewcode-block" id="BitmapPHTrees.to_paraview_node_from_nodes"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.BitmapPHTrees.to_paraview_node_from_nodes">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">to_paraview_node_from_nodes</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a :class:`homcloud.paraview_interface.PipelineNode`</span>
 <span class="sd">        object to visulize node volumes of the nodes.</span>
 
@@ -407,44 +665,74 @@
     <span class="n">to_pvnode_from_nodes</span> <span class="o">=</span> <span class="n">to_paraview_node_from_nodes</span></div>
 </pre></div>
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">homcloud  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../interface.html" >homcloud.interface</a> &#187;</li> 
-      </ul>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2018, Author.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    <br/>
+  </p>
+</div>
+      
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2018, Author.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
     </div>
+  
+</div>
+
+  </footer>
   </body>
 </html>

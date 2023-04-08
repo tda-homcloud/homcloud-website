@@ -7,8 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Python Module Index &#8212; homcloud  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>homcloud.pyvistahelper module &#8212; homcloud  documentation</title>
   
   
   
@@ -37,14 +38,13 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'py-modindex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pyvistahelper';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="next" title="homcloud.plotly_3d module" href="plotly_3d.html" />
+    <link rel="prev" title="homcloud.interface module" href="interface.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-
-
   </head>
   
   
@@ -138,8 +138,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="pyvistahelper.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         homcloud.pyvistahelper module
                       </a>
                     </li>
@@ -206,6 +206,10 @@ document.write(`
   
 
   
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
 </div>
 
     </nav>
@@ -245,8 +249,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="pyvistahelper.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         homcloud.pyvistahelper module
                       </a>
                     </li>
@@ -304,7 +308,33 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">homcloud.pyvistahelper module</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
               
               
@@ -312,49 +342,95 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
+  <section id="module-homcloud.pyvistahelper">
+<span id="homcloud-pyvistahelper-module"></span><h1>homcloud.pyvistahelper module<a class="headerlink" href="#module-homcloud.pyvistahelper" title="Permalink to this heading">#</a></h1>
+<p>This module provides helper functions for pyvista (<a class="reference external" href="https://pyvista.org/">https://pyvista.org/</a>) for HomCloud.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.pyvistahelper.Bitmap3D">
+<span class="sig-prename descclassname"><span class="pre">homcloud.pyvistahelper.</span></span><span class="sig-name descname"><span class="pre">Bitmap3D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/pyvistahelper.html#Bitmap3D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.pyvistahelper.Bitmap3D" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns PyVista’s mesh object for 3d array bitmap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>Any</em><em>, </em><em>Any</em><em>)</em><em>, </em><em>float</em><em>]</em>) – 3d array</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PyVista’s mesh object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.UniformGrid</p>
+</dd>
+</dl>
+</dd></dl>
 
-   <h1>Python Module Index</h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.pyvistahelper.Lines">
+<span class="sig-prename descclassname"><span class="pre">homcloud.pyvistahelper.</span></span><span class="sig-name descname"><span class="pre">Lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/pyvistahelper.html#Lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.pyvistahelper.Lines" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns PyVista’s mesh object for lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>2</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of lines</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PyVista’s mesh object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.PolyData</p>
+</dd>
+</dl>
+</dd></dl>
 
-   <div class="modindex-jumpbox">
-   <a href="#cap-h"><strong>h</strong></a>
-   </div>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.pyvistahelper.Loop">
+<span class="sig-prename descclassname"><span class="pre">homcloud.pyvistahelper.</span></span><span class="sig-name descname"><span class="pre">Loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/pyvistahelper.html#Loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.pyvistahelper.Loop" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns PyVista’s mesh object for a loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of points</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PyVista’s mesh object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.PolyData</p>
+</dd>
+</dl>
+</dd></dl>
 
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-h"><td></td><td>
-       <strong>h</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">homcloud</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="interface.html#module-homcloud.interface"><code class="xref">homcloud.interface</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="interface.html#module-homcloud.interface.distance"><code class="xref">homcloud.interface.distance</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="paraview_interface.html#module-homcloud.paraview_interface"><code class="xref">homcloud.paraview_interface</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="plotly_3d.html#module-homcloud.plotly_3d"><code class="xref">homcloud.plotly_3d</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="pyvistahelper.html#module-homcloud.pyvistahelper"><code class="xref">homcloud.pyvistahelper</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.pyvistahelper.SparseVoxels">
+<span class="sig-prename descclassname"><span class="pre">homcloud.pyvistahelper.</span></span><span class="sig-name descname"><span class="pre">SparseVoxels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/pyvistahelper.html#SparseVoxels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.pyvistahelper.SparseVoxels" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns PyVista’s mesh object for triangles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of voxels</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PyVista’s mesh object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.UnstructuredGrid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="homcloud.pyvistahelper.Triangles">
+<span class="sig-prename descclassname"><span class="pre">homcloud.pyvistahelper.</span></span><span class="sig-name descname"><span class="pre">Triangles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/pyvistahelper.html#Triangles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.pyvistahelper.Triangles" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns PyVista’s mesh object for triangles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of triangles</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>PyVista’s mesh object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pyvista.PolyData</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 
 
                 </article>
@@ -367,6 +443,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="interface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">homcloud.interface module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="plotly_3d.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">homcloud.plotly_3d module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -376,6 +470,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.pyvistahelper.Bitmap3D"><code class="docutils literal notranslate"><span class="pre">Bitmap3D()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.pyvistahelper.Lines"><code class="docutils literal notranslate"><span class="pre">Lines()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.pyvistahelper.Loop"><code class="docutils literal notranslate"><span class="pre">Loop()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.pyvistahelper.SparseVoxels"><code class="docutils literal notranslate"><span class="pre">SparseVoxels()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.pyvistahelper.Triangles"><code class="docutils literal notranslate"><span class="pre">Triangles()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/pyvistahelper.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
               
             
           </div>
