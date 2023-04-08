@@ -6,9 +6,7 @@ set :markdown_engine, :kramdown
 set :relative_links, false
 set :strip_index_file, false
 configure :build do
-  #set :http_prefix, "/hiraoka_labo/homcloud"
   set :http_prefix, "/"
-  #set :http_prefix, "/hiraoka_labo/homcloud-test"
 end
 
 
@@ -30,6 +28,9 @@ page '/cli-doc/*', layout: 'cli-doc'
 page '/misc/ph-nmf-figures/*', layout: 'plain'
 page '/hyperorder-book-ph/*', layout: 'empty'
 
+page 'README.html', layout: false
+page 'NEWS.html', layout: false
+     
 # Proxy pages
 # https://middlemanapp.com/advanced/dynamic-pages/
 

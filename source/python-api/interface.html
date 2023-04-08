@@ -41,7 +41,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'interface';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3D visualization helper modules" href="vis3d.html" />
+    <link rel="next" title="homcloud.pyvistahelper module" href="pyvistahelper.html" />
     <link rel="prev" title="API Outline" href="outline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -139,8 +139,22 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vis3d.html">
-                        3D visualization helper modules
+                      <a class="nav-link nav-internal" href="pyvistahelper.html">
+                        homcloud.pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="plotly_3d.html">
+                        homcloud.plotly_3d module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="paraview_interface.html">
+                        homcloud.paraview_interface module
                       </a>
                     </li>
                 
@@ -236,8 +250,22 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vis3d.html">
-                        3D visualization helper modules
+                      <a class="nav-link nav-internal" href="pyvistahelper.html">
+                        homcloud.pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="plotly_3d.html">
+                        homcloud.plotly_3d module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="paraview_interface.html">
+                        homcloud.paraview_interface module
                       </a>
                     </li>
                 
@@ -403,12 +431,12 @@ This method returns an instance of this class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapOptimal1Cycle.to_paraview_node">
 <span class="sig-name descname"><span class="pre">to_paraview_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/bitmap_optimal_1_cycle.html#BitmapOptimal1Cycle.to_paraview_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.BitmapOptimal1Cycle.to_paraview_node" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize an optimal 1-cycle.</p>
 <p>You can show the optimal 1-cycle by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -418,7 +446,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -426,7 +454,7 @@ in paraview’s GUI.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapOptimal1Cycle.to_paraview_node_for_1cycles">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_paraview_node_for_1cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/bitmap_optimal_1_cycle.html#BitmapOptimal1Cycle.to_paraview_node_for_1cycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.BitmapOptimal1Cycle.to_paraview_node_for_1cycles" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize multiple optimal 1-cycles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -440,7 +468,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -488,12 +516,12 @@ in paraview’s GUI.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapOptimal1Cycle.to_pvnode">
 <span class="sig-name descname"><span class="pre">to_pvnode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.BitmapOptimal1Cycle.to_pvnode" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize an optimal 1-cycle.</p>
 <p>You can show the optimal 1-cycle by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -503,7 +531,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -511,7 +539,7 @@ in paraview’s GUI.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapOptimal1Cycle.to_pvnode_for_1cycle">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_pvnode_for_1cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.BitmapOptimal1Cycle.to_pvnode_for_1cycle" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize multiple optimal 1-cycles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -525,7 +553,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -823,12 +851,12 @@ in the optimal volume.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.Volume.to_paraview_node">
 <span class="sig-name descname"><span class="pre">to_paraview_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/bitmap_phtrees.html#BitmapPHTrees.Volume.to_paraview_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.Volume.to_paraview_node" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize <code class="xref py py-meth docutils literal notranslate"><span class="pre">volume()</span></code>.</p>
 <p>You can show the volume by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -838,7 +866,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -886,12 +914,12 @@ in paraview’s GUI.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.Volume.to_pvnode">
 <span class="sig-name descname"><span class="pre">to_pvnode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.Volume.to_pvnode" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize <code class="xref py py-meth docutils literal notranslate"><span class="pre">volume()</span></code>.</p>
 <p>You can show the volume by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -901,7 +929,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1005,7 +1033,7 @@ which the given rectangle contains.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.to_paraview_node_from_nodes">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_paraview_node_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/bitmap_phtrees.html#BitmapPHTrees.to_paraview_node_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.to_paraview_node_from_nodes" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize node volumes of the nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1019,7 +1047,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1027,7 +1055,7 @@ in paraview’s GUI.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.to_pvnode_from_nodes">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_pvnode_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.to_pvnode_from_nodes" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize node volumes of the nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1041,7 +1069,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2649,7 +2677,7 @@ in the form of the symbolic representation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.Volume.to_paraview_node">
 <span class="sig-name descname"><span class="pre">to_paraview_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees.Volume.to_paraview_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees.Volume.to_paraview_node" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize an optimal/stable volume of the node.</p>
 <dl class="simple">
 <dt>gui_name (str | None): The name shown in Pipeline Browser</dt><dd><p>in paraview’s GUI.</p>
@@ -2660,7 +2688,7 @@ object to visulize an optimal/stable volume of the node.</p>
 <dd class="field-odd"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-even"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2730,7 +2758,7 @@ object to visulize an optimal/stable volume of the node.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.Volume.to_pvnode">
 <span class="sig-name descname"><span class="pre">to_pvnode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.PHTrees.Volume.to_pvnode" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize an optimal/stable volume of the node.</p>
 <dl class="simple">
 <dt>gui_name (str | None): The name shown in Pipeline Browser</dt><dd><p>in paraview’s GUI.</p>
@@ -2741,7 +2769,7 @@ object to visulize an optimal/stable volume of the node.</p>
 <dd class="field-odd"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-even"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2855,7 +2883,7 @@ pairs in the given rectangle.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.to_paraview_node_from_nodes">
 <span class="sig-name descname"><span class="pre">to_paraview_node_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees.to_paraview_node_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees.to_paraview_node_from_nodes" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize optimal volumes of the nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2869,7 +2897,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2879,7 +2907,7 @@ in paraview’s GUI.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.to_pvnode_from_nodes">
 <span class="sig-name descname"><span class="pre">to_pvnode_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.PHTrees.to_pvnode_from_nodes" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>
 object to visulize optimal volumes of the nodes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2893,7 +2921,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>Paraview Pipeline node object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.VTK" title="homcloud.paraview_interface.VTK">homcloud.paraview_interface.VTK</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -3615,12 +3643,12 @@ in the form of the symbolic representation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.Volume.to_paraview_node">
 <span class="sig-name descname"><span class="pre">to_paraview_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.to_paraview_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.to_paraview_node" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize an optimal volume.</p>
 <p>You can show the optimal volume by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -3630,7 +3658,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -3638,7 +3666,7 @@ in paraview’s GUI.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.Volume.to_paraview_node_for_volumes">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_paraview_node_for_volumes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volumes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.to_paraview_node_for_volumes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.to_paraview_node_for_volumes" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize multiple optimal volumes.</p>
 <p>All optimal volumes should come from the same <a class="reference internal" href="#homcloud.interface.PD" title="homcloud.interface.PD"><code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code></a> object.</p>
 <dl class="field-list simple">
@@ -3654,7 +3682,7 @@ in paraview’s GUI.</p></li>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -3724,12 +3752,12 @@ in paraview’s GUI.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.Volume.to_pvnode">
 <span class="sig-name descname"><span class="pre">to_pvnode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gui_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.Volume.to_pvnode" title="Permalink to this definition">#</a></dt>
-<dd><p>Construct a <a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
+<dd><p>Construct a <a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a> object
 to visulize an optimal volume.</p>
 <p>You can show the optimal volume by
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.show" title="homcloud.paraview_interface.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">homcloud.paraview_interface.show()</span></code></a>. You can also
 adjust the visual by the methods of
-<a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
+<a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.paraview_interface.PipelineNode</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gui_name</strong> (<em>string</em><em> or </em><em>None</em>) – The name shown in Pipeline Browser
@@ -3739,7 +3767,7 @@ in paraview’s GUI.</p>
 <dd class="field-even"><p>A PipelineNode object.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="vis3d.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="paraview_interface.html#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode">homcloud.paraview_interface.PipelineNode</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -4083,11 +4111,11 @@ must be larger than or equal to 1 including infinity</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="vis3d.html"
+       href="pyvistahelper.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">3D visualization helper modules</p>
+        <p class="prev-next-title">homcloud.pyvistahelper module</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

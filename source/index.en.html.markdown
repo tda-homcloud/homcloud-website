@@ -6,21 +6,18 @@ lang: "en"
 # HomCloud
 
 HomCloud is a data analysis software based on persistent homology.
-The software is developed 
-mainly by [Ippei Obayashi](https://i-obayashi.info/).
-
+The software is developed mainly by [Ippei Obayashi](https://i-obayashi.info/).
 
 HomCloud is free software and you can use it freely.
 
 ## <a name="download"> Download latest version
 
-* [HomCloud latest(3.6.0)](download/homcloud-3.6.0.tar.gz)
-  * HomCloud 3.x has many breaking chnages from 2.9.x. Please consider to use an old version
-    if you already have many analysis codes.
-  * [README](download/README)
-  * [NEWS](download/NEWS)
+* [HomCloud latest(4.0.0)](download/homcloud-4.0.0.tar.gz)
+  * [README](README.html)
+  * [NEWS](NEWS.html)
 
 * [HomCloud 2.9.0](download/homcloud-2.9.0.tar.gz)
+* [HomCloud 3.6.0](download/homcloud-3.6.0.tar.gz)
 
 The latest version is also available on [pypi](https://pypi.org/project/homcloud/).
 

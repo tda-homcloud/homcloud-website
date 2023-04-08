@@ -5,26 +5,18 @@ lang: "ja"
 
 # HomCloud
 
-HomCloud はパーシステントホモロジー(persistent homology)にもとづいた
-データ解析ソフトウェアです。
-[大林](https://i-obayashi.info/)を中心に開発されています．
+HomCloud はパーシステントホモロジー(persistent homology)にもとづいたデータ解析ソフトウェアです．
+[大林](https://i-obayashi.info/)が中心となって開発しています．
 
 ## <a name="download"> 最新版ダウンロード
 
-* [HomCloud 最新版(3.6.0)](download/homcloud-3.6.0.tar.gz)
-  * HomCloud 3.x は2.9.y以前から多くの非互換な変更を含んでいます．
-    既存のコードをそのまま利用したい方は古いバージョンを利用してください．
-  * 出力ファイル名を`.idiagram`から`.pdgm`に変更すればそれ以外の非互換性には
-    あまり遭遇しないはずです
-  * [README](download/README)
-  * [NEWS](download/NEWS)
+* [HomCloud 最新版(4.0.0)](download/homcloud-4.0.0.tar.gz)
+  * [README](README.html)
+  * [NEWS](NEWS.html)
+* [HomCloud 3.6.0](download/homcloud-3.6.0.tar.gz)
 * [HomCloud 2.9.0](download/homcloud-2.9.0.tar.gz)
 
 [pypi](https://pypi.org/project/homcloud/)にも最新版が置いてあり，そちらのほうが便利でしょう．
-
-### Debian バイナリパッケージ (amd64)
-
-* [HomCloud 最新版(3.3.0)](download/homcloud-3.3.0-debfiles.tar.gz)
 
 ## ドキュメント
 
