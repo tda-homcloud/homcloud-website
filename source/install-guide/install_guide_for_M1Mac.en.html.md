@@ -5,60 +5,58 @@ lang: en
 
 # Installation on Apple Silicon (M1) Mac
 
-Since the architecture of the M1 Mac is new, a variety of scientific and technical software is still being supported.
-Standard Python scientific software such as NumPy, scipy, matplotlib, and others are still halfway supported.
+This section shows installation using Homebrew.
+Homebrew allows you to install various software on your Mac using a command line interface.
+From Python installed with Homebrew, HomCloud is installed using `venv`, which creates a virtual environment for Python.
+Venv makes it easy to upgrade the software components used by HomCloud and the version of HomCloud itself.
 
-## 1. Install Conda with miniforge
 
-The conda-forge package has relatively good support for M1 Macs, so use that.
-I don't recommend Conda because it has problems, but there is no other option now, so that we will use it.
-Go to <https://github.com/conda-forge/miniforge> and install it. As described in the linked website, type the following 
-in a terminal to install Conda.
+## 1. Install Homebrew
 
-    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh"
-    bash Mambaforge-$(uname)-$(uname -m).sh
+See [Homebrew's website](https://brew.sh/) for installation.
 
-### Conda
+## 2. Install packages using Homebrew
 
-Conda has a lot of troublesome problems when used with Homebrew. For this reason, 
-in many cases, you may want to minimize the use of Conda. In this case, you may want to do the following.
+Type the following on your terminal to install Python and CGAL:
 
-During installation, you will get the following question.
+    brew install python cgal
 
-    Do you wish the installer to initialize Mambaforge
-    by running conda init? [yes|no]
+## 3. Create a new virtual Python environment with venv
+
+Create a working directory. Let's name the directory `homcloud`:
+
+    mkdir homcloud
     
-You will answer `no`. Then
+In the working directory, create a new virtual environment.
 
-    You have chosen to not have conda modify your shell scripts at all.
-    To activate conda's base environment in your current shell session:
-    
-    eval "$(/Users/YOUR_ID/miniforge3/bin/conda shell.YOUR_SHELL_NAME hook)" 
-        :
+    cd homcloud
+    python3 -m venv venv
 
-As you can see there, you can activate Conda only when using Conda. Type as follows 
-to enable Conda for that session only (replace `YOUR_ID` and `YOUR_SHELL_NAME` with the appropriate ones. Probably `YOUR_SHELL_NAME` is `zsh`).
+## 4. Enter the virtual environment
 
-    eval "$(/Users/YOUR_ID/mambaforge/bin/conda shell.YOUR_SHELL_NAME hook)" 
+Go to the working directory, and enter the virtual environment by typing the following:
 
-## 2. Create a new Conda environment
+    source ./venv/bin/activate
 
-Create a virtual environment for HomCloud, and name it `homcloud`. In a terminal, do the following.
+This operation is required every time you invoke a new terminal.
 
-    conda create -n homcloud python=3.9
+## 5. Install Python's packages
 
-## 3. Enter the homcloud environment and install HomCloud.
+Type as follows to install the required packages by HomCloud:
 
-In a terminal, type the following.
+     pip install numpy wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
 
-    conda activate homcloud
-    conda install -c conda-forge -c https://homcloud.dev/conda-channel/ pyvista panel trame homcloud
+## 6. Install HomCloud
 
-The above commands complete the installation.
+Type as follows to install HomCloud:
 
-## 4. Run the self-check program
+    CPLUS_INCLUDE_PATH=/opt/homebrew/include LIBRARY_PATH=/opt/homebrew/lib pip install homcloud
 
-Run the self-check program as follows.
+
+## 7. Run self-check program
+
+Finally, the self-check program is executed to confirm that the installation is successful.
+Type the following:
 
     python -m homcloud.self_check --pyvista
 
@@ -68,8 +66,8 @@ After starting, a window with the following image will be opened. Please close t
 
 The installation succeeds if the following message is shown in the terminal.
 
-    HomCloud version: 4.0.0
-    Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+    HomCloud version: 4.0.0a4
+    Python version: 3.11.2 (main, Mar 24 2023, 00:16:47) [Clang 14.0.0 (clang-1400.0.29.202)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
@@ -82,4 +80,16 @@ The installation succeeds if the following message is shown in the terminal.
     Optimal Volume ... ok
     PyVista 3D drawing (close the pop-up window)... ok
 
-The installation is now complete!
+The installation is now complete! Enjoy with HomCloud!
+
+## 8. Try HomCloud's tutorial
+
+Let's try HomCloud's tutorial in your environment.
+Download [python-tutorial.zip](/download/python-tutorial.zip) and extract it in the `homcloud` directory.
+
+After entering the virtual environment, type the following to start Jupyter:
+
+    jupyter notebook
+
+You can start tutorials here.
+The `pointcloud` tutorial is best to start HomCloud.

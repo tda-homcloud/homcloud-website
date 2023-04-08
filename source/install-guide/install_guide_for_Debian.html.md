@@ -6,7 +6,7 @@ lang: ja
 # Debian buster でのインストール
 
 ここでは Debian GNU/Linux amd64 の buster (10.x) のコンパイル済みパッケージを使って
-インストールします．ことガイドは64bit OSにしか対応していないので注意してください．
+インストールします．
 
 ## 1. 以下のパッケージをapt-getを用いてインストールします。
 
@@ -16,7 +16,6 @@ lang: ja
 * python3-matplotlib
 * python3-numpy
 * python3-scipy
-* python3-pyqt5
 * python3-msgpack
 * python3-pulp
 * python3-sklearn

@@ -5,23 +5,14 @@ lang: ja
 
 # UbuntuやDebianでのインストール(venv使用)
 
-ここでは python の venv という環境分離ツールを使ってインストールします．
-homcloudをインストールする環境を分離することでバージョンの使い分けなどが
-簡単になります．
+ここでは python の venv という仮想環境ツールを使ってインストールします．
+homcloudをインストールする環境を分離することでバージョンの使い分けなどが簡単になります．
 
 ## 1. 以下のパッケージをapt-getでインストールします。
 
-* libcgal-dev
-* libpython3-dev
-* opnempi-bin
-* libopenmpi-dev
-* cmake
-* paraview
-* jupyter
-
 apt-getで各パッケージの追加は以下のように行います。
 
-    sudo apt-get install libcgal-dev libpython3-dev openmpi-bin libopenmpi-dev cmake paraview jupyter python3-paraview
+    sudo apt-get install libcgal-dev libpython3-dev
 
 ## 2. venvで環境を新しく作る
 
@@ -33,22 +24,22 @@ apt-getで各パッケージの追加は以下のように行います。
 次のようにして venv の設定を作ります．
 
     python3 -m venv venv
-    
-以下のようにして venv の環境に入ります．
+
+## 3. venvの環境に入る
+
+作業用のディレクトリで以下のようにして venv の環境に入ります．
 
     source ./venv/bin/activate
-    
-## 3. pipを使ってCython，numpy，wheel，pyvistaを追加します。
+
+これはシェルを起動するごとに必要です．
+
+## 4. pipを使って必要なライブラリを追加します。
 
 以下のようにタイプしてインストールします．
 
-    pip install Cython numpy wheel "pyvista[all,trame]"
+    pip install Cython numpy wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
     
-GUIを使いたい場合は PyQt5 もインストールする必要があります．
-
-    pip install pyqt5
-
-## 4. 最新版のHomCloudをインストールします。
+## 5. 最新版のHomCloudをインストールします。
 
 以下を実行します。
 
@@ -60,7 +51,7 @@ GUIを使いたい場合は PyQt5 もインストールする必要がありま�
 
     pip install homcloud==3.6.0
 
-## 5. HomCloudの自己チェックプログラムを動かす
+## 6. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
@@ -90,7 +81,20 @@ GUIを使いたい場合は PyQt5 もインストールする必要がありま�
 
 以上でインストールは終わりです。
 
-## 6. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
+## 7. チュートリアルの実施
+
+HomCloudのチュートリアルを動かしてみましょう．
+[python-tutorial.zip](/download/python-tutorial.zip)
+からダウンロードしてhomcloudフォルダに展開してください。
+その後，venvの仮想環境に入って
+
+    jupyter notebook
+
+とするとブラウザがポップアップし，jupyter notebookが起動します．
+ここでチュートリアルのフォルダからチュートリアルを始めてください．
+いくつかチュートリアルがありますが，pointcloudが一番やりやすいでしょう．
+
+## 8. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
 
 Veitoris-Rips 複体(距離行列)や高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします。
 もしこれらを使わない場合はここは飛ばしてよいです。

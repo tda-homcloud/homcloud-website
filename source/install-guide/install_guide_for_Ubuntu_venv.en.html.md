@@ -5,22 +5,17 @@ lang: en
 
 # Install HomCloud into venv envrinment on Ubuntu or Debian
 
-On this page, we install HomCloud using `venv`, which can create lightweight virtual environments.
+On this page, we install HomCloud using `venv`, which can create lightweight virtual environments for Python.
 You can easily use different versions of HomCloud using `venv`.
 
 ## 1. Install the following deb packages using apt
 
 * libcgal-dev
 * libpython3-dev
-* opnempi-bin
-* libopenmpi-dev
-* cmake
-* paraview
-* jupyter
 
 Type as follows:
 
-    sudo apt-get install libcgal-dev libpython3-dev openmpi-bin libopenmpi-dev cmake paraview jupyter python3-paraview
+    sudo apt-get install libcgal-dev libpython3-dev
 
 ## 2. Create a new virtual environment
 
@@ -34,23 +29,24 @@ You can create a new virtual environment in the working directory:
     python3 -m venv venv
 
 Then, a directory whose name is `venv` is created. The files in the virtual environment are stored in this directory.
+
+## 3. Enter the virtual environment
+
 Type as follows to enter the virtual environment:
 
     source ./venv/bin/activate
     
-## 3. Install Python packages using pip
+This operation is required every time you invoke a new shell.
 
-Type as follows to install Cython, NumPy, wheel, and PyVista:
+## 4. Install Python packages using pip
 
-    pip install Cython numpy wheel "pyvista[all,trame]"
+Type as follows to install Cython, NumPy, wheel, pyqt6, PyVista, and PyVistaQt:
 
-If you want to use HomCloud's GUI plotter, you need to install PyQt5:
+    pip install Cython numpy wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
 
-    pip install pyqt5
+## 5. Install latest HomCloud
 
-## 4. Install latest HomCloud
-
-Type as follows:
+Type as follows to install HomCloud:
 
     pip install homcloud
 
@@ -60,7 +56,7 @@ If you want to install an older version, such as 3.6.0, type the following inste
 
     pip install homcloud==3.6.0
 
-## 5. Run HomCloud's self-check program
+## 6. Run HomCloud's self-check program
 
 Finally, to check whether the installation process was successful, run the self-check program as follows in the terminal:
 
@@ -86,10 +82,10 @@ The installation succeeds if the following message is shown in the terminal.
     Optimal Volume ... ok
     PyVista 3D drawing (close the pop-up window)... ok
 
-The installation is now complete!
+The installation is now complete! Enjoy with HomCloud!
 
 
-## 6. (Optional) Install [Dipha](http://github.com/DIPHA/dipha)
+## 7. (Optional) Install [Dipha](http://github.com/DIPHA/dipha)
 
 You can skip this part.
 See [install_guide_for_Ubuntu.html](install_guide_for_Ubuntu.html).

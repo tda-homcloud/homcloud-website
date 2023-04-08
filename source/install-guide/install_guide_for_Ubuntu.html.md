@@ -5,22 +5,22 @@ lang: ja
 
 # UbuntuやDebianでのインストール
 
-## 1. Ubuntu(もしくはDebian)のパッケージをapt-getでインストールします。
+## 1. Ubuntu(もしくはDebian)のパッケージをapt-getでインストール
 
-以下のように行います。
+以下のように行います．
 
-    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack python3-pulp python3-sklearn openmpi-bin libopenmpi-dev cmake paraview python3-paraview jupyter
+    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-msgpack python3-pulp python3-sklearn paraview python3-paraview jupyter
 
-## 2. pipを使ってさらにライブラリを追加します。
+## 2. pipを使ってさらにライブラリを追加
 
 以下のようにタイプしてインストールします．
 
-    pip install --user wheel Cython "pyvista[all,trame]"
+    pip install --user wheel Cython pyqt6 "pyvista[all,trame]" pyvistaqt
     pip install --user ripser
 
-## 3. 最新版のhomcloudをインストールします。
+## 3. 最新版のhomcloudをインストール
 
-以下を実行します。
+以下を実行します．
 
     pip3 install --user homcloud
 
@@ -32,8 +32,7 @@ lang: ja
 
 ## 4. HomCloudの自己チェックプログラムを動かす
 
-最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
-実行します．
+最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように実行します．
 
     python3 -m homcloud.self_check --pyvista
 
@@ -59,21 +58,21 @@ lang: ja
     PyVista 3D drawing (close the pop-up window)... ok
 
 
-以上でインストールは終わりです。
+以上でインストールは終わりです．
 
 
-## 5. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
+## 5. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし，インストール
 
-Veitoris-Rips 複体(距離行列)や高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします。
-もしこれらを使わない場合はここは飛ばしてよいです。
+Veitoris-Rips 複体(距離行列)や高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします．
+もしこれらを使わない場合はここは飛ばしてよいです．
 
-1. <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からダウンロードしてください。
-2. ダウンロードしたファイルを解凍してください。
-3. 解凍時に作られたディレクトリに移動してください。
-4. "cmake ."とタイプし、makefileを作成します。
-5. "make"とタイプし、ビルドします。
-6. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
+1. `sudo apt-get install openmpi-bin libopenmpi-dev cmake` で Dipha のビルドに必要なライブラリをインストールします
+2. <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からダウンロードしてください．
+3. ダウンロードしたファイルを解凍してください．
+4. 解凍時に作られたディレクトリに移動してください．
+5. "cmake ."とタイプし，makefileを作成します．
+6. "make"とタイプし，ビルドします．
+7. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
+8. インストール終了後，以下のようにしてHomCloudが正常に動くかチェックします．
 
-インストール終了後，以下のようにしてHomCloudが正常に動くかチェックします。
-
-    python3 -m homcloud.self_check --dipha
+        python3 -m homcloud.self_check --dipha

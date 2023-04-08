@@ -3,15 +3,21 @@ title: Install HomCloud
 lang: en
 ---
 
-# Install
+# Install (recommended)
 
 |OS|Description|OS version|
-|:----:|:----:|:----:|
+|:----|:----|:----|
+|Ubuntu/Debian|[Install HomCloud into venv's virtual environment](install_guide_for_Ubuntu_venv.en.html)|Confirmed operation on Ubuntu 22.04 LTS|
+|Windows|[Install on Windows](install_guide_for_Windows.en.html)|Confirmed operation on Windows10 Pro|
+|OS X (Apple Silicon Mac)|[Install with Homebrew](install_guide_for_M1Mac.en.html)|Confirmed operation on macOS 13.3 Venture|
+|OS X (Intel Mac)|[Install with Homebrew](install_guide_for_Mac.en.html)||
+
+
+## Other installation guides
+
+|OS|Description|OS version|
+|:----|:----|:----|
 |Ubuntu/Debian|[Install HomCloud with apt-get and pip](install_guide_for_Ubuntu.en.html)||
-|Ubuntu/Debian|[Install HomCloud into venv's virtual environment](install_guide_for_Ubuntu_venv.en.html)||
-|Windows|[Install on Windows](install_guide_for_Windows.en.html)|Confirmed operation on Windows10|
-|OS X (Intel Mac)|[Install with homebrew](install_guide_for_Mac.en.html)||
-|OS X (Apple Silicon Mac)|[Install with miniforge](install_guide_for_M1Mac.en.html)||
 
 # Upgrading HomCloud
 

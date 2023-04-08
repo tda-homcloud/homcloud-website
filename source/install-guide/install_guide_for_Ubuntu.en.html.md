@@ -9,13 +9,13 @@ lang: en
 
 Type the following to install Debian packages:
 
-    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-pyqt5 python3-msgpack python3-pulp python3-sklearn openmpi-bin libopenmpi-dev cmake paraview python3-paraview jupyter
+    sudo apt-get install libcgal-dev libpython3-dev python3-matplotlib python3-numpy python3-scipy python3-pip python3-msgpack python3-pulp python3-sklearn paraview python3-paraview jupyter
 
 ## 2. Install additional Python packages by pip
 
-Type as follows to install imageio, Cython, Ripser, and PyVista:
+Type as follows to install Python packages by pip:
 
-    pip3 install --user wheel Cython "pyvista[all,trame]"
+    pip3 install --user wheel Cython "pyvista[all,trame]" pyqt6 pyvistaqt
     pip3 install --user ripser
 
 ## 3. Install latest HomCloud
@@ -64,10 +64,11 @@ The installation is now complete! Enjoy with HomCloud!
 
 You optionally install dipha for Rips-Vietoris data and more than 4-dim voxel data.
 
-1. Download `dipha-2.1.0.zip` from <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip>.
-2. Extract the downloaded zip file
-3. Go to the created directory
-4. Type `cmake .`, and create Makefile
-5. Type `make` to build dipha
-6. Copy the dipha executable file to the directory in `PATH` environmental variable.
-7. Run self-check program: `python3 -m homcloud.self_check --dipha`
+1. Install openmpi and cmake to build Dipha: `sudo apt-get install openmpi-bin libopenmpi-dev cmake`
+2. Download `dipha-2.1.0.zip` from <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip>.
+3. Extract the downloaded zip file
+4. Go to the created directory
+5. Type `cmake .`, and create Makefile
+6. Type `make` to build dipha
+7. Copy the dipha executable file to the directory in `PATH` environmental variable.
+8. Run self-check program: `python3 -m homcloud.self_check --dipha`
