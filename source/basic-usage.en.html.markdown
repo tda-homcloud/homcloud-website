@@ -1,5 +1,5 @@
 ---
-title: Basic Tutorial
+title: HomCloud Tutorial
 lang: en
 ---
 
@@ -7,23 +7,12 @@ lang: en
 
 # Basic Tutorial of HomCloud
 
-## Command Line Interface
+HomCloud has two interfaces, Command Line Interface (CLI) and Python Interface.
+Some tutorials for both interfaces are prepared in this page.
+Please start from "3D pointcloud analysis".
 
-* [3D pointcloud analysis](tutorial/pointcloud-e.html)
-* [Binary image analysis](tutorial/binary-image-e.html)
-* [Grayscale image analysis](tutorial/grayscale-image-e.html)
-
-[This zip file has jupyter notebooks (.ipynb) and example data](donwload/bash-tutorial.zip).
-
-### For preparation
-These tutorials use jupyter notebook with bash_kernel. Please install these
-softwares for the preparation.
-
-### How to try the tutorials without jupyter notebook
-
-You can execute the commands in the tutorial in your terminal except
-`display < IMAGE_FILE` command. If you want to display images,
-please use your favorite image viewer.
+HomCloud developer team recommends Python interface over CLI.
+You can combine HomCloud and Python's scientific computing ecosystem for more convenient data analysis.
 
 ## Python interface
 
@@ -35,14 +24,10 @@ please use your favorite image viewer.
 * [3D periodic pointcloud analysis](py-tutorial/pointcloud_periodic-e.html)
 * [Machine learning](py-tutorial/ml_pc-e.html)
 
-[This zip file has jupyter notebooks (.ipynb) and example data](download/python-tutorial.zip)
-
 These tutorials use jupyter notebook. Please install jupyter notebook before the tutorials.
+[python-tutorial.zip](download/python-tutorial.zip).
 
-You can see the docuemnt of python interface from
-[python-api/](python-api/).
-
-Some tutorials are not translated into English.
+You can see the docuemnt of python interface from [python-api/](python-api/).
 
 ## Google Colaboratory
 
@@ -55,3 +40,17 @@ We are in the progress of porting the tutorial to Colab.
 * [2D grayscale image analysis](https://colab.research.google.com/drive/1Z3YKsv9QFUWbjKKDVxer5F3k1ePRw6QS?usp=sharing)
 * [Atomic configuration anlaysis(3D pointcloud)](https://colab.research.google.com/drive/1R9mQx5Ui_RZNXfJUwm97N9dXClZALFbB?usp=sharing)
 * [Machine learning](https://colab.research.google.com/drive/1b6XS_UaUR3tKndB52QJzMOymblk77iDx?usp=sharing)
+
+## Command Line Interface
+
+* [3D pointcloud analysis](tutorial/pointcloud-e.html)
+* [Binary image analysis](tutorial/binary-image-e.html)
+* [Grayscale image analysis](tutorial/grayscale-image-e.html)
+
+[This zip file has jupyter notebooks (.ipynb) and example data](download/bash-tutorial.zip).
+
+### For preparation
+These tutorials use jupyter notebook with bash_kernel. Please install these
+softwares for the preparation.
+
+

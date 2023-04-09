@@ -1,3 +1,15 @@
+# News for 4.0.0 (2023/04/10)
+* Major version up!
+* New features:
+  * Add `homcloud.interface.PDList.from_simplicial_levelset` to create a filtration from a simplicial level function
+  * New 3D visualization functions using [PyVista](https://pyvista.org)
+  * Add simple py3dmol integration
+* Breaking changes:
+  * Remove `.diagram` and `.idiagram` files loader
+  * Remove `homcloud.optimal_cycle` module
+* Internal structural changes
+
+
 # News for 3.6.0 (2022/11/02)
 * New methods:
   * `interface.BitmapPHTrees.roots`

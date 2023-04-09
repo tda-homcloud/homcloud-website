@@ -1,5 +1,5 @@
-homcloud.paraview_interface module
-==================================
+paraview_interface module
+=========================
 
 .. automodule:: homcloud.paraview_interface
     :members:

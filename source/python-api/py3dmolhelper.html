@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>plotly_3d module &#8212; homcloud  documentation</title>
+    <title>py3dmolhelper module &#8212; homcloud  documentation</title>
   
   
   
@@ -38,11 +38,11 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'plotly_3d';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py3dmolhelper';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="paraview_interface module" href="paraview_interface.html" />
-    <link rel="prev" title="py3dmolhelper module" href="py3dmolhelper.html" />
+    <link rel="next" title="plotly_3d module" href="plotly_3d.html" />
+    <link rel="prev" title="pyvistahelper module" href="pyvistahelper.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -145,15 +145,15 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="py3dmolhelper.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         py3dmolhelper module
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="plotly_3d.html">
                         plotly_3d module
                       </a>
                     </li>
@@ -271,15 +271,15 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="py3dmolhelper.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         py3dmolhelper module
                       </a>
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="plotly_3d.html">
                         plotly_3d module
                       </a>
                     </li>
@@ -355,7 +355,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">plotly_3d module</li>
+    <li class="breadcrumb-item active" aria-current="page">py3dmolhelper module</li>
   </ul>
 </nav>
 </div>
@@ -372,70 +372,40 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-homcloud.plotly_3d">
-<span id="plotly-3d-module"></span><h1>plotly_3d module<a class="headerlink" href="#module-homcloud.plotly_3d" title="Permalink to this heading">#</a></h1>
-<p>This module provides helper functions for plotly (<a class="reference external" href="https://plotly.com/python/">https://plotly.com/python/</a>) for HomCloud.</p>
+  <section id="module-homcloud.py3dmolhelper">
+<span id="py3dmolhelper-module"></span><h1>py3dmolhelper module<a class="headerlink" href="#module-homcloud.py3dmolhelper" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="homcloud.plotly_3d.Bitmap3d">
-<span class="sig-prename descclassname"><span class="pre">homcloud.plotly_3d.</span></span><span class="sig-name descname"><span class="pre">Bitmap3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bitmap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/plotly_3d.html#Bitmap3d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.plotly_3d.Bitmap3d" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a plotly’s trace object for a 3D bitmap.</p>
+<dt class="sig sig-object py" id="homcloud.py3dmolhelper.add_edges">
+<span class="sig-prename descclassname"><span class="pre">homcloud.py3dmolhelper.</span></span><span class="sig-name descname"><span class="pre">add_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/py3dmolhelper.html#add_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.py3dmolhelper.add_edges" title="Permalink to this definition">#</a></dt>
+<dd><p>Add edges to py3dmol view.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>bitmap</strong> (<em>np.array</em>) – 3D boolean bitmap</p></li>
-<li><p><strong>color</strong> (<em>string</em><em> or </em><em>None</em>) – The name of color</p></li>
-<li><p><strong>name</strong> (<em>string</em>) – The name of pointcloud</p></li>
+<li><p><strong>view</strong> (<em>py3Dmol.view</em>) – Py3Dmol’s view object</p></li>
+<li><p><strong>edges</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>list</em><em>[</em><em>float</em><em>]</em><em>]</em><em>]</em>) – List of edges</p></li>
+<li><p><strong>color</strong> (<em>str</em>) – Name of color</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the cylinders</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Alpha value (1.0: opaque, 0.0: transparent)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Plotly’s trace object for the visualization of the pointcloud</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>plotly.graph_objects.Mesh3d</p>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="homcloud.plotly_3d.PointCloud">
-<span class="sig-prename descclassname"><span class="pre">homcloud.plotly_3d.</span></span><span class="sig-name descname"><span class="pre">PointCloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/plotly_3d.html#PointCloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.plotly_3d.PointCloud" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a plotly’s trace object for a pointcloud.</p>
+<dt class="sig sig-object py" id="homcloud.py3dmolhelper.add_surface">
+<span class="sig-prename descclassname"><span class="pre">homcloud.py3dmolhelper.</span></span><span class="sig-name descname"><span class="pre">add_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">triangles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/py3dmolhelper.html#add_surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.py3dmolhelper.add_surface" title="Permalink to this definition">#</a></dt>
+<dd><p>Add surface (triagnles) to py3dmol view.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<em>np.array</em>) – 3D pointcloud</p></li>
-<li><p><strong>color</strong> (<em>string</em><em> or </em><em>None</em>) – The name of color</p></li>
-<li><p><strong>size</strong> (<em>int</em>) – The size of each point</p></li>
-<li><p><strong>name</strong> (<em>string</em>) – The name of pointcloud</p></li>
+<li><p><strong>view</strong> (<em>py3Dmol.view</em>) – Py3Dmol’s view object</p></li>
+<li><p><strong>triangles</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>list</em><em>[</em><em>float</em><em>]</em><em>]</em><em>]</em>) – List of triangles</p></li>
+<li><p><strong>color</strong> (<em>str</em>) – Name of color</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – Alpha value (1.0: opaque, 0.0: transparent)</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Plotly’s trace object for the visualization of the pointcloud</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>plotly.graph_objects.Scatter3d</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="homcloud.plotly_3d.SimpleScene">
-<span class="sig-prename descclassname"><span class="pre">homcloud.plotly_3d.</span></span><span class="sig-name descname"><span class="pre">SimpleScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zrange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/plotly_3d.html#SimpleScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.plotly_3d.SimpleScene" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a plotly’s <cite>graph_object.layout.Scene</cite> object to remove x/y/z axes.</p>
-<p>You can use <cite>xrange</cite>/<cite>yrange</cite>/<cite>zrange</cite> to cut off the visualization area</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>xrange</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>) or </em><em>None</em>) – The range of X axis to be visualized</p></li>
-<li><p><strong>yrange</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>) or </em><em>None</em>) – The range of Y axis to be visualized</p></li>
-<li><p><strong>zrange</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>) or </em><em>None</em>) – The range of Z axis to be visualized</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Plotly’s scene object</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>plotly.graph_objects.layout.Scene</p>
 </dd>
 </dl>
 </dd></dl>
@@ -454,20 +424,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="py3dmolhelper.html"
+       href="pyvistahelper.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">py3dmolhelper module</p>
+        <p class="prev-next-title">pyvistahelper module</p>
       </div>
     </a>
     <a class="right-next"
-       href="paraview_interface.html"
+       href="plotly_3d.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">paraview_interface module</p>
+        <p class="prev-next-title">plotly_3d module</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -489,15 +459,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.plotly_3d.Bitmap3d"><code class="docutils literal notranslate"><span class="pre">Bitmap3d()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.plotly_3d.PointCloud"><code class="docutils literal notranslate"><span class="pre">PointCloud()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.plotly_3d.SimpleScene"><code class="docutils literal notranslate"><span class="pre">SimpleScene()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.py3dmolhelper.add_edges"><code class="docutils literal notranslate"><span class="pre">add_edges()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.py3dmolhelper.add_surface"><code class="docutils literal notranslate"><span class="pre">add_surface()</span></code></a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="_sources/plotly_3d.rst.txt">
+    <a href="_sources/py3dmolhelper.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

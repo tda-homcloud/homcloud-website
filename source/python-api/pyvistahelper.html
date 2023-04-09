@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>homcloud.pyvistahelper module &#8212; homcloud  documentation</title>
+    <title>pyvistahelper module &#8212; homcloud  documentation</title>
   
   
   
@@ -41,7 +41,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pyvistahelper';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="homcloud.plotly_3d module" href="plotly_3d.html" />
+    <link rel="next" title="py3dmolhelper module" href="py3dmolhelper.html" />
     <link rel="prev" title="homcloud.interface module" href="interface.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -140,24 +140,39 @@
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        homcloud.pyvistahelper module
+                        pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="py3dmolhelper.html">
+                        py3dmolhelper module
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="plotly_3d.html">
-                        homcloud.plotly_3d module
+                        plotly_3d module
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="paraview_interface.html">
-                        homcloud.paraview_interface module
+                        paraview_interface module
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -251,24 +266,39 @@ document.write(`
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        homcloud.pyvistahelper module
+                        pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="py3dmolhelper.html">
+                        py3dmolhelper module
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="plotly_3d.html">
-                        homcloud.plotly_3d module
+                        plotly_3d module
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="paraview_interface.html">
-                        homcloud.paraview_interface module
+                        paraview_interface module
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -325,7 +355,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">homcloud.pyvistahelper module</li>
+    <li class="breadcrumb-item active" aria-current="page">pyvistahelper module</li>
   </ul>
 </nav>
 </div>
@@ -343,7 +373,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="module-homcloud.pyvistahelper">
-<span id="homcloud-pyvistahelper-module"></span><h1>homcloud.pyvistahelper module<a class="headerlink" href="#module-homcloud.pyvistahelper" title="Permalink to this heading">#</a></h1>
+<span id="pyvistahelper-module"></span><h1>pyvistahelper module<a class="headerlink" href="#module-homcloud.pyvistahelper" title="Permalink to this heading">#</a></h1>
 <p>This module provides helper functions for pyvista (<a class="reference external" href="https://pyvista.org/">https://pyvista.org/</a>) for HomCloud.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="homcloud.pyvistahelper.Bitmap3D">
@@ -351,7 +381,7 @@ document.write(`
 <dd><p>Returns PyVista’s mesh object for 3d array bitmap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>Any</em><em>, </em><em>Any</em><em>)</em><em>, </em><em>float</em><em>]</em>) – 3d array</p>
+<dd class="field-odd"><p><strong>array</strong> (<em>numpy.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>Any</em><em>, </em><em>Any</em><em>)</em><em>, </em><em>float</em><em>]</em>) – 3d array</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PyVista’s mesh object</p>
@@ -368,7 +398,7 @@ document.write(`
 <dd><p>Returns PyVista’s mesh object for lines.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>2</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of lines</p>
+<dd class="field-odd"><p><strong>array</strong> (<em>numpy.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>2</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of lines</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PyVista’s mesh object</p>
@@ -385,7 +415,7 @@ document.write(`
 <dd><p>Returns PyVista’s mesh object for a loop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of points</p>
+<dd class="field-odd"><p><strong>array</strong> (<em>numpy.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of points</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PyVista’s mesh object</p>
@@ -402,7 +432,7 @@ document.write(`
 <dd><p>Returns PyVista’s mesh object for triangles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of voxels</p>
+<dd class="field-odd"><p><strong>array</strong> (<em>numpy.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of voxels</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PyVista’s mesh object</p>
@@ -419,7 +449,7 @@ document.write(`
 <dd><p>Returns PyVista’s mesh object for triangles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>array</strong> (<em>np.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of triangles</p>
+<dd class="field-odd"><p><strong>array</strong> (<em>numpy.ndarray</em><em>[</em><em>(</em><em>Any</em><em>, </em><em>3</em><em>, </em><em>3</em><em>)</em><em>, </em><em>float</em><em>]</em>) – list of triangles</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PyVista’s mesh object</p>
@@ -453,11 +483,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="plotly_3d.html"
+       href="py3dmolhelper.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">homcloud.plotly_3d module</p>
+        <p class="prev-next-title">py3dmolhelper module</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

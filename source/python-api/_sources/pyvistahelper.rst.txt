@@ -1,5 +1,5 @@
-homcloud.pyvistahelper module
-=============================
+pyvistahelper module
+====================
 
 .. automodule:: homcloud.pyvistahelper
     :members:
