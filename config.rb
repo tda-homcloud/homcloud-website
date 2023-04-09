@@ -9,7 +9,21 @@ configure :build do
   set :http_prefix, "/"
 end
 
+config.ignored_sitemap_matchers[:partials] = proc do |file|
+  ignored = false
 
+  file[:relative_path].ascend do |f|
+    if f.to_s.start_with?("python-api/_static/")
+      ignored = false
+      break
+    elsif f.basename.to_s =~ %r{^_[^_]}
+      ignored = true
+      break
+    end
+  end
+
+  ignored
+end
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
