@@ -21,7 +21,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 ## ドキュメント
 
 * [インストール](install-guide/index.html)
-* [チュートリアル](basic-usage.html)
+* [チュートリアル](tutorials.html)
 * [FAQ](faq.html)
 * [Python API reference manual](python-api/)
 

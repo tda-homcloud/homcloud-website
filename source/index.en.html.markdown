@@ -24,7 +24,7 @@ The latest version is also available on [pypi](https://pypi.org/project/homcloud
 ## Documents
 
 * [Install](how-to-install.en.html)
-* [Tutorial](basic-usage.en.html)
+* [Tutorial](tutorials.en.html)
 * [Python API reference manual](python-api/)
 
 ## How to cite HomCloud from your paper
