@@ -39,13 +39,13 @@ jupyter notebookをインストールしてください．
 最近 HomCloud は[Google Colaboratory](colab.research.google.com/)でも動作するようになりました．
 現在Colabへのチュートリアルの移植を進行中です．
 
-* [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
-* [白黒画像の解析](https://colab.research.google.com/drive/1Zu51FPnGyLGLwZeck3_79euQFTYTk5A8?usp=sharing)
-* [グレイスケール画像の解析](https://colab.research.google.com/drive/1BzrPy3Cq2rgnz1dhBu6xqPEFO3qUkaiB?usp=sharing)
-* [三次元二値画像の解析](https://colab.research.google.com/drive/1oxcWPZhlktb-z2vGU9Q35ZrY10VKg2NC?usp=sharing)
-* [原子配置データ(3次元点集合データ)](https://colab.research.google.com/drive/14flPjPRuzvxIxqBKsB2za5vD7EYr3__E?usp=sharing)
-usp=sharing)
-* [機械学習](https://colab.research.google.com/drive/1Qhw7Tof0hoiTH6_pnLi3j6VNcUjbR-Sc?usp=sharing)
+* [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1Ygu6WIblDIqgEamuu25xC9tBHb3X_vEM?usp=sharing)
+* [白黒画像の解析](https://colab.research.google.com/drive/1I5mWNFgKxSjpsXVKDXWaeiS6guh2LpEO?usp=sharing)
+* [グレイスケール画像の解析](https://colab.research.google.com/drive/1ZHmFVf6p8BFAQgXwfU38fUF3Lt3_iFlJ?usp=sharing)
+* [三次元二値画像の解析](https://colab.research.google.com/drive/1uLFxhDtBMYDQGCVJkmUSbRUEzGDeFq4c?usp=sharing)
+* [距離行列(Vietoris-Rips)](https://colab.research.google.com/drive/1xzboFLaCKPsBvlcLFEj17Q1lY0cKQmhJ?usp=sharing)
+* [機械学習](https://colab.research.google.com/drive/1iDOitCi09VCwHHLRnnSOKmyOl0NMXR1J?usp=sharing)
+* [材料科学データの解析(原子配置データ)](https://colab.research.google.com/drive/1iK8yzl0ituB9LN3zKxFYVIwfNQ0BneFT?usp=sharing)
 
 ### Jupyter notebookに関する話
 
