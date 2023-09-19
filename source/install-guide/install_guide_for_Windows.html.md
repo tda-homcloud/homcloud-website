@@ -153,4 +153,4 @@ MSMPIは dipha が並列化してホモロジーを計算するために使い�
 
 をダウンロードし、クリックしてインストールをします。
 
-dipha は [dipha.exe](/donwload/win/dipha.exe) からダウンロードし，`venv37\Scripts` にコピーしてください．
+dipha は [dipha.exe](/download/win/dipha.exe) からダウンロードし，`venv37\Scripts` にコピーしてください．
