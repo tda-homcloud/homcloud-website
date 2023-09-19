@@ -1,3 +1,4 @@
+
 ---
 title: Install HomCloud on Mac OS X
 lang: ja
@@ -48,6 +49,7 @@ homebrew を使うことで、様々なパッケージをターミナルから�
 ## 3. venv
 
     mkdir homcloud
+    cd homcloud
     python3 -m venv venv
 
 ## 4. venv activate
