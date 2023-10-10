@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -32,8 +32,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
@@ -52,6 +53,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -92,7 +102,8 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
   
@@ -108,7 +119,6 @@
 </a></div>
     
   </div>
-  
   
   <div class="col-lg-9 navbar-header-items">
     
@@ -157,20 +167,20 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         paraview_interface module
                       </a>
                     </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -182,23 +192,25 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -209,18 +221,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -283,20 +297,20 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         paraview_interface module
                       </a>
                     </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -310,10 +324,10 @@ document.write(`
           <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -346,15 +360,15 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="index.html" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">paraview_interface module</li>
+    <li class="breadcrumb-item active" aria-current="page">paraview_int...</li>
   </ul>
 </nav>
 </div>
@@ -389,6 +403,34 @@ and you can construct a new pipeline node by the following methods:</p>
 <ul class="simple">
 <li><p>Add clip_box method</p></li>
 </ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.BaseDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">BaseDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#BaseDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.BaseDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class represents the generator of a VTK file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_colors</strong> (<em>int</em>) – The number of colors</p></li>
+<li><p><strong>column_spec</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em> or </em><em>None</em><em>]</em>) – The pairs of the names of
+the columns and default values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.CubeDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">CubeDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#CubeDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.CubeDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCellDrawer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.LinesDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">LinesDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#LinesDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.LinesDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.paraview_interface.PipelineNode">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">PipelineNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PipelineNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PipelineNode" title="Permalink to this definition">#</a></dt>
@@ -601,12 +643,42 @@ in paraview’s GUI.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.PolyLineDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">PolyLineDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#PolyLineDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.PolyLineDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.SimplexDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SimplexDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SimplexDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SimplexDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseCellDrawer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.SparseBitmapDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SparseBitmapDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SparseBitmapDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SparseBitmapDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.SparseCubeDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SparseCubeDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SparseCubeDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SparseCubeDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="homcloud.paraview_interface.SphereClip">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SphereClip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inside_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SphereClip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SphereClip" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode" title="homcloud.paraview_interface.PipelineNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">PipelineNode</span></code></a></p>
 <p>This class represents a pipeline node for sphere clipping.</p>
 <p>You should construct the instance of this class
 by <a class="reference internal" href="#homcloud.paraview_interface.PipelineNode.clip_sphere" title="homcloud.paraview_interface.PipelineNode.clip_sphere"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PipelineNode.clip_sphere()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.paraview_interface.SurfaceDrawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.paraview_interface.</span></span><span class="sig-name descname"><span class="pre">SurfaceDrawer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/paraview_interface.html#SurfaceDrawer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.paraview_interface.SurfaceDrawer" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#homcloud.paraview_interface.BaseDrawer" title="homcloud.paraview_interface.BaseDrawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
@@ -694,11 +766,10 @@ paraview is invoked by using backgroup process mechanism.</p></li>
               
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="plotly_3d.html"
@@ -709,10 +780,7 @@ paraview is invoked by using backgroup process mechanism.</p></li>
         <p class="prev-next-title">plotly_3d module</p>
       </div>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -727,6 +795,9 @@ paraview is invoked by using backgroup process mechanism.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.BaseDrawer"><code class="docutils literal notranslate"><span class="pre">BaseDrawer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.CubeDrawer"><code class="docutils literal notranslate"><span class="pre">CubeDrawer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.LinesDrawer"><code class="docutils literal notranslate"><span class="pre">LinesDrawer</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.PipelineNode"><code class="docutils literal notranslate"><span class="pre">PipelineNode</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.PipelineNode.clip_sphere"><code class="docutils literal notranslate"><span class="pre">PipelineNode.clip_sphere()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.PipelineNode.color_by"><code class="docutils literal notranslate"><span class="pre">PipelineNode.color_by()</span></code></a></li>
@@ -743,7 +814,12 @@ paraview is invoked by using backgroup process mechanism.</p></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.PolyLine"><code class="docutils literal notranslate"><span class="pre">PolyLine()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.PolyLineDrawer"><code class="docutils literal notranslate"><span class="pre">PolyLineDrawer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.SimplexDrawer"><code class="docutils literal notranslate"><span class="pre">SimplexDrawer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.SparseBitmapDrawer"><code class="docutils literal notranslate"><span class="pre">SparseBitmapDrawer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.SparseCubeDrawer"><code class="docutils literal notranslate"><span class="pre">SparseCubeDrawer</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.SphereClip"><code class="docutils literal notranslate"><span class="pre">SphereClip</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.SurfaceDrawer"><code class="docutils literal notranslate"><span class="pre">SurfaceDrawer</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.Threshold"><code class="docutils literal notranslate"><span class="pre">Threshold</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.VTK"><code class="docutils literal notranslate"><span class="pre">VTK</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.paraview_interface.VoxelData"><code class="docutils literal notranslate"><span class="pre">VoxelData()</span></code></a></li>
@@ -774,8 +850,8 @@ paraview is invoked by using backgroup process mechanism.</p></li>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -801,10 +877,11 @@ paraview is invoked by using backgroup process mechanism.</p></li>
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
 </p></div>
       
     </div>

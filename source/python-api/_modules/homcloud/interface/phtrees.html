@@ -137,24 +137,39 @@
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        homcloud.pyvistahelper module
+                        pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+                        py3dmolhelper module
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        homcloud.plotly_3d module
+                        plotly_3d module
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../paraview_interface.html">
-                        homcloud.paraview_interface module
+                        paraview_interface module
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -244,24 +259,39 @@ document.write(`
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        homcloud.pyvistahelper module
+                        pyvistahelper module
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+                        py3dmolhelper module
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        homcloud.plotly_3d module
+                        plotly_3d module
                       </a>
                     </li>
                 
-
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../../paraview_interface.html">
-                        homcloud.paraview_interface module
+                        paraview_interface module
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -458,6 +488,16 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">death_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">death_index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">in_rectangle</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
         <span class="p">]</span></div>
 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_to_paraview_node_from_nodes</span><span class="p">(</span><span class="n">all_vertices</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
+        <span class="n">drawer</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">SimplexDrawer</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span> <span class="n">all_vertices</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">draw_volume</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span>
+
 <div class="viewcode-block" id="PHTrees.to_paraview_node_from_nodes"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PHTrees.to_paraview_node_from_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">to_paraview_node_from_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a :class:`homcloud.paraview_interface.PipelineNode`</span>
@@ -474,13 +514,7 @@ document.write(`
 <span class="sd">        Notes:</span>
 <span class="sd">            All nodes should be nodes of `self` PHTrees.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
-        <span class="n">drawer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">build_paraview_drawer</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">),</span> <span class="p">{})</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">draw_volume</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_paraview_node_from_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">)</span></div>
 
     <span class="n">to_pvnode_from_nodes</span> <span class="o">=</span> <span class="n">to_paraview_node_from_nodes</span>
 
@@ -592,12 +626,7 @@ document.write(`
 <span class="sd">            Returns:</span>
 <span class="sd">                homcloud.paraview_interface.VTK: Paraview Pipeline node object.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.vtk&quot;</span><span class="p">)</span>
-            <span class="n">drawer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">build_paraview_drawer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{})</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">draw_volume</span><span class="p">(</span><span class="n">drawer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="n">drawer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">pv_interface</span><span class="o">.</span><span class="n">VTK</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gui_name</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">set_representation</span><span class="p">(</span><span class="s2">&quot;Wireframe&quot;</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">PHTrees</span><span class="o">.</span><span class="n">_to_paraview_node_from_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="o">.</span><span class="n">coord_resolver</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="n">gui_name</span><span class="p">)</span></div>
 
         <span class="n">to_pvnode</span> <span class="o">=</span> <span class="n">to_paraview_node</span>
 
