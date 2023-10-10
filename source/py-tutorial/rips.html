@@ -15282,12 +15282,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%E3%83%91%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%B3%E3%83%88%E5%9B%B3%E3%81%AE%E8%A8%88%E7%AE%97">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;<a class="anchor-link" href="#%E3%83%91%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%B3%E3%83%88%E5%9B%B3%E3%81%AE%E8%A8%88%E7%AE%97">&#182;</a></h2><p><code>homcloud.interface.PDList.from_rips_filtration</code> でパーシステント図を計算します。引数の意味は以下の通りです。</p>
+<h2 id="%E3%83%91%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%B3%E3%83%88%E5%9B%B3%E3%81%AE%E8%A8%88%E7%AE%97">&#12497;&#12540;&#12471;&#12473;&#12486;&#12531;&#12488;&#22259;&#12398;&#35336;&#31639;<a class="anchor-link" href="#%E3%83%91%E3%83%BC%E3%82%B7%E3%82%B9%E3%83%86%E3%83%B3%E3%83%88%E5%9B%B3%E3%81%AE%E8%A8%88%E7%AE%97">&#182;</a></h2><p><code>homcloud.interface.PDList.from_rips_filtration</code> でパーシステント図を計算します。引数の意味は以下の通りです</p>
 <ul>
 <li>最初の引数は距離行列</li>
 <li><code>maxdim</code> で最大次数を指定</li>
 <li><code>save_to</code> で保存先を指定</li>
-<li>ここでは指定していませんが、<code>maxvalue</code> で取り扱う birth/death time の最大値を指定します。</li>
+<li>ここでは指定していませんが、<code>maxvalue</code> で取り扱う birth/death time の最大値を指定します<ul>
+<li>後で説明しますが、<code>maxvalue</code>はdiphaのインストールが必要です</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -15561,6 +15564,8 @@ jp-needs-light-background
 <h2 id="maxvalue-%E3%81%AE%E5%8A%B9%E6%9E%9C">maxvalue &#12398;&#21177;&#26524;<a class="anchor-link" href="#maxvalue-%E3%81%AE%E5%8A%B9%E6%9E%9C">&#182;</a></h2><p>さて、ここで PD を計算するときに <code>maxvalue</code> を指定すると何がおきるかを見ていきましょう。
 まず、distance matrixの値がどのように分布しているか、histogramを見てみましょう。</p>
 <p><code>numpy.triu_indices</code>を使うと距離行列の上半分だけ取り出すことができます。</p>
+<h3 id="%E6%B3%A8%E6%84%8F">&#27880;&#24847;<a class="anchor-link" href="#%E6%B3%A8%E6%84%8F">&#182;</a></h3><p><code>maxvalue</code> 機能を利用するためにはdiphaのインストールが必要です．詳しくは<a href="https://homcloud.dev/install-guide/index.html">インストールガイド</a>の自分の環境のを見てください．
+Windowsではこの機能のテストは十分にされていないため，MacOSXやLinuxのほうが確実に動作するでしょう．</p>
 
 </div>
 </div>
