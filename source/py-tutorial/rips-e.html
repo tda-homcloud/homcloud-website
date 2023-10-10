@@ -15559,6 +15559,10 @@ jp-needs-light-background
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="The-effect-of-maxvalue">The effect of maxvalue<a class="anchor-link" href="#The-effect-of-maxvalue">&#182;</a></h2><p>Now, let's see what happens if you specify <code>maxvalue</code> when calculating PD here. First, let's look at the histogram to see how the distance matrix values are distributed.</p>
 <p>Use <code>numpy.triu_indices</code> to extract only the upper half of the distance matrix.</p>
+<h2 id="Remark">Remark<a class="anchor-link" href="#Remark">&#182;</a></h2><p>Note that when using maxvalue, Risper is not used, dipha is used instead.
+Therefore, you should install dipha before using maxvalue. 
+Please see <a href="https://homcloud.dev/install-guide/index.en.html">the installation guide</a>.</p>
+<p>dipha is much slower than Risper, so if you don't specify the upper limit, it may be rather slow.</p>
 
 </div>
 </div>
@@ -15678,9 +15682,7 @@ Wall time: 203 ms
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As you can see, the calculation time is much faster than before.
-Note that when using maxvalue, risper is not used, dipha is used instead.</p>
-<p>dipha is much slower than risper, so if you don't specify the upper limit, it may be rather slow.</p>
+<p>As you can see, the calculation time is much faster than before.</p>
 <p>Then let's plot PD.</p>
 
 </div>
