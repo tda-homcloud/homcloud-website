@@ -43,7 +43,7 @@ venvというディレクトリが作られ，その下に仮想環境に必要�
 
     source ./venv/bin/activate
 
-## 5 pip　でインストール
+## 5. pipでインストール
 
 以下のようにタイプして必要なPythonパッケージをインストールします．
 
@@ -96,3 +96,34 @@ HomCloudのチュートリアルを動かしてみましょう．
 とするとブラウザがポップアップし，jupyter notebookが起動します．
 ここでチュートリアルのフォルダからチュートリアルを始めてください．
 いくつかチュートリアルがありますが，pointcloudが一番やりやすいでしょう．
+
+## トラブルシューティング
+
+### Xcodeの問題
+「5. pipでインストール」の所で次のようなエラーが出た場合は，普通のXcodeが利用させる設定になっています．
+HomebrewではXcodeのCommand Line Toolsを使う前提になっているため，Command Line Toolsに切り替える必要があります．
+
+          /Applications/Xcode-14.3.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/unique_ptr.h:610:45: error: unknown type name 'nullptr_t'
+          operator!=(const unique_ptr<_T1, _D1>& __x, nullptr_t) _NOEXCEPT
+                                                      ^
+          fatal error: too many errors emitted, stopping now [-ferror-limit=]
+          220 warnings and 20 errors generated.
+          error: command '/usr/bin/clang' failed with exit code 1
+          [end of output]
+
+      note: This error originates from a subprocess, and is likely not a problem with pip.
+      ERROR: Failed building wheel for ripser
+      Building wheel for hopcroftkarp (setup.py) ... done
+      Created wheel for hopcroftkarp: filename=hopcroftkarp-1.2.5-py2.py3-none-any.whl size=18102 sha256=90695ae1fb96c91e6da1391bc7a75635e2c8011d9b19f41ad5fb496d9ce34716
+      Stored in directory: /Users/distiller/Library/Caches/pip/wheels/1f/cc/2d/de23a8b9ae586817b0b44de4a4b1a08f23473e248a644b312f
+    Successfully built msgpack-python hopcroftkarp
+    Failed to build ripser
+    ERROR: Could not build wheels for ripser, which is required to install pyproject.toml-based projects
+
+    Exited with code exit status 1
+
+切り替えは次のようにします．
+
+    sudo xcode-select -s /Library/Developer/CommandLineTools/
+    
+
