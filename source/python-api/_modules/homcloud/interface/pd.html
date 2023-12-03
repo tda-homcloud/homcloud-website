@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -18,25 +17,26 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/pd';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -50,6 +50,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -90,7 +99,8 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
   
@@ -106,7 +116,6 @@
 </a></div>
     
   </div>
-  
   
   <div class="col-lg-9 navbar-header-items">
     
@@ -155,20 +164,20 @@
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../paraview_interface.html">
+                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
                         paraview_interface module
                       </a>
                     </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -180,23 +189,25 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
         <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -207,13 +218,15 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
@@ -277,20 +290,20 @@ document.write(`
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-header-nav-more-links">
                     More
                 </button>
-                <div class="dropdown-menu">
+                <ul id="pst-header-nav-more-links" class="dropdown-menu">
                     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../paraview_interface.html">
+                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
                         paraview_interface module
                       </a>
                     </li>
                 
-                </div>
-            </div>
+                </ul>
+            </li>
             
   </ul>
 </nav></div>
@@ -304,10 +317,10 @@ document.write(`
           <div class="navbar-item">
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
@@ -340,8 +353,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../../index.html" class="nav-link" aria-label="Home">
@@ -354,7 +367,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">homcloud.interface.pd</li>
+    <li class="breadcrumb-item active" aria-current="page">homcloud.int...</li>
   </ul>
 </nav>
 </div>
@@ -413,7 +426,9 @@ document.write(`
 <span class="kn">from</span> <span class="nn">.ph0_component</span> <span class="kn">import</span> <span class="n">PH0Components</span>
 
 
-<div class="viewcode-block" id="PDList"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList">[docs]</a><span class="k">class</span> <span class="nc">PDList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="PDList">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList">[docs]</a>
+<span class="k">class</span> <span class="nc">PDList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of 0th,1st,..,and q-th persitence diagrams.</span>
 
 <span class="sd">    In HomCloud, diagrams for all degrees coming from a filtration</span>
@@ -441,11 +456,14 @@ document.write(`
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PDList(path=</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
 
-<div class="viewcode-block" id="PDList.close"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PDList.close">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.close">[docs]</a>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dispose PDList object and release resources.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
@@ -453,10 +471,13 @@ document.write(`
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception_type</span><span class="p">,</span> <span class="n">exception_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<div class="viewcode-block" id="PDList.FileType"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.FileType">[docs]</a>    <span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
+<div class="viewcode-block" id="PDList.FileType">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.FileType">[docs]</a>
+    <span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
     <span class="k">class</span> <span class="nc">FileType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
         <span class="n">IDIAGRAM</span> <span class="o">=</span> <span class="s2">&quot;idipha&quot;</span>
         <span class="n">PDGM</span> <span class="o">=</span> <span class="s2">&quot;pdgm&quot;</span></div>
+
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">):</span>
@@ -472,7 +493,9 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_to</span><span class="p">,</span> <span class="s2">&quot;w+b&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PDList.from_alpha_filtration"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_filtration">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="PDList.from_alpha_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_alpha_filtration</span><span class="p">(</span>
         <span class="n">pointcloud</span><span class="p">,</span>
         <span class="n">weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -607,7 +630,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.from_bitmap_levelset"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_levelset">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PDList.from_bitmap_levelset">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_levelset">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_bitmap_levelset</span><span class="p">(</span>
         <span class="n">array</span><span class="p">,</span>
         <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;sublevel&quot;</span><span class="p">,</span>
@@ -706,7 +732,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.from_bitmap_distance_function"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_distance_function">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PDList.from_bitmap_distance_function">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_distance_function">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_bitmap_distance_function</span><span class="p">(</span>
         <span class="n">binary_pict</span><span class="p">,</span>
         <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -800,7 +829,10 @@ document.write(`
             <span class="n">output_filetype</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.from_rips_filtration"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_rips_filtration">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PDList.from_rips_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_rips_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_rips_filtration</span><span class="p">(</span>
         <span class="n">distance_matrix</span><span class="p">,</span>
         <span class="n">maxdim</span><span class="p">,</span>
@@ -869,7 +901,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.from_simplicial_levelset"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_simplicial_levelset">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PDList.from_simplicial_levelset">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_simplicial_levelset">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_simplicial_levelset</span><span class="p">(</span>
         <span class="n">simplicial_function</span><span class="p">,</span>
         <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -924,7 +959,10 @@ document.write(`
         <span class="n">filtration</span> <span class="o">=</span> <span class="n">simplicial_levelset</span><span class="o">.</span><span class="n">SimplicialFiltration</span><span class="p">(</span><span class="n">simplicial_function</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.from_boundary_information"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_boundary_information">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PDList.from_boundary_information">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_boundary_information">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_boundary_information</span><span class="p">(</span>
         <span class="n">boundary</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
@@ -983,7 +1021,10 @@ document.write(`
 
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.save"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PDList.save">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.save">[docs]</a>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the PDList into `dest`.</span>
 
 <span class="sd">        Args:</span>
@@ -994,7 +1035,10 @@ document.write(`
             <span class="n">srcfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">srcfile</span><span class="p">,</span> <span class="n">destfile</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PDList.dth_diagram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.dth_diagram">[docs]</a>    <span class="k">def</span> <span class="nf">dth_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PDList.dth_diagram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.dth_diagram">[docs]</a>
+    <span class="k">def</span> <span class="nf">dth_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return `d`-th persistence diagram from PDList.</span>
 
 <span class="sd">        Args:</span>
@@ -1008,9 +1052,12 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">PDGM</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="p">))</span></div>
 
+
     <span class="fm">__getitem__</span> <span class="o">=</span> <span class="n">dth_diagram</span>
 
-<div class="viewcode-block" id="PDList.invoke_gui_plotter"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.invoke_gui_plotter">[docs]</a>    <span class="k">def</span> <span class="nf">invoke_gui_plotter</span><span class="p">(</span>
+<div class="viewcode-block" id="PDList.invoke_gui_plotter">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.invoke_gui_plotter">[docs]</a>
+    <span class="k">def</span> <span class="nf">invoke_gui_plotter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">d</span><span class="p">,</span>
         <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1059,7 +1106,10 @@ document.write(`
             <span class="n">options</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--optimal-volume&quot;</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">])</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;homcloud.plot_PD_gui&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">options</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="PDList.bitmap_phtrees"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.bitmap_phtrees">[docs]</a>    <span class="k">def</span> <span class="nf">bitmap_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PDList.bitmap_phtrees">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.bitmap_phtrees">[docs]</a>
+    <span class="k">def</span> <span class="nf">bitmap_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Read a :class:`BitmapPHTrees` object computed by</span>
 <span class="sd">        :meth:`BitmapPHTrees.for_bitmap_levelset`.</span>
@@ -1075,6 +1125,7 @@ document.write(`
         <span class="n">treedict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">load_simple_chunk</span><span class="p">(</span><span class="s2">&quot;bitmap_phtrees&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="p">(</span><span class="n">treedict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;sign_flipped&quot;</span><span class="p">])</span></div>
 
+
     <span class="k">def</span> <span class="nf">check_coefficient_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pdgm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">pd</span>
         <span class="n">checker</span> <span class="o">=</span> <span class="n">int_reduction</span><span class="o">.</span><span class="n">build_checker</span><span class="p">(</span><span class="n">pdgm</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">boundary_map_chunk</span><span class="p">)</span>
@@ -1088,11 +1139,14 @@ document.write(`
             <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;.idiagram&quot;</span><span class="p">,</span> <span class="n">assert_message</span></div>
 
 
+
 <span class="c1">#: Obsolete, for backward compatibility</span>
 <span class="n">PDs</span> <span class="o">=</span> <span class="n">PDList</span>
 
 
-<div class="viewcode-block" id="PD"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD">[docs]</a><span class="nd">@forwardable</span>
+<div class="viewcode-block" id="PD">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD">[docs]</a>
+<span class="nd">@forwardable</span>
 <span class="k">class</span> <span class="nc">PD</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The class for a single persistence diagram.</span>
@@ -1137,7 +1191,9 @@ document.write(`
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PD(path=</span><span class="si">%s</span><span class="s2">, d=</span><span class="si">%d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PD.birth_death_times"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.birth_death_times">[docs]</a>    <span class="k">def</span> <span class="nf">birth_death_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PD.birth_death_times">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.birth_death_times">[docs]</a>
+    <span class="k">def</span> <span class="nf">birth_death_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the  birth times and death times.</span>
 
@@ -1147,7 +1203,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">deaths</span></div>
 
-<div class="viewcode-block" id="PD.histogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.histogram">[docs]</a>    <span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span>
+
+<div class="viewcode-block" id="PD.histogram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.histogram">[docs]</a>
+    <span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">x_bins</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
@@ -1175,7 +1234,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">HistoSpec</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">x_bins</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">y_bins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span><span class="o">.</span><span class="n">pd_histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PD.load_phtrees"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.load_phtrees">[docs]</a>    <span class="k">def</span> <span class="nf">load_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PD.load_phtrees">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.load_phtrees">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load a PH trees from the diagram.</span>
 
@@ -1193,7 +1255,10 @@ document.write(`
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">PHTrees</span><span class="o">.</span><span class="n">from_pdgm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PD.pair"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pair">[docs]</a>    <span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PD.pair">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pair">[docs]</a>
+    <span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns `nth` birth-death pairs.</span>
 
 <span class="sd">        Args:</span>
@@ -1204,7 +1269,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PD.pairs"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs">[docs]</a>    <span class="k">def</span> <span class="nf">pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PD.pairs">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs">[docs]</a>
+    <span class="k">def</span> <span class="nf">pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs of the PD.</span>
 
 <span class="sd">        Returns:</span>
@@ -1212,7 +1280,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">num_pairs</span><span class="p">)]</span></div>
 
-<div class="viewcode-block" id="PD.nearest_pair_to"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.nearest_pair_to">[docs]</a>    <span class="k">def</span> <span class="nf">nearest_pair_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PD.nearest_pair_to">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.nearest_pair_to">[docs]</a>
+    <span class="k">def</span> <span class="nf">nearest_pair_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a pair closest to `(x, y)`.</span>
 
 <span class="sd">        Args:</span>
@@ -1224,11 +1295,14 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">nearest_pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
 
+
     <span class="nd">@cached_property</span>
     <span class="k">def</span> <span class="nf">spatial_searcher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SpatialSearcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deaths</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PD.pairs_in_rectangle"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs_in_rectangle">[docs]</a>    <span class="k">def</span> <span class="nf">pairs_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
+<div class="viewcode-block" id="PD.pairs_in_rectangle">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs_in_rectangle">[docs]</a>
+    <span class="k">def</span> <span class="nf">pairs_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs in the rectangle.</span>
 
 <span class="sd">        Returns all birth-death pairs whose birth time is in</span>
@@ -1246,7 +1320,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">in_rectangle</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PD.empty"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.empty">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PD.empty">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.empty">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">empty</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which has no birth-death pairs.</span>
 
@@ -1255,7 +1332,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">empty_pd</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="PD.from_birth_death"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.from_birth_death">[docs]</a>    <span class="nd">@staticmethod</span>
+
+<div class="viewcode-block" id="PD.from_birth_death">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.from_birth_death">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_birth_death</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">sign_flipped</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which birth and death times are given lists.</span>
 
@@ -1270,7 +1350,10 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">SimplePDGM</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="p">,</span> <span class="n">sign_flipped</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="PD.slice_histogram"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.slice_histogram">[docs]</a>    <span class="k">def</span> <span class="nf">slice_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+
+<div class="viewcode-block" id="PD.slice_histogram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.slice_histogram">[docs]</a>
+    <span class="k">def</span> <span class="nf">slice_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns 1D histogram of birth-death pairs in a thin strip.</span>
 
 <span class="sd">        This method computes a 1D hitogram of birth-death pairs</span>
@@ -1293,6 +1376,7 @@ document.write(`
         <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span> <span class="o">&lt;</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">values</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="p">],</span> <span class="n">bins</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">SliceHistogram</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span></div>
+
 
     <span class="k">def</span> <span class="nf">optvol_optimizer_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">cutoff_radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1347,7 +1431,10 @@ document.write(`
         <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span></div>
 
 
-<div class="viewcode-block" id="Pair"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair">[docs]</a><span class="k">class</span> <span class="nc">Pair</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Pair">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair">[docs]</a>
+<span class="k">class</span> <span class="nc">Pair</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing a birth-death pair.</span>
 
@@ -1363,7 +1450,9 @@ document.write(`
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Pair.birth_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.birth_time">[docs]</a>    <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Pair.birth_time">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.birth_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the birth time of the pair.</span>
 
 <span class="sd">        Returns:</span>
@@ -1371,13 +1460,17 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">births</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Pair.death_time"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.death_time">[docs]</a>    <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Pair.death_time">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.death_time">[docs]</a>
+    <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the death time of the pair.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The death time</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">deaths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span></div>
+
 
     <span class="c1">#: float: The birth time</span>
     <span class="n">birth</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">birth_time</span><span class="p">)</span>
@@ -1418,11 +1511,13 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;list of string: Death simplex for the birth-death pair by symbols. Only available for alpha filtrations.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Pair.optimal_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_volume">[docs]</a>    <span class="k">def</span> <span class="nf">optimal_volume</span><span class="p">(</span>
+<div class="viewcode-block" id="Pair.optimal_volume">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_volume">[docs]</a>
+    <span class="k">def</span> <span class="nf">optimal_volume</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">solver_options</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">solver_options</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">constrain_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">num_retry</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">integer_programming</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1440,6 +1535,8 @@ document.write(`
 <span class="sd">                If this argument is None, all simplices are not ignored.</span>
 <span class="sd">            solver (string or None): The name of the LP solver.</span>
 <span class="sd">                The default solver (coinor Clp) is selected if None is given.</span>
+<span class="sd">            solver_options (dict[str, Any]): Options for LP sovlers.</span>
+<span class="sd">                The options are forwarded to Pulp program.</span>
 <span class="sd">            constrain_birth (bool): Now this value is not used.</span>
 <span class="sd">            num_retry (int): The number of retry.</span>
 <span class="sd">                The cutoff_radius is doubled at every retrial.</span>
@@ -1462,17 +1559,20 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">check_optimal_volume_error</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">OptimalVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span></div>
 
+
     <span class="k">def</span> <span class="nf">check_optimal_volume_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">optvol</span><span class="o">.</span><span class="n">Failure</span><span class="p">):</span>
             <span class="n">result</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">VolumeNotFound</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Pair.stable_volume"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.stable_volume">[docs]</a>    <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span>
+<div class="viewcode-block" id="Pair.stable_volume">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.stable_volume">[docs]</a>
+    <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">threshold</span><span class="p">,</span>
         <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">solver_options</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">solver_options</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">constrain_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">num_retry</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">integer_programming</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1491,7 +1591,7 @@ document.write(`
 <span class="sd">                If this argument is None, all simplices are not ignored.</span>
 <span class="sd">            solver (string or None): The name of the LP solver.</span>
 <span class="sd">                The default solver (coinor Clp) is selected if None is given.</span>
-<span class="sd">            solver_options (list of string): Options for LP sovlers.</span>
+<span class="sd">            solver_options (dict[str, Any]): Options for LP sovlers.</span>
 <span class="sd">                The options are forwarded to Pulp program.</span>
 <span class="sd">            constrain_birth (bool): Ignored</span>
 <span class="sd">            num_retry (int): The number of retry.</span>
@@ -1510,9 +1610,12 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">check_optimal_volume_error</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">StableVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span></div>
 
+
     <span class="n">tightened_volume</span> <span class="o">=</span> <span class="n">stable_volume</span>
 
-<div class="viewcode-block" id="Pair.optimal_1_cycle"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_1_cycle">[docs]</a>    <span class="k">def</span> <span class="nf">optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Pair.optimal_1_cycle">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_1_cycle">[docs]</a>
+    <span class="k">def</span> <span class="nf">optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the optimal (not volume-optimal) 1-cycle</span>
 <span class="sd">        corresponding to the birth-death pair.</span>
 
@@ -1555,6 +1658,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_map_optimal_1_cycle</span><span class="p">()</span></div>
 
+
     <span class="k">def</span> <span class="nf">bitmap_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">finder</span> <span class="o">=</span> <span class="n">pict_opt1cyc</span><span class="o">.</span><span class="n">Finder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">BitmapOptimal1Cycle</span><span class="p">(</span><span class="n">finder</span><span class="o">.</span><span class="n">query_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">))</span>
@@ -1585,13 +1689,16 @@ document.write(`
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Pair(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span>
 
-<div class="viewcode-block" id="Pair.lifetime"><a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.lifetime">[docs]</a>    <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Pair.lifetime">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.lifetime">[docs]</a>
+    <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The lifetime of the pair.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The lifetime (death - birth) of the pair.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
+
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span>
@@ -1607,22 +1714,19 @@ document.write(`
     <span class="k">def</span> <span class="nf">ph0_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">PH0Components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
+
 </pre></div>
 
                 </article>
               
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1640,8 +1744,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1659,7 +1763,7 @@ document.write(`
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -1667,10 +1771,11 @@ document.write(`
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
 </p></div>
       
     </div>

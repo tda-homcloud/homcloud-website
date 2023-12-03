@@ -37,12 +37,14 @@ See the following documents.
 * Japanese <https://homcloud.dev/install-guide/index.html>
 * English <https://homcloud.dev/install-guide/index.en.html>
 
-# DOCUMENTS
+# Tutorials
 
-Some tutorials of HomCloud are located at the following URLs.
+* Japanese <https://homcloud.dev/tutorials.html>
+* English <https://homcloud.dev/tutorials.en.html>
 
-* Japanese: <https://homcloud.dev/basic-usage.html>
-* English: <https://homcloud.dev/basic-usage.en.html>
+# API reference
+
+English version is only available at <https://homcloud.dev/python-api/>.
 
 # Troubleshooting
 

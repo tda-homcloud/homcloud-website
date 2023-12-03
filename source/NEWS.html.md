@@ -1,3 +1,24 @@
+# News for 4.2.0 (2023/12/02)
+* New features:
+  * `interface.Volume.boundary_loop`
+  * `interface.Volume.boundary_loop_symbols`
+  * `CPLEX_PY` is now available from `interface.Pair.optimal_volume` and `interface.Pair.stable_volume`
+* Breaking change:
+  * Change `solver_options` of `interface.Pair.optimal_volume` and `interface.Pair.stable_volume`
+* Bug fixes:
+  * Pulp - CPLEX interface
+
+# News for 4.1.0 (2023/09/16)
+* New features:
+  * Persistence Codebook vectorization (<https://link.springer.com/article/10.1007/s10462-020-09897-4>)
+    * Not well tested, but looks working
+  * Better support for 3D periodic boundary condition for visualization
+    * `homcloud.interface.Volume.to_pyvista_boundary_mesh` and `homcloud.interface.Volume.to_pyvista_volume_mesh` have `adjust_periodic_boundary` parameter
+    * Other interface such as py3dmolhelper does not support periodic boundary condition.
+* Bug fixes:
+  * Fix memory leak in 3D periodic alpha shape
+  * Automatically remove birth-death pairs with birth == death in `homcloud.pict.show_volume2d`
+
 # News for 4.0.0 (2023/04/10)
 * Major version up!
 * New features:
