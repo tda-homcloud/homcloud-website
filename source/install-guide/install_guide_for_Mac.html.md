@@ -1,4 +1,3 @@
-
 ---
 title: Install HomCloud on Mac OS X
 lang: ja
