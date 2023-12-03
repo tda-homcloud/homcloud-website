@@ -12,7 +12,7 @@ config.ignored_sitemap_matchers[:partials] = proc do |file|
   ignored = false
 
   file[:relative_path].ascend do |f|
-    if f.to_s.start_with?("python-api/_static/")
+    if f.to_s.start_with?("python-api/")
       ignored = false
       break
     elsif f.basename.to_s =~ %r{^_[^_]}
