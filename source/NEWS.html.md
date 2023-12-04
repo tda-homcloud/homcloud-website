@@ -1,7 +1,11 @@
+# News for 4.2.1 (2023/12/04)
+* New feature:
+  * Now ripser algorithm accepts `upper_value`
+
 # News for 4.2.0 (2023/12/02)
 * New features:
-  * `interface.Volume.boundary_loop`
-  * `interface.Volume.boundary_loop_symbols`
+  * New method: `interface.Volume.boundary_loop`
+  * New method: `interface.Volume.boundary_loop_symbols`
   * `CPLEX_PY` is now available from `interface.Pair.optimal_volume` and `interface.Pair.stable_volume`
 * Breaking change:
   * Change `solver_options` of `interface.Pair.optimal_volume` and `interface.Pair.stable_volume`
