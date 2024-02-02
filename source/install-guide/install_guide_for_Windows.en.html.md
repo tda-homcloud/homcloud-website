@@ -19,8 +19,8 @@ Before installing HomCloud, please check your username and other paths for space
 ## 1. Python installation
 
 Download the *64-bit* python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
-HomCloud supports Python *3.8*，*3.9*, and *3.10* (April 10, 2023).
-This installation guide uses Python 3.10.
+HomCloud supports Python *3.8*，*3.9*, *3.10*, and *3.11* (Feb. 2, 2024).
+We recommend Python 3.9. This installation guide uses Python 3.9.
 
 ## 2. Create a new virtual environment by `venv`
 
@@ -36,9 +36,9 @@ First, you should make a working directory. In this example, let's name the dire
 
 You can create a new virtual environment in the working directory:
 
-    py -3.10 -m venv venv310
+    py -3.9 -m venv venv39
 
-Then, a directory whose name is `venv310` is created. The files in the virtual environment are stored in this directory.
+Then, a directory whose name is `venv39` is created. The files in the virtual environment are stored in this directory.
 Note that if the folder name contains non-alphanumeric characters, it will not work. Note that the parent folder must not also be included.
 
 
@@ -46,7 +46,7 @@ Note that if the folder name contains non-alphanumeric characters, it will not w
 
 Type as follows to enter the virtual environment:
 
-    venv310\Scripts\activate
+    venv39\Scripts\activate
 
 *This operation is required every time the command prompt is launched.*
 
@@ -70,7 +70,7 @@ After starting, a window with the following image will be opened. Please close t
 The installation succeeds if the following message is shown in the terminal.
 
     HomCloud version: 4.0.0
-    Python version: 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
+    Python version: 3.9.11 (tags/v3.9.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
