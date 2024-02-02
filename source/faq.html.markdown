@@ -161,6 +161,11 @@ HomCloudは内部的にOpenMPIを使っています．そしてOpenMPIはrootで
     pl.add_mesh(...)
     pl.show()
     
+デフォルトで別ウィンドウで描画したい場合は次のコードをJupyter notebookで実行するとデフォルトの挙動が変化します．
+
+    import pyvsta as pv
+    pv.global_theme.notebook = False
+
 ## Q. ポイントクラウドデータ解析で，異なる半径を持つ粒子を解析したい．
 
 ### A. `homcloud.interface.PDList.from_alpha_filtration` の `weight` パラメータに半径の二乗を渡す
