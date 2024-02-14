@@ -631,6 +631,9 @@ in paraview’s GUI.</p></li>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class represents PH trees computed from a bitmap filtration.</p>
 <p>You can create an instance of this class by <a class="reference internal" href="#homcloud.interface.PDList.bitmap_phtrees" title="homcloud.interface.PDList.bitmap_phtrees"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PDList.bitmap_phtrees()</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://doi.org/10.1137/17M1159439">Obayashi (2018)</a> if you want to know
+more about optimal volumes, and see <a class="reference external" href="https://doi.org/10.1007/s41468-023-00119-8">Obayashi (2023)</a>
+if you want to know more about stable volumes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.nodes">
 <span class="sig-name descname"><span class="pre">nodes</span></span><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.nodes" title="Link to this definition">#</a></dt>
@@ -832,7 +835,7 @@ on an image by <a class="reference internal" href="#homcloud.interface.draw_volu
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.BitmapPHTrees.Node.stable_volume">
 <span class="sig-name descname"><span class="pre">stable_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/bitmap_phtrees.html#BitmapPHTrees.Node.stable_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.BitmapPHTrees.Node.stable_volume" title="Link to this definition">#</a></dt>
-<dd><p>Returns the stable volume of the optimal volume.</p>
+<dd><p>Returns the stable volume of the optimal volume with parameter epsilon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>epsilon</strong> (<em>float</em>) – Duration noise strength</p>
@@ -1129,7 +1132,7 @@ in paraview’s GUI.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.interface.EigenVolume">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">EigenVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#EigenVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.EigenVolume" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">EigenVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#EigenVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.EigenVolume" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.optimal_volume.Volume"><code class="xref py py-class docutils literal notranslate"><span class="pre">Volume</span></code></a></p>
 <p>This class represents an “eigenvolume”. It is the superclass of
 StableVolume and StableSubvolume.</p>
@@ -1141,6 +1144,46 @@ eigenvolume.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.EigenVolume.dump_to_dict">
+<span class="sig-name descname"><span class="pre">dump_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#EigenVolume.dump_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.EigenVolume.dump_to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Returns information about the optimal volume in the form of dict.
+Users can reconstruct <a class="reference internal" href="#homcloud.interface.OptimalVolume" title="homcloud.interface.OptimalVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimalVolume</span></code></a> and <a class="reference internal" href="#homcloud.interface.StableVolume" title="homcloud.interface.StableVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableVolume</span></code></a> from the dictionary
+using <a class="reference internal" href="#homcloud.interface.EigenVolume.restore_from_dict" title="homcloud.interface.EigenVolume.restore_from_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore_from_dict()</span></code></a>.</p>
+<p>The method is useful to compute large number of optimal/stable volumes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The information about the optimal volume.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.EigenVolume.restore_from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">restore_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#EigenVolume.restore_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.EigenVolume.restore_from_dict" title="Link to this definition">#</a></dt>
+<dd><p>Returns <a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.Volume"><code class="xref py py-class docutils literal notranslate"><span class="pre">Volume</span></code></a> object reconstructed from pd and data.
+The data should be a dictionary returned by <a class="reference internal" href="#homcloud.interface.EigenVolume.dump_to_dict" title="homcloud.interface.EigenVolume.dump_to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dump_to_dict()</span></code></a>.</p>
+<p>This class method should be called with a subclass of Volume, <a class="reference internal" href="#homcloud.interface.OptimalVolume" title="homcloud.interface.OptimalVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimalVolume</span></code></a>, <a class="reference internal" href="#homcloud.interface.StableVolume" title="homcloud.interface.StableVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableVolume</span></code></a>, or <a class="reference internal" href="#homcloud.interface.StableSubvolume" title="homcloud.interface.StableSubvolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableSubvolume</span></code></a>, not Volume class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pd</strong> (<a class="reference internal" href="#homcloud.interface.PD" title="homcloud.interface.PD"><code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code></a>) – Persistence diagram object related to the volume</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – A dictionary which contains volume information</p></li>
+<li><p><strong>validate</strong> (<em>bool</em>) – Validate the information in the dictionary if True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>restored volume object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.Volume">Volume</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1691,7 +1734,7 @@ in the form of the symbolic representation.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.interface.OptimalVolume">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">OptimalVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#OptimalVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.OptimalVolume" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">OptimalVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#OptimalVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.OptimalVolume" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.optimal_volume.Volume"><code class="xref py py-class docutils literal notranslate"><span class="pre">Volume</span></code></a></p>
 <p>This class represents an optimal volume.</p>
 <dl class="py method">
@@ -2402,7 +2445,7 @@ birth/death simplices or optimal volumes.</p>
 </p></li>
 <li><p><strong>algorithm</strong> – <p>The name of the algorithm. An appropriate algorithm is
 automatically selected if None is given.
-The default is “ripser” for the normal case with <cite>maxvalue=None</cite> and <cite>simplicial=False</cite>.</p>
+The default is “ripser” for the normal case with <cite>simplicial=False</cite>.</p>
 <p>If simplicial is False, “dipha” and “ripser” are available.
 If simpliclal is True, “dipha”, “phat-twist”, “phat-chunk-parallel”
 are availbale.</p>
@@ -2509,8 +2552,9 @@ The boundary map is used to compute volume optimal cycles.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">PHTrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_searcher</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class represents PH trees computed from an alpha filtration.</p>
-<p>Please see <a class="reference external" href="https://arxiv.org/abs/1712.05103">https://arxiv.org/abs/1712.05103</a> if you want to know
-the details of optimal volumes and volume optimal cycles.</p>
+<p>Please see <a class="reference external" href="https://doi.org/10.1137/17M1159439">Obayashi (2018)</a> if you want to know
+more about optimal volumes, and see <a class="reference external" href="https://doi.org/10.1007/s41468-023-00119-8">Obayashi (2023)</a>
+if you want to know more about stable volumes.</p>
 <p>You can compute the PH trees by <a class="reference internal" href="#homcloud.interface.PDList.from_alpha_filtration" title="homcloud.interface.PDList.from_alpha_filtration"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PDList.from_alpha_filtration()</span></code></a>
 with <code class="docutils literal notranslate"><span class="pre">save_boundary_map=True</span></code> and <code class="docutils literal notranslate"><span class="pre">save_phtrees=True</span></code> arguments.</p>
 <p class="rubric">Example</p>
@@ -2540,7 +2584,7 @@ with <code class="docutils literal notranslate"><span class="pre">save_boundary_
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.Node">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">birth_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">death_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_death</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees.Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees.Node" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.interface.PHTrees.Volume" title="homcloud.interface.phtrees.PHTrees.Volume"><code class="xref py py-class docutils literal notranslate"><span class="pre">Volume</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
-<p>The class represents a tree node of <a class="reference internal" href="#homcloud.interface.PHTrees" title="homcloud.interface.PHTrees"><code class="xref py py-class docutils literal notranslate"><span class="pre">PHTrees</span></code></a>.</p>
+<p>The class represents a tree node of <a class="reference internal" href="#homcloud.interface.PHTrees" title="homcloud.interface.PHTrees"><code class="xref py py-class docutils literal notranslate"><span class="pre">PHTrees</span></code></a>. A node have information about an optimal volume.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.Node.living_descendants">
 <span class="sig-name descname"><span class="pre">living_descendants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees.Node.living_descendants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees.Node.living_descendants" title="Link to this definition">#</a></dt>
@@ -2557,7 +2601,8 @@ with <code class="docutils literal notranslate"><span class="pre">save_boundary_
 <dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.PHTrees.Node.stable_volume">
 <span class="sig-name descname"><span class="pre">stable_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/phtrees.html#PHTrees.Node.stable_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PHTrees.Node.stable_volume" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Returns the stable volume corresponding to self.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>epsilon</strong> (<em>float</em>) – Duration noise strength</p>
 </dd>
@@ -3238,6 +3283,7 @@ optimal_volume may be expensive, especiall for Vietoris-Rips filtration.
 optimal_1_cycle can be computed at a lower cost than optimal_volume.
 In general, an optimal volume gives better information about the birth-death pair, and
 an optimal 1-cycle gives an approximation of the optimal volume.</p>
+<p>The algorithm in optimal_1_cycle computes the minimal loop that includes a birth edge (alpha, rips, abstract) or birth pixel (bitmap).</p>
 <p>This method is available only when degree == 1.</p>
 <p>If you want to compute optimal 1-cycle. You need to pass the following argument when computing
 persistence diagrams.</p>
@@ -3255,8 +3301,9 @@ In this case, this method returns an object of <a class="reference internal" hre
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>weighted</strong> (<em>bool</em>) – Use graph weight to find shortest loop. Only available for Vietoris-Rips filtration</p></li>
-<li><p><strong>torelance</strong> (<em>None</em><em> or </em><em>float</em>) – Noise bandwidth parameter for Reconstructed Shortest Cycles.</p></li>
-<li><p><strong>filtration</strong> (<em>Only available for Vietoris-Rips</em>) – </p></li>
+<li><p><strong>torelance</strong> (<em>None</em><em> or </em><em>float</em>) – Noise bandwidth parameter for Reconstructed Shortest Cycles.
+Only available for Vietoris-Rips filtration.
+See <a class="reference external" href="https://mtsch.github.io/Ripserer.jl/dev/generated/cocycles/#Reconstructed-Shortest-Cycles">https://mtsch.github.io/Ripserer.jl/dev/generated/cocycles/#Reconstructed-Shortest-Cycles</a> if you know more about Reconstructed shortest cycles.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -3276,6 +3323,10 @@ In this case, this method returns an object of <a class="reference internal" hre
 <dt class="sig sig-object py" id="homcloud.interface.Pair.optimal_volume">
 <span class="sig-name descname"><span class="pre">optimal_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cutoff_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constrain_birth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer_programming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/pd.html#Pair.optimal_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Pair.optimal_volume" title="Link to this definition">#</a></dt>
 <dd><p>Return the optimal volume of the pair.</p>
+<p>See the paper by <a class="reference external" href="https://doi.org/10.1137/17M1159439">Obayashi (2018)</a>
+if you want to know more about optimal volumes.</p>
+<p>It is possible to get better results with stable volumes than with optimal volumes.
+See <a class="reference internal" href="#homcloud.interface.Pair.stable_volume" title="homcloud.interface.Pair.stable_volume"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stable_volume()</span></code></a> for the details of stable volumes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -3314,6 +3365,8 @@ possibly you get a better result.</p></li>
 <dt class="sig sig-object py" id="homcloud.interface.Pair.stable_volume">
 <span class="sig-name descname"><span class="pre">stable_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constrain_birth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer_programming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/pd.html#Pair.stable_volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Pair.stable_volume" title="Link to this definition">#</a></dt>
 <dd><p>Returns the stable volume of the pair.</p>
+<p>See <a class="reference external" href="https://doi.org/10.1007/s41468-023-00119-8">Obayashi (2023)</a>
+if you want to know more about optimal volumes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -3348,6 +3401,8 @@ The cutoff_radius is doubled at every retrial.</p></li>
 <dt class="sig sig-object py" id="homcloud.interface.Pair.tightened_volume">
 <span class="sig-name descname"><span class="pre">tightened_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constrain_birth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer_programming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.Pair.tightened_volume" title="Link to this definition">#</a></dt>
 <dd><p>Returns the stable volume of the pair.</p>
+<p>See <a class="reference external" href="https://doi.org/10.1007/s41468-023-00119-8">Obayashi (2023)</a>
+if you want to know more about optimal volumes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -3475,7 +3530,7 @@ Log scale is used if True.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.interface.StableSubvolume">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">StableSubvolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#StableSubvolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.StableSubvolume" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">StableSubvolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#StableSubvolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.StableSubvolume" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.interface.EigenVolume" title="homcloud.interface.optimal_volume.EigenVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">EigenVolume</span></code></a></p>
 <p>This class represents a stable subvolume.</p>
 <p>The instance is given by <a class="reference internal" href="#homcloud.interface.OptimalVolume.stable_subvolume" title="homcloud.interface.OptimalVolume.stable_subvolume"><code class="xref py py-meth docutils literal notranslate"><span class="pre">OptimalVolume.stable_subvolume()</span></code></a>.</p>
@@ -3483,7 +3538,7 @@ Log scale is used if True.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.interface.StableVolume">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">StableVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#StableVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.StableVolume" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">StableVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#StableVolume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.StableVolume" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#homcloud.interface.EigenVolume" title="homcloud.interface.optimal_volume.EigenVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">EigenVolume</span></code></a></p>
 <p>This class represents a stable volume.</p>
 <p>The instance is given by <a class="reference internal" href="#homcloud.interface.Pair.stable_volume" title="homcloud.interface.Pair.stable_volume"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pair.stable_volume()</span></code></a>.</p>
@@ -3491,7 +3546,7 @@ Log scale is used if True.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="homcloud.interface.Volume">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">Volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.</span></span><span class="sig-name descname"><span class="pre">Volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pair</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class represents a volume.
 This is the superclass of OptimalVolume, StableVolume and
@@ -3687,6 +3742,23 @@ in the form of the symbolic representation.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.Volume.dump_to_dict">
+<span class="sig-name descname"><span class="pre">dump_to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.dump_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.dump_to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Returns information about the optimal volume in the form of dict.
+Users can reconstruct <a class="reference internal" href="#homcloud.interface.OptimalVolume" title="homcloud.interface.OptimalVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimalVolume</span></code></a> and <a class="reference internal" href="#homcloud.interface.StableVolume" title="homcloud.interface.StableVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableVolume</span></code></a> from the dictionary
+using <a class="reference internal" href="#homcloud.interface.Volume.restore_from_dict" title="homcloud.interface.Volume.restore_from_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">restore_from_dict()</span></code></a>.</p>
+<p>The method is useful to compute large number of optimal/stable volumes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The information about the optimal volume.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.Volume.lifetime">
 <span class="sig-name descname"><span class="pre">lifetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.lifetime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.lifetime" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
@@ -3727,6 +3799,29 @@ in the form of the symbolic representation.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.Volume.restore_from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">restore_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.restore_from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.restore_from_dict" title="Link to this definition">#</a></dt>
+<dd><p>Returns <a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.Volume"><code class="xref py py-class docutils literal notranslate"><span class="pre">Volume</span></code></a> object reconstructed from pd and data.
+The data should be a dictionary returned by <a class="reference internal" href="#homcloud.interface.Volume.dump_to_dict" title="homcloud.interface.Volume.dump_to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dump_to_dict()</span></code></a>.</p>
+<p>This class method should be called with a subclass of Volume, <a class="reference internal" href="#homcloud.interface.OptimalVolume" title="homcloud.interface.OptimalVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimalVolume</span></code></a>, <a class="reference internal" href="#homcloud.interface.StableVolume" title="homcloud.interface.StableVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableVolume</span></code></a>, or <a class="reference internal" href="#homcloud.interface.StableSubvolume" title="homcloud.interface.StableSubvolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">StableSubvolume</span></code></a>, not Volume class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pd</strong> (<a class="reference internal" href="#homcloud.interface.PD" title="homcloud.interface.PD"><code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code></a>) – Persistence diagram object related to the volume</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – A dictionary which contains volume information</p></li>
+<li><p><strong>validate</strong> (<em>bool</em>) – Validate the information in the dictionary if True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>restored volume object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#homcloud.interface.Volume" title="homcloud.interface.Volume">Volume</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="homcloud.interface.Volume.simplices">
 <span class="sig-name descname"><span class="pre">simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.simplices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.simplices" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
@@ -3749,19 +3844,6 @@ in the form of the symbolic representation.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list of ssimplex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="homcloud.interface.Volume.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/optimal_volume.html#Volume.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.Volume.to_dict" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The information about the optimal volume.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4318,6 +4400,8 @@ must be larger than or equal to 1 including infinity</p></li>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.EigenVolume"><code class="docutils literal notranslate"><span class="pre">EigenVolume</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.EigenVolume.threshold"><code class="docutils literal notranslate"><span class="pre">EigenVolume.threshold</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.EigenVolume.dump_to_dict"><code class="docutils literal notranslate"><span class="pre">EigenVolume.dump_to_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.EigenVolume.restore_from_dict"><code class="docutils literal notranslate"><span class="pre">EigenVolume.restore_from_dict()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.GraphOptimal1Cycle"><code class="docutils literal notranslate"><span class="pre">GraphOptimal1Cycle</span></code></a><ul class="nav section-nav flex-column">
@@ -4499,12 +4583,13 @@ must be larger than or equal to 1 including infinity</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.death_pos"><code class="docutils literal notranslate"><span class="pre">Volume.death_pos()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.death_position"><code class="docutils literal notranslate"><span class="pre">Volume.death_position()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.death_time"><code class="docutils literal notranslate"><span class="pre">Volume.death_time()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.dump_to_dict"><code class="docutils literal notranslate"><span class="pre">Volume.dump_to_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.lifetime"><code class="docutils literal notranslate"><span class="pre">Volume.lifetime()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.points"><code class="docutils literal notranslate"><span class="pre">Volume.points()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.points_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.points_symbols()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.restore_from_dict"><code class="docutils literal notranslate"><span class="pre">Volume.restore_from_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.simplices"><code class="docutils literal notranslate"><span class="pre">Volume.simplices()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.simplices_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.simplices_symbols()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.to_dict"><code class="docutils literal notranslate"><span class="pre">Volume.to_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.to_paraview_node"><code class="docutils literal notranslate"><span class="pre">Volume.to_paraview_node()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.to_paraview_node_for_volumes"><code class="docutils literal notranslate"><span class="pre">Volume.to_paraview_node_for_volumes()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.Volume.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">Volume.to_plotly3d()</span></code></a></li>

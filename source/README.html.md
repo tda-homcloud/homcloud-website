@@ -17,7 +17,7 @@ HomCloud supports the following computing environments.
 * Apple Silicon Mac (M1) with miniforge3
 * Windows (64bit)
 
-Under any system, python 3.7 or newer versions are required.
+Under any system, Python 3.8 or newer versions are required.
 
 # INSTALL
 

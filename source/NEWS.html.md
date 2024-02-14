@@ -1,3 +1,12 @@
+# News for 4.3.0 (2024/02/08)
+* New features:
+  * New methods: `interface.Volume.dump_to_dict` and `interface.Volume.restore_from_dict`
+* Better error messages
+* Avoid an error when log-histogram is plotted for an empty diagram
+* Bug fixes:
+  * pyvista.UniformGrid is renamed to pyvista.ImageData in new version of pyvsita
+* Drop support for python 3.7
+
 # News for 4.2.1 (2023/12/04)
 * New feature:
   * Now ripser algorithm accepts `upper_value`

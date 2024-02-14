@@ -412,6 +412,7 @@ document.write(`
 <span class="sd">* Add clip_box method</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">numbers</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span><span class="p">,</span> <span class="n">TemporaryDirectory</span>
@@ -1458,8 +1459,9 @@ document.write(`
 <span class="sd">            paraview is invoked by using backgroup process mechanism.</span>
 <span class="sd">        bgcolor (None or tuple[float, float, float]): Background color.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;HomCloud&#39;s Paraview interface is now deprecated. &quot;</span>
-                  <span class="s2">&quot;The feature is planned to removed in the future.&quot;</span><span class="p">)</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="s2">&quot;HomCloud&#39;s Paraview interface is now deprecated. &quot;</span> <span class="s2">&quot;The feature is planned to removed in the future.&quot;</span>
+    <span class="p">)</span>
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">path</span> <span class="k">else</span> <span class="n">TempFile</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">)</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">to_paraview_node</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">]</span>
     <span class="n">write_python_code</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">bgcolor</span><span class="p">)</span>
