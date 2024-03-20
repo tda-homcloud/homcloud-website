@@ -1,3 +1,12 @@
+# News for 4.4.0 (2024/02/20)
+* Drop support for Python 3.9 and older versions
+* New features:
+  * The following methods receive a new parameter "by". This parameter changes the type of return value.
+    * `Volume.birth_position`, `Volume.death_position`, `Volume.points`, `Volume.boundary_points`, `Volume.boundary`, `Volume.boundary_points`, `Volume.cells`, `Volume.simplices`, `Volume.cubes`, `Volume.boundary_loop`, 
+    * `Optimal1Cycle.path`, `Optimal1Cycle.boundary_points`
+    * `GraphOptimal1Cycle.boundary_points`
+  * Now 3d alpha filtration with non-cubic periodic condition is available when CGAL is newer than 5.6
+
 # News for 4.3.0 (2024/02/08)
 * New features:
   * New methods: `interface.Volume.dump_to_dict` and `interface.Volume.restore_from_dict`

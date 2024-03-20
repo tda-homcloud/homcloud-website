@@ -43,8 +43,9 @@ lang: ja
 
 最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
 
-    HomCloud version: 4.0.0
-    Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+    HomCloud version: 4.4.0
+    Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+    CGAL version: 5.6 (1050601000)
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
@@ -56,7 +57,6 @@ lang: ja
     Plotting PD ... ok
     Optimal Volume ... ok
     PyVista 3D drawing (close the pop-up window)... ok
-
 
 以上でインストールは終わりです．
 

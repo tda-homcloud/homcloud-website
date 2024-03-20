@@ -35,8 +35,8 @@ Windows へのインストールにあたって，
 
 [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
 から**64bit版**のpythonのインストーラー(ここでは例としてWindows x86-64 web-based installerをとりあげます。)をダウンロードし、クリックしてインストールをします。
-Pythonのバージョンは **3.8**，**3.9**，**3.10**，**3.11** のいずれかを選んでください．2024年1月の時点では3.9が一番お勧めです。
-以下では3.9を使う例を示します．
+Pythonのバージョンは**3.11**，**3.12** のいずれかを選んでください．
+以下では3.11を使う例を示します．
 
 Pythonをインストールする場所(パス)に日本語(全角文字)が入らない場所を選んでください。
 現状では全角文字がパスに含まれてしまうと python からファイルの読み書きを行う時にエラーになります。
@@ -49,10 +49,10 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
 
     mkdir homcloud
 
-次に venv をセットアップします。 コマンドプロントを起動して、以下のコマンドを打つことで`homcloud`のフォルダ下に`venv39`フォルダが作成されます。
+次に venv をセットアップします。 コマンドプロントを起動して、以下のコマンドを打つことで`homcloud`のフォルダ下に`venv311`フォルダが作成されます。
 
     cd homcloud
-    py -3.9 -m venv venv39
+    py -3.11 -m venv venv311
 
 ここでの注意として，フォルダ名に英数字以外の文字が含まれているとうまく動きません．親フォルダも含んでいていはいけないことに注意してください．
 
@@ -60,7 +60,7 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
 
 次のように打ち込むと環境内に移動できます。
 
-    venv39\Scripts\activate
+    venv311\Scripts\activate
 
 **この操作はコマンドプロンプトを起動するごとにやる必要がある**ことに注意してください。
 
@@ -90,8 +90,9 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
 
 最終的にコマンドプロンプトに以下のように表示されていたらOKです(バージョンの値は違っていてかまいません)．
 
-    HomCloud version: 4.0.0
-    Python version: 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
+    HomCloud version: 4.4.0
+    Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+    CGAL version: 5.6 (1050601000)
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
@@ -103,7 +104,6 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
     Plotting PD ... ok
     Optimal Volume ... ok
     PyVista 3D drawing (close the pop-up window)... ok
-
 
 以上でインストールは終わりです。
 
@@ -117,7 +117,7 @@ Pythonをインストールする場所(パス)に日本語(全角文字)が入�
 
     pip install jupyter
 
-でインストールできま。　インストール後、homcloudフォルダで
+でインストールできます。インストール後、homcloudフォルダで
 
     jupyter notebook
 
