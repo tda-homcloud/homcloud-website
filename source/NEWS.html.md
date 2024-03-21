@@ -5,7 +5,7 @@
     * `Volume.birth_position`, `Volume.death_position`, `Volume.points`, `Volume.boundary_points`, `Volume.boundary`, `Volume.boundary_points`, `Volume.cells`, `Volume.simplices`, `Volume.cubes`, `Volume.boundary_loop`, 
     * `Optimal1Cycle.path`, `Optimal1Cycle.boundary_points`
     * `GraphOptimal1Cycle.boundary_points`
-  * Now 3d alpha filtration with non-cubic periodic condition is available when CGAL is newer than 5.6
+  * Now 3d alpha filtration with non-cubic periodic condition is available when CGAL >= 5.6
 
 # News for 4.3.0 (2024/02/08)
 * New features:
