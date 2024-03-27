@@ -17,6 +17,7 @@ lang: en
 
 |OS|Description|OS version|
 |:----|:----|:----|
+|Docker|[Use Docker image for HomCloud](install_guide_for_Docker.en.html)||
 |Ubuntu/Debian|[Install HomCloud with apt-get and pip](install_guide_for_Ubuntu.en.html)||
 
 # Upgrading HomCloud
