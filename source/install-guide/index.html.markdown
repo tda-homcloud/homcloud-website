@@ -18,6 +18,7 @@ lang: ja
 
 |OS|方法|OSのバージョンなど|
 |:----|:----|:----|
+|Docker|[HomCloudのDockerイメージを利用する](install_guide_for_ocker.html)||
 |Ubuntu/Debian|[apt-get、pipによるインストール](install_guide_for_Ubuntu.html)||
 |Linux&miniconda3|[condaによるインストール](install_guide_for_Linux_conda.html)|各種64bit Linux|
 |Windows|[condaでインストール](install_guide_for_Windows_conda.html)||
