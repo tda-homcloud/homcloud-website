@@ -1657,7 +1657,8 @@ document.write(`
 <span class="sd">        In general, an optimal volume gives better information about the birth-death pair, and</span>
 <span class="sd">        an optimal 1-cycle gives an approximation of the optimal volume.</span>
 
-<span class="sd">        The algorithm in optimal_1_cycle computes the minimal loop that includes a birth edge (alpha, rips, abstract) or birth pixel (bitmap).</span>
+<span class="sd">        The algorithm in optimal_1_cycle computes the minimal loop that includes a birth edge</span>
+<span class="sd">        (alpha, rips, abstract) or birth pixel (bitmap).</span>
 
 <span class="sd">        This method is available only when degree == 1.</span>
 
@@ -1677,7 +1678,9 @@ document.write(`
 <span class="sd">            weighted (bool): Use graph weight to find shortest loop. Only available for Vietoris-Rips filtration</span>
 <span class="sd">            torelance (None or float): Noise bandwidth parameter for Reconstructed Shortest Cycles.</span>
 <span class="sd">              Only available for Vietoris-Rips filtration.</span>
-<span class="sd">              See https://mtsch.github.io/Ripserer.jl/dev/generated/cocycles/#Reconstructed-Shortest-Cycles if you know more about Reconstructed shortest cycles.</span>
+<span class="sd">              See https://mtsch.github.io/Ripserer.jl/dev/generated/cocycles/#Reconstructed-Shortest-Cycles</span>
+<span class="sd">              if you know more about Reconstructed shortest cycles.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            :class:`BitmapOptimal1Cycle` | :class:`GraphOptimal1Cycle` | :class:`Optimal1Cycle` : The optimal 1-cycle.</span>
 

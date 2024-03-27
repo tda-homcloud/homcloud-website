@@ -1,4 +1,9 @@
-# News for 4.4.0 (2024/02/20)
+# News for 4.4.1 (2024/03/27)
+* CGAL 5.6.1 and boost boost 1.84.0 is included in source package
+  * The two builtin libraries are available if `HOMCLOUD_USE_BUILTIN_BOOST_CGAL` environmental variable
+    is set to `1` when HomCloud is installed.
+
+# News for 4.4.0 (2024/03/20)
 * Drop support for Python 3.9 and older versions
 * New features:
   * The following methods receive a new parameter "by". This parameter changes the type of return value.
