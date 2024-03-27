@@ -18,7 +18,7 @@ Dockerの使い方等については[Dockerの公式のドキュメント](https
 
 ## 1. Dockerイメージの取得
 
-https://hub.docker.com/r/ohai9/homcloud/tags から適当なイメージを選んで pull してください。
+<https://hub.docker.com/r/ohai9/homcloud/tags> から適当なイメージを選んで pull してください。
 このガイドでは 4.4.1-python3.12.2-slim-bookworm (HomCloudのバージョン4.4.1で，pythonのバージョンが3.12.2のものです)を使いましょう。
 以下のようにします。
 
@@ -64,5 +64,5 @@ https://hub.docker.com/r/ohai9/homcloud/tags から適当なイメージを選�
     [I 2024-03-27 17:22:37.053 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
 
 
-そこで http://127.0.0.1:8888/lab にアクセスするとHomCloudが動くJupyterLab環境にアクセスできます。
+そこで <http://127.0.0.1:8888/lab> にアクセスするとHomCloudが動くJupyterLab環境にアクセスできます。
 
