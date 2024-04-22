@@ -1,6 +1,4 @@
 #!/bin/bash
-bundle exec middleman build
-
 rm -r conda-channel
 mkdir conda-channel
 cp -r conda-files/linux-64 conda-channel
