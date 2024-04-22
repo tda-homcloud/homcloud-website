@@ -22,8 +22,8 @@ You can combine HomCloud and Python's scientific computing ecosystem for more co
 * [3D periodic pointcloud analysis](py-tutorial/pointcloud_periodic-e.html)
 * [Machine learning](py-tutorial/ml_pc-e.html)
 * Atomic configuration data (Japanese, will be translated into English soon)
-  * [Crystal Copper](py-tutorial/analysis_of_atomic_configurations-1.html)
-  * [Amorphous silica](py-tutorial/analysis_of_atomic_configurations-2.html)
+  * [Crystal Copper](py-tutorial/analysis_of_atomic_configurations_1.html)
+  * [Amorphous silica](py-tutorial/analysis_of_atomic_configurations_2.html)
 
 These tutorials use jupyter notebook. Please install jupyter notebook before the tutorials.
 [python-tutorial.zip](download/python-tutorial.zip).
