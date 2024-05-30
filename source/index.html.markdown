@@ -45,6 +45,7 @@ HomCloud は GPL 3 もしくは任意のそれ以降のバージョンで配布�
 [HomCloudの日本語解説論文](http://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/2166-23.pdf)もしくは
 [英語での解説論文](https://doi.org/10.7566/JPSJ.91.091013)を参考文献に入れてください．
 このサイトのURL (<https://homcloud.dev/index.en.html>) も加えると良いでしょう。
+HomCloudのバージョンを明記しておくと解析を自分で試してみたい読者に便利でしょう。
 
 ## 開発者
 

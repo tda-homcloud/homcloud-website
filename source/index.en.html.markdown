@@ -30,7 +30,8 @@ The latest version is also available on [pypi](https://pypi.org/project/homcloud
 ## How to cite HomCloud from your paper
 
 Please cite [our JPSJ's review paper about persistent homology](https://doi.org/10.7566/JPSJ.91.091013).
-You may also refer to the URL of this website <https://homcloud.dev/index.en.html>.
+You may also refer to the URL of this website <https://homcloud.dev/index.en.html> with HomCloud's version.
+
 
 ## License
 
