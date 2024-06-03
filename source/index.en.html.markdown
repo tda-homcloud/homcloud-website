@@ -46,5 +46,6 @@ see the <https://www.gnu.org/licenses/gpl-3.0.en.html>.
 * Tomohide Wada (Window version, documentation)
 * Tian Tunhua (Tutorial, new features, debug)
 * Some parts are outsourced to [Trans NT, Inc.](http://www.trans-nt.com/)
+* Ken Nakashima (Translation of tutorials)
 * Jun Miyanaga (documentation)
 * Yasuaki Hiraoka and his laboratory members
