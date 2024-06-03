@@ -11,5 +11,6 @@ build-conda:
 deploy:
 	gsutil -m rsync -r build gs://homcloud.dev
 	gsutil -m rsync -r conda-channel gs://homcloud.dev/conda-channel
-	# 以下の行を有効にするとCDNキャッシュが全てクリアされる
-	# gcloud compute url-maps invalidate-cdn-cache homcloud-dev-lb --project homcloud-website  --host homcloud.dev --path "/*" 
+
+cdn-cache-clear:
+	gcloud compute url-maps invalidate-cdn-cache homcloud-dev-lb --project homcloud-website  --host homcloud.dev --path "/*"
