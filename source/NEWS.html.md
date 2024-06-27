@@ -1,3 +1,7 @@
+# News for 4.4.2 (2024/06/20)
+* Workaround for Numpy < 2
+  * Now HomCloud itself can be work with Numpy 2, but some dependent libraries does not work.
+
 # News for 4.4.1 (2024/03/27)
 * CGAL 5.6.1 and boost boost 1.84.0 is included in source package
   * The two builtin libraries are available if `HOMCLOUD_USE_BUILTIN_BOOST_CGAL` environmental variable
@@ -289,12 +293,12 @@
   with `-M` option to compute a volume optimal cycle
   
 # News for 1.3.1 (2018/7/05)
-* Fix a bug of "-n" option in pc2diphacomplex
+* Fix a bug of `-n` option in pc2diphacomplex
 * Support CubicalRipser (https://github.com/CubicalRipser)
-  Set the environmennt variable "HOMCLOUD_USE_CUBICALRIPSER" to "1" if you want to use
+  Set the environmennt variable `HOMCLOUD_USE_CUBICALRIPSER` to `1` if you want to use
   them.
 * Rewrite pict.tree by C++ for speed up
-* dump_diagram supports -E (--show-essential-pairs) option
+* dump_diagram supports `-E` (`--show-essential-pairs`) option
 
 # News for 1.3.0 (2018/5/28)
 * Relase homcloud-advanced publicly under OSS
@@ -369,7 +373,7 @@
 * Remove `__init__.py` and use PEP-420
 
 # News for 0.8.6 (2017/7/4)
-* Add -j option to `full_ph_tree`
+* Add `-j` option to `full_ph_tree`
 * Fix clang c++11 compile problem
 
 # News for 0.8.5 (2017/6/29)
@@ -437,12 +441,12 @@
 * Add dipha_alt functionality
 
 # News for 0.6.6
-* Add view\_vectorized\_PD program. This program shows the vectorized PD by
-vectorize\_PD.
-* Add view\_birth\_death\_simplices. This program shows the birth/death simplices
+* Add `view_vectorized_PD` program. This program shows the vectorized PD by
+`vectorize_PD`.
+* Add `view_birth_death_simplices`. This program shows the birth/death simplices
   computed from a 3D point cloud.
-* Introduce -V|--version option to show version
-* Introduce -v and -H option into view\_index\_pict
+* Introduce `-V|--version` option to show version
+* Introduce `-v` and `-H` option into `view_index_pict`
 * Draw grids on persistence diagrams
 * Improve efficiency of saving bitmap complexes
 * Improve documents
@@ -450,7 +454,7 @@ vectorize\_PD.
 * Some refactorings
 
 # News for 0.6.5
-* Add --no-label option to view\_index\_pict not to draw birth/death values labels
+* Add `--no-label` option to `view_index_pict` not to draw birth/death values labels
 * Add homcloud.pwgk to compute gram matrix using PWGK (Kusano-kernel). (https://arxiv.org/abs/1601.01741)
 * Remove -i option from commands
 * Add -H option to vectorize_PD
@@ -525,7 +529,7 @@ vectorize\_PD.
   * Remove RANEG and BIN arguments
   * Add the following options instead
 
-    * -x|--x-range X_RANGE
-    * -X|--xbins XBINS
-    * -y|--y-range Y_RANGE
-    * -Y|--ybins YBINS
+    * `-x|--x-range X_RANGE`
+    * `-X|--xbins XBINS`
+    * `-y|--y-range Y_RANGE`
+    * `-Y|--ybins YBINS`
