@@ -54,7 +54,7 @@ Type as follows to enter the virtual environment:
 
 Install the required package as follows in the virtual environment.
 
-    pip install numpy pyqt5 pyqt6 wheel "pyvista[all,trame]" pyvistaqt 
+    pip install "numpy<2" pyqt5 pyqt6 wheel "pyvista[all,trame]" pyvistaqt 
     pip install homcloud
 
 ## 5. Run HomCloud's self-checking program

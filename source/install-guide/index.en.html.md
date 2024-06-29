@@ -10,7 +10,6 @@ lang: en
 |Ubuntu/Debian|[Install HomCloud into venv's virtual environment](install_guide_for_Ubuntu_venv.en.html)|Confirmed operation on Ubuntu 22.04 LTS|
 |Windows|[Install on Windows](install_guide_for_Windows.en.html)|Confirmed operation on Windows10 Pro|
 |OS X (Apple Silicon Mac)|[Install with Homebrew](install_guide_for_M1Mac.en.html)|Confirmed operation on macOS 13.3 Venture|
-|OS X (Intel Mac)|[Install with Homebrew](install_guide_for_Mac.en.html)||
 
 
 ## Other installation guides

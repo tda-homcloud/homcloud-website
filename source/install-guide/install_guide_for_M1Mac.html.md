@@ -47,7 +47,7 @@ venvというディレクトリが作られ，その下に仮想環境に必要�
 
 以下のようにタイプして必要なPythonパッケージをインストールします．
 
-     pip install numpy wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
+     pip install "numpy<2" wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
 
 ## 6. HomCloudのインストール
 
