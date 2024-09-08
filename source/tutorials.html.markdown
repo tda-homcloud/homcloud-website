@@ -43,6 +43,7 @@ jupyter notebookをインストールしてください．
 現在Colabへのチュートリアルの移植を進行中です．
 
 * [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1Ygu6WIblDIqgEamuu25xC9tBHb3X_vEM?usp=sharing)
+  * [Plotlyで3次元の可視化をするバージョン](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
 * [白黒画像の解析](https://colab.research.google.com/drive/1I5mWNFgKxSjpsXVKDXWaeiS6guh2LpEO?usp=sharing)
 * [グレイスケール画像の解析](https://colab.research.google.com/drive/1ZHmFVf6p8BFAQgXwfU38fUF3Lt3_iFlJ?usp=sharing)
 * [三次元二値画像の解析](https://colab.research.google.com/drive/1uLFxhDtBMYDQGCVJkmUSbRUEzGDeFq4c?usp=sharing)
