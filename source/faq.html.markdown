@@ -12,6 +12,10 @@ lang: "ja"
 
 - - -
 
+## Q. Numpy 2 への対応状況はどうでしょうか
+
+HomCloud 自体は Numpy 2 でビルドできます。おそらくちゃんと動作すると思います。
+ただ，幾つかの依存ライブラリ(ripserなど)がNumpy 2に対応していないので，しばらくHomCloud自体も1.xでしか動作しません。
 
 ## Q. PDをログスケール表示でプロットしようとすると，「ValueError: Data has no positive values, and therefore can not be log-scaled.」というメッセージがでて何も表示されない．
 

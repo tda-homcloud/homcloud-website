@@ -37,7 +37,7 @@ apt-getで各パッケージの追加は以下のように行います。
 
 以下のようにタイプしてインストールします．
 
-    pip install Cython numpy wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
+    pip install Cython "numpy<2" wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
     
 ## 5. 最新版のHomCloudをインストールします。
 

@@ -19,8 +19,8 @@ Before installing HomCloud, please check your username and other paths for space
 ## 1. Python installation
 
 Download the *64-bit* python installer (here, Windows x86-64 web-based installer is taken as an example) from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and click to install.
-HomCloud supports Python *3.8*，*3.9*, *3.10*, and *3.11* (Feb. 2, 2024).
-We recommend Python 3.9. This installation guide uses Python 3.9.
+HomCloud supports Python *3.11*, and *3.12* (Mar. 20, 2024).
+This installation guide uses Python 3.11.
 
 ## 2. Create a new virtual environment by `venv`
 
@@ -36,9 +36,9 @@ First, you should make a working directory. In this example, let's name the dire
 
 You can create a new virtual environment in the working directory:
 
-    py -3.9 -m venv venv39
+    py -3.11 -m venv venv311
 
-Then, a directory whose name is `venv39` is created. The files in the virtual environment are stored in this directory.
+Then, a directory whose name is `venv311` is created. The files in the virtual environment are stored in this directory.
 Note that if the folder name contains non-alphanumeric characters, it will not work. Note that the parent folder must not also be included.
 
 
@@ -46,7 +46,7 @@ Note that if the folder name contains non-alphanumeric characters, it will not w
 
 Type as follows to enter the virtual environment:
 
-    venv39\Scripts\activate
+    venv311\Scripts\activate
 
 *This operation is required every time the command prompt is launched.*
 
@@ -54,7 +54,7 @@ Type as follows to enter the virtual environment:
 
 Install the required package as follows in the virtual environment.
 
-    pip install numpy pyqt5 pyqt6 wheel "pyvista[all,trame]" pyvistaqt 
+    pip install "numpy<2" pyqt5 pyqt6 wheel "pyvista[all,trame]" pyvistaqt 
     pip install homcloud
 
 ## 5. Run HomCloud's self-checking program
@@ -69,8 +69,9 @@ After starting, a window with the following image will be opened. Please close t
 
 The installation succeeds if the following message is shown in the terminal.
 
-    HomCloud version: 4.0.0
-    Python version: 3.9.11 (tags/v3.9.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]
+    HomCloud version: 4.4.0
+    Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+    CGAL version: 5.6 (1050601000)
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok

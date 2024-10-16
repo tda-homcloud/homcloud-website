@@ -44,7 +44,7 @@ This operation is required every time you invoke a new terminal.
 
 Type as follows to install the required packages by HomCloud:
 
-     pip install numpy wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
+     pip install "numpy<2" wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
 
 ## 6. Install HomCloud
 

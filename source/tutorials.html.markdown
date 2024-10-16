@@ -22,7 +22,10 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 * [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
 * [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_periodic.html)
 * [機械学習との組み合わせ](py-tutorial/ml_pc.html)
-* [材料科学データの解析(原子配置データ)](py-tutorial/analysis_of_atomic_configurations.html)
+* 材料科学データの解析(原子配置データ)
+  * [銅の結晶データ](py-tutorial/analysis_of_atomic_configurations_1.html)
+  * [アモルファスシリカのデータ](py-tutorial/analysis_of_atomic_configurations_2.html)
+
 
 このチュートリアルはjupyter notebookを使っています．チュートリアルをする前に
 jupyter notebookをインストールしてください．
@@ -40,6 +43,7 @@ jupyter notebookをインストールしてください．
 現在Colabへのチュートリアルの移植を進行中です．
 
 * [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1Ygu6WIblDIqgEamuu25xC9tBHb3X_vEM?usp=sharing)
+  * [Plotlyで3次元の可視化をするバージョン](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
 * [白黒画像の解析](https://colab.research.google.com/drive/1I5mWNFgKxSjpsXVKDXWaeiS6guh2LpEO?usp=sharing)
 * [グレイスケール画像の解析](https://colab.research.google.com/drive/1ZHmFVf6p8BFAQgXwfU38fUF3Lt3_iFlJ?usp=sharing)
 * [三次元二値画像の解析](https://colab.research.google.com/drive/1uLFxhDtBMYDQGCVJkmUSbRUEzGDeFq4c?usp=sharing)

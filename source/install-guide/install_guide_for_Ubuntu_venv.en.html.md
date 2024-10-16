@@ -42,7 +42,7 @@ This operation is required every time you invoke a new shell.
 
 Type as follows to install Cython, NumPy, wheel, pyqt6, PyVista, and PyVistaQt:
 
-    pip install Cython numpy wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
+    pip install Cython "numpy<2" wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
 
 ## 5. Install latest HomCloud
 

@@ -44,8 +44,9 @@ After starting, a window with the following image will be opened. Please close t
 
 The installation succeeds if the following message is shown in the terminal.
 
-    HomCloud version: 4.0.0
-    Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+    HomCloud version: 4.4.0
+    Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+    CGAL version: 5.6 (1050601000)
     Alpha Shape 3 ... ok
     Alpha Shape 3 with weights ... ok
     Periodic Alpha Shape 3 with weights ... ok
