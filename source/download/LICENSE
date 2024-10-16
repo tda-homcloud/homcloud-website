@@ -27,6 +27,13 @@ This software includes the following software:
     Journal of Experimental Algorithmics, vol. 22, 2017, pp. 1--20.
     (conference version: ALENEX 2016).
 
+* Boost C++ library
+  * Boost Software License
+  * https://www.boost.org/
+
+* CGAL
+  * GPL 3+ (some parts are under LGPL 3+)
+  * https://www.cgal.org/
 
 This software depends on the following softwares:
 
@@ -38,6 +45,11 @@ MIT or modified BSD
 * Pillow
 * scikit-learn
 * pulp
+* plotly
+* pyvista
+* ripser
+* pytest
+* pytest-mock
 
 LGPL
 * dipha
@@ -50,7 +62,7 @@ GPL
 ========================================================================
 The following shows the copyright of this software.
 ========================================================================
-Copyright 2017-2021 Ippei Obayashi
+Copyright 2017-2024 Ippei Obayashi
 Copyright 2017-2018 Hiraoka lab (AIMR, Tohoku Univ.)
 Copyright 2018-2020 Topological Data Analysis Team (AIP, RIKEN)
 Copyright 2019 National Institute of Advanced Industrial Science and Technology (AIST)

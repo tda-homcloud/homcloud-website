@@ -6,6 +6,7 @@ title: "Old version files"
 
 ## Source files
 
+* [download/homcloud-4.5.0.tar.gz](download/homcloud-4.5.0.tar.gz)
 * [download/homcloud-4.3.0.tar.gz](download/homcloud-4.3.0.tar.gz)
 * [download/homcloud-4.2.1.tar.gz](download/homcloud-4.2.1.tar.gz)
 * [download/homcloud-4.2.0.tar.gz](download/homcloud-4.2.0.tar.gz)
@@ -42,7 +43,7 @@ title: "Old version files"
 * [download/homcloud-advanced-1.3.0.tar.gz](download/homcloud-advanced-1.3.0.tar.gz)
 * [download/homcloud-base-1.3.0.tar.gz](download/homcloud-base-1.3.0.tar.gz)
 
-## Windows pacakges
+## Old Windows pacakges
 
 * [download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl](download/win/homcloud-2.7.2-cp37-cp37m-win_amd64.whl)
 * [download/win/homcloud-2.7.0-cp37-cp37m-win_amd64.whl](download/win/homcloud-2.7.0-cp37-cp37m-win_amd64.whl)
