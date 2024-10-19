@@ -10,9 +10,10 @@ homcloudをインストールする環境を分離することでバージョン
 
 ## 1. 以下のパッケージをapt-getでインストールします。
 
-apt-getで各パッケージの追加は以下のように行います。
-
-    sudo apt-get install libcgal-dev libpython3-dev
+以下のように行います。
+    
+    sudo apt-get update
+    sudo apt-get install python3-all-dev python3-venv
 
 ## 2. venvで環境を新しく作る
 
@@ -33,25 +34,14 @@ apt-getで各パッケージの追加は以下のように行います。
 
 これはシェルを起動するごとに必要です．
 
-## 4. pipを使って必要なライブラリを追加します。
-
-以下のようにタイプしてインストールします．
-
-    pip install Cython "numpy<2" wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
-    
-## 5. 最新版のHomCloudをインストールします。
+## 4. 最新版のHomCloudをインストールします。
 
 以下を実行します。
 
-    pip install homcloud
+    pip install wheel
+    pip install "homcloud[recommended]"
 
-### 古いバージョンをインストールする場合
-
-古いバージョンのHomCloud (3.6.0など) をインストールする場合には代わりに次のようにします．
-
-    pip install homcloud==3.6.0
-
-## 6. HomCloudの自己チェックプログラムを動かす
+## 5. HomCloudの自己チェックプログラムを動かす
 
 最後に正常にインストールされているかどうかを調べるためにターミナルで以下のように
 実行します．
@@ -81,7 +71,7 @@ apt-getで各パッケージの追加は以下のように行います。
 
 以上でインストールは終わりです。
 
-## 7. チュートリアルの実施
+## 6. チュートリアルの実施
 
 HomCloudのチュートリアルを動かしてみましょう．
 [python-tutorial.zip](/download/python-tutorial.zip)
@@ -94,9 +84,19 @@ HomCloudのチュートリアルを動かしてみましょう．
 ここでチュートリアルのフォルダからチュートリアルを始めてください．
 いくつかチュートリアルがありますが，pointcloudが一番やりやすいでしょう．
 
-## 8. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
+## 7. (Optional) [http://github.com/DIPHA/dipha](http://github.com/DIPHA/dipha)からdiphaをダウンロードし、インストールします。
 
-Veitoris-Rips 複体(距離行列)や高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします。
+高次元(4次元以上)のボクセルデータの解析のために dipha をインストールします。
 もしこれらを使わない場合はここは飛ばしてよいです。
 
-[apt-get、pipによるインストール](install_guide_for_Ubuntu.html)と同じようにしてインストールできるので，そちらを見てください．
+1. `sudo apt-get install openmpi-bin libopenmpi-dev cmake` で Dipha のビルドに必要なライブラリをインストールします
+2. <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip> からダウンロードしてください．
+3. ダウンロードしたファイルを解凍してください．
+4. 解凍時に作られたディレクトリに移動してください．
+5. "cmake ."とタイプし，makefileを作成します．
+6. "make"とタイプし，ビルドします．
+7. ビルドされたdiphaの実行ファイルをパスの通ったディレクトリへコピーしてください 
+8. インストール終了後，以下のようにしてHomCloudが正常に動くかチェックします．
+
+        python3 -m homcloud.self_check --dipha
+

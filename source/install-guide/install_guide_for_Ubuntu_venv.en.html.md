@@ -10,12 +10,13 @@ You can easily use different versions of HomCloud using `venv`.
 
 ## 1. Install the following deb packages using apt
 
-* libcgal-dev
 * libpython3-dev
+* python3-venv
 
 Type as follows:
 
-    sudo apt-get install libcgal-dev libpython3-dev
+    sudo apt-get update
+    sudo apt-get install python3-all-dev python3-venv
 
 ## 2. Create a new virtual environment
 
@@ -38,25 +39,14 @@ Type as follows to enter the virtual environment:
     
 This operation is required every time you invoke a new shell.
 
-## 4. Install Python packages using pip
-
-Type as follows to install Cython, NumPy, wheel, pyqt6, PyVista, and PyVistaQt:
-
-    pip install Cython "numpy<2" wheel jupyter pyqt6 "pyvista[all,trame]" pyvistaqt
-
-## 5. Install latest HomCloud
+## 4. Install the latest HomCloud
 
 Type as follows to install HomCloud:
 
-    pip install homcloud
+    pip install wheel
+    pip install "homcloud[recommended]"
 
-### If you want to install an older version
-
-If you want to install an older version, such as 3.6.0, type the following instead:
-
-    pip install homcloud==3.6.0
-
-## 6. Run HomCloud's self-check program
+## 5. Run HomCloud's self-check program
 
 Finally, to check whether the installation process was successful, run the self-check program as follows in the terminal:
 
@@ -85,8 +75,15 @@ The installation succeeds if the following message is shown in the terminal.
 The installation is now complete! Enjoy with HomCloud!
 
 
-## 7. (Optional) Install [Dipha](http://github.com/DIPHA/dipha)
+## 6. (Optional) Install [Dipha](http://github.com/DIPHA/dipha)
 
-You can skip this part.
-See [install_guide_for_Ubuntu.html](install_guide_for_Ubuntu.html).
+You optionally install dipha for more than 4-dim voxel data.
 
+1. Install openmpi and cmake to build Dipha: `sudo apt-get install openmpi-bin libopenmpi-dev cmake`
+2. Download `dipha-2.1.0.zip` from <https://github.com/DIPHA/dipha/archive/dipha-2.1.0.zip>.
+3. Extract the downloaded zip file
+4. Go to the created directory
+5. Type `cmake .`, and create Makefile
+6. Type `make` to build dipha
+7. Copy the dipha executable file to the directory in `PATH` environmental variable.
+8. Run self-check program: `python3 -m homcloud.self_check --dipha`
