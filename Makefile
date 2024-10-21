@@ -1,12 +1,9 @@
-.PHONY: build build-webpage build-conda deploy
+.PHONY: build build-webpage deploy
 
-update: build-webpage build-conda
+update: build-webpage
 
 build-webpage:
 	bundle exec middleman build
-
-build-conda:
-	sh ./build_conda.sh
 
 deploy:
 	gsutil -m rsync -r build gs://homcloud.dev

@@ -1,3 +1,7 @@
+# News for 4.5.1 (2024/10/21)
+* Update `self_check`
+* Remove trame option from pyvista dependency
+
 # News for 4.5.0 (2024/10/16)
 * Remove workaround for Numpy < 2
 * Support manylinux build
