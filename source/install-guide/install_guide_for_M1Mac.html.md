@@ -23,6 +23,10 @@ venvを利用することでHomCloudが使っているソフトウェアコン�
 次のようにしてPythonとCGALをインストールします．
 
     brew install python cgal
+    
+最新のPython (3.13)では動かない場合があるのでその場合は以下のようにして 3.12 をインストールしてください。
+
+    brew install python@3.12 cgal
 
 ## 3. venvで仮想環境を作る
 
@@ -35,7 +39,11 @@ venvを利用することでHomCloudが使っているソフトウェアコン�
     cd homcloud
     python3 -m venv venv
 
-venvというディレクトリが作られ，その下に仮想環境に必要なファイルがコピーされます．
+venvというディレクトリが作られ，その下に仮想環境に必要なファイルがコピーされます．3.12を使う場合は代わりに次のようにします。
+
+    cd homcloud
+    python3.12 -m venv venv
+
 
 ## 4. 仮想環境に入る
 
@@ -47,7 +55,7 @@ venvというディレクトリが作られ，その下に仮想環境に必要�
 
 以下のようにタイプして必要なPythonパッケージをインストールします．
 
-     pip install "numpy<2" wheel jupyter Cython "pyvista[trame,all]" pyqt6 pyvistaqt
+     pip install numpy wheel jupyter Cython "pyvista[all]" pyqt6 pyvistaqt
 
 ## 6. HomCloudのインストール
 

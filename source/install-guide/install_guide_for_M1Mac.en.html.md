@@ -21,6 +21,9 @@ Type the following on your terminal to install Python and CGAL:
 
     brew install python cgal
 
+The latest version of Python (3.13, Oct. 2024) may cause the failure of self check.
+In that case, you should use 3.12.
+
 ## 3. Create a new virtual Python environment with venv
 
 Create a working directory. Let's name the directory `homcloud`:
