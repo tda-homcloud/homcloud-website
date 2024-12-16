@@ -1,6 +1,6 @@
 .PHONY: build build-webpage deploy
 
-update: build-webpage
+update: build-webpage deploy cdn-cache-clear
 
 build-webpage:
 	bundle exec middleman build
