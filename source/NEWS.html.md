@@ -1,3 +1,7 @@
+# News for 4.6.0 (2024/12/12)
+* Support 2D periodic alpha complex without weights
+  * Weighted 2D periodic alpha complex is not supproted since CGAL does not support it yet
+  
 # News for 4.5.1 (2024/10/21)
 * Update `self_check`
 * Remove trame option from pyvista dependency

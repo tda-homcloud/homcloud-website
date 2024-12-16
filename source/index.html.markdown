@@ -10,7 +10,7 @@ HomCloud はパーシステントホモロジー(persistent homology)にもと�
 
 ## <a name="download"> 最新版ダウンロード
 
-* [HomCloud 最新版(4.5.1)](download/homcloud-4.5.1.tar.gz)
+* [HomCloud 最新版(4.6.0)](download/homcloud-4.6.0.tar.gz)
   * [README](README.html)
   * [NEWS](NEWS.html)
 * [HomCloud 3.6.0](download/homcloud-3.6.0.tar.gz)
