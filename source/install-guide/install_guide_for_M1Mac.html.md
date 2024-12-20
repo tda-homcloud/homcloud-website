@@ -12,7 +12,7 @@ venvを利用することでHomCloudが使っているソフトウェアコン�
 
 ## 1. Homebrewのインストール
 
-[Homebrewのウェウブサイト](https://brew.sh/index_ja)を見てインストールします．リンク先のページに書いているように，
+[Homebrewのウェウブサイト](https://brew.sh/ja/)を見てインストールします．リンク先のページに書いているように，
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
