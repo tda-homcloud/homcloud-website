@@ -10,14 +10,11 @@ Persistent homology software.
 
 HomCloud supports the following computing environments.
 
-* Ubuntu (newer than 18.04 LTS)
-* Debian (newer than buster)
-* Linux with anaconda (miniconda3)
-* Intel Mac with homebrew
-* Apple Silicon Mac (M1) with miniforge3
+* Linux
+* Apple Silicon Mac (M1)
 * Windows (64bit)
 
-Under any system, Python 3.8 or newer versions are required.
+Under any system, Python 3.10 or newer versions are required.
 
 # INSTALL
 
@@ -56,7 +53,10 @@ Ippei Obayashi and HomCloud development team.
 
 ## Contributors
 
-* Tomohide Wada
-* Tian Tunhua
-* National Institute of Advanced Industrial Science and Technology (AIST)
-
+* Ippei Obayashi (main developer)
+* Tomohide Wada (Window version, documentation)
+* Tian Tunhua (Tutorial, new features, debug)
+* Some parts are outsourced to [Trans NT, Inc.](http://www.trans-nt.com/)
+* Ken Nakashima (Translation of tutorials)
+* Jun Miyanaga (documentation)
+* Yasuaki Hiraoka and his laboratory members

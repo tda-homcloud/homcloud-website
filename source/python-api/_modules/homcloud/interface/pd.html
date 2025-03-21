@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,16 +26,16 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -156,7 +156,9 @@
 </li>
 
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
@@ -306,9 +308,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -358,51 +365,49 @@
                 <article class="bd-article">
                   
   <h1>Source code for homcloud.interface.pd</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">import</span> <span class="nn">operator</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cached_property</span><span class="w"> </span><span class="kn">import</span> <span class="n">cached_property</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">cached_property</span> <span class="kn">import</span> <span class="n">cached_property</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.delegate</span><span class="w"> </span><span class="kn">import</span> <span class="n">forwardable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.alpha_filtration</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">alpha_filtration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.rips</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rips</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.bitmap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.abstract_filtration</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">abstract_filtration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.simplicial_levelset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">simplicial_levelset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optvol</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optvol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.int_reduction</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">int_reduction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm_format</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm_format</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pict.optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pict_opt1cyc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">opt1cyc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.plot_PD_slice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plot_PD_slice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.graph_optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">graph_opt1cyc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.spatial_searcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialSearcher</span>
 
-<span class="kn">from</span> <span class="nn">homcloud.delegate</span> <span class="kn">import</span> <span class="n">forwardable</span>
-<span class="kn">import</span> <span class="nn">homcloud.alpha_filtration</span> <span class="k">as</span> <span class="nn">alpha_filtration</span>
-<span class="kn">import</span> <span class="nn">homcloud.rips</span> <span class="k">as</span> <span class="nn">rips</span>
-<span class="kn">import</span> <span class="nn">homcloud.bitmap</span>
-<span class="kn">import</span> <span class="nn">homcloud.abstract_filtration</span> <span class="k">as</span> <span class="nn">abstract_filtration</span>
-<span class="kn">import</span> <span class="nn">homcloud.simplicial_levelset</span> <span class="k">as</span> <span class="nn">simplicial_levelset</span>
-<span class="kn">import</span> <span class="nn">homcloud.optvol</span> <span class="k">as</span> <span class="nn">optvol</span>
-<span class="kn">import</span> <span class="nn">homcloud.int_reduction</span> <span class="k">as</span> <span class="nn">int_reduction</span>
-<span class="kn">import</span> <span class="nn">homcloud.pdgm</span> <span class="k">as</span> <span class="nn">pdgm</span>
-<span class="kn">import</span> <span class="nn">homcloud.pdgm_format</span> <span class="k">as</span> <span class="nn">pdgm_format</span>
-<span class="kn">import</span> <span class="nn">homcloud.pict.optimal_one_cycle</span> <span class="k">as</span> <span class="nn">pict_opt1cyc</span>
-<span class="kn">import</span> <span class="nn">homcloud.optimal_one_cycle</span> <span class="k">as</span> <span class="nn">opt1cyc</span>
-<span class="kn">import</span> <span class="nn">homcloud.plot_PD_slice</span> <span class="k">as</span> <span class="nn">plot_PD_slice</span>
-<span class="kn">import</span> <span class="nn">homcloud.graph_optimal_one_cycle</span> <span class="k">as</span> <span class="nn">graph_opt1cyc</span>
-<span class="kn">from</span> <span class="nn">homcloud.spatial_searcher</span> <span class="kn">import</span> <span class="n">SpatialSearcher</span>
-
-<span class="kn">from</span> <span class="nn">.distance_transform</span> <span class="kn">import</span> <span class="n">distance_transform</span>
-<span class="kn">from</span> <span class="nn">.histogram</span> <span class="kn">import</span> <span class="n">HistoSpec</span><span class="p">,</span> <span class="n">SliceHistogram</span>
-<span class="kn">from</span> <span class="nn">.optimal_volume</span> <span class="kn">import</span> <span class="n">OptimalVolume</span><span class="p">,</span> <span class="n">StableVolume</span>
-<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">VolumeNotFound</span>
-<span class="kn">from</span> <span class="nn">.bitmap_optimal_1_cycle</span> <span class="kn">import</span> <span class="n">BitmapOptimal1Cycle</span>
-<span class="kn">from</span> <span class="nn">.boundary_map_optimal_1_cycle</span> <span class="kn">import</span> <span class="n">Optimal1Cycle</span>
-<span class="kn">from</span> <span class="nn">.graph_optimal_1_cycle</span> <span class="kn">import</span> <span class="n">GraphOptimal1Cycle</span>
-<span class="kn">from</span> <span class="nn">.ph0_component</span> <span class="kn">import</span> <span class="n">PH0Components</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.distance_transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.histogram</span><span class="w"> </span><span class="kn">import</span> <span class="n">HistoSpec</span><span class="p">,</span> <span class="n">SliceHistogram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.optimal_volume</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimalVolume</span><span class="p">,</span> <span class="n">StableVolume</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">VolumeNotFound</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.bitmap_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitmapOptimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.boundary_map_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.graph_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphOptimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ph0_component</span><span class="w"> </span><span class="kn">import</span> <span class="n">PH0Components</span>
 
 
 <div class="viewcode-block" id="PDList">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList">[docs]</a>
-<span class="k">class</span> <span class="nc">PDList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PDList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of 0th,1st,..,and q-th persitence diagrams.</span>
 
 <span class="sd">    In HomCloud, diagrams for all degrees coming from a filtration</span>
@@ -417,7 +422,7 @@
 <span class="sd">       negate (bool): Ignored (for backward compatibility)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">negate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">negate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">file</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">pdgm_format</span><span class="o">.</span><span class="n">PDGMReader</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
@@ -427,45 +432,45 @@
 
         <span class="n">PDList</span><span class="o">.</span><span class="n">assert_not_idiagram</span><span class="p">(</span><span class="n">filetype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PDList(path=</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
 
 <div class="viewcode-block" id="PDList.close">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dispose PDList object and release resources.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception_type</span><span class="p">,</span> <span class="n">exception_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception_type</span><span class="p">,</span> <span class="n">exception_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <div class="viewcode-block" id="PDList.FileType">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.FileType">[docs]</a>
     <span class="nd">@enum</span><span class="o">.</span><span class="n">unique</span>
-    <span class="k">class</span> <span class="nc">FileType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">FileType</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
         <span class="n">IDIAGRAM</span> <span class="o">=</span> <span class="s2">&quot;idipha&quot;</span>
         <span class="n">PDGM</span> <span class="o">=</span> <span class="s2">&quot;pdgm&quot;</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">pdgm_id</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">):</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">PDList</span><span class="o">.</span><span class="n">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">)</span>
         <span class="n">filtration</span><span class="o">.</span><span class="n">compute_pdgm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">PDList</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">PDList</span><span class="o">.</span><span class="n">FileType</span><span class="o">.</span><span class="n">PDGM</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">save_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -474,7 +479,7 @@
 <div class="viewcode-block" id="PDList.from_alpha_filtration">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_filtration">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_alpha_filtration</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_alpha_filtration</span><span class="p">(</span>
         <span class="n">pointcloud</span><span class="p">,</span>
         <span class="n">weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">no_squared</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -508,9 +513,20 @@
 <span class="sd">                not squared.</span>
 <span class="sd">            no_squared (bool): See `squared` parameter.</span>
 <span class="sd">            subsets (list[int] or bool or None):</span>
-<span class="sd">                This parameter is used to compute relative homology.</span>
+<span class="sd">                This parameter is used to introduce equivalence relationship.</span>
+<span class="sd">                </span>
 <span class="sd">                This parameter allows you to analyze the interspace structures</span>
 <span class="sd">                between two or more objects in your pointcloud.</span>
+<span class="sd">                </span>
+<span class="sd">                If the grouped sub-pointcloud constructs a contractible subcomplex,</span>
+<span class="sd">                the relative homology is comptuted.</span>
+<span class="sd">                If the grouped sub-pointcloud constructs a subcomplexes whose connected components</span>
+<span class="sd">                are contractible, each connected component in the subcomplexes</span>
+<span class="sd">                is shrinked into a single point and</span>
+<span class="sd">                birth-death pairs corresponding to the connected components are removed from the 0th PD.</span>
+<span class="sd">                In the homcloud&#39;s code, minus infinity is assigned to the levels of</span>
+<span class="sd">                all simplices in the subcomplex and PDs are comptuted, and all birth-death pairs whose</span>
+<span class="sd">                birth time is -inf are removed from the diagrams.</span>
 
 <span class="sd">                If `subsets` is None, normal persistent homology is computed.</span>
 
@@ -566,11 +582,11 @@
 <span class="sd">                Use meth:`PD.load_phtrees` to load the PH trees.</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            The :class:`PDList` object computed from the pointcloud.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Warn:</span>
 <span class="sd">            The pointcloud should be general position; that is, all combinations of three points should not be on a signle line, all combinations of four points should not be on a signle plane for 3D, all combinations of four points should not be on a single circle, and all combinations of five points should not be on a single sphere for 3D. If the input data does not satisfy general position condition, the alpha filtration cannot be computed correctly.</span>
 <span class="sd">            If you want to use peridic boundary condition, the pointcloud has sufficiently many points. If the number of points is small, alpha shape cannot be computed correctly.</span>
-<span class="sd">            </span>
+
 
 <span class="sd">        Examples:</span>
 <span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
@@ -582,7 +598,7 @@
         <span class="k">assert</span> <span class="p">(</span><span class="n">save_phtrees</span> <span class="ow">and</span> <span class="n">save_boundary_map</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">save_phtrees</span><span class="p">)</span>
         <span class="n">PDList</span><span class="o">.</span><span class="n">assert_not_idiagram</span><span class="p">(</span><span class="n">output_filetype</span><span class="p">,</span> <span class="n">save_to</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">squared_parameter</span><span class="p">():</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">squared_parameter</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">squared</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">squared</span>
             <span class="k">if</span> <span class="n">no_squared</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -618,7 +634,7 @@
 <div class="viewcode-block" id="PDList.from_bitmap_levelset">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_levelset">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_bitmap_levelset</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_bitmap_levelset</span><span class="p">(</span>
         <span class="n">array</span><span class="p">,</span>
         <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;sublevel&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bitmap&quot;</span><span class="p">,</span>
@@ -720,7 +736,7 @@
 <div class="viewcode-block" id="PDList.from_bitmap_distance_function">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_distance_function">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_bitmap_distance_function</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_bitmap_distance_function</span><span class="p">(</span>
         <span class="n">binary_pict</span><span class="p">,</span>
         <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;manhattan&quot;</span><span class="p">,</span>
@@ -817,7 +833,7 @@
 <div class="viewcode-block" id="PDList.from_rips_filtration">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_rips_filtration">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_rips_filtration</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_rips_filtration</span><span class="p">(</span>
         <span class="n">distance_matrix</span><span class="p">,</span>
         <span class="n">maxdim</span><span class="p">,</span>
         <span class="n">maxvalue</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
@@ -889,7 +905,7 @@
 <div class="viewcode-block" id="PDList.from_simplicial_levelset">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_simplicial_levelset">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_simplicial_levelset</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_simplicial_levelset</span><span class="p">(</span>
         <span class="n">simplicial_function</span><span class="p">,</span>
         <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -947,7 +963,7 @@
 <div class="viewcode-block" id="PDList.from_boundary_information">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_boundary_information">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_boundary_information</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_boundary_information</span><span class="p">(</span>
         <span class="n">boundary</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1008,7 +1024,7 @@
 
 <div class="viewcode-block" id="PDList.save">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.save">[docs]</a>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the PDList into `dest`.</span>
 
 <span class="sd">        Args:</span>
@@ -1022,7 +1038,7 @@
 
 <div class="viewcode-block" id="PDList.dth_diagram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.dth_diagram">[docs]</a>
-    <span class="k">def</span> <span class="nf">dth_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dth_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return `d`-th persistence diagram from PDList.</span>
 
 <span class="sd">        Args:</span>
@@ -1041,7 +1057,7 @@
 
 <div class="viewcode-block" id="PDList.invoke_gui_plotter">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.invoke_gui_plotter">[docs]</a>
-    <span class="k">def</span> <span class="nf">invoke_gui_plotter</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">invoke_gui_plotter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">d</span><span class="p">,</span>
         <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1061,7 +1077,7 @@
 <span class="sd">            d (int): The degree of the PD.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">format_range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">format_range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
             <span class="k">return</span> <span class="s2">&quot;[</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>
@@ -1093,7 +1109,7 @@
 
 <div class="viewcode-block" id="PDList.bitmap_phtrees">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.bitmap_phtrees">[docs]</a>
-    <span class="k">def</span> <span class="nf">bitmap_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bitmap_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Read a :class:`BitmapPHTrees` object computed by</span>
 <span class="sd">        :meth:`BitmapPHTrees.for_bitmap_levelset`.</span>
@@ -1104,19 +1120,19 @@
 <span class="sd">        Returns:</span>
 <span class="sd">           A :class:`BitmapPHTrees` object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">.bitmap_phtrees</span> <span class="kn">import</span> <span class="n">BitmapPHTrees</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.bitmap_phtrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitmapPHTrees</span>
 
         <span class="n">treedict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">load_simple_chunk</span><span class="p">(</span><span class="s2">&quot;bitmap_phtrees&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="p">(</span><span class="n">treedict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;sign_flipped&quot;</span><span class="p">])</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_coefficient_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_coefficient_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pdgm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">pd</span>
         <span class="n">checker</span> <span class="o">=</span> <span class="n">int_reduction</span><span class="o">.</span><span class="n">build_checker</span><span class="p">(</span><span class="n">pdgm</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">boundary_map_chunk</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">checker</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">assert_not_idiagram</span><span class="p">(</span><span class="n">output_filetype</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assert_not_idiagram</span><span class="p">(</span><span class="n">output_filetype</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="n">assert_message</span> <span class="o">=</span> <span class="s2">&quot;idiagram format is not available after 3.0&quot;</span>
         <span class="k">assert</span> <span class="n">output_filetype</span> <span class="o">!=</span> <span class="n">PDList</span><span class="o">.</span><span class="n">FileType</span><span class="o">.</span><span class="n">IDIAGRAM</span><span class="p">,</span> <span class="n">assert_message</span>
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1131,7 +1147,7 @@
 <div class="viewcode-block" id="PD">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD">[docs]</a>
 <span class="nd">@forwardable</span>
-<span class="k">class</span> <span class="nc">PD</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PD</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The class for a single persistence diagram.</span>
 
@@ -1152,7 +1168,7 @@
 <span class="sd">            Birth positions for essential birth-death pairs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pd</span> <span class="o">=</span> <span class="n">pd</span>
 
@@ -1173,16 +1189,16 @@
         <span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PD(path=</span><span class="si">%s</span><span class="s2">, d=</span><span class="si">%d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">pdgm_id</span>
 
 <div class="viewcode-block" id="PD.birth_death_times">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.birth_death_times">[docs]</a>
-    <span class="k">def</span> <span class="nf">birth_death_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_death_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the  birth times and death times.</span>
 
@@ -1195,7 +1211,7 @@
 
 <div class="viewcode-block" id="PD.histogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.histogram">[docs]</a>
-    <span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">histogram</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">x_bins</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
@@ -1226,7 +1242,7 @@
 
 <div class="viewcode-block" id="PD.load_phtrees">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.load_phtrees">[docs]</a>
-    <span class="k">def</span> <span class="nf">load_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load a PH trees from the diagram.</span>
 
@@ -1239,7 +1255,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The :class:`PHTrees` object of the (n-1)th PH.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">.phtrees</span> <span class="kn">import</span> <span class="n">PHTrees</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.phtrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">PHTrees</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The degree of PD must be the same as dim - 1 when PHTrees is used.&quot;</span><span class="p">))</span>
@@ -1253,7 +1269,7 @@
 
 <div class="viewcode-block" id="PD.pair">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pair">[docs]</a>
-    <span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns `nth` birth-death pairs.</span>
 
 <span class="sd">        Args:</span>
@@ -1267,7 +1283,7 @@
 
 <div class="viewcode-block" id="PD.pairs">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs">[docs]</a>
-    <span class="k">def</span> <span class="nf">pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs of the PD.</span>
 
 <span class="sd">        Returns:</span>
@@ -1278,7 +1294,7 @@
 
 <div class="viewcode-block" id="PD.nearest_pair_to">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.nearest_pair_to">[docs]</a>
-    <span class="k">def</span> <span class="nf">nearest_pair_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nearest_pair_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a pair closest to `(x, y)`.</span>
 
 <span class="sd">        Args:</span>
@@ -1292,12 +1308,12 @@
 
 
     <span class="nd">@cached_property</span>
-    <span class="k">def</span> <span class="nf">spatial_searcher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">spatial_searcher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SpatialSearcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deaths</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PD.pairs_in_rectangle">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs_in_rectangle">[docs]</a>
-    <span class="k">def</span> <span class="nf">pairs_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pairs_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs in the rectangle.</span>
 
 <span class="sd">        Returns all birth-death pairs whose birth time is in</span>
@@ -1319,7 +1335,7 @@
 <div class="viewcode-block" id="PD.empty">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.empty">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">empty</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">empty</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which has no birth-death pairs.</span>
 
 <span class="sd">        Returns:</span>
@@ -1331,7 +1347,7 @@
 <div class="viewcode-block" id="PD.from_birth_death">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.from_birth_death">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_birth_death</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">sign_flipped</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_birth_death</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">sign_flipped</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which birth and death times are given lists.</span>
 
 <span class="sd">        Args:</span>
@@ -1348,7 +1364,7 @@
 
 <div class="viewcode-block" id="PD.slice_histogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.slice_histogram">[docs]</a>
-    <span class="k">def</span> <span class="nf">slice_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">slice_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns 1D histogram of birth-death pairs in a thin strip.</span>
 
 <span class="sd">        This method computes a 1D hitogram of birth-death pairs</span>
@@ -1373,7 +1389,7 @@
         <span class="k">return</span> <span class="n">SliceHistogram</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">optvol_optimizer_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optvol_optimizer_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">boundary_map_chunk</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="p">(</span>
                 <span class="ne">ValueError</span><span class="p">(</span>
@@ -1392,23 +1408,23 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cutoff is not available for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_input</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_input</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;bitmap&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Now torch_tensor_births_deaths supports only bitmap or alpha filtrations&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_bitmap</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_bitmap</span><span class="p">):</span>
         <span class="n">births</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
         <span class="n">deaths</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
         <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span>
 
-    <span class="k">def</span> <span class="nf">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_pointcloud</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">torch</span>
-        <span class="kn">import</span> <span class="nn">homcloud.geometry.torch_utils</span> <span class="k">as</span> <span class="nn">torch_utils</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_pointcloud</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.geometry.torch_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">torch_utils</span>
 
-        <span class="k">def</span> <span class="nf">circumradius</span><span class="p">(</span><span class="n">simplex</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">circumradius</span><span class="p">(</span><span class="n">simplex</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 
@@ -1437,7 +1453,7 @@
 
 <div class="viewcode-block" id="Pair">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair">[docs]</a>
-<span class="k">class</span> <span class="nc">Pair</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Pair</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing a birth-death pair.</span>
 
@@ -1446,16 +1462,16 @@
 <span class="sd">            belongs to.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span> <span class="o">=</span> <span class="n">diagram</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nth</span> <span class="o">=</span> <span class="n">nth</span>
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Pair.birth_time">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.birth_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the birth time of the pair.</span>
 
 <span class="sd">        Returns:</span>
@@ -1466,7 +1482,7 @@
 
 <div class="viewcode-block" id="Pair.death_time">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.death_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the death time of the pair.</span>
 
 <span class="sd">        Returns:</span>
@@ -1481,7 +1497,7 @@
     <span class="n">death</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">death_time</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Birth position for the birth-death pair&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">birth_positions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
 
@@ -1489,7 +1505,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Alias of :attr:`birth_position` &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Death position for the birth-death pair&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">death_positions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
 
@@ -1497,26 +1513,26 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Alias of :attr:`death_position` &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">birth_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">birth_indices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">death_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_indices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">birth_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;list of string: Birth simplex for the birth-death pair by symbols. Only available for alpha filtrations.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">death_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;list of string: Death simplex for the birth-death pair by symbols. Only available for alpha filtrations.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Pair.optimal_volume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_volume">[docs]</a>
-    <span class="k">def</span> <span class="nf">optimal_volume</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimal_volume</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1569,14 +1585,14 @@
         <span class="k">return</span> <span class="n">OptimalVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">cell_indices</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">check_optimal_volume_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_optimal_volume_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">optvol</span><span class="o">.</span><span class="n">Failure</span><span class="p">):</span>
             <span class="n">result</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">VolumeNotFound</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Pair.stable_volume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.stable_volume">[docs]</a>
-    <span class="k">def</span> <span class="nf">stable_volume</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stable_volume</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">threshold</span><span class="p">,</span>
         <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1627,7 +1643,7 @@
 
 <div class="viewcode-block" id="Pair.optimal_1_cycle">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_1_cycle">[docs]</a>
-    <span class="k">def</span> <span class="nf">optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the optimal (not volume-optimal) 1-cycle</span>
 <span class="sd">        corresponding to the birth-death pair.</span>
 
@@ -1677,14 +1693,14 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_map_optimal_1_cycle</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="nf">bitmap_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bitmap_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">finder</span> <span class="o">=</span> <span class="n">pict_opt1cyc</span><span class="o">.</span><span class="n">Finder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">BitmapOptimal1Cycle</span><span class="p">(</span><span class="n">finder</span><span class="o">.</span><span class="n">query_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">boundary_map_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_map_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Optimal1Cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt1cyc</span><span class="o">.</span><span class="n">search_on_chunk_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">boundary_map_bytes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">graph_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">graph_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">torelance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">GraphOptimal1Cycle</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">graph_opt1cyc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">graph_adjacent_matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">weighted</span><span class="p">)</span>
@@ -1701,15 +1717,15 @@
                 <span class="p">),</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Pair</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">diagram</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nth</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">nth</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Pair(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span>
 
 <div class="viewcode-block" id="Pair.lifetime">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.lifetime">[docs]</a>
-    <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The lifetime of the pair.</span>
 
 <span class="sd">        Returns:</span>
@@ -1718,18 +1734,18 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">representative_cocycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">representative_cocycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">representative_cocycle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The degree of the pair.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">degree</span>
 
-    <span class="k">def</span> <span class="nf">ph0_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ph0_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">PH0Components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
 
@@ -1762,8 +1778,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1783,7 +1799,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1796,7 +1812,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

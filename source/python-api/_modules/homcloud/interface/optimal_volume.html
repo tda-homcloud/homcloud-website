@@ -13,35 +13,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
   
-  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/optimal_volume';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -49,31 +53,16 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -81,7 +70,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -89,20 +77,27 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../index.html">
@@ -123,55 +118,57 @@
     <div class="me-auto navbar-header-items__center">
       
         <div class="navbar-item">
-<nav class="navbar-nav">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../outline.html">
-                        API Outline
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../interface.html">
-                        homcloud.interface module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        pyvistahelper module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
-                        py3dmolhelper module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        plotly_3d module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
-                        paraview_interface module
-                      </a>
-                    </li>
-                
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
+    paraview_interface module
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -186,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -217,15 +206,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -242,7 +227,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -251,61 +237,56 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
-<nav class="navbar-nav">
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../outline.html">
-                        API Outline
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../interface.html">
-                        homcloud.interface module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        pyvistahelper module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
-                        py3dmolhelper module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        plotly_3d module
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
-                        paraview_interface module
-                      </a>
-                    </li>
-                
-                </ul>
-            </li>
-            
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../paraview_interface.html">
+    paraview_interface module
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -315,15 +296,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -331,29 +308,32 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
         <div class="header-article-item">
 
-
-
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -367,7 +347,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">homcloud.int...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">homcloud.interface.optimal_volume</span></li>
   </ul>
 </nav>
 </div>
@@ -385,18 +365,18 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for homcloud.interface.optimal_volume</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
 
-<span class="kn">from</span> <span class="nn">homcloud.delegate</span> <span class="kn">import</span> <span class="n">forwardable</span>
-<span class="kn">import</span> <span class="nn">homcloud.optvol</span> <span class="k">as</span> <span class="nn">optvol</span>
-<span class="kn">import</span> <span class="nn">homcloud.paraview_interface</span> <span class="k">as</span> <span class="nn">pv_interface</span>
-<span class="kn">import</span> <span class="nn">homcloud.plotly_3d</span> <span class="k">as</span> <span class="nn">p3d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.delegate</span><span class="w"> </span><span class="kn">import</span> <span class="n">forwardable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optvol</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optvol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.paraview_interface</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv_interface</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.plotly_3d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">p3d</span>
 
 
 <div class="viewcode-block" id="Volume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume">[docs]</a>
 <span class="nd">@forwardable</span>
-<span class="k">class</span> <span class="nc">Volume</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Volume</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a volume.</span>
 <span class="sd">    This is the superclass of OptimalVolume, StableVolume and</span>
@@ -412,7 +392,7 @@ document.write(`
 <span class="sd">        * ssimplex: list of string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">,</span> <span class="n">cell_indices</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">,</span> <span class="n">cell_indices</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="n">pair</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span> <span class="o">=</span> <span class="n">pair</span><span class="o">.</span><span class="n">diagram</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_indices</span> <span class="o">=</span> <span class="n">cell_indices</span>
@@ -422,7 +402,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.birth_time">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.birth_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The birth time.</span>
@@ -432,7 +412,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.death_time">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.death_time">[docs]</a>
-    <span class="k">def</span> <span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The death time.</span>
@@ -442,7 +422,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.lifetime">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.lifetime">[docs]</a>
-    <span class="k">def</span> <span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The lifetime of the pair.</span>
@@ -452,7 +432,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.death_position">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.death_position">[docs]</a>
-    <span class="k">def</span> <span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -464,7 +444,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.points">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.points">[docs]</a>
-    <span class="k">def</span> <span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -477,7 +457,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.points_symbols">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.points_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            list of string: All vertices in the optimal volume</span>
@@ -491,7 +471,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary_points">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary_points">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -504,7 +484,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary_points_symbols">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary_points_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary_points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_points_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            list of string: All vertices in the volume optimal cycle</span>
@@ -518,7 +498,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -531,7 +511,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary_symbols">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            list of ssimplex: All simplices in the volume optimal cycle</span>
@@ -545,7 +525,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.cells">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.cells">[docs]</a>
-    <span class="k">def</span> <span class="nf">cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -561,7 +541,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.simplices_symbols">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.simplices_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">simplices_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">simplices_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            list of ssimplex: All simplices in volume optimal cycles</span>
@@ -577,7 +557,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.cubes">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.cubes">[docs]</a>
-    <span class="k">def</span> <span class="nf">cubes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cubes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -590,16 +570,16 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.children">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.children">[docs]</a>
-    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">           list of :class:`Pair`: All children pairs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">.pd</span> <span class="kn">import</span> <span class="n">Pair</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.pd</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pair</span>
 
         <span class="n">death_to_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_index_to_pair_number</span>
 
-        <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">valid</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">d</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="o">.</span><span class="n">death_index</span> <span class="ow">and</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">death_to_number</span>
 
         <span class="k">return</span> <span class="p">[</span><span class="n">Pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="p">,</span> <span class="n">death_to_number</span><span class="p">[</span><span class="n">d</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell_indices</span> <span class="k">if</span> <span class="n">valid</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span></div>
@@ -607,7 +587,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.dump_to_dict">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.dump_to_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">dump_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dump_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns information about the optimal volume in the form of dict.</span>
 <span class="sd">        Users can reconstruct :class:`OptimalVolume` and :class:`StableVolume` from the dictionary</span>
 <span class="sd">        using :meth:`restore_from_dict`.</span>
@@ -630,7 +610,7 @@ document.write(`
 
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">validate_restore_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_restore_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">pd</span><span class="o">.</span><span class="n">pdgm_id</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pdgm_id&quot;</span><span class="p">]</span>
         <span class="k">assert</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
         <span class="k">assert</span> <span class="n">pd</span><span class="o">.</span><span class="n">degree</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;degree&quot;</span><span class="p">]</span>
@@ -638,7 +618,7 @@ document.write(`
 <div class="viewcode-block" id="Volume.restore_from_dict">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.restore_from_dict">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">restore_from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">restore_from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns :class:`Volume` object reconstructed from pd and data.</span>
 <span class="sd">        The data should be a dictionary returned by :meth:`dump_to_dict`.</span>
 
@@ -663,7 +643,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary_loop">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary_loop">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -681,7 +661,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.boundary_loop_symbols">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.boundary_loop_symbols">[docs]</a>
-    <span class="k">def</span> <span class="nf">boundary_loop_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_loop_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            Optional[List[str]]: The list of vertex symbols in the loop order.</span>
@@ -695,7 +675,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.to_paraview_node">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_paraview_node">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_paraview_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a :class:`homcloud.paraview_interface.PipelineNode` object</span>
 <span class="sd">        to visulize an optimal volume.</span>
@@ -720,7 +700,7 @@ document.write(`
 <div class="viewcode-block" id="Volume.to_paraview_node_for_volumes">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_paraview_node_for_volumes">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">to_paraview_node_for_volumes</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_paraview_node_for_volumes</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">gui_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a :class:`homcloud.paraview_interface.PipelineNode` object</span>
 <span class="sd">        to visulize multiple optimal volumes.</span>
@@ -752,7 +732,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.to_plotly3d_trace">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_plotly3d_trace">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_plotly3d_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructs a plotly&#39;s trace object to visualize the optimal volume</span>
 
@@ -776,7 +756,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.to_plotly3d_mesh">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_plotly3d_mesh">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_plotly3d_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_plotly3d_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructs a plotly&#39;s trace object to visualize the face of an optimal volume</span>
 
@@ -803,7 +783,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.to_pyvista_boundary_mesh">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_pyvista_boundary_mesh">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_pyvista_boundary_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_pyvista_boundary_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructs a PyVista&#39;s mesh object to visualize the boundary of an optimal/stable volume.</span>
 <span class="sd">        Args:</span>
@@ -812,7 +792,7 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            pyvista.PolyData: PyVista&#39;s mesh object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">homcloud.pyvistahelper</span> <span class="k">as</span> <span class="nn">pvhelper</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pyvistahelper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pvhelper</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">degree</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -827,7 +807,7 @@ document.write(`
 
 <div class="viewcode-block" id="Volume.to_pyvista_volume_mesh">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Volume.to_pyvista_volume_mesh">[docs]</a>
-    <span class="k">def</span> <span class="nf">to_pyvista_volume_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_pyvista_volume_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adjust_periodic_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructs a PyVista&#39;s mesh object to visualize the internal face of a 1D optimal/stable volume.</span>
 
@@ -837,7 +817,7 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            pyvista.PolyData: PyVista&#39;s mesh object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">homcloud.pyvistahelper</span> <span class="k">as</span> <span class="nn">pvhelper</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pyvistahelper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pvhelper</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">degree</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -849,14 +829,14 @@ document.write(`
 
 <div class="viewcode-block" id="OptimalVolume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.OptimalVolume">[docs]</a>
-<span class="k">class</span> <span class="nc">OptimalVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimalVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents an optimal volume.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="OptimalVolume.birth_position">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.OptimalVolume.birth_position">[docs]</a>
-    <span class="k">def</span> <span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Args:</span>
 <span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
@@ -872,7 +852,7 @@ document.write(`
 
 <div class="viewcode-block" id="OptimalVolume.stable_subvolume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.OptimalVolume.stable_subvolume">[docs]</a>
-    <span class="k">def</span> <span class="nf">stable_subvolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">solver_options</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stable_subvolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">solver_options</span><span class="o">=</span><span class="p">[]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the stable subvolume of the optimal volume.</span>
 
@@ -895,7 +875,7 @@ document.write(`
 
 <div class="viewcode-block" id="EigenVolume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.EigenVolume">[docs]</a>
-<span class="k">class</span> <span class="nc">EigenVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EigenVolume</span><span class="p">(</span><span class="n">Volume</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents an &quot;eigenvolume&quot;. It is the superclass of</span>
 <span class="sd">    StableVolume and StableSubvolume.</span>
@@ -905,13 +885,13 @@ document.write(`
 <span class="sd">            eigenvolume.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">,</span> <span class="n">cell_indices</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">,</span> <span class="n">cell_indices</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">cell_indices</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
 
 <div class="viewcode-block" id="EigenVolume.dump_to_dict">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.EigenVolume.dump_to_dict">[docs]</a>
-    <span class="k">def</span> <span class="nf">dump_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dump_to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dump_to_dict</span><span class="p">()</span>
         <span class="n">data</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
         <span class="k">return</span> <span class="n">data</span></div>
@@ -920,7 +900,7 @@ document.write(`
 <div class="viewcode-block" id="EigenVolume.restore_from_dict">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.EigenVolume.restore_from_dict">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">restore_from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">restore_from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">validate</span><span class="p">:</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">validate_restore_data</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">pair</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;nth&quot;</span><span class="p">]),</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;cell_indices&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">])</span></div>
@@ -930,7 +910,7 @@ document.write(`
 
 <div class="viewcode-block" id="StableVolume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.StableVolume">[docs]</a>
-<span class="k">class</span> <span class="nc">StableVolume</span><span class="p">(</span><span class="n">EigenVolume</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StableVolume</span><span class="p">(</span><span class="n">EigenVolume</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a stable volume.</span>
 
@@ -943,7 +923,7 @@ document.write(`
 
 <div class="viewcode-block" id="StableSubvolume">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.StableSubvolume">[docs]</a>
-<span class="k">class</span> <span class="nc">StableSubvolume</span><span class="p">(</span><span class="n">EigenVolume</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StableSubvolume</span><span class="p">(</span><span class="n">EigenVolume</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a stable subvolume.</span>
 
@@ -960,7 +940,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -969,8 +949,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -983,8 +961,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1004,7 +982,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -1017,7 +995,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -1,3 +1,8 @@
+# News for 4.7.0 (2025/03/10)
+* New features:
+  * New method: `interface.HistoSpec.histogram_from_2darray` and `interface.Histogram.has_ess_values`
+  * New property: `interface.Histogram.ess_values`
+  
 # News for 4.6.0 (2024/12/12)
 * Support 2D periodic alpha complex without weights
   * Weighted 2D periodic alpha complex is not supproted since CGAL does not support it yet

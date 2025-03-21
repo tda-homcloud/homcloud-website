@@ -13,35 +13,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
   
-  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/histogram';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -49,31 +53,16 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -81,7 +70,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -89,20 +77,27 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
 
+  
+    
   
 
 <a class="navbar-brand logo" href="../../../index.html">
@@ -123,55 +118,57 @@
     <div class="me-auto navbar-header-items__center">
       
         <div class="navbar-item">
-<nav class="navbar-nav">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../outline.html">
-                        API Outline
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../interface.html">
-                        homcloud.interface module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        pyvistahelper module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
-                        py3dmolhelper module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        plotly_3d module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
-                        paraview_interface module
-                      </a>
-                    </li>
-                
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
+    paraview_interface module
+  </a>
+</li>
+
                 </ul>
             </li>
             
@@ -186,29 +183,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -217,15 +206,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -242,7 +227,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -251,61 +237,56 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
-<nav class="navbar-nav">
+          
+          
+            <div class="navbar-item">
+<nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../outline.html">
-                        API Outline
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../interface.html">
-                        homcloud.interface module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
-                        pyvistahelper module
-                      </a>
-                    </li>
-                
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
-                        py3dmolhelper module
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../../plotly_3d.html">
-                        plotly_3d module
-                      </a>
-                    </li>
-                
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
-                    More
-                </button>
-                <ul id="pst-nav-more-links-2" class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="../../../paraview_interface.html">
-                        paraview_interface module
-                      </a>
-                    </li>
-                
-                </ul>
-            </li>
-            
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../paraview_interface.html">
+    paraview_interface module
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -315,15 +296,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -331,29 +308,32 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
         <div class="header-article-item">
 
-
-
-<nav aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -367,7 +347,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">homcloud.int...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">homcloud.interface.histogram</span></li>
   </ul>
 </nav>
 </div>
@@ -385,20 +365,21 @@ document.write(`
                 <article class="bd-article">
                   
   <h1>Source code for homcloud.interface.histogram</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">homcloud.plot_PD</span> <span class="k">as</span> <span class="nn">plot_PD</span>
-<span class="kn">import</span> <span class="nn">homcloud.histogram</span> <span class="k">as</span> <span class="nn">homhisto</span>
-<span class="kn">import</span> <span class="nn">homcloud.vectorize_PD</span> <span class="k">as</span> <span class="nn">vectorize_PD</span>
-<span class="kn">import</span> <span class="nn">homcloud.plot_PD_slice</span> <span class="k">as</span> <span class="nn">plot_PD_slice</span>
-<span class="kn">import</span> <span class="nn">homcloud.pdgm</span> <span class="k">as</span> <span class="nn">pdgm</span>
-<span class="kn">from</span> <span class="nn">homcloud.delegate</span> <span class="kn">import</span> <span class="n">forwardable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.plot_PD</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plot_PD</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.histogram</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">homhisto</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.vectorize_PD</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vectorize_PD</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.plot_PD_slice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plot_PD_slice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.delegate</span><span class="w"> </span><span class="kn">import</span> <span class="n">forwardable</span>
 
 
 <div class="viewcode-block" id="HistoSpec">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec">[docs]</a>
 <span class="nd">@forwardable</span>
-<span class="k">class</span> <span class="nc">HistoSpec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HistoSpec</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a 2D mesh on the plane of birth-death pairs.</span>
 
@@ -429,7 +410,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">rulers</span> <span class="o">=</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">Ruler</span><span class="o">.</span><span class="n">create_xy_rulers</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span> <span class="n">pd</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spec</span> <span class="o">=</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">HistoSpec</span><span class="o">.</span><span class="n">from_rulers</span><span class="p">(</span><span class="n">rulers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rulers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">superlevel</span><span class="p">)</span>
         <span class="c1"># self.rulers = rulers</span>
@@ -439,7 +420,7 @@ document.write(`
     <span class="n">__delegator_definitions__</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;spec&quot;</span><span class="p">:</span> <span class="s2">&quot;sign_flipped&quot;</span><span class="p">}</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_histoinfo</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">histoinfo</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_histoinfo</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">histoinfo</span><span class="p">):</span>
         <span class="n">new_mesh</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="p">(</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
             <span class="nb">len</span><span class="p">(</span><span class="n">histoinfo</span><span class="p">[</span><span class="s2">&quot;x-edges&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
@@ -451,7 +432,7 @@ document.write(`
 
 <div class="viewcode-block" id="HistoSpec.pd_histogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.pd_histogram">[docs]</a>
-    <span class="k">def</span> <span class="nf">pd_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pd_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructs a 2D histogram of `pd`.</span>
 
 <span class="sd">        Args:</span>
@@ -465,7 +446,7 @@ document.write(`
 
 <div class="viewcode-block" id="HistoSpec.histogram_from_vector">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.histogram_from_vector">[docs]</a>
-    <span class="k">def</span> <span class="nf">histogram_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">histogram_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a histogram from a vector.</span>
 
@@ -480,9 +461,25 @@ document.write(`
         <span class="k">return</span> <span class="n">Histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="HistoSpec.histogram_from_2darray">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.histogram_from_2darray">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">histogram_from_2darray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">ess_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a histogram from a 2darray with additional ess_values 1darray.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            values (numpy.ndarray): 2d histogram values.</span>
+<span class="sd">            ess_values (numpy.ndarray): 1d histogram values of essential births.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Histogram`: The histogram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_2darray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="n">ess_values</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="HistoSpec.mask_from_vector">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.mask_from_vector">[docs]</a>
-    <span class="k">def</span> <span class="nf">mask_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mask_from_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a mask histogram from a boolean vector.</span>
 
@@ -498,12 +495,12 @@ document.write(`
         <span class="k">return</span> <span class="n">MaskHistogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">histogram_from_vector</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">homhisto</span><span class="o">.</span><span class="n">BinaryHistogram</span><span class="p">))</span></div>
 
 
-    <span class="k">def</span> <span class="nf">mask_from_2darray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mask_from_2darray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">MaskHistogram</span><span class="p">(</span><span class="n">homhisto</span><span class="o">.</span><span class="n">BinaryHistogram</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spec</span><span class="p">))</span>
 
 <div class="viewcode-block" id="HistoSpec.vector_size">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.HistoSpec.vector_size">[docs]</a>
-    <span class="k">def</span> <span class="nf">vector_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vector_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the size of the vector generated by self.</span>
 
@@ -520,7 +517,7 @@ document.write(`
 
 <div class="viewcode-block" id="PIVectorizeSpec">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec">[docs]</a>
-<span class="k">class</span> <span class="nc">PIVectorizeSpec</span><span class="p">(</span><span class="n">HistoSpec</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PIVectorizeSpec</span><span class="p">(</span><span class="n">HistoSpec</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a 2D mesh on the plane of birth-death pairs</span>
 <span class="sd">    with information about vectorization by persistence image (PI) method.</span>
@@ -558,13 +555,13 @@ document.write(`
 <span class="sd">            the parameter should be False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ybins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">ybins</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">superlevel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_function</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">weight_function</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weight_function</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">params</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="mf">1.0</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
@@ -578,7 +575,7 @@ document.write(`
 
 <div class="viewcode-block" id="PIVectorizeSpec.vectorize">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec.vectorize">[docs]</a>
-    <span class="k">def</span> <span class="nf">vectorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vectorize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Vectroize `pd`.</span>
 
 <span class="sd">        Args:</span>
@@ -596,7 +593,7 @@ document.write(`
 
 <div class="viewcode-block" id="PIVectorizeSpec.vectorize_pair">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PIVectorizeSpec.vectorize_pair">[docs]</a>
-    <span class="k">def</span> <span class="nf">vectorize_pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vectorize_pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pair</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Vectorize a PD with a signle pair.</span>
 
 <span class="sd">        Args:</span>
@@ -617,24 +614,28 @@ document.write(`
 <div class="viewcode-block" id="Histogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Histogram">[docs]</a>
 <span class="nd">@forwardable</span>
-<span class="k">class</span> <span class="nc">Histogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Histogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The class represents a histogram on birth-death plane.</span>
 
 <span class="sd">    Methods:</span>
 <span class="sd">        x_range()</span>
 <span class="sd">            Returns:</span>
-<span class="sd">                (tuple[int, int]): The lower and upper range of x-axis.</span>
+<span class="sd">                tuple[int, int]: The lower and upper range of x-axis.</span>
 
 <span class="sd">        x_bins()</span>
 <span class="sd">            Returns:</span>
-<span class="sd">                (int): The number of bins on x-axis.</span>
+<span class="sd">                int: The number of bins on x-axis.</span>
 
 <span class="sd">        y_range()</span>
 <span class="sd">            Returns:</span>
-<span class="sd">                (tuple[int, int]): The lower and upper range of y-axis.</span>
+<span class="sd">                tuple[int, int]: The lower and upper range of y-axis.</span>
 <span class="sd">        y_bins()</span>
 <span class="sd">            Returns:</span>
-<span class="sd">                (int): The number of bins on y-axis.</span>
+<span class="sd">                int: The number of bins on y-axis.</span>
+<span class="sd">        has_ess_values()</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                bool: True if the histogram has information about</span>
+<span class="sd">                essential pairs, otherwise False</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        xedges (numpy.ndarray[x_bins + 1]): The edges of bins on x-axis</span>
@@ -644,11 +645,11 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orig</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig</span> <span class="o">=</span> <span class="n">orig</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        (numpy.ndarary, shape (x_bins, y_bins)): 2-dimensional array of values</span>
 <span class="sd">        in the bins.</span>
@@ -656,14 +657,28 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">values</span>
 
     <span class="nd">@values</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
 
-    <span class="n">__delegator_definitions__</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;orig&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x_range&quot;</span><span class="p">,</span> <span class="s2">&quot;y_range&quot;</span><span class="p">,</span> <span class="s2">&quot;x_bins&quot;</span><span class="p">,</span> <span class="s2">&quot;y_bins&quot;</span><span class="p">,</span> <span class="s2">&quot;xedges&quot;</span><span class="p">,</span> <span class="s2">&quot;yedges&quot;</span><span class="p">]}</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ess_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        (numpy.ndarary, shape (x_bins,)): 1-dimensional array of values</span>
+<span class="sd">        in the bins of essential pairs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">ess_values</span>
+
+    <span class="nd">@ess_values</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ess_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ess_values</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="o">.</span><span class="n">ess_values</span> <span class="o">=</span> <span class="n">ess_values</span>
+
+    <span class="n">__delegator_definitions__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;orig&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;x_range&quot;</span><span class="p">,</span> <span class="s2">&quot;y_range&quot;</span><span class="p">,</span> <span class="s2">&quot;x_bins&quot;</span><span class="p">,</span> <span class="s2">&quot;y_bins&quot;</span><span class="p">,</span> <span class="s2">&quot;xedges&quot;</span><span class="p">,</span> <span class="s2">&quot;yedges&quot;</span><span class="p">,</span> <span class="s2">&quot;has_ess_values&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
 
 <div class="viewcode-block" id="Histogram.plot">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.Histogram.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">colorbar</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">style</span><span class="o">=</span><span class="s2">&quot;colorhistogram&quot;</span><span class="p">,</span>
@@ -725,6 +740,9 @@ document.write(`
 <span class="sd">            &gt;&gt;&gt; plt.show()  # To show the histogram on your display</span>
 <span class="sd">            &gt;&gt;&gt; plt.savefig(&quot;histogram.png&quot;)  # To save the histogram figure.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_ess_values</span><span class="p">():</span>
+            <span class="n">plot_ess</span> <span class="o">=</span> <span class="kc">False</span>
+
         <span class="n">plotter</span> <span class="o">=</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">PDPlotter</span><span class="o">.</span><span class="n">find_plotter</span><span class="p">(</span><span class="n">style</span><span class="p">)(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">orig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zspec</span><span class="p">(</span><span class="n">colorbar</span><span class="p">),</span> <span class="n">plot_PD</span><span class="o">.</span><span class="n">AuxPlotInfo</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">unit_name</span><span class="p">,</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">aspect</span><span class="p">,</span> <span class="n">plot_ess</span><span class="p">)</span>
         <span class="p">)</span>
@@ -735,7 +753,7 @@ document.write(`
 
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_zspec</span><span class="p">(</span><span class="n">colorbar</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_zspec</span><span class="p">(</span><span class="n">colorbar</span><span class="p">):</span>
         <span class="n">ztype</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;linear&quot;</span><span class="p">)</span>
         <span class="n">vmax</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
         <span class="n">vmin</span> <span class="o">=</span> <span class="n">colorbar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
@@ -757,7 +775,7 @@ document.write(`
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unknown colorbar type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ztype</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_fig_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fig_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -767,7 +785,7 @@ document.write(`
 
 <div class="viewcode-block" id="MaskHistogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram">[docs]</a>
-<span class="k">class</span> <span class="nc">MaskHistogram</span><span class="p">(</span><span class="n">Histogram</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MaskHistogram</span><span class="p">(</span><span class="n">Histogram</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The class represents a histogram on birth-death plane whose values</span>
 <span class="sd">    are booleans.</span>
@@ -779,7 +797,7 @@ document.write(`
 
 <div class="viewcode-block" id="MaskHistogram.filter_pairs">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram.filter_pairs">[docs]</a>
-    <span class="k">def</span> <span class="nf">filter_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns all pairs in the area of bins whose values are True.</span>
 
@@ -798,7 +816,7 @@ document.write(`
 
 <div class="viewcode-block" id="MaskHistogram.filter_pd">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.MaskHistogram.filter_pd">[docs]</a>
-    <span class="k">def</span> <span class="nf">filter_pd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_pd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns all pairs of the persistence diagram</span>
 <span class="sd">        in the area of bins whose values are True.</span>
@@ -818,7 +836,7 @@ document.write(`
 
 <div class="viewcode-block" id="SliceHistogram">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.SliceHistogram">[docs]</a>
-<span class="k">class</span> <span class="nc">SliceHistogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SliceHistogram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents a 1D histogram of birth-death pairs</span>
 <span class="sd">    in the thin strip on a persistence diagram.</span>
@@ -834,7 +852,7 @@ document.write(`
 <span class="sd">       y2 (float): The y-coordinate of the another end of the strip.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">x1</span>
@@ -844,7 +862,7 @@ document.write(`
 
 <div class="viewcode-block" id="SliceHistogram.plot">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.SliceHistogram.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plots the historam.</span>
 
@@ -878,7 +896,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -887,8 +905,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -901,8 +917,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -922,7 +938,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -935,7 +951,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
