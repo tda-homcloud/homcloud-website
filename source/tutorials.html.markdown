@@ -15,23 +15,29 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 
 ## Pythonインターフェース
 
-* [3次元点集合データ(ポイントクラウド)](py-tutorial/pointcloud.html)
-* [白黒画像](py-tutorial/binary-image.html)
-* [グレイスケール画像](py-tutorial/grayscale-image.html)
-* [3次元白黒画像](py-tutorial/binary-3d.html)
-* [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
-* [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_periodic.html)
+* [3次元点群データ(ポイントクラウド)](py-tutorial/pointcloud.html)
+* [二値画像](py-tutorial/binary_image.html)
+* [グレイスケール画像](py-tutorial/grayscale_image.html)
+* [3次元二値画像](py-tutorial/binary_3d.html)
 * [機械学習との組み合わせ](py-tutorial/ml_pc.html)
 * 材料科学データの解析(原子配置データ)
   * [銅の結晶データ](py-tutorial/analysis_of_atomic_configurations_1.html)
   * [アモルファスシリカのデータ](py-tutorial/analysis_of_atomic_configurations_2.html)
+* [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
+* [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_pbc.html)
+* [周期境界画像](py-tutorial/pbc_bitmap.html)
 
+3次元可視化にPlotlyを使ったバージョン:
+
+* [3次元点群データ(ポイントクラウド)](py-tutorial/pointcloud_3d_visualization_by_plotly.html)
+* [3次元二値画像](py-tutorial/binary_3d_3d_visualization_by_plotly.html)
+* [機械学習との組み合わせ](py-tutorial/ml_pc_3d_visualization_by_plotly.html)
 
 このチュートリアルはjupyter notebookを使っています．チュートリアルをする前に
 jupyter notebookをインストールしてください．
 
 その後，[python-tutorial.zip](download/python-tutorial.zip)をダウンロードし，zipファイルを展開してください．
-そこで `tutorial/python-interface/` というディレクトリが作られるので，そこにターミナルで`cd`で移動して，`jupyter notebook`とするとWebブラウザ上でUIが開かれます．
+そこで `tutorial/python-interface/` というディレクトリが作られるので，そこにターミナルで`cd`で移動して，`jupyter lab`とするとWebブラウザ上でUIが開かれます．
 そこに各チュートリアルに対応してディレクトリがあるので，それを開いてその下にある
 `.ipynb`ファイルを開いてチュートリアルを実行してください．
 
@@ -39,30 +45,23 @@ jupyter notebookをインストールしてください．
 
 ## Google Colaboratoryによるチュートリアル
 
-最近 HomCloud は[Google Colaboratory](colab.research.google.com/)でも動作するようになりました．
-現在Colabへのチュートリアルの移植を進行中です．
+HomCloudは [Google Colaboratory](https://colab.research.google.com/) でも動作します。
 
-* [3次元点集合データ(ポイントクラウド)](https://colab.research.google.com/drive/1Ygu6WIblDIqgEamuu25xC9tBHb3X_vEM?usp=sharing)
-  * [Plotlyで3次元の可視化をするバージョン](https://colab.research.google.com/drive/1TPmO9HJ__BToBIWO97E27syDSUantnq8?usp=sharing)
-* [白黒画像の解析](https://colab.research.google.com/drive/1I5mWNFgKxSjpsXVKDXWaeiS6guh2LpEO?usp=sharing)
-* [グレイスケール画像の解析](https://colab.research.google.com/drive/1ZHmFVf6p8BFAQgXwfU38fUF3Lt3_iFlJ?usp=sharing)
-* [三次元二値画像の解析](https://colab.research.google.com/drive/1uLFxhDtBMYDQGCVJkmUSbRUEzGDeFq4c?usp=sharing)
-* [距離行列(Vietoris-Rips)](https://colab.research.google.com/drive/1xzboFLaCKPsBvlcLFEj17Q1lY0cKQmhJ?usp=sharing)
-* [機械学習](https://colab.research.google.com/drive/1iDOitCi09VCwHHLRnnSOKmyOl0NMXR1J?usp=sharing)
-* [材料科学データの解析(原子配置データ)](https://colab.research.google.com/drive/1iK8yzl0ituB9LN3zKxFYVIwfNQ0BneFT?usp=sharing)
+* [3次元点群データ(ポイントクラウド)](https://colab.research.google.com/drive/1wEoc7VVNRLkC7anxdwvsOCwyyv0HTTFG?usp=sharing)
+* [二値画像](https://colab.research.google.com/drive/11hMP5-7EL_eqPas9bCvlY0mMpwQrsJcf?usp=sharing)
+* [グレイスケール画像](https://colab.research.google.com/drive/109s2MC2OL9cLv1Wz7dJf-4Q31s1T1S3p?usp=sharing)
+* [3次元二値画像](https://colab.research.google.com/drive/1LHdIVE06fo2OVnrPOhmrbSdW7pTVPuX7?usp=sharing)
+* [機械学習との組み合わせ](https://colab.research.google.com/drive/125NW3j9ii9JtsR_Oz1pv7waOln3m48DT?usp=sharing)
+* 材料科学データの解析(原子配置データ)
+  * [銅の結晶データ](https://colab.research.google.com/drive/1Nxyhd1gJzuMIPglIeZLF4t8wVwZHE0yR?usp=sharing)
+  * [アモルファスシリカのデータ](https://colab.research.google.com/drive/1Xnzhj7_sowwBF4D-aj0skmFMu5H4gYqW?usp=sharing)
+* [距離行列(Vietoris-Rips)](https://colab.research.google.com/drive/1tD2naiqjd6lsHYIodkiCHYyhfN1hEt5G?usp=sharing)
+* [周期境界画像](https://colab.research.google.com/drive/1tpHgUomj8QHuFEGUOG2nuwWE5psUBKpM?usp=sharing)
 
 ### Jupyter notebookに関する話
 
 Jupyter notebookは勉強するのに使ったり試行錯誤には便利ですが，ある程度やることが固まってくると使いにくいと思います．
 そういうときは脱Jupyter notebookが必要なのでがんばってください．
-
-### Plotlyによる3次元可視化
-
-* [3次元点集合データ(ポイントクラウド)](py-tutorial/pointcloud-3d-visualization-by-plotly.html)
-* [3次元白黒画像](py-tutorial/binary-3d-3d-visualization-by-plotly.html)
-* [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_periodic-3d-visualization-by-plotly.html)
-* [機械学習との組み合わせ](py-tutorial/ml_pc-3d-visualization-by-plotly.html)
-
 
 ## コマンドラインインターフェース版
 
@@ -73,29 +72,4 @@ Jupyter notebookは勉強するのに使ったり試行錯誤には便利です�
 
 [このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や，データファイル等が含まれています．](donwload/bash-tutorial.zip)
 
-### このチュートリアルのための準備について
-
-このチュートリアルは jupyter notebook に bash_kernel というものを組み合わせて使っています．
-インストール方法は以下の通りです．
-
-1. jupyter notebook をインストールする
-   * すでに HomCloud をインストールしているということはpythonもインストールしているはずです．
-     そこから jupyter notebook をインストールすることはそんなに難しくないでしょう．
-
-2. bash_kernel をインストールする
-   * https://github.com/takluyver/bash_kernel を使います．インストール方法はこのリンク先にも書いてありますが，
-  
-         pip3 install bash_kernel
-         python3 -m bash_kernel.install
-      
-    とします．
-
-3. チュートリアルのnotebookを実行する．
-   * [bash-tutorial.zip](tutorial/bash-tutorial.zip)をダウンロードし，
-     zipファイルを展開してください．そこで `tutorial/bash/` というディレクトリが
-     作られるので，そこにターミナルで`cd`で移動して，
-     `jupyter notebook`とするとWebブラウザ上でUIが開かれます．
-     そこに3つのディレクトリ(`pointcloud`, `binary-image`, `grayscale-image`)
-     があるので，チュートリアルを実行してください．
-
-
+これらのチュートリアルの Jupyter notebook の bash_kernel が必要です。
