@@ -104,8 +104,9 @@ lang: en
   * [松原典恵, 藤元伸悦, 谷口裕一, 林敬一. 分子動力学シミュレーションを用いた熱硬化性高分子材料の解析](https://www.jstage.jst.go.jp/article/networkedpolymer/41/5/41_186/_article/-char/ja/) <!-- MDで生成したエポキシ系熱硬化性樹脂の分子構造を解析して, 構造と物性の関係を調べている。-->
 
   * [長島大, 畑尾卓也. 分子動力学計算と機械学習による熱硬化性樹脂に関する階層的構造-物性相関解析](https://www.jstage.jst.go.jp/article/ciqs/2020/0/2020_1A03/_pdf)
-  
+    
   * [Martin Cramer Pedersen,  Vanessa Robins,  Kell Mortensen,  Jacob J. K. Kirkensgaard. Evolution of local motifs and topological proximity in self-assembled quasi-crystalline phases](https://royalsocietypublishing.org/doi/full/10.1098/rspa.2020.0170): 3D quasi-crystal <!-- Dionysus2をメインで使っているけどoptimal cycleの計算だけはHomCloudを使っている．-->
+
   * [Ryuhei Sato, Shinya Kawakami, Hirotaka Ejima, Takahiro Ujii, Koichi Sato, Takanori Ichiki, and Yasushi Shibuta. Dynamic Correlation Analysis between Stress–Strain Curve and Polymer Film Structure Using Persistent Homology. Journal of Chemical Theory and Computation. **20** (24) 10751--11104 (2024)](https://pubs.acs.org/doi/10.1021/acs.jctc.4c01418)
 
 * Life science
