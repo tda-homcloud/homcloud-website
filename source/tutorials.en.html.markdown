@@ -36,7 +36,7 @@ These tutorials use jupyter notebook. Please install jupyter notebook before the
 [python-tutorial.zip](download/python-tutorial.zip).
 You can see the document on the Python interface from [python-api/](python-api/).
 
-## Google Colaboratoryh
+## Google Colaboratory
 HomCloud supports [Google Colaboratory](https://colab.research.google.com). 
 You can try HomCloud without installing HomCloud on your machine.
 What you need is only a web browser and Google account.
