@@ -25,8 +25,4 @@ You can upgrade HomCloud as follows if you have installed HomCloud using the pip
 
     pip install -U homcloud
     
-If you have installed HomCloud using conda, the following command will update HomCloud:
-
-    conda update -c https://homcloud.dev/conda-channel/ homcloud
-
 However, it is recommended to create a new conda virtual environment for the new HomCloud:

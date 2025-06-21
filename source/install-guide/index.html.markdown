@@ -26,8 +26,4 @@ pipでHomCloudをインストールした場合は次のようにしてアップ
 
     pip install -U homcloud
 
-condaを使った場合には，次のようにします．
-
-    conda update -c https://homcloud.dev/conda-channel/ homcloud
-
 ただ，condaの場合はバージョンごとに環境を作ったほうがいいかもしれません．
