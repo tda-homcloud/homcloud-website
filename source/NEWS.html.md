@@ -1,3 +1,8 @@
+# News for 4.8.0 (2025/07/16)
+* New features:
+  * Update tutorials
+  * Now you can choose LP solver for optimal / stable volumes using pulp like interface
+
 # News for 4.7.0 (2025/03/10)
 * New features:
   * New method: `interface.HistoSpec.histogram_from_2darray` and `interface.Histogram.has_ess_values`
@@ -511,8 +516,8 @@
 # News for 0.5.6
 
 * Rename the name of the mode in pict.pixel-levelset:
-  From "pixel-value-superlevel" to "superlevel" and
-  from "pixel-value-sublevel" to "sublevel" and
+  From pixel-value-superlevel to superlevel and
+  from pixel-value-sublevel to sublevel and
 * Rename module view\_index to view\_index\_pict\_gui
 * Add a new module view\_index\_pict
 * Fix a bug in pict.pixel\_levelset and
@@ -525,14 +530,14 @@
 
 # News for 0.5.4
 
-* Add support of "index-combined" diagram to view_index
+* Add support of index-combined diagram to view_index
 * Add executables homcloud-* for convenience
 * Support a text file as a picture on pict.binarize and pict.pixel_levelset
 * Refactoring
 
 # News for 0.5.3
 
-* Support "index-combined" complex and diagram.
+* Support index-combined complex and diagram.
 
 # News for 0.5.1
 

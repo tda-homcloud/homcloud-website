@@ -4,35 +4,31 @@ Persistent homology software.
 
 # Website
 
-<http://homcloud.dev/index.en.html>
+* Japanese: <http://homcloud.dev/>
+* English: <http://homcloud.dev/index.en.html>
 
-# REQUIRE
+# Environments
 
 HomCloud supports the following computing environments.
 
-* Linux
-* Apple Silicon Mac (M1)
+* Linux (including Google Colaboratory)
+* Apple Silicon Mac
 * Windows (64bit)
 
 Under any system, Python 3.10 or newer versions are required.
 
-# INSTALL
+## End of support
+The following systems were supported in the past, but are no longer supported by HomCloud.
 
-Please see the following install tutorial:
+* Intel Mac (due to CircleCI discontinuing support)
+* conda (anaconda, miniconda, etc., due to its complicated and slow build system)
+
+# INSTALL and Upgrading
+
+Please see the following install guide:
 
 * Japanese: <https://homcloud.dev/install-guide/index.html>
 * English: <https://homcloud.dev/install-guide/index.en.html>
-
-## Notes
-
-* If you don't want to install the software globally, please use virtualenv or venv.
-
-# Upgrading HomCloud
-
-See the following documents.
-
-* Japanese <https://homcloud.dev/install-guide/index.html>
-* English <https://homcloud.dev/install-guide/index.en.html>
 
 # Tutorials
 
@@ -41,7 +37,7 @@ See the following documents.
 
 # API reference
 
-English version is only available at <https://homcloud.dev/python-api/>.
+<https://homcloud.dev/python-api/>
 
 # Troubleshooting
 
