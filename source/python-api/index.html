@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to homcloud’s documentation! &#8212; homcloud  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Outline" href="outline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">homcloud  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="outline.html">
+    API Outline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="interface.html">
+    homcloud.interface module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="outline.html">
+    API Outline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="interface.html">
+    homcloud.interface module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="welcome-to-homcloud-s-documentation">
+<h1>Welcome to homcloud’s documentation!<a class="headerlink" href="#welcome-to-homcloud-s-documentation" title="Link to this heading">#</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outline.html">API Outline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outline.html#homcloud-interface-pdlist"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.interface.PDList</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html#homcloud-interface-pd"><code class="xref py py-class docutils literal notranslate"><span class="pre">homcloud.interface.PD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html#other-classes">Other classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">homcloud.interface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.birth_position"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.birth_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.birth_time"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.birth_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.boundary_points"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.boundary_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.death_time"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.death_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.path"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.to_plotly3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.to_plotly3d_trace"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.to_plotly3d_trace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapOptimal1Cycle.to_pyvista_mesh"><code class="docutils literal notranslate"><span class="pre">BitmapOptimal1Cycle.to_pyvista_mesh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.nodes"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.essential_nodes"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.essential_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.nonessential_nodes"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.nonessential_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.roots"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.roots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.birth_pixel"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.birth_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.birth_position"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.birth_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.birth_time"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.birth_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.children"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.children()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.death_pixel"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.death_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.death_position"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.death_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.death_time"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.death_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.essential"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.essential()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.isroot"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.isroot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.lifetime"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.lifetime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.parent"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.parent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.stable_volume"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.stable_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Node.volume"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Node.volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.StableVolume"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.StableVolume</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.StableVolume.volume"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.StableVolume.volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Volume"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Volume</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Volume.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Volume.to_plotly3d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Volume.to_plotly3d_trace"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Volume.to_plotly3d_trace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.Volume.to_pyvista_mesh"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.Volume.to_pyvista_mesh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.degree"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.degree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.for_bitmap_levelset"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.for_bitmap_levelset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.nearest_pair_node"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.nearest_pair_node()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.BitmapPHTrees.pair_nodes_in_rectangle"><code class="docutils literal notranslate"><span class="pre">BitmapPHTrees.pair_nodes_in_rectangle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.EigenVolume"><code class="docutils literal notranslate"><span class="pre">EigenVolume</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.EigenVolume.threshold"><code class="docutils literal notranslate"><span class="pre">EigenVolume.threshold</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.EigenVolume.dump_to_dict"><code class="docutils literal notranslate"><span class="pre">EigenVolume.dump_to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.EigenVolume.restore_from_dict"><code class="docutils literal notranslate"><span class="pre">EigenVolume.restore_from_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.GraphOptimal1Cycle"><code class="docutils literal notranslate"><span class="pre">GraphOptimal1Cycle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.GraphOptimal1Cycle.birth_time"><code class="docutils literal notranslate"><span class="pre">GraphOptimal1Cycle.birth_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.GraphOptimal1Cycle.boundary_points"><code class="docutils literal notranslate"><span class="pre">GraphOptimal1Cycle.boundary_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.GraphOptimal1Cycle.death_time"><code class="docutils literal notranslate"><span class="pre">GraphOptimal1Cycle.death_time()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec"><code class="docutils literal notranslate"><span class="pre">HistoSpec</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec.histogram_from_2darray"><code class="docutils literal notranslate"><span class="pre">HistoSpec.histogram_from_2darray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec.histogram_from_vector"><code class="docutils literal notranslate"><span class="pre">HistoSpec.histogram_from_vector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec.mask_from_vector"><code class="docutils literal notranslate"><span class="pre">HistoSpec.mask_from_vector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec.pd_histogram"><code class="docutils literal notranslate"><span class="pre">HistoSpec.pd_histogram()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.HistoSpec.vector_size"><code class="docutils literal notranslate"><span class="pre">HistoSpec.vector_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.Histogram"><code class="docutils literal notranslate"><span class="pre">Histogram</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.x_range"><code class="docutils literal notranslate"><span class="pre">Histogram.x_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.x_bins"><code class="docutils literal notranslate"><span class="pre">Histogram.x_bins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.y_range"><code class="docutils literal notranslate"><span class="pre">Histogram.y_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.y_bins"><code class="docutils literal notranslate"><span class="pre">Histogram.y_bins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.has_ess_values"><code class="docutils literal notranslate"><span class="pre">Histogram.has_ess_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.xedges"><code class="docutils literal notranslate"><span class="pre">Histogram.xedges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.yedges"><code class="docutils literal notranslate"><span class="pre">Histogram.yedges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.ess_values"><code class="docutils literal notranslate"><span class="pre">Histogram.ess_values</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.plot"><code class="docutils literal notranslate"><span class="pre">Histogram.plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Histogram.values"><code class="docutils literal notranslate"><span class="pre">Histogram.values</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.HomCloudError"><code class="docutils literal notranslate"><span class="pre">HomCloudError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.MaskHistogram"><code class="docutils literal notranslate"><span class="pre">MaskHistogram</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.MaskHistogram.filter_pairs"><code class="docutils literal notranslate"><span class="pre">MaskHistogram.filter_pairs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.MaskHistogram.filter_pd"><code class="docutils literal notranslate"><span class="pre">MaskHistogram.filter_pd()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.birth_position"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.birth_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.birth_time"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.birth_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.boundary_points"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.boundary_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.boundary_points_symbols"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.boundary_points_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.death_time"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.death_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.path"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.path_symbols"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.path_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.to_plotly3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.to_plotly3d_trace"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.to_plotly3d_trace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Optimal1Cycle.to_pyvista_mesh"><code class="docutils literal notranslate"><span class="pre">Optimal1Cycle.to_pyvista_mesh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume"><code class="docutils literal notranslate"><span class="pre">OptimalVolume</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume.birth_pos"><code class="docutils literal notranslate"><span class="pre">OptimalVolume.birth_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume.birth_position"><code class="docutils literal notranslate"><span class="pre">OptimalVolume.birth_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume.restore_from_dict"><code class="docutils literal notranslate"><span class="pre">OptimalVolume.restore_from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume.stable_subvolume"><code class="docutils literal notranslate"><span class="pre">OptimalVolume.stable_subvolume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.OptimalVolume.tightened_subvolume"><code class="docutils literal notranslate"><span class="pre">OptimalVolume.tightened_subvolume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.PD"><code class="docutils literal notranslate"><span class="pre">PD</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.path"><code class="docutils literal notranslate"><span class="pre">PD.path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.degree"><code class="docutils literal notranslate"><span class="pre">PD.degree</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.births"><code class="docutils literal notranslate"><span class="pre">PD.births</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.deaths"><code class="docutils literal notranslate"><span class="pre">PD.deaths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.birth_positions"><code class="docutils literal notranslate"><span class="pre">PD.birth_positions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.death_positions"><code class="docutils literal notranslate"><span class="pre">PD.death_positions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.essential_births"><code class="docutils literal notranslate"><span class="pre">PD.essential_births</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.essential_birth_positions"><code class="docutils literal notranslate"><span class="pre">PD.essential_birth_positions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.birth_death_times"><code class="docutils literal notranslate"><span class="pre">PD.birth_death_times()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.birth_positions_by"><code class="docutils literal notranslate"><span class="pre">PD.birth_positions_by()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.death_positions_by"><code class="docutils literal notranslate"><span class="pre">PD.death_positions_by()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.empty"><code class="docutils literal notranslate"><span class="pre">PD.empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.essential_birth_positions_by"><code class="docutils literal notranslate"><span class="pre">PD.essential_birth_positions_by()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.from_birth_death"><code class="docutils literal notranslate"><span class="pre">PD.from_birth_death()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.histogram"><code class="docutils literal notranslate"><span class="pre">PD.histogram()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.load_phtrees"><code class="docutils literal notranslate"><span class="pre">PD.load_phtrees()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.nearest_pair_to"><code class="docutils literal notranslate"><span class="pre">PD.nearest_pair_to()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.pair"><code class="docutils literal notranslate"><span class="pre">PD.pair()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.pairs"><code class="docutils literal notranslate"><span class="pre">PD.pairs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.pairs_in_rectangle"><code class="docutils literal notranslate"><span class="pre">PD.pairs_in_rectangle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PD.slice_histogram"><code class="docutils literal notranslate"><span class="pre">PD.slice_histogram()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.PDList"><code class="docutils literal notranslate"><span class="pre">PDList</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.__getitem__"><code class="docutils literal notranslate"><span class="pre">PDList.__getitem__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.bitmap_phtrees"><code class="docutils literal notranslate"><span class="pre">PDList.bitmap_phtrees()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.close"><code class="docutils literal notranslate"><span class="pre">PDList.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.dth_diagram"><code class="docutils literal notranslate"><span class="pre">PDList.dth_diagram()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_alpha_filtration"><code class="docutils literal notranslate"><span class="pre">PDList.from_alpha_filtration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_bitmap_distance_function"><code class="docutils literal notranslate"><span class="pre">PDList.from_bitmap_distance_function()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_bitmap_levelset"><code class="docutils literal notranslate"><span class="pre">PDList.from_bitmap_levelset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_boundary_information"><code class="docutils literal notranslate"><span class="pre">PDList.from_boundary_information()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_coupled_alpha_relative_filtration"><code class="docutils literal notranslate"><span class="pre">PDList.from_coupled_alpha_relative_filtration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_rips_filtration"><code class="docutils literal notranslate"><span class="pre">PDList.from_rips_filtration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.from_simplicial_levelset"><code class="docutils literal notranslate"><span class="pre">PDList.from_simplicial_levelset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PDList.save"><code class="docutils literal notranslate"><span class="pre">PDList.save()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees"><code class="docutils literal notranslate"><span class="pre">PHTrees</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Node"><code class="docutils literal notranslate"><span class="pre">PHTrees.Node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Node.living_descendants"><code class="docutils literal notranslate"><span class="pre">PHTrees.Node.living_descendants()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Node.stable_volume"><code class="docutils literal notranslate"><span class="pre">PHTrees.Node.stable_volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.StableVolume"><code class="docutils literal notranslate"><span class="pre">PHTrees.StableVolume</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.birth_time"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.birth_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.death_time"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.death_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.lifetime"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.lifetime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.simplices"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.simplices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.boundary"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.boundary()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.birth_simplex"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.birth_simplex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.death_simplex"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.death_simplex()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.ancestors"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.ancestors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.boundary_points"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.boundary_points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.boundary_points_symbols"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.boundary_points_symbols()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.boundary_symbols"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.boundary_symbols()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.living"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.living()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.points"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.points()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.points_symbols"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.points_symbols()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.to_plotly3d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.to_plotly3d_mesh"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.to_plotly3d_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.to_plotly3d_trace"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.to_plotly3d_trace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.to_pyvista_mesh"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.to_pyvista_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.Volume.volume_simplices_symbols"><code class="docutils literal notranslate"><span class="pre">PHTrees.Volume.volume_simplices_symbols()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.all_nodes"><code class="docutils literal notranslate"><span class="pre">PHTrees.all_nodes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.nodes_of"><code class="docutils literal notranslate"><span class="pre">PHTrees.nodes_of()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.pair_node_nearest_to"><code class="docutils literal notranslate"><span class="pre">PHTrees.pair_node_nearest_to()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PHTrees.pair_nodes_in_rectangle"><code class="docutils literal notranslate"><span class="pre">PHTrees.pair_nodes_in_rectangle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.PIVectorizeSpec"><code class="docutils literal notranslate"><span class="pre">PIVectorizeSpec</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PIVectorizeSpec.vectorize"><code class="docutils literal notranslate"><span class="pre">PIVectorizeSpec.vectorize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.PIVectorizeSpec.vectorize_pair"><code class="docutils literal notranslate"><span class="pre">PIVectorizeSpec.vectorize_pair()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.PIVectorizerMesh"><code class="docutils literal notranslate"><span class="pre">PIVectorizerMesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.Pair"><code class="docutils literal notranslate"><span class="pre">Pair</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.diagram"><code class="docutils literal notranslate"><span class="pre">Pair.diagram</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth"><code class="docutils literal notranslate"><span class="pre">Pair.birth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth_pos"><code class="docutils literal notranslate"><span class="pre">Pair.birth_pos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth_position"><code class="docutils literal notranslate"><span class="pre">Pair.birth_position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth_position_by"><code class="docutils literal notranslate"><span class="pre">Pair.birth_position_by()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth_position_symbols"><code class="docutils literal notranslate"><span class="pre">Pair.birth_position_symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.birth_time"><code class="docutils literal notranslate"><span class="pre">Pair.birth_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death"><code class="docutils literal notranslate"><span class="pre">Pair.death</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death_pos"><code class="docutils literal notranslate"><span class="pre">Pair.death_pos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death_position"><code class="docutils literal notranslate"><span class="pre">Pair.death_position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death_position_by"><code class="docutils literal notranslate"><span class="pre">Pair.death_position_by()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death_position_symbols"><code class="docutils literal notranslate"><span class="pre">Pair.death_position_symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.death_time"><code class="docutils literal notranslate"><span class="pre">Pair.death_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.degree"><code class="docutils literal notranslate"><span class="pre">Pair.degree</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.lifetime"><code class="docutils literal notranslate"><span class="pre">Pair.lifetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.optimal_1_cycle"><code class="docutils literal notranslate"><span class="pre">Pair.optimal_1_cycle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.optimal_volume"><code class="docutils literal notranslate"><span class="pre">Pair.optimal_volume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.stable_volume"><code class="docutils literal notranslate"><span class="pre">Pair.stable_volume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Pair.tightened_volume"><code class="docutils literal notranslate"><span class="pre">Pair.tightened_volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram"><code class="docutils literal notranslate"><span class="pre">SliceHistogram</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.values"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.values</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.edges"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.edges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.x1"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.x1</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.y1"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.y1</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.x2"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.x2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.y2"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.y2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.SliceHistogram.plot"><code class="docutils literal notranslate"><span class="pre">SliceHistogram.plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.StableSubvolume"><code class="docutils literal notranslate"><span class="pre">StableSubvolume</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.StableVolume"><code class="docutils literal notranslate"><span class="pre">StableVolume</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.Volume"><code class="docutils literal notranslate"><span class="pre">Volume</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.birth_time"><code class="docutils literal notranslate"><span class="pre">Volume.birth_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary"><code class="docutils literal notranslate"><span class="pre">Volume.boundary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary_loop"><code class="docutils literal notranslate"><span class="pre">Volume.boundary_loop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary_loop_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.boundary_loop_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary_points"><code class="docutils literal notranslate"><span class="pre">Volume.boundary_points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary_points_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.boundary_points_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.boundary_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.boundary_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.cells"><code class="docutils literal notranslate"><span class="pre">Volume.cells()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.children"><code class="docutils literal notranslate"><span class="pre">Volume.children()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.cubes"><code class="docutils literal notranslate"><span class="pre">Volume.cubes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.death_pos"><code class="docutils literal notranslate"><span class="pre">Volume.death_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.death_position"><code class="docutils literal notranslate"><span class="pre">Volume.death_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.death_time"><code class="docutils literal notranslate"><span class="pre">Volume.death_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.dump_to_dict"><code class="docutils literal notranslate"><span class="pre">Volume.dump_to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.lifetime"><code class="docutils literal notranslate"><span class="pre">Volume.lifetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.points"><code class="docutils literal notranslate"><span class="pre">Volume.points()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.points_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.points_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.restore_from_dict"><code class="docutils literal notranslate"><span class="pre">Volume.restore_from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.simplices"><code class="docutils literal notranslate"><span class="pre">Volume.simplices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.simplices_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.simplices_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.to_plotly3d"><code class="docutils literal notranslate"><span class="pre">Volume.to_plotly3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.to_plotly3d_mesh"><code class="docutils literal notranslate"><span class="pre">Volume.to_plotly3d_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.to_plotly3d_trace"><code class="docutils literal notranslate"><span class="pre">Volume.to_plotly3d_trace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.to_pyvista_boundary_mesh"><code class="docutils literal notranslate"><span class="pre">Volume.to_pyvista_boundary_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.to_pyvista_volume_mesh"><code class="docutils literal notranslate"><span class="pre">Volume.to_pyvista_volume_mesh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html#homcloud.interface.Volume.volume_simplices_symbols"><code class="docutils literal notranslate"><span class="pre">Volume.volume_simplices_symbols()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.VolumeNotFound"><code class="docutils literal notranslate"><span class="pre">VolumeNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.distance_transform"><code class="docutils literal notranslate"><span class="pre">distance_transform()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.draw_birthdeath_pixels_2d"><code class="docutils literal notranslate"><span class="pre">draw_birthdeath_pixels_2d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.draw_volumes_on_2d_image"><code class="docutils literal notranslate"><span class="pre">draw_volumes_on_2d_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.example_data"><code class="docutils literal notranslate"><span class="pre">example_data()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.loadtxt_nd"><code class="docutils literal notranslate"><span class="pre">loadtxt_nd()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.parallel_volume_computation"><code class="docutils literal notranslate"><span class="pre">parallel_volume_computation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.show_slice3d"><code class="docutils literal notranslate"><span class="pre">show_slice3d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.distance.bottleneck"><code class="docutils literal notranslate"><span class="pre">bottleneck()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#homcloud.interface.distance.wasserstein"><code class="docutils literal notranslate"><span class="pre">wasserstein()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyvistahelper.html">pyvistahelper module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyvistahelper.html#homcloud.pyvistahelper.Bitmap3D"><code class="docutils literal notranslate"><span class="pre">Bitmap3D()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvistahelper.html#homcloud.pyvistahelper.Lines"><code class="docutils literal notranslate"><span class="pre">Lines()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvistahelper.html#homcloud.pyvistahelper.Loop"><code class="docutils literal notranslate"><span class="pre">Loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvistahelper.html#homcloud.pyvistahelper.SparseVoxels"><code class="docutils literal notranslate"><span class="pre">SparseVoxels()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvistahelper.html#homcloud.pyvistahelper.Triangles"><code class="docutils literal notranslate"><span class="pre">Triangles()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="py3dmolhelper.html">py3dmolhelper module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="py3dmolhelper.html#homcloud.py3dmolhelper.add_edges"><code class="docutils literal notranslate"><span class="pre">add_edges()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="py3dmolhelper.html#homcloud.py3dmolhelper.add_surface"><code class="docutils literal notranslate"><span class="pre">add_surface()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plotly_3d.html">plotly_3d module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plotly_3d.html#homcloud.plotly_3d.Bitmap3d"><code class="docutils literal notranslate"><span class="pre">Bitmap3d()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotly_3d.html#homcloud.plotly_3d.PointCloud"><code class="docutils literal notranslate"><span class="pre">PointCloud()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotly_3d.html#homcloud.plotly_3d.SimpleScene"><code class="docutils literal notranslate"><span class="pre">SimpleScene()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="outline.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Outline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Welcome to homcloud’s documentation!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018, Author.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

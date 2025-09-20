@@ -1,0 +1,1881 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>homcloud.interface.pd &#8212; homcloud  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/pd';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">homcloud  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../outline.html">
+    API Outline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../interface.html">
+    homcloud.interface module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../pyvistahelper.html">
+    pyvistahelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../py3dmolhelper.html">
+    py3dmolhelper module
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../plotly_3d.html">
+    plotly_3d module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">homcloud.interface.pd</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for homcloud.interface.pd</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cached_property</span><span class="w"> </span><span class="kn">import</span> <span class="n">cached_property</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.delegate</span><span class="w"> </span><span class="kn">import</span> <span class="n">forwardable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.alpha_filtration</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">alpha_filtration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.rips</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rips</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.bitmap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.abstract_filtration</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">abstract_filtration</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.simplicial_levelset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">simplicial_levelset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.coupled_alpha</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">coupled_alpha</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optvol</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optvol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.int_reduction</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">int_reduction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm_format</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm_format</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pict.optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pict_opt1cyc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">opt1cyc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.plot_PD_slice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plot_PD_slice</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.graph_optimal_one_cycle</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">graph_opt1cyc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.spatial_searcher</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialSearcher</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.distance_transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_transform</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.histogram</span><span class="w"> </span><span class="kn">import</span> <span class="n">HistoSpec</span><span class="p">,</span> <span class="n">SliceHistogram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.optimal_volume</span><span class="w"> </span><span class="kn">import</span> <span class="n">VolumeFailure</span><span class="p">,</span> <span class="n">OptimalVolume</span><span class="p">,</span> <span class="n">StableVolume</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">VolumeNotFound</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.bitmap_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitmapOptimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.boundary_map_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.graph_optimal_1_cycle</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphOptimal1Cycle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ph0_component</span><span class="w"> </span><span class="kn">import</span> <span class="n">PH0Components</span>
+
+
+<div class="viewcode-block" id="PDList">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PDList</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collection of 0th,1st,..,and q-th persitence diagrams.</span>
+
+<span class="sd">    In HomCloud, diagrams for all degrees coming from a filtration</span>
+<span class="sd">    are combined into a single file. This class is the interface to</span>
+<span class="sd">    the file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">       file (string or file): The pathname to a diagram file</span>
+<span class="sd">       type (enum PDList.FileType): Ignored, for backward compatibility</span>
+<span class="sd">       cache (bool): Ignored (for backward compatibility)</span>
+<span class="sd">       negate (bool): Ignored (for backward compatibility)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">negate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">filetype</span> <span class="ow">is</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">file</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">pdgm_format</span><span class="o">.</span><span class="n">PDGMReader</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">pdgm_format</span><span class="o">.</span><span class="n">PDGMReader</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;PDList(path=</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+
+<div class="viewcode-block" id="PDList.close">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.close">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dispose PDList object and release resources.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exception_type</span><span class="p">,</span> <span class="n">exception_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">pdgm_id</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">PDList</span><span class="o">.</span><span class="n">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">)</span>
+        <span class="n">filtration</span><span class="o">.</span><span class="n">compute_pdgm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">,</span> <span class="n">parallels</span><span class="o">=</span><span class="n">parallels</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDList</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_pdgm_file</span><span class="p">(</span><span class="n">save_to</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">save_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_to</span><span class="p">,</span> <span class="s2">&quot;w+b&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PDList.from_alpha_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_alpha_filtration</span><span class="p">(</span>
+        <span class="n">pointcloud</span><span class="p">,</span>
+        <span class="n">weight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">no_squared</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">squared</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">subsets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">check_acyclicity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">indexed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">periodicity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_phtrees</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute PDList by using an alpha filtration from a point cloud.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pointcloud (numpy.ndarray): Point cloud data. Each row</span>
+<span class="sd">                represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            weight (bool): If False, the pointcloud has no weight. If True,</span>
+<span class="sd">                the last column of the pointcloud ndarray is regarded as</span>
+<span class="sd">                weights. Please note that the weight paramters of points</span>
+<span class="sd">                should be the square of their own radii.</span>
+<span class="sd">            squared (bool): By default, all birth/death times are squared.</span>
+<span class="sd">                If squared is False, all computed birth/death times are</span>
+<span class="sd">                not squared.</span>
+<span class="sd">            no_squared (bool): See `squared` parameter.</span>
+<span class="sd">            subsets (list[int] or bool or None):</span>
+<span class="sd">                This parameter is used to introduce equivalence relationship.</span>
+
+<span class="sd">                This parameter allows you to analyze the interspace structures</span>
+<span class="sd">                between two or more objects in your pointcloud.</span>
+
+<span class="sd">                If the grouped sub-pointcloud constructs a contractible subcomplex,</span>
+<span class="sd">                the relative homology is comptuted.</span>
+<span class="sd">                If the grouped sub-pointcloud constructs a subcomplexes whose connected components</span>
+<span class="sd">                are contractible, each connected component in the subcomplexes</span>
+<span class="sd">                is shrinked into a single point and</span>
+<span class="sd">                birth-death pairs corresponding to the connected components are removed from the 0th PD.</span>
+<span class="sd">                In the homcloud&#39;s code, minus infinity is assigned to the levels of</span>
+<span class="sd">                all simplices in the subcomplex and PDs are comptuted, and all birth-death pairs whose</span>
+<span class="sd">                birth time is -inf are removed from the diagrams.</span>
+
+<span class="sd">                If `subsets` is None, normal persistent homology is computed.</span>
+
+<span class="sd">                If `subsets` is a list of integers whose length is the same</span>
+<span class="sd">                as the number of points, the points are grouped</span>
+<span class="sd">                by the integers and the gaps in the points in the same</span>
+<span class="sd">                group is filled. The integer -1 in this list means</span>
+<span class="sd">                that the point does not belong to any group.</span>
+
+<span class="sd">                If subsets is True, the last column of `pointcloud` is regarded</span>
+<span class="sd">                as the list of group id.</span>
+<span class="sd">            check_acyclicity (bool):</span>
+<span class="sd">                Checks the acyclicity of each grouped points in subsets</span>
+<span class="sd">                if True. This parameter is used only if `subsets` parameter</span>
+<span class="sd">                is used.</span>
+<span class="sd">            algorithm (string or None): The name of the algorithm.</span>
+<span class="sd">                An appropriate algorithm is</span>
+<span class="sd">                automatically selected if None is given.</span>
+
+<span class="sd">                The following algorithms are available:</span>
+
+<span class="sd">                * &quot;phat-twist&quot;</span>
+<span class="sd">                * &quot;phat-chunk-parallel&quot;</span>
+
+<span class="sd">                In many cases, the parameter should be `None`.</span>
+<span class="sd">            vertex_symbols (list[string] or None): The names of vertices.</span>
+<span class="sd">                The names are used to represent some simplices, such as</span>
+<span class="sd">                birth/death simplices or optimal volumes.</span>
+
+<span class="sd">                If None is given, vertices are automatically named by</span>
+<span class="sd">                &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, ...</span>
+<span class="sd">            parallels (int): The number of threads used for the computation.</span>
+<span class="sd">                This parameter is currently ignored.</span>
+<span class="sd">                This parameter exists for backward compatibility.</span>
+<span class="sd">            save_to (string): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                ``homcloud.interface.PDList(FILE_PATH)``.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+<span class="sd">            save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                the file `save_to`. The default is True. This information is</span>
+<span class="sd">                required to show birth and death pixels and optimal volumes.</span>
+<span class="sd">                If you do not use such HomCloud&#39;s functionality and you want to</span>
+<span class="sd">                reduce the size of the file, please set the argument ``False``.</span>
+<span class="sd">                If False, only birth and death times are stored to the file.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map constructed by the given pointcloud is saved</span>
+<span class="sd">                if this parameter is True. The boundary map is used to</span>
+<span class="sd">                compute volume optimal cycles.</span>
+<span class="sd">            periodicity (tuple[tuple[float, float], tuple[float, float]], tuple[tuple[float, float], tuple[float, float], tuple[float, float]] or None):  # noqa E501</span>
+<span class="sd">                Periodic boundary condition. Peridic boundary condition is not available for 2D alpha shape.</span>
+<span class="sd">            save_phtrees (bool): The PH-trees for (n-1)st PH is saved if True.</span>
+<span class="sd">                Use meth:`PD.load_phtrees` to load the PH trees.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PDList` object computed from the pointcloud.</span>
+
+<span class="sd">        Warn:</span>
+<span class="sd">            The pointcloud should be general position;</span>
+<span class="sd">            that is, all combinations of three points should not be on a signle line,</span>
+<span class="sd">            all combinations of four points should not be on a signle plane for 3D,</span>
+<span class="sd">            all combinations of four points should not be on a single circle,</span>
+<span class="sd">            and all combinations of five points should not be on a single sphere for 3D.</span>
+<span class="sd">            If the input data does not satisfy general position condition,</span>
+<span class="sd">            the alpha filtration cannot be computed correctly.</span>
+<span class="sd">            If you want to use peridic boundary condition, the pointcloud has sufficiently many points.</span>
+<span class="sd">            If the number of points is small, alpha shape cannot be computed correctly.</span>
+
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt; pointcloud = hc.example_data(&quot;tetrahedron&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; hc.PDList.from_alpha_filtration(pointcloud)</span>
+<span class="sd">            -&gt; Returns a new PDList</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">indexed</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">save_phtrees</span> <span class="ow">and</span> <span class="n">save_boundary_map</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">save_phtrees</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">is_squared</span><span class="p">():</span>
+            <span class="k">match</span> <span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">no_squared</span><span class="p">):</span>
+                <span class="k">case</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="k">_</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">squared</span>
+                <span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="k">_</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="ow">not</span> <span class="n">no_squared</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">squared</span> <span class="o">==</span> <span class="p">(</span><span class="ow">not</span> <span class="n">no_squared</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">squared</span>
+
+        <span class="n">squared</span> <span class="o">=</span> <span class="n">is_squared</span><span class="p">()</span>
+
+        <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">num_points</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">subsets</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subsets</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">subsets</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+            <span class="n">subsets</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">alpha_shape</span> <span class="o">=</span> <span class="n">alpha_filtration</span><span class="o">.</span><span class="n">AlphaShape</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">subsets</span><span class="p">,</span> <span class="n">periodicity</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">check_acyclicity</span><span class="p">:</span>
+            <span class="n">alpha_shape</span><span class="o">.</span><span class="n">check_subsets_acyclicity</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">subsets</span><span class="p">:</span>
+            <span class="n">alpha_shape</span><span class="o">.</span><span class="n">become_partial_shape</span><span class="p">()</span>
+
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_shape</span><span class="o">.</span><span class="n">create_filtration</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">,</span> <span class="n">save_phtrees</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_bitmap_levelset">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_levelset">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_bitmap_levelset</span><span class="p">(</span>
+        <span class="n">array</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;sublevel&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bitmap&quot;</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">periodicity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">indexed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes superlevel/sublevel PDList from an n-dimensional bitmap.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            array (numpy.ndarray): An n-dimensional array.</span>
+<span class="sd">            mode (string): The direction of the filtration.</span>
+<span class="sd">               &quot;superlevel&quot; or &quot;sublevel&quot;.</span>
+<span class="sd">            type (string): An internal filtration type.</span>
+<span class="sd">               &quot;bitmap&quot; or &quot;cubical&quot;.</span>
+<span class="sd">               You can change the internal file format by this parameter.</span>
+<span class="sd">               The file size of &quot;bitmap&quot; format is much smaller than</span>
+<span class="sd">               &quot;cubical&quot; and the computation for &quot;bitmap&quot; is</span>
+<span class="sd">               faster than &quot;cubical&quot;.</span>
+<span class="sd">            algorithm (string, None): The name of the algorithm.</span>
+<span class="sd">                An appropriate algorithm is</span>
+<span class="sd">                automatically selected if None is given.</span>
+
+<span class="sd">                The following algorithms are available:</span>
+
+<span class="sd">                * &quot;homccubes-0&quot;, &quot;homccubes-1&quot;, &quot;homccubes-2&quot;</span>
+<span class="sd">                * &quot;phat-twist&quot;</span>
+<span class="sd">                * &quot;phat-chunk-parallel&quot;</span>
+<span class="sd">                * &quot;dipha&quot;</span>
+
+<span class="sd">                In many cases, the parameter should be `None`.</span>
+<span class="sd">            parallels (int): The number of threads used for the computation.</span>
+<span class="sd">                This parameter is used only if &quot;dipha&quot; algorithm is used.</span>
+<span class="sd">            periodicity (None, list of bool):</span>
+<span class="sd">                The list of booleans to specify the periodicity.</span>
+<span class="sd">                For example, if your array is 2D and you want to make</span>
+<span class="sd">                the array periodic only in 0-axis, you should give `[True, False]`.</span>
+<span class="sd">                Any periodic structure is not used if None.</span>
+<span class="sd">            save_to (string): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+<span class="sd">            indexed (bool): Always must be True.</span>
+<span class="sd">            save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                the file `save_to`. The default is True. This information is</span>
+<span class="sd">                required to show birth and death pixels and optimal_1_cycles.</span>
+<span class="sd">                If you do not use such HomCloud&#39;s functionality and you want to</span>
+<span class="sd">                reduce the size of the file, please set the argument ``False``.</span>
+<span class="sd">                If False, only birth and death times are stored to the file.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map constructed by the given pointcloud is saved</span>
+<span class="sd">                if this parameter is True. The boundary map is used to</span>
+<span class="sd">                compute volume optimal cycles. This parameter is only available</span>
+<span class="sd">                if the type is &quot;cubical&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PDList` object computed from the bitmap.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            The maximum size of 2D bitmap is 32765x65534.</span>
+<span class="sd">            The maximum size of 3D bitmap is 1021x1021x1021.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt; bitmap = np.array([[1.5, 2.0, 0.5],</span>
+<span class="sd">            &gt;&gt;&gt;                    [0.8, 4.1, 0.9],</span>
+<span class="sd">            &gt;&gt;&gt;                    [1.3, 1.8, 1.3]])</span>
+<span class="sd">            &gt;&gt;&gt; hc.PDList.from_bitmap_levelset(bitmap, &quot;sublevel&quot;)</span>
+<span class="sd">            -&gt; Returns PDList object for sublevel persistence diagrams</span>
+<span class="sd">            &gt;&gt;&gt; hc.PDList.from_bitmap_levelset(bitmap, &quot;superlevel&quot;,</span>
+<span class="sd">            &gt;&gt;&gt;                             periodicity=[True, True])</span>
+<span class="sd">            -&gt; Returns PDList object for superlevel PDList on a 2-torus</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">indexed</span>
+
+        <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sublevel&quot;</span><span class="p">:</span>
+            <span class="n">flip_sign</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;superlevel&quot;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="o">-</span><span class="n">array</span>
+            <span class="n">flip_sign</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown mode: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mode</span><span class="p">))</span>
+
+        <span class="n">bitmap</span> <span class="o">=</span> <span class="n">homcloud</span><span class="o">.</span><span class="n">bitmap</span><span class="o">.</span><span class="n">Bitmap</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">flip_sign</span><span class="p">,</span> <span class="n">periodicity</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="s2">&quot;cubical&quot;</span><span class="p">:</span>
+            <span class="n">filt</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">build_cubical_filtration</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filt</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="n">build_bitmap_filtration</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_bitmap_distance_function">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_bitmap_distance_function">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_bitmap_distance_function</span><span class="p">(</span>
+        <span class="n">binary_pict</span><span class="p">,</span>
+        <span class="n">signed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;manhattan&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bitmap&quot;</span><span class="p">,</span>
+        <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">indexed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method is obsolete. Please use the combination of</span>
+<span class="sd">        :meth:`PDList.from_bitmap_levelset` and</span>
+<span class="sd">        :meth:`distance_transform` instead.</span>
+
+<span class="sd">        Computes erosion/dilation PDList from an n-dimensional bitmap.</span>
+
+<span class="sd">        In other words, this method computes the sublevel filtration</span>
+<span class="sd">        whose level function is the distance function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_pict (numpy.ndarray): An n-dimensional boolean array.</span>
+<span class="sd">            signed (bool): The signed distance function is used</span>
+<span class="sd">               instead of the normal distance function if True.</span>
+<span class="sd">            metric (string): The metric. One of the followings:</span>
+
+<span class="sd">               * &quot;manhattan&quot;</span>
+<span class="sd">               * &quot;chebyshev&quot;</span>
+<span class="sd">               * &quot;euclidean&quot;</span>
+
+<span class="sd">            type (string): An internal filtration type.</span>
+<span class="sd">               &quot;bitmap&quot; or &quot;cubical&quot;.</span>
+<span class="sd">               You can change the internal file format by this parameter.</span>
+<span class="sd">               The file size of &quot;bitmap&quot; format is much smaller than</span>
+<span class="sd">               &quot;cubical&quot;. However, if you want to use the following</span>
+<span class="sd">               functionality, you must use &quot;cubical&quot; format.</span>
+
+<span class="sd">               * optimal volume/volume optimal cycle</span>
+<span class="sd">               * dependency check for a field</span>
+
+<span class="sd">            mask (numpy.ndarray or None): The mask bitmap.</span>
+<span class="sd">            algorithm (string, None): The name of the algorithm.</span>
+<span class="sd">                An appropriate algorithm is</span>
+<span class="sd">                automatically selected if None is given.</span>
+
+<span class="sd">                The following algorithms are available:</span>
+
+<span class="sd">                * &quot;homccubes-0&quot;, &quot;homccubes-1&quot;, &quot;homccubes-2&quot;</span>
+<span class="sd">                * &quot;phat-twist&quot;</span>
+<span class="sd">                * &quot;phat-chunk-parallel&quot;</span>
+<span class="sd">                * &quot;dipha&quot;</span>
+
+<span class="sd">                In many cases, the parameter should be `None`.</span>
+<span class="sd">            parallels (int): The number of threads used for the computation.</span>
+<span class="sd">                This parameter is used only if &quot;dipha&quot; algorithm is used.</span>
+<span class="sd">            save_to (string): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map constructed by the given pointcloud is saved</span>
+<span class="sd">                if this parameter is True. The boundary map is used to</span>
+<span class="sd">                compute volume optimal cycles.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PDList` object computed from the bitmap.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;interface.PDList.from_bitmap_distance_function is obsolete.&quot;</span>
+            <span class="s2">&quot;Please use interaface.distance_transform and BitmapPHTreesPair.&quot;</span><span class="p">,</span>
+            <span class="ne">PendingDeprecationWarning</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">from_bitmap_levelset</span><span class="p">(</span>
+            <span class="n">distance_transform</span><span class="p">(</span><span class="n">binary_pict</span><span class="p">,</span> <span class="n">signed</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="p">),</span>
+            <span class="s2">&quot;sublevel&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="p">,</span>
+            <span class="n">parallels</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">save_to</span><span class="p">,</span>
+            <span class="n">indexed</span><span class="p">,</span>
+            <span class="n">save_suppl_info</span><span class="p">,</span>
+            <span class="n">save_boundary_map</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_rips_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_rips_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_rips_filtration</span><span class="p">(</span>
+        <span class="n">distance_matrix</span><span class="p">,</span>
+        <span class="n">maxdim</span><span class="p">,</span>
+        <span class="n">maxvalue</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+        <span class="n">simplicial</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">save_graph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">save_cocycles</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute a PDList from a distance matrix by using Vietoris-Rips</span>
+<span class="sd">        filtrations.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            distance_matrix (numpy.ndarary): KxK distance matrix.</span>
+<span class="sd">                When you use &quot;ripser&quot; as the algorithm, the datatype of the matrix is converted into float32 internally</span>
+<span class="sd">                since Ripser only supports float32.</span>
+<span class="sd">            maxdim (int): Maximal homology degree computed.</span>
+<span class="sd">            maxvalue (float): Maximal distance for constructing a filtration.</span>
+<span class="sd">                All longer edges do not apper in the constructed filtration.</span>
+<span class="sd">            simplicial (bool): If True, construct a simplicial complex for</span>
+<span class="sd">                :meth:`Pair.optimal_volume` (slow)</span>
+<span class="sd">            vertex_symbols (list[string] or None): The names of vertices.</span>
+<span class="sd">                The names are used to represent some simplices, such as</span>
+<span class="sd">                birth/death simplices or optimal volumes.</span>
+
+<span class="sd">                If None is given, vertices are automatically named by</span>
+<span class="sd">                &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, ...</span>
+<span class="sd">            algorithm: The name of the algorithm. An appropriate algorithm is</span>
+<span class="sd">                automatically selected if None is given.</span>
+<span class="sd">                The default is &quot;ripser&quot; for the normal case with `simplicial=False`.</span>
+
+<span class="sd">                If simplicial is False, &quot;ripser&quot; is available.</span>
+<span class="sd">                If simpliclal is True, &quot;phat-twist&quot; and &quot;phat-chunk-parallel&quot; are availbale.</span>
+
+<span class="sd">            paralles: The number of threads for computation. This parameter is currently ignored.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map constructed by the given distance matrix is saved</span>
+<span class="sd">                if this parameter is True. The boundary map is used to</span>
+<span class="sd">                compute volume optimal cycles. This option is only available</span>
+<span class="sd">                if `simplicial` is True.</span>
+<span class="sd">            save_graph (bool):</span>
+<span class="sd">                The graph structure of rips filtration is saved in .pdgm file.</span>
+<span class="sd">            save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PDList` object computed from the distance matrix.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">simplicial</span> <span class="ow">and</span> <span class="n">save_graph</span><span class="p">)</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="n">rips</span><span class="o">.</span><span class="n">DistanceMatrix</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">maxdim</span><span class="p">,</span> <span class="n">maxvalue</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">simplicial</span><span class="p">:</span>
+            <span class="n">filtration</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">build_simplicial_filtration</span><span class="p">(</span><span class="n">save_boundary_map</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filtration</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">build_rips_filtration</span><span class="p">(</span><span class="n">save_graph</span><span class="p">,</span> <span class="n">save_cocycles</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_simplicial_levelset">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_simplicial_levelset">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_simplicial_levelset</span><span class="p">(</span>
+        <span class="n">simplicial_function</span><span class="p">,</span>
+        <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute a PDList from a simplicial level function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            simplicial_function: (dict[simplex, float]): the level of each simplex.</span>
+<span class="sd">            vertex_symbols (Option[list[str]]): The names of all vertices.</span>
+<span class="sd">            algorithm (Option[str]): The name of the algorithm.</span>
+<span class="sd">            save_to (Option[str]): The file path which the computation result is</span>
+<span class="sd">                saved into.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map is saved if this parameter is True.</span>
+<span class="sd">                The boundary map is used to compute volume optimal cycles.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`PDList`: The PDList computed from the boundary map.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; pdlist = hc.PDList.from_simplicial_levelset(</span>
+<span class="sd">            &gt;&gt;&gt;     {</span>
+<span class="sd">            &gt;&gt;&gt;         (0,): 1.0,</span>
+<span class="sd">            &gt;&gt;&gt;         (1,): 1.1,</span>
+<span class="sd">            &gt;&gt;&gt;         (2,): 1.1,</span>
+<span class="sd">            &gt;&gt;&gt;         (0, 1): 1.1,</span>
+<span class="sd">            &gt;&gt;&gt;         (1, 2): 1.1,</span>
+<span class="sd">            &gt;&gt;&gt;         (3,): 1.2,</span>
+<span class="sd">            &gt;&gt;&gt;         (2, 3): 1.2,</span>
+<span class="sd">            &gt;&gt;&gt;         (0, 3): 1.3,</span>
+<span class="sd">            &gt;&gt;&gt;         (1, 3): 1.4,</span>
+<span class="sd">            &gt;&gt;&gt;         (0, 1, 3): 1.5,</span>
+<span class="sd">            &gt;&gt;&gt;     },</span>
+<span class="sd">            &gt;&gt;&gt;     vertex_symbols=[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;],</span>
+<span class="sd">            &gt;&gt;&gt;     save_boundary_map=True,</span>
+<span class="sd">            &gt;&gt;&gt; )</span>
+<span class="sd">            &gt;&gt;&gt; pd1 = pdlist[1]</span>
+<span class="sd">            &gt;&gt;&gt; pd1.births</span>
+<span class="sd">            [1.4]</span>
+<span class="sd">            &gt;&gt;&gt; pd1.deaths</span>
+<span class="sd">            [1.5]</span>
+<span class="sd">            &gt;&gt;&gt; pd1.essential_births</span>
+<span class="sd">            [1.3]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">simplicial_levelset</span><span class="o">.</span><span class="n">SimplicialFiltration</span><span class="p">(</span><span class="n">simplicial_function</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_boundary_information">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_boundary_information">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_boundary_information</span><span class="p">(</span>
+        <span class="n">boundary</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute a PDList from a boundary map and level information</span>
+<span class="sd">        for abstract combinatorial complex.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            boundary (list of (int, list of int, list of int)):</span>
+<span class="sd">                list of cells and their boundary information. (dim of cell, list of indices of, list of coefs)</span>
+<span class="sd">            levels (numpy.ndarray): level of each cell. **Cells should be ordered in level-increasing order**.</span>
+<span class="sd">            symbols (list of string, None): The names of each cell.</span>
+<span class="sd">            algorithm (string, nil): The name of the algorithm.</span>
+<span class="sd">                An appropriate algorithm is automatically selected if None is given.</span>
+<span class="sd">            save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map is saved if this parameter is True.</span>
+<span class="sd">                The boundary map is used to compute volume optimal cycles.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`PDList`: The PDList computed from the boundary map.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; hc.PDList.from_boundary_information([</span>
+<span class="sd">            &gt;&gt;&gt;     [0, [], []], [0, [], []], [0, [], []],  # theee 0-simplices</span>
+<span class="sd">            &gt;&gt;&gt;     [1, [0, 1], [1, -1]], [1, [1, 2], [1, -1]], [1, [0, 2], [1, -1]],  # three 1-simplices</span>
+<span class="sd">            &gt;&gt;&gt;     [2, [3, 4, 5], [1, 1, -1]],  # a 2-simplex</span>
+<span class="sd">            &gt;&gt;&gt; ], [</span>
+<span class="sd">            &gt;&gt;&gt;     -0.02, 0.01, 0.01,  # levels of 0-simplices</span>
+<span class="sd">            &gt;&gt;&gt;     0.1, 0.2, 0.3,  # levels of 1-simplices</span>
+<span class="sd">            &gt;&gt;&gt;     0.6  # level of the 2-simplex</span>
+<span class="sd">            &gt;&gt;&gt; ], save_to=&quot;pd.pdgm&quot;</span>
+<span class="sd">            &gt;&gt;&gt; )</span>
+<span class="sd">            &gt;&gt;&gt; pd1 = hc.PDList(&quot;pd.pdgm&quot;).dth_diagram(1)</span>
+<span class="sd">            &gt;&gt;&gt; print(pd1.births)  # =&gt; [0.3]</span>
+<span class="sd">            &gt;&gt;&gt; print(pd1.deaths)  # =&gt; [0.6]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">boundary</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">symbols</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">boundary</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">levels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">levels</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">maxdim</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">boundary</span><span class="p">:</span>
+            <span class="n">maxdim</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxdim</span><span class="p">,</span> <span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">symbols</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">))]</span>
+
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">abstract_filtration</span><span class="o">.</span><span class="n">AbstractFiltration</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">maxdim</span><span class="p">,</span> <span class="n">levels</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_coupled_alpha_relative_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_coupled_alpha_relative_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_coupled_alpha_relative_filtration</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute PDList for relative PH by using a coupled alpha filtration from a pair of point clouds.</span>
+<span class="sd">        This function is experimental.</span>
+
+<span class="sd">        PH((X cup Y), X) is computed.</span>
+
+<span class="sd">        See the folloiwng URLs if you want to know the details of coupled alpha complexes.</span>
+
+<span class="sd">        * &lt;https://jocg.org/index.php/jocg/article/view/4100&gt;</span>
+<span class="sd">        * &lt;https://github.com/yohaireani/cycle-registration-persistent-homology&gt;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            X (numpy.ndarray): Point cloud for the subspace. Each row represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            Y (numpy.ndarray): Point cloud for the space. Each row represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            squared (bool): By default, all birth/death times are squared.</span>
+<span class="sd">                If squared is False, all computed birth/death times are</span>
+<span class="sd">                not squared.</span>
+<span class="sd">            save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`PDList`: The PDList computed from the pair of pointclouds.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; t = np.linspace(0, 2 * np.pi, 20)</span>
+<span class="sd">            &gt;&gt;&gt; X = np.vstack([np.sin(t), np.cos(t)]).transpose() + np.random.uniform(-0.1, 0.1, size=(20, 2))</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; Y = np.random.uniform(-1, 1, size=(50, 2))</span>
+<span class="sd">            &gt;&gt;&gt; mask = np.linalg.norm(Y, axis=1) &lt; 0.93</span>
+<span class="sd">            &gt;&gt;&gt; Y = Y[mask, :]</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; hc.PDList.from_coupled_alpha_relative_filtration(X, Y, save_to=&quot;relative.pdgm&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; pdlist = hc.PDList(&quot;relative.pdgm&quot;)</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; # PD2 has birth-death pairs since relative PH is used.</span>
+<span class="sd">            &gt;&gt;&gt; pd2 = pdlist.dth_diagram(2)</span>
+<span class="sd">            &gt;&gt;&gt; pd2.histogram((0, 1), 64).plot()</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">coupled_alpha_shape</span> <span class="o">=</span> <span class="n">coupled_alpha</span><span class="o">.</span><span class="n">CoupledAlphaShape</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">coupled_alpha_shape</span><span class="o">.</span><span class="n">relative_ph_filtration</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.save">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save the PDList into `dest`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dest (string): The filepath which the diagram data is saved into.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">destfile</span><span class="p">:</span>
+            <span class="n">srcfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">infile</span>
+            <span class="n">srcfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">srcfile</span><span class="p">,</span> <span class="n">destfile</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.dth_diagram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.dth_diagram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dth_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return `d`-th persistence diagram from PDList.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            d (int): the degree of the diagram</span>
+<span class="sd">            load_indexed_pairs (bool): index information is loaded if True.</span>
+<span class="sd">                Otherwise, the information is not loaded. This parameter will</span>
+<span class="sd">                be helpful to reduce the loading time.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PD` object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">PDGM</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">load_indexed_pairs</span><span class="p">))</span></div>
+
+
+    <span class="fm">__getitem__</span> <span class="o">=</span> <span class="n">dth_diagram</span>
+
+<div class="viewcode-block" id="PDList.bitmap_phtrees">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.bitmap_phtrees">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bitmap_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read a :class:`BitmapPHTrees` object computed by</span>
+<span class="sd">        :meth:`BitmapPHTrees.for_bitmap_levelset`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           degree (int): The PD degree. 0 or (n-1).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">           A :class:`BitmapPHTrees` object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.bitmap_phtrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitmapPHTrees</span>
+
+        <span class="n">treedict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">load_simple_chunk</span><span class="p">(</span><span class="s2">&quot;bitmap_phtrees&quot;</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BitmapPHTrees</span><span class="p">(</span><span class="n">treedict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;sign_flipped&quot;</span><span class="p">])</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_coefficient_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pdgm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">pd</span>
+        <span class="n">checker</span> <span class="o">=</span> <span class="n">int_reduction</span><span class="o">.</span><span class="n">build_checker</span><span class="p">(</span><span class="n">pdgm</span><span class="o">.</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">boundary_map_chunk</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">checker</span><span class="o">.</span><span class="n">check</span><span class="p">()</span></div>
+
+
+
+<span class="c1">#: Obsolete, for backward compatibility</span>
+<span class="n">PDs</span> <span class="o">=</span> <span class="n">PDList</span>
+
+
+<div class="viewcode-block" id="PD">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD">[docs]</a>
+<span class="nd">@forwardable</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PD</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class for a single persistence diagram.</span>
+
+<span class="sd">    You can get the object of this class by :meth:`PDList.dth_diagram` or</span>
+<span class="sd">    :meth:`PDList.__getitem__`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        path (str): File path</span>
+<span class="sd">        degree (int): Degree of the PD</span>
+<span class="sd">        births (numpy.ndarray[num_of_pairs]): Birth times</span>
+<span class="sd">        deaths (numpy.ndarray[num_of_pairs]): Death times</span>
+<span class="sd">        birth_positions: Birth positions for birth-death pairs</span>
+<span class="sd">        death_positions: Death positions for birth-death pairs</span>
+<span class="sd">        essential_births (numpy.ndarray[num_of_ess_pairs]):</span>
+<span class="sd">            Birth times of essential birth-death pairs (birth-death pairs with</span>
+<span class="sd">            infinite death time)</span>
+<span class="sd">        essential_birth_positions:</span>
+<span class="sd">            Birth positions for essential birth-death pairs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pd</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pd</span> <span class="o">=</span> <span class="n">pd</span>
+
+    <span class="n">__delegator_definitions__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;pd&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;degree&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;births&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;deaths&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;birth_positions&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;death_positions&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;essential_births&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;essential_birth_positions&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sign_flipped&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;filtration_type&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;alpha_weighted&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;alpha_radii_squared&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;get_geometry_resolver&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;PD(path=</span><span class="si">%s</span><span class="s2">, d=</span><span class="si">%d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pdgm_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">pdgm_id</span>
+
+<div class="viewcode-block" id="PD.birth_death_times">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.birth_death_times">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_death_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the  birth times and death times.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[numpy.ndarray, numpy.ndarray]:</span>
+<span class="sd">                The pair of birth times and death times</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">deaths</span></div>
+
+
+<div class="viewcode-block" id="PD.birth_positions_by">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.birth_positions_by">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_positions_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the birth positions in the specified form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[simplex]: The birth simplices in various form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_geometry_resolver</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">birth_indices</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.death_positions_by">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.death_positions_by">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_positions_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the death positions in the specified form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[simplex]: The death simplices in various form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_geometry_resolver</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_indices</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.essential_birth_positions_by">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.essential_birth_positions_by">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">essential_birth_positions_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the essential birth positions in the specified form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[simplex]: The birth simplices in various form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_geometry_resolver</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cells</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">essential_birth_indices</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.histogram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.histogram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">histogram</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">x_bins</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">y_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">y_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the histogram of the PD.</span>
+
+<span class="sd">        This is the shortcut method of :meth:`HistoSpec.pd_histogram`</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           x_range (tuple[float, float] or None): The lower and upper range</span>
+<span class="sd">               of the bins on x-axis. If None is given, the range</span>
+<span class="sd">               is determined from the minimum and maximum of</span>
+<span class="sd">               the birth times and death times of all pairs.</span>
+<span class="sd">           y_range (int): The number of bins on x-axis.</span>
+<span class="sd">           y_range (tuple[float, float] or None): The lower and upper range</span>
+<span class="sd">               of the bins on y-axis. Same as `x_range` if None is given.</span>
+<span class="sd">           y_bins (int or None): The number of bins on y-axis.</span>
+<span class="sd">               Same as `x_bins` if None is given.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`Histogram` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">HistoSpec</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">x_bins</span><span class="p">,</span> <span class="n">y_range</span><span class="p">,</span> <span class="n">y_bins</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span><span class="o">.</span><span class="n">pd_histogram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.load_phtrees">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.load_phtrees">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_phtrees</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load a PH trees from the diagram.</span>
+
+<span class="sd">        This method is available only for the (n-1)th diagram of an alpha filtration</span>
+<span class="sd">        of n-dimensional pointcloud.</span>
+
+<span class="sd">        You should compute the PH trees by :meth:`PDList.from_alpha_filtration`</span>
+<span class="sd">        with ``save_phtrees=True`` before using this method.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PHTrees` object of the (n-1)th PH.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.phtrees</span><span class="w"> </span><span class="kn">import</span> <span class="n">PHTrees</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The degree of PD must be the same as dim - 1 when PHTrees is used.&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">pdgmreader</span><span class="o">.</span><span class="n">load_simple_chunk</span><span class="p">(</span><span class="s2">&quot;phtrees&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span>
+                <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;phtrees must be saved (save_phtrees=True) when PDs are computed before PHTrees is used.&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">PHTrees</span><span class="o">.</span><span class="n">from_pdgm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.pair">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pair">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns `nth` birth-death pairs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nth (int): Index of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Pair`: The nth pair.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Pair</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nth</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.pairs">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs of the PD.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of :class:`Pair`: All birth-death pairs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pair</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">num_pairs</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="PD.nearest_pair_to">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.nearest_pair_to">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">nearest_pair_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a pair closest to `(x, y)`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x (float): X (birth) coordinate.</span>
+<span class="sd">            y (float): Y (death) coordinate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Pair`: The cleosest pair.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">nearest_pair</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+
+
+    <span class="nd">@cached_property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">spatial_searcher</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SpatialSearcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pairs</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deaths</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PD.pairs_in_rectangle">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.pairs_in_rectangle">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pairs_in_rectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all pairs in the rectangle.</span>
+
+<span class="sd">        Returns all birth-death pairs whose birth time is in</span>
+<span class="sd">        the interval `[xmin, xmax]` and</span>
+<span class="sd">        whose death time is in `[ymin, ymax]`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           xmin (float): The lower range of birth time.</span>
+<span class="sd">           xmax (float): The upper range of birth time.</span>
+<span class="sd">           ymin (float): The lower range of death time.</span>
+<span class="sd">           ymax (float): The upper range of death time.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">           list of :class:`Pair`: All birth-death pairs in the rectangle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">spatial_searcher</span><span class="o">.</span><span class="n">in_rectangle</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PD.empty">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.empty">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">empty</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which has no birth-death pairs.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PD: A PD object with no birth-death pair.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">empty_pd</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="PD.from_birth_death">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.from_birth_death">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_birth_death</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="n">sign_flipped</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a persistence diagram which birth and death times are given lists.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            degree (int): The degree of the returned diagram</span>
+<span class="sd">            births (numpy.ndarray): The birth times</span>
+<span class="sd">            deaths (numpy.ndarray): The death times</span>
+<span class="sd">            ess_births (numpy.ndarray): The birth times of essential pairs</span>
+<span class="sd">            sign_flipped (bool): The sign is flipped if True</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            PD: A PD object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PD</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">pdgm</span><span class="o">.</span><span class="n">SimplePDGM</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span><span class="p">,</span> <span class="n">ess_births</span><span class="p">,</span> <span class="n">sign_flipped</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="PD.slice_histogram">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PD.slice_histogram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">slice_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns 1D histogram of birth-death pairs in a thin strip.</span>
+
+<span class="sd">        This method computes a 1D hitogram of birth-death pairs</span>
+<span class="sd">        in the thin strip whose center line is</span>
+<span class="sd">        `(x1, y1) - (x2, y2)` and whose width is `width`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x1 (float): The x(birth)-coordinate of the starting point.</span>
+<span class="sd">            y1 (float): The y(death)-coordinate of the starting point.</span>
+<span class="sd">            x2 (float): The x(birth)-coordinate of the ending point.</span>
+<span class="sd">            y2 (float): The y(death)-coordinate of the ending point.</span>
+<span class="sd">            width (float): Width of the strip.</span>
+<span class="sd">            bins (int): The number of bins.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`SliceHistogram`: The histogram.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">transl</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">plot_PD_slice</span><span class="o">.</span><span class="n">transform_to_x_axis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">]))</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">births</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">deaths</span><span class="p">])</span> <span class="o">-</span> <span class="n">transl</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span> <span class="o">&lt;</span> <span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">values</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">mask</span><span class="p">],</span> <span class="n">bins</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">SliceHistogram</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">optvol_optimizer_builder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">boundary_map_chunk</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span>
+                <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s1">&#39;Optimal/Stable volume requires boundary_map: &quot;save_boundary_map=True&quot;&#39;</span>
+                    <span class="s2">&quot; is requried when a PD is computed.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cutoff_radius</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">optvol</span><span class="o">.</span><span class="n">OptimizerBuilder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">boundary_map_chunk</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">optvol</span><span class="o">.</span><span class="n">OptimizerBuilder</span><span class="o">.</span><span class="n">from_alpha_pdgm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;cubical&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">optvol</span><span class="o">.</span><span class="n">OptimizerBuilder</span><span class="o">.</span><span class="n">from_cubical_pdgm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">,</span> <span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cutoff is not available for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;bitmap&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="n">torch_input</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Now torch_tensor_births_deaths supports only bitmap or alpha filtrations&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths_bitmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_bitmap</span><span class="p">):</span>
+        <span class="n">births</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+        <span class="n">deaths</span> <span class="o">=</span> <span class="n">torch_bitmap</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_positions</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">torch_tensor_births_deaths_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torch_pointcloud</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.geometry.torch_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">torch_utils</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">circumradius</span><span class="p">(</span><span class="n">simplex</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="n">torch_simplex</span> <span class="o">=</span> <span class="n">torch_pointcloud</span><span class="p">[</span><span class="n">simplex</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">edge_squared_circumradius</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">triangle_squared_circumradius_2d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">input_dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">triangle_squared_circumradius_3d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplex</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">torch_utils</span><span class="o">.</span><span class="n">tetrahedron_squared_circumradius_3d</span><span class="p">(</span><span class="n">torch_simplex</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_weighted</span><span class="p">,</span> <span class="s2">&quot;weighted alpha filtration is not supported&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_radii_squared</span><span class="p">,</span> <span class="s2">&quot;non-squared alpha filtration is not supported&quot;</span>
+
+        <span class="n">index_to_simplex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_coord_resolver</span><span class="o">.</span><span class="n">index_to_simplex</span>
+
+        <span class="n">births</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">circumradius</span><span class="p">(</span><span class="n">index_to_simplex</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">birth_indices</span><span class="p">])</span>
+        <span class="n">deaths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">circumradius</span><span class="p">(</span><span class="n">index_to_simplex</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_indices</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">births</span><span class="p">,</span> <span class="n">deaths</span></div>
+
+
+
+<div class="viewcode-block" id="Pair">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Pair</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class representing a birth-death pair.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        diagram (:class:`PD`): The diagram which the birth-death pair</span>
+<span class="sd">            belongs to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diagram</span><span class="p">,</span> <span class="n">nth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span> <span class="o">=</span> <span class="n">diagram</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nth</span> <span class="o">=</span> <span class="n">nth</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Pair.birth_time">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.birth_time">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the birth time of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The birth time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">births</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Pair.death_time">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.death_time">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the death time of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The death time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">deaths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span></div>
+
+
+    <span class="c1">#: float: The birth time</span>
+    <span class="n">birth</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">birth_time</span><span class="p">)</span>
+    <span class="c1">#: float: The death time</span>
+    <span class="n">death</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">death_time</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Birth position for the birth-death pair&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">birth_positions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
+
+    <span class="n">birth_pos</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;birth_position&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Alias of :attr:`birth_position` &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Pair.birth_position_by">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.birth_position_by">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the birth position of the pair in the specified form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            simplex: The birth simplex.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">get_geometry_resolver</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Death position for the birth-death pair&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">death_positions</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
+
+    <span class="n">death_pos</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;death_position&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Alias of :attr:`death_position` &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Pair.death_position_by">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.death_position_by">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the death position of the pair in the specified form.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            by (string): Format of return values, &quot;default&quot;, &quot;coordinates&quot;, &quot;symbols&quot;, &quot;vertex_indexes&quot;, or &quot;vindexes&quot;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            simplex: The death simplex in various formats</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">get_geometry_resolver</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">birth_indices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">death_indices</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">birth_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;list of string: Birth simplex for the birth-death pair by symbols. Only available for alpha filtrations.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">death_position_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;list of string: Death simplex for the birth-death pair by symbols. Only available for alpha filtrations.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">alpha_symbol_resolver</span><span class="o">.</span><span class="n">resolve_cell</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Pair.optimal_volume">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_volume">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimal_volume</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">solver_options</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">constrain_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">num_retry</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">integer_programming</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_failure_if_not_found</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the optimal volume of the pair.</span>
+
+<span class="sd">        See the paper by `Obayashi (2018) &lt;https://doi.org/10.1137/17M1159439&gt;`_</span>
+<span class="sd">        if you want to know more about optimal volumes.</span>
+
+<span class="sd">        It is possible to get better results with stable volumes than with optimal volumes.</span>
+<span class="sd">        See :meth:`stable_volume` for the details of stable volumes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cutoff_radius (float or None):</span>
+<span class="sd">                The cutoff radius. Simplices which are further from</span>
+<span class="sd">                the center of birth and death simplices than</span>
+<span class="sd">                `cutoff_radius` are ignored for the computation of</span>
+<span class="sd">                an optimal volume. You can reduce the computation time</span>
+<span class="sd">                if you set the `cutoff_radius` properly.</span>
+<span class="sd">                Too small `cutoff_radius` causes the failure of the computation.</span>
+<span class="sd">                If this argument is None, all simplices are not ignored.</span>
+<span class="sd">            solver (string or None): The name of the LP solver.</span>
+<span class="sd">                The default solver (coinor Clp) is selected if None is given.</span>
+<span class="sd">            solver_options (dict[str, Any]): Options for LP sovlers.</span>
+<span class="sd">                The options are forwarded to Pulp program.</span>
+<span class="sd">            constrain_birth (bool): Now this value is not used.</span>
+<span class="sd">            num_retry (int): The number of retry.</span>
+<span class="sd">                The cutoff_radius is doubled at every retrial.</span>
+<span class="sd">            integer_programming (bool): Currently ignored.</span>
+<span class="sd">            return_failure_if_not_found (bool): If True and if linear programming solver</span>
+<span class="sd">                cannot find a solution, the method return a :class:`VolumeFailure` object</span>
+<span class="sd">                instead of raising VolumeNotFound exception.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`OptimalVolume`: The optimal volume.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            VolumeNotFound: Raised if the volume is not fould.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lp_solver</span> <span class="o">=</span> <span class="n">optvol</span><span class="o">.</span><span class="n">find_lp_solver</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">solver_options</span><span class="p">)</span>
+        <span class="n">ovfinder</span> <span class="o">=</span> <span class="n">optvol</span><span class="o">.</span><span class="n">OptimalVolumeFinder</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">optvol_optimizer_builder</span><span class="p">(</span><span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ovfinder</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">OptimalVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">cell_indices</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">return_failure_if_not_found</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">VolumeFailure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raise_volume_not_found_error</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">raise_volume_not_found_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">VolumeNotFound</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Pair.stable_volume">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.stable_volume">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stable_volume</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">threshold</span><span class="p">,</span>
+        <span class="n">cutoff_radius</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">solver_options</span><span class="o">=</span><span class="p">{},</span>
+        <span class="n">constrain_birth</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">num_retry</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">integer_programming</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_failure_if_not_found</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the stable volume of the pair.</span>
+
+<span class="sd">        See `Obayashi (2023) &lt;https://doi.org/10.1007/s41468-023-00119-8&gt;`_</span>
+<span class="sd">        if you want to know more about optimal volumes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            threshold (float): The noise bandwidth.</span>
+<span class="sd">            cutoff_radius (float or None):</span>
+<span class="sd">                The cutoff radius. Simplices which are further from</span>
+<span class="sd">                the center of birth and death simplices than</span>
+<span class="sd">                `cutoff_radius` are ignored for the computation of</span>
+<span class="sd">                an optimal volume. You can reduce the computation time</span>
+<span class="sd">                if you set the `cutoff_radius` properly.</span>
+<span class="sd">                Too small `cutoff_radius` causes the failure of the computation.</span>
+<span class="sd">                If this argument is None, all simplices are not ignored.</span>
+<span class="sd">            solver (string or None): The name of the LP solver.</span>
+<span class="sd">                The default solver (coinor Clp) is selected if None is given.</span>
+<span class="sd">            solver_options (dict[str, Any]): Options for LP sovlers.</span>
+<span class="sd">                The options are forwarded to Pulp program.</span>
+<span class="sd">            constrain_birth (bool): Ignored</span>
+<span class="sd">            num_retry (int): The number of retry.</span>
+<span class="sd">                The cutoff_radius is doubled at every retrial.</span>
+<span class="sd">            integer_programming (bool): Ignored.</span>
+<span class="sd">            return_failure_if_not_found (bool): If True and if linear programming solver</span>
+<span class="sd">                cannot find a solution, the method return a :class:`VolumeFailure` object</span>
+<span class="sd">                instead of raising VolumeNotFound exception.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`StableVolume`: The stable volume.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lp_solver</span> <span class="o">=</span> <span class="n">optvol</span><span class="o">.</span><span class="n">find_lp_solver</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">solver_options</span><span class="p">)</span>
+        <span class="n">finder</span> <span class="o">=</span> <span class="n">optvol</span><span class="o">.</span><span class="n">TightenedVolumeFinder</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">optvol_optimizer_builder</span><span class="p">(</span><span class="n">cutoff_radius</span><span class="p">,</span> <span class="n">num_retry</span><span class="p">,</span> <span class="n">lp_solver</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">index_to_level</span><span class="p">,</span>
+            <span class="n">threshold</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">finder</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">StableVolume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">cell_indices</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">return_failure_if_not_found</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">VolumeFailure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raise_volume_not_found_error</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+    <span class="n">tightened_volume</span> <span class="o">=</span> <span class="n">stable_volume</span>
+
+<div class="viewcode-block" id="Pair.optimal_1_cycle">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.optimal_1_cycle">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the optimal (not volume-optimal) 1-cycle</span>
+<span class="sd">        corresponding to the birth-death pair.</span>
+
+<span class="sd">        You can calculate similar infomormation using :meth:`optimal_volume`, but optimal_volume</span>
+<span class="sd">        optimal_volume may be expensive, especiall for Vietoris-Rips filtration.</span>
+<span class="sd">        optimal_1_cycle can be computed at a lower cost than optimal_volume.</span>
+<span class="sd">        In general, an optimal volume gives better information about the birth-death pair, and</span>
+<span class="sd">        an optimal 1-cycle gives an approximation of the optimal volume.</span>
+
+<span class="sd">        The algorithm in optimal_1_cycle computes the minimal loop that includes a birth edge</span>
+<span class="sd">        (alpha, rips, abstract) or birth pixel (bitmap).</span>
+
+<span class="sd">        This method is available only when degree == 1.</span>
+
+<span class="sd">        If you want to compute optimal 1-cycle. You need to pass the following argument when computing</span>
+<span class="sd">        persistence diagrams.</span>
+
+<span class="sd">        * Vietoris-Rips filtration by :meth:`PDList.from_rips_filtration`: `save_graph=True`.</span>
+<span class="sd">          In this case, this method returns an object of :class:`GraphOptimal1Cycle`.</span>
+<span class="sd">        * Alpha filtration by :meth:`PDList.from_alpha_filtration`: `save_boundary_map=True`</span>
+<span class="sd">          In this case, this method returns an object of :class:`Optimal1Cycle`.</span>
+<span class="sd">        * Abstract filtration by :meth:`PDList.from_boundary_information`: `save_boundary_map=True`.</span>
+<span class="sd">          In this case, this method returns an object of :class:`Optimal1Cycle`.</span>
+<span class="sd">        * Bitmap filtration by :meth:`PDList.from_bitmap_levelset`: `save_suppl_info=True`</span>
+<span class="sd">          In this case, this method returns an object of :class:`BitmapOptimal1Cycle`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            weighted (bool): Use graph weight to find shortest loop. Only available for Vietoris-Rips filtration</span>
+<span class="sd">            torelance (None or float): Noise bandwidth parameter for Reconstructed Shortest Cycles.</span>
+<span class="sd">              Only available for Vietoris-Rips filtration.</span>
+<span class="sd">              See https://mtsch.github.io/Ripserer.jl/dev/generated/cocycles/#Reconstructed-Shortest-Cycles</span>
+<span class="sd">              if you know more about Reconstructed shortest cycles.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`BitmapOptimal1Cycle` | :class:`GraphOptimal1Cycle` | :class:`Optimal1Cycle` : The optimal 1-cycle.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            AssertionError: Raised if the filtration is not a bitmap filtration</span>
+<span class="sd">                or the degree of the pair is not 1.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">has_chunk</span><span class="p">(</span><span class="s2">&quot;graph_weights&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_optimal_1_cycle</span><span class="p">(</span><span class="n">weighted</span><span class="p">,</span> <span class="n">torelance</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="o">==</span> <span class="s2">&quot;bitmap&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bitmap_optimal_1_cycle</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundary_map_optimal_1_cycle</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bitmap_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">finder</span> <span class="o">=</span> <span class="n">pict_opt1cyc</span><span class="o">.</span><span class="n">Finder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BitmapOptimal1Cycle</span><span class="p">(</span><span class="n">finder</span><span class="o">.</span><span class="n">query_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_index</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">boundary_map_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Optimal1Cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt1cyc</span><span class="o">.</span><span class="n">search_on_chunk_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">boundary_map_bytes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_index</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">graph_optimal_1_cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">torelance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">torelance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">GraphOptimal1Cycle</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="n">graph_opt1cyc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">graph_adjacent_matrix</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="n">weighted</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">GraphOptimal1Cycle</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="n">graph_opt1cyc</span><span class="o">.</span><span class="n">search_with_cocycle</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">graph_adjacent_matrix</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">representative_cocycle</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span>
+                    <span class="n">torelance</span><span class="p">,</span>
+                    <span class="n">weighted</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Pair</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">diagram</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nth</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">nth</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Pair(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Pair.lifetime">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.Pair.lifetime">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The lifetime of the pair.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The lifetime (death - birth) of the pair.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">death_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">birth_time</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">representative_cocycle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">pd</span><span class="o">.</span><span class="n">representative_cocycle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nth</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">degree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The degree of the pair.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">degree</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ph0_components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram</span><span class="o">.</span><span class="n">filtration_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">PH0Components</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018, Author.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

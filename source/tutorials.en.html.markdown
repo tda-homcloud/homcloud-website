@@ -25,6 +25,7 @@ You can combine HomCloud and Python's scientific computing ecosystem for more co
 * [Distance matrix analysis (Vietoris-Rips filtration)](py-tutorial/rips_en.html)
 * [3D point cloud data with periodic boundary condition](py-tutorial/pointcloud_pbc_en.html)
 * [Binary image data with periodic boundary condition](py-tutorial/pbc_bitmap_en.html)
+* [Relative PH for a pointcloud](py-tutorial/relative.html)
 
 The following tutorials uses Plotly for 3D visualization instead of PyVista. The other parts are the same as above tutorials.
 
@@ -51,15 +52,3 @@ What you need is only a web browser and Google account.
   * [Amorphous silica](https://colab.research.google.com/drive/1h6TKZNQOAJbJqLxiJJ_L-D8vn-NStUvb?usp=sharing)
 * [Distance matrix analysis (Vietoris-Rips filtration)](https://colab.research.google.com/drive/1QOfd7SP67ZOR50N1eRdfkPpVZl9doyYK?usp=sharing)
 * [Binary image data with periodic boundary condition](https://colab.research.google.com/drive/1MVwjQ6SMBSvlrvNGHqUeamTph_ZePFrr?usp=sharing)
-
-## Command Line Interface
-
-* [3D pointcloud analysis](tutorial/pointcloud-e.html)
-* [Binary image analysis](tutorial/binary-image-e.html)
-* [Grayscale image analysis](tutorial/grayscale-image-e.html)
-
-[This zip file has jupyter notebooks (.ipynb) and example data](download/bash-tutorial.zip).
-
-These tutorials use jupyter notebook with bash_kernel. Please install the software for the preparation.
-
-

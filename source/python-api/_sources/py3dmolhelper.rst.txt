@@ -1,0 +1,6 @@
+py3dmolhelper module
+====================
+
+.. automodule:: homcloud.py3dmolhelper
+    :members:
+    :show-inheritance:

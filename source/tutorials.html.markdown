@@ -26,6 +26,7 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 * [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
 * [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_pbc.html)
 * [周期境界画像](py-tutorial/pbc_bitmap.html)
+* [点群の相対PH](py-tutorial/relative.html)
 
 3次元可視化にPlotlyを使ったバージョン:
 
@@ -63,13 +64,3 @@ HomCloudは [Google Colaboratory](https://colab.research.google.com/) でも動�
 Jupyter notebookは勉強するのに使ったり試行錯誤には便利ですが，ある程度やることが固まってくると使いにくいと思います．
 そういうときは脱Jupyter notebookが必要なのでがんばってください．
 
-## コマンドラインインターフェース版
-
-* [3次元点集合データ(ポイントクラウド)](tutorial/pointcloud.html)
-* [白黒画像](tutorial/binary-image.html)
-* [グレイスケール画像](tutorial/grayscale-image.html)
-* [3次元白黒画像](tutorial/binary-3d.html)
-
-[このリンク先のファイルにjupyter notebookのnotebookファイル(.ipynb)や，データファイル等が含まれています．](donwload/bash-tutorial.zip)
-
-これらのチュートリアルの Jupyter notebook の bash_kernel が必要です。

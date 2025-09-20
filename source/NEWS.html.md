@@ -1,3 +1,22 @@
+# News for 5.0.0 (2025/09/20)
+* Breaking changes:
+  * Remove Paraview interface
+    * Remove `pict-pict3d-vtk`
+  * Remove `plot_PD_gui`
+  * Move the namespace of cli tools to `homcloud.cli`
+    * The command names are not changed
+* Stop supporting dipha except for bitmap filtration
+* New features:
+  * Add a new parameter `return_failure_if_not_found` to `Pair.optimal_volume` and `Pair.stable_volume`
+    * If this parameter is `True`, this function returns Failure object instead of raising an exception.
+  * Add `homcloud.interface.parallel_volume_computation` to compute optimal/stable volume parallelly.
+  * Suuport the computation of relative PDs using coupled alpha complex
+    * Add a new method `from_coupled_alpha_relative_filtration`
+    * See https://github.com/yohaireani/cycle-registration-persistent-homology and https://jocg.org/index.php/jocg/article/view/4100 for coupled alpha complex
+  * Add `homcloud.example.interaface_jupyter_ui` for plotting PDs interactively on Jupyter notebook
+* Update CLI helps
+* Refactoring the internal structure
+
 # News for 4.8.0 (2025/07/16)
 * New features:
   * Update tutorials
