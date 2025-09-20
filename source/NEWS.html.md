@@ -15,6 +15,7 @@
     * See https://github.com/yohaireani/cycle-registration-persistent-homology and https://jocg.org/index.php/jocg/article/view/4100 for coupled alpha complex
   * Add `homcloud.example.interaface_jupyter_ui` for plotting PDs interactively on Jupyter notebook
 * Update CLI helps
+* Update manylinux from `manylinux2014` to `manylinux_2_28`
 * Refactoring the internal structure
 
 # News for 4.8.0 (2025/07/16)
