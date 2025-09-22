@@ -26,6 +26,7 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 * [距離行列(Vietoris-Rips)](py-tutorial/rips.html)
 * [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_pbc.html)
 * [周期境界画像](py-tutorial/pbc_bitmap.html)
+* [インタラクティブUI](py-tutorial/interactive_plot.html)
 * [点群の相対PH](py-tutorial/relative.html)
 
 3次元可視化にPlotlyを使ったバージョン:
