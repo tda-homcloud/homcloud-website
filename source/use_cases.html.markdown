@@ -5,61 +5,108 @@ lang: en
 
 # List of use cases of HomCloud
 
-## By our research group
+## By our research group and collabolators
 
 * Materials science
-    *  Emi Minamitani, Takuma Shiga, Makoto Kashiwagi, and Ippei Obayashi.
-       Topological descriptor of thermal conductivity in amorphous Si.
-       J. Chem. Phys. **156**, 244502 (2022)
-       <https://doi.org/10.1063/5.0093441>
+  * Emi Minamitani, Takenobu Nakamura, Ippei Obayashi & Hideyuki Mizuno.
+    Persistent homology elucidates hierarchical structures responsible for mechanical properties in covalent amorphous solids.
+    Nature Communications **16**, Article number: 8226 (2025). <https://doi.org/10.1038/s41467-025-63424-z>
 
-    * Yohei Onodera, Shinji Kohara, Philip S. Salmon, Akihiko Hirata, Norimasa Nishiyama, Suguru Kitani, Anita Zeidler, Motoki Shiga, Atsunobu Masuno, Hiroyuki Inoue, Shuta Tahara, Annalisa Polidori, Henry E. Fischer, Tatsuya Mori, Seiji Kojima, Hitoshi Kawaji, Alexander I. Kolesnikov, Matthew B. Stone, Matthew G. Tucker, Marshall T. McDonnell, Alex C. Hannon, Yasuaki Hiraoka, Ippei Obayashi, Takenobu Nakamura, Jaakko Akola, Yasuhiro Fujii, Koji Ohara, Takashi Taniguchi and Osami Sakata.
-      Structure and properties of densified silica glass: characterizing the order within disorder.
-      NPG Asia Materials volume **12**, 85 (2020).
-      <https://doi.org/10.1038/s41427-020-00262-z>
+  * Michiki Taniwaki, Ryunosuke Nagaoka, Ken Masuzawa, Shunsuke Sato, Alexandre Lira Foggiatto, Chiharu Mitsumata, Takahiro Yamazaki, Ippei Obayashi, Yasuaki Hiraoka, Yasuhiko Igarashi, Yuta Mizutori, Sepehri Amin Hossein, Tadakatsu Ohkubo, Hisashi Mogi and Masato Kotsugi.
+    Automated identification of the origin of energy loss in nonoriented electrical steel by feature extended Ginzburg–Landau free energy framework.
+    Scientific Reports. **15**, Article number: 23758 (2025). <https://doi.org/10.1038/s41598-025-00357-z>
 
-    * Akihiko Hirata, Tomohide Wada, Ippei Obayashi and Yasuaki Hiraoka.
-      Structural changes during glass formation extracted by computational homology with machine learning.
-      Communications Materials **1**, 98 (2020).
-      <https://doi.org/10.1038/s43246-020-00100-3>
+  * Misato Tone, Shunsuke Sato, Sotaro Kunii, Ippei Obayashi, Yasuaki Hiraoka, Yui Ogawa, Hirokazu Fukidome, Alexandre Lira Foggiatto, Chiharu Mitsumata, Ryunsuke Nagaoka, Arpita Varadwaj, Iwao Matsuda, and Masato Kotsugi.
+    Linking structure and process in dendritic growth using persistent homology with energy analysis.
+    Science and Technology of Advanced Materials: Methods. **5**(1), (2025) <https://doi.org/10.1080/27660400.2025.2475735>
 
-    * Chihiro Koyama, Shuta Tahara, Shinji Kohara, Yohei Onodera, Didrik R. Småbråten, Sverre M. Selbach, Jaakko Akola, Takehiko Ishikawa, Atsunobu Masuno, Akitoshi Mizuno, Junpei. T. Okada, Yuki Watanabe, Yui Nakata, Koji Ohara, Haruka Tamaru, Hirohisa Oda, Ippei Obayashi, Yasuyuki Hiraoka, and Osami Sakata.
-      Very sharp diffraction peak in non-glass forming liquid with the formation of distorted tetraclusters.
-      NPG Asia Materials **12**, 43, (2020).
-      <https://doi.org/10.1038/s41427-020-0220-0>
+  * Naoto Kitamura, Hikari Matsubara, Koji Kimura, Ippei Obayashi, Yohei Onodera, Ken Nakashima, Hidetoshi Morita, Motoki Shiga, Yasuhiro Harada, Chiaki Ishibashi, Yasushi Idemoto and Koichi Hayashi.
+    Relationship between network topology and negative electrode properties in Wadsley–Roth phase TiNb2O7.
+    NPG Asia Materials, **16**, Article number: 62 (2024).
+    <https://doi.org/10.1038/s41427-024-00581-5>
 
-    * Emi Minamitani, Takuma Shiga, Makoto Kashiwagi, and Ippei Obayashi.
-      Relationship between local coordinates and thermal conductivity in amorphous carbon.
-      Journal of Vacuum Science & Technology A **40**, 033408 (2022).
-      <https://doi.org/10.1116/6.0001744>
+  * R. Nagaoka, K. Masuzawa, M. Taniwaki, A. L. Foggiatto, T. Yamazaki, I. Obayashi, Y. Hiraoka, C. Mitsumata, M. Kotsugi.
+    Quantification of the coercivity factor in soft magnetic materials at different frequencies using topological data analysis.
+    IEEE Transactions on Magnetics,  **60** (9), Art no. 4000305, 1--5, (2024).
+    <https://doi.org/10.1109/TMAG.2024.3408002>
 
-    * Yohei Onodera, Yasuyuki Takimoto, Hiroyuki Hijiya, Taketoshi Taniguchi, Shingo Urata, Seiji Inaba, Sanae Fujita, Ippei Obayashi, Yasuaki Hiraoka and Shinji Kohara.
-      Origin of the mixed alkali effect in silicate glass. 
-      NPG Asia Materials **11** 75 (2019).
-      <https://doi.org/10.1038/s41427-019-0180-4>
+  * A. L. Foggiatto, R. Nagaoka, M. Taniwaki, T. Yamazaki, T. Ogasawara, I. Obayashi, Y. Hiraoka, C. Mitsumata, M. Kotsugi.
+    Analysis of the excess loss in high-frequency magnetization process through machine learning and topological data analysis.
+    vol. 60, no. 9, pp. 1-5, Sept. 2024, Art 
+    IEEE Transactions on Magnetics, **60** (9), Art no. 7001305, 1--5 (2024).
+    <https://doi.org/10.1109/TMAG.2024.3406717>
 
-    * Yohei ONODERA, Shinji KOHARA, Shuta TAHARA, Atsunobu MASUNO, Hiroyuki INOUE, Motoki SHIGA, Akihiko HIRATA, Koichi TSUCHIYA, Yasuaki HIRAOKA, Ippei OBAYASHI, Koji OHARA, Akitoshi MIZUNO, and Osami SAKATA.
-      Understanding diffraction patterns of glassy, liquid and amorphous materials via persistent homology analyses.
-      Journal of the Ceramic Society of Japan 2019  **127**(12) 853--863, (2019).
-      ([article (open access)](https://doi.org/10.2109/jcersj2.19143))
+  * Yuta Shuseki, Shinji Kohara, Tomoaki Kaneko, Keitaro Sodeyama, Yohei Onodera, Chihiro Koyama, Atsunobu Masuno, Shunta Sasaki, Shohei Hatano, Motoki Shiga, Ippei Obayashi, Yasuaki Hiraoka, Junpei T. Okada, Akitoshi Mizuno, Yuki Watanabe, Yui Nakata, Koji Ohara, Motohiko Murakami, Matthew G. Tucker, Marshall T. McDonnell, Hirohisa Oda, and Takehiko Ishikawa. 
+    Atomic and Electronic Structure in MgO–SiO2. 
+    J. Phys. Chem. A **128** (4), 716--726 (2024).
+    <https://doi.org/10.1021/acs.jpca.3c05561>
 
-    * M. Murakami, S. Kohara, N. Kitamura, J. Akola, H. Inoue, A. Hirata, Y. Hiraoka, 
-      Y. Onodera, I. Obayashi, J. Kalikka, N. Hirao, T. Musso, A. S. Foster,
-      Y. Idemoto, O. Sakata, and Y. Ohishi.
-      Ultrahigh-pressure form of SiO2 glass with dense pyrite-type crystalline 
-      homology.
-      Phys. Rev. B 99, 045153 (2019).
-      ([article](https://doi.org/10.1103/PhysRevB.99.045153))
+  * Emi Minamitani, Ippei Obayashi, Koji Shimizu, and Satoshi Watanabe.
+    Persistent homology-based descriptor for machine-learning potential of amorphous structures.
+    The Journal of Chemical Physics **159**, 084101 (2023). <https://doi.org/10.1063/5.0159349>
 
-    * M. Kimura, I. Obayashi, Y. Takeichi, R. Murao, and Y. Hiraoka.
-      Non-empirical identification of trigger sites in heterogeneous processes using
-      persistent homology. Scientific Reports 8, 3553, (2018).
-      ([article (open access)](https://doi.org/10.1038/s41598-018-21867-z))
+  * Ippei Obayashi, and Masao Kimura.
+    Persistent homology analysis with nonnegative matrix factorization for 3D voxel data of iron ore sinters.
+    JSIAM Letters **14**, 151--154 (2022)
+    <https://doi.org/10.14495/jsiaml.14.151>
 
-    * Takashi Ichinomiya, Ippei Obayashi, and Yasuaki Hiraoka.
-      Persistent homology analysis of craze formation.
-      Phys. Rev. E 95, 012504, (2017) .
-      ([article](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.95.012504))
+  * Emi Minamitani, Takuma Shiga, Makoto Kashiwagi, and Ippei Obayashi.
+    Topological descriptor of thermal conductivity in amorphous Si.
+    J. Chem. Phys. **156**, 244502 (2022)
+    <https://doi.org/10.1063/5.0093441>
+
+  * Emi Minamitani, Takuma Shiga, Makoto Kashiwagi, and Ippei Obayashi.
+    Relationship between local coordinates and thermal conductivity in amorphous carbon.
+    Journal of Vacuum Science & Technology A **40**, 033408 (2022).
+    <https://doi.org/10.1116/6.0001744>
+
+  * Yohei Onodera, Shinji Kohara, Philip S. Salmon, Akihiko Hirata, Norimasa Nishiyama, Suguru Kitani, Anita Zeidler, Motoki Shiga, Atsunobu Masuno, Hiroyuki Inoue, Shuta Tahara, Annalisa Polidori, Henry E. Fischer, Tatsuya Mori, Seiji Kojima, Hitoshi Kawaji, Alexander I. Kolesnikov, Matthew B. Stone, Matthew G. Tucker, Marshall T. McDonnell, Alex C. Hannon, Yasuaki Hiraoka, Ippei Obayashi, Takenobu Nakamura, Jaakko Akola, Yasuhiro Fujii, Koji Ohara, Takashi Taniguchi and Osami Sakata.
+    Structure and properties of densified silica glass: characterizing the order within disorder.
+    NPG Asia Materials volume **12**, 85 (2020).
+    <https://doi.org/10.1038/s41427-020-00262-z>
+
+  * Akihiko Hirata, Tomohide Wada, Ippei Obayashi and Yasuaki Hiraoka.
+    Structural changes during glass formation extracted by computational homology with machine learning.
+    Communications Materials **1**, 98 (2020).
+    <https://doi.org/10.1038/s43246-020-00100-3>
+
+  * Chihiro Koyama, Shuta Tahara, Shinji Kohara, Yohei Onodera, Didrik R. Småbråten, Sverre M. Selbach, Jaakko Akola, Takehiko Ishikawa, Atsunobu Masuno, Akitoshi Mizuno, Junpei. T. Okada, Yuki Watanabe, Yui Nakata, Koji Ohara, Haruka Tamaru, Hirohisa Oda, Ippei Obayashi, Yasuyuki Hiraoka, and Osami Sakata.
+    Very sharp diffraction peak in non-glass forming liquid with the formation of distorted tetraclusters.
+    NPG Asia Materials **12**, 43, (2020).
+    <https://doi.org/10.1038/s41427-020-0220-0>
+
+  * Emi Minamitani, Takuma Shiga, Makoto Kashiwagi, and Ippei Obayashi.
+    Relationship between local coordinates and thermal conductivity in amorphous carbon.
+    Journal of Vacuum Science & Technology A **40**, 033408 (2022).
+    <https://doi.org/10.1116/6.0001744>
+
+  * Yohei Onodera, Yasuyuki Takimoto, Hiroyuki Hijiya, Taketoshi Taniguchi, Shingo Urata, Seiji Inaba, Sanae Fujita, Ippei Obayashi, Yasuaki Hiraoka and Shinji Kohara.
+    Origin of the mixed alkali effect in silicate glass. 
+    NPG Asia Materials **11** 75 (2019).
+    <https://doi.org/10.1038/s41427-019-0180-4>
+
+  * Yohei ONODERA, Shinji KOHARA, Shuta TAHARA, Atsunobu MASUNO, Hiroyuki INOUE, Motoki SHIGA, Akihiko HIRATA, Koichi TSUCHIYA, Yasuaki HIRAOKA, Ippei OBAYASHI, Koji OHARA, Akitoshi MIZUNO, and Osami SAKATA.
+    Understanding diffraction patterns of glassy, liquid and amorphous materials via persistent homology analyses.
+    Journal of the Ceramic Society of Japan 2019  **127**(12) 853--863, (2019).
+    ([article (open access)](https://doi.org/10.2109/jcersj2.19143))
+
+  * M. Murakami, S. Kohara, N. Kitamura, J. Akola, H. Inoue, A. Hirata, Y. Hiraoka, 
+    Y. Onodera, I. Obayashi, J. Kalikka, N. Hirao, T. Musso, A. S. Foster,
+    Y. Idemoto, O. Sakata, and Y. Ohishi.
+    Ultrahigh-pressure form of SiO2 glass with dense pyrite-type crystalline 
+    homology.
+    Phys. Rev. B 99, 045153 (2019).
+    ([article](https://doi.org/10.1103/PhysRevB.99.045153))
+
+  * M. Kimura, I. Obayashi, Y. Takeichi, R. Murao, and Y. Hiraoka.
+    Non-empirical identification of trigger sites in heterogeneous processes using
+    persistent homology. Scientific Reports 8, 3553, (2018).
+    ([article (open access)](https://doi.org/10.1038/s41598-018-21867-z))
+
+  * Takashi Ichinomiya, Ippei Obayashi, and Yasuaki Hiraoka.
+    Persistent homology analysis of craze formation.
+    Phys. Rev. E 95, 012504, (2017) .
+    ([article](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.95.012504))
 
 * Geology
   * Anna Suzuki, Miyuki Miyazawa, James M. Minto, Takeshi Tsuji, Ippei Obayashi, Yasuaki Hiraoka, an Takatoshi Ito.
@@ -143,5 +190,7 @@ lang: en
   * [伊藤雅仁, 奥脇弘次, 望月祐志, 小杉範仁. 題名：2次元翼モデルの可視化CFD結果に関する深層学習と位相的データ解析（Deep learning and Topological Data Analysis for Visualized CFD Results of 2-dimensional Wing Model）](https://jaxa.repo.nii.ac.jp/?action=repository_action_common_download&item_id=46827&item_no=1&attribute_id=31&file_no=1)
 
 
+* Astrophysics
+  [P. Santamarina Guerrero, Yukio Katsukawa, Shin Toriumi, and D. Orozco Suárez. Persistent Homology Analysis for Solar Magnetograms. The Astrophysical Journal **964** (1) Article number:32 (2024)](https://doi.org/10.3847/1538-4357/ad26e8)
 
 
