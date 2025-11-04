@@ -6,7 +6,7 @@ build-webpage:
 	bundle exec middleman build
 
 deploy:
-	gsutil -m rsync -r build gs://homcloud.dev
+	gcloud storage rsync build gs://homcloud.dev
 
 cdn-cache-clear:
 	gcloud compute url-maps invalidate-cdn-cache homcloud-dev-lb --project homcloud-website  --host homcloud.dev --path "/*"
