@@ -1,3 +1,11 @@
+# News for 5.1.0 (2025/11/12)
+* New features
+  * Optimal and Stable volumes for relative PH
+  * Add interface for persistence codebook: The following three classes are added
+     * `homcloud.interface.codebook.PBoWSpec`
+     * `homcloud.interface.codebook.StablePBoWSpec`
+     * `homcloud.interface.codebook.PFVSpec`
+
 # News for 5.0.0 (2025/09/20)
 * Breaking changes:
   * Remove Paraview interface

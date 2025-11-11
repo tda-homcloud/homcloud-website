@@ -4275,6 +4275,258 @@ must be larger than or equal to 1 including infinity</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py class" id="module-homcloud.interface.codebook">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PBoWSpec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.codebook.</span></span><span class="sig-name descname"><span class="pre">PBoWSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_random_sampled_pairs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighting_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/codebook.html#PBoWSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.codebook.PBoWSpec" title="Link to this definition">#</a></dt>
+<dd><p>This class represents a specification of vectorization of persistence diagrams by
+persistence codebook’s PBoW (persistence bag-of-words representation) method.</p>
+<p>K-Means is used for clustering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_random_sampled_pairs</strong> (<em>int</em>) – The number of randomly sampled pairs used when calculating clusters.</p></li>
+<li><p><strong>n_clusters</strong> (<em>int</em>) – The number of clusters.</p></li>
+<li><p><strong>weighting_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>float</em><em>] </em><em>| </em><em>None</em>) – Weighting function for sampling when calculating clusters.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em> | </em><em>None</em>) – The random seed for random sampling.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – The bow histogram is normalized when vectorizing a PD if True.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1007/s10462-020-09897-4">https://link.springer.com/article/10.1007/s10462-020-09897-4</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/bziiuj/pcodebooks">bziiuj/pcodebooks</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PBoWSpec.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.PBoWSpec.fit" title="Link to this definition">#</a></dt>
+<dd><p>Compute clusters in preparation for vectorization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (list[<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>]) – The list of digrams whose pairs are used for clustering.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PBoWSpec.vectorize">
+<span class="sig-name descname"><span class="pre">vectorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.PBoWSpec.vectorize" title="Link to this definition">#</a></dt>
+<dd><p>Vecotrize a diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>) – The diagram to be vecotrized.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 1-dimensional array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PBoWSpec.cluster_centers">
+<span class="sig-name descname"><span class="pre">cluster_centers</span></span><a class="headerlink" href="#homcloud.interface.codebook.PBoWSpec.cluster_centers" title="Link to this definition">#</a></dt>
+<dd><p>The 2d array of centers of clusters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.codebook.</span></span><span class="sig-name descname"><span class="pre">PFVSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_random_sampled_pairs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighting_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/codebook.html#PFVSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec" title="Link to this definition">#</a></dt>
+<dd><p>This class represents a specification of vectorization of persistence diagrams by
+persistence codebook’s PFV (persistence Fisher vector) method.</p>
+<p>Gaussian mixture model is used for clustering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_random_sampled_pairs</strong> (<em>int</em>) – The number of randomly sampled pairs used when calculating clusters.</p></li>
+<li><p><strong>n_clusters</strong> (<em>int</em>) – The number of clusters.</p></li>
+<li><p><strong>weighted_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>float</em><em>] </em><em>| </em><em>None</em>) – Weighting function for sampling when calculating clusters.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em> | </em><em>None</em>) – The random seed for random sampling.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – The bow histogram is normalized when vectorizing a PD if True.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1007/s10462-020-09897-4">https://link.springer.com/article/10.1007/s10462-020-09897-4</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/bziiuj/pcodebooks">bziiuj/pcodebooks</a></p></li>
+<li><p><a class="reference external" href="https://www.vlfeat.org/api/fisher-fundamentals.html">https://www.vlfeat.org/api/fisher-fundamentals.html</a></p></li>
+<li><p>F. Perronnin and C. Dance. Fisher kenrels on visual vocabularies
+for image categorizaton. In Proc. CVPR, 2006.</p></li>
+<li><p>Florent Perronnin, Jorge Sánchez, and Thomas Mensink.
+Improving the fisher kernel for large-scale image classification. In Proc. ECCV, 2010.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec.fit" title="Link to this definition">#</a></dt>
+<dd><p>Compute clusters in preparation for vectorization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (list[<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>]) – The list of digrams whose pairs are used for clustering.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec.vectorize">
+<span class="sig-name descname"><span class="pre">vectorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec.vectorize" title="Link to this definition">#</a></dt>
+<dd><p>Vecotrize a diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>) – The diagram to be vecotrized.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 1-dimensional array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec.plot_gmm_density_estimation">
+<span class="sig-name descname"><span class="pre">plot_gmm_density_estimation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec.plot_gmm_density_estimation" title="Link to this definition">#</a></dt>
+<dd><p>Plot a gaussian mixture distribution in a matplotlib’s axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib.axes.Axes</em>) – Matplotlib’s axes object to be plotted.</p></li>
+<li><p><strong>x_range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The X range.</p></li>
+<li><p><strong>x_bins</strong> (<em>int</em>) – The number of bins in the X direction.</p></li>
+<li><p><strong>y_range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The Y range. Same as x_range if None.</p></li>
+<li><p><strong>y_bins</strong> (<em>int</em>) – The number of bins in the Y direction. Same as x_bins if None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec.cluster_centers">
+<span class="sig-name descname"><span class="pre">cluster_centers</span></span><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec.cluster_centers" title="Link to this definition">#</a></dt>
+<dd><p>The 2d array of centers of clusters (means of gaussian distributions).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.PFVSpec.cluster_covariances">
+<span class="sig-name descname"><span class="pre">cluster_covariances</span></span><a class="headerlink" href="#homcloud.interface.codebook.PFVSpec.cluster_covariances" title="Link to this definition">#</a></dt>
+<dd><p>The 3d array of covariances of clusters
+(covariance matrices of gaussian distributions).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">homcloud.interface.codebook.</span></span><span class="sig-name descname"><span class="pre">StablePBoWSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_random_sampled_pairs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighting_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/codebook.html#StablePBoWSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec" title="Link to this definition">#</a></dt>
+<dd><p>This class represents a specification of vectorization of persistence diagrams by
+persistence codebook’s stable PBoW (persistence bag-of-words representation) method.</p>
+<p>Gaussian mixture model is used for clustering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_random_sampled_pairs</strong> (<em>int</em>) – The number of randomly sampled pairs used when calculating clusters.</p></li>
+<li><p><strong>n_clusters</strong> (<em>int</em>) – The number of clusters.</p></li>
+<li><p><strong>weighting_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>float</em><em>] </em><em>| </em><em>None</em>) – Weighting function for sampling when calculating clusters.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em> | </em><em>None</em>) – The random seed for random sampling.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – The bow histogram is normalized when vectorizing a PD if True.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://link.springer.com/article/10.1007/s10462-020-09897-4">https://link.springer.com/article/10.1007/s10462-020-09897-4</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/bziiuj/pcodebooks">bziiuj/pcodebooks</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagrams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec.fit" title="Link to this definition">#</a></dt>
+<dd><p>Compute clusters in preparation for vectorization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (list[<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>]) – The list of digrams whose pairs are used for clustering.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec.vectorize">
+<span class="sig-name descname"><span class="pre">vectorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec.vectorize" title="Link to this definition">#</a></dt>
+<dd><p>Vecotrize a diagram.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>diagrams</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PD</span></code>) – The diagram to be vecotrized.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A 1-dimensional array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec.plot_gmm_density_estimation">
+<span class="sig-name descname"><span class="pre">plot_gmm_density_estimation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec.plot_gmm_density_estimation" title="Link to this definition">#</a></dt>
+<dd><p>Plot a gaussian mixture distribution in a matplotlib’s axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>matplotlib.axes.Axes</em>) – Matplotlib’s axes object to be plotted.</p></li>
+<li><p><strong>x_range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The X range.</p></li>
+<li><p><strong>x_bins</strong> (<em>int</em>) – The number of bins in the X direction.</p></li>
+<li><p><strong>y_range</strong> (<em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The Y range. Same as x_range if None.</p></li>
+<li><p><strong>y_bins</strong> (<em>int</em>) – The number of bins in the Y direction. Same as x_bins if None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec.cluster_centers">
+<span class="sig-name descname"><span class="pre">cluster_centers</span></span><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec.cluster_centers" title="Link to this definition">#</a></dt>
+<dd><p>The 2d array of centers of clusters (means of gaussian distributions)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="homcloud.interface.codebook.StablePBoWSpec.cluster_covariances">
+<span class="sig-name descname"><span class="pre">cluster_covariances</span></span><a class="headerlink" href="#homcloud.interface.codebook.StablePBoWSpec.cluster_covariances" title="Link to this definition">#</a></dt>
+<dd><p>The 3d array of covariances of clusters
+(covariance matrices of gaussian distributions)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -4586,6 +4838,28 @@ must be larger than or equal to 1 including infinity</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.show_slice3d"><code class="docutils literal notranslate"><span class="pre">show_slice3d()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.distance.bottleneck"><code class="docutils literal notranslate"><span class="pre">bottleneck()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.distance.wasserstein"><code class="docutils literal notranslate"><span class="pre">wasserstein()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PBoWSpec"><code class="docutils literal notranslate"><span class="pre">PBoWSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PBoWSpec.fit"><code class="docutils literal notranslate"><span class="pre">PBoWSpec.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PBoWSpec.vectorize"><code class="docutils literal notranslate"><span class="pre">PBoWSpec.vectorize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PBoWSpec.cluster_centers"><code class="docutils literal notranslate"><span class="pre">PBoWSpec.cluster_centers</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec"><code class="docutils literal notranslate"><span class="pre">PFVSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec.fit"><code class="docutils literal notranslate"><span class="pre">PFVSpec.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec.vectorize"><code class="docutils literal notranslate"><span class="pre">PFVSpec.vectorize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec.plot_gmm_density_estimation"><code class="docutils literal notranslate"><span class="pre">PFVSpec.plot_gmm_density_estimation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec.cluster_centers"><code class="docutils literal notranslate"><span class="pre">PFVSpec.cluster_centers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.PFVSpec.cluster_covariances"><code class="docutils literal notranslate"><span class="pre">PFVSpec.cluster_covariances</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec.fit"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec.vectorize"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec.vectorize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec.plot_gmm_density_estimation"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec.plot_gmm_density_estimation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec.cluster_centers"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec.cluster_centers</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.codebook.StablePBoWSpec.cluster_covariances"><code class="docutils literal notranslate"><span class="pre">StablePBoWSpec.cluster_covariances</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

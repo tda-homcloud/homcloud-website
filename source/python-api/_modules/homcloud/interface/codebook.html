@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>homcloud.interface.parallel_volume_computation &#8212; homcloud  documentation</title>
+    <title>homcloud.interface.codebook &#8212; homcloud  documentation</title>
   
   
   
@@ -40,7 +40,7 @@
     <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/parallel_volume_computation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/homcloud/interface/codebook';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -323,7 +323,7 @@
     
     <li class="breadcrumb-item"><a href="../interface.html" class="nav-link">homcloud.interface</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">homcloud.interface.parallel_volume_computation</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">homcloud.interface.codebook</span></li>
   </ul>
 </nav>
 </div>
@@ -340,83 +340,175 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for homcloud.interface.parallel_volume_computation</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+  <h1>Source code for homcloud.interface.codebook</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.codebook</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_parallel_task</span><span class="p">(</span><span class="n">task_params</span><span class="p">):</span>
-    <span class="n">methodname</span><span class="p">,</span> <span class="n">nth</span><span class="p">,</span> <span class="n">volume_params</span> <span class="o">=</span> <span class="n">task_params</span>
-
-    <span class="n">pair</span> <span class="o">=</span> <span class="n">shared_pd</span><span class="o">.</span><span class="n">pair</span><span class="p">(</span><span class="n">nth</span><span class="p">)</span>
-    <span class="n">volume_params</span><span class="p">[</span><span class="s2">&quot;return_failure_if_not_found&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">methodname</span><span class="p">)(</span><span class="o">**</span><span class="n">volume_params</span><span class="p">)</span><span class="o">.</span><span class="n">dump_to_dict</span><span class="p">()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_worker_init</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.interface</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hc</span>
-
-    <span class="k">global</span> <span class="n">shared_pd</span>
-    <span class="n">shared_pd</span> <span class="o">=</span> <span class="n">hc</span><span class="o">.</span><span class="n">PDList</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">dth_diagram</span><span class="p">(</span><span class="n">degree</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="parallel_volume_computation">
-<a class="viewcode-back" href="../../../interface.html#homcloud.interface.parallel_volume_computation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">parallel_volume_computation</span><span class="p">(</span><span class="n">optimal_or_stable</span><span class="p">,</span> <span class="n">pd</span><span class="p">,</span> <span class="n">pairs_and_params</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PBoWSpec">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.codebook.PBoWSpec">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PBoWSpec</span><span class="p">(</span><span class="n">homcloud</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">PBoW</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute optimal / stable volume parallely.</span>
+<span class="sd">    This class represents a specification of vectorization of persistence diagrams by</span>
+<span class="sd">    persistence codebook&#39;s PBoW (persistence bag-of-words representation) method.</span>
 
-<span class="sd">    Summary of benchmark result: 3x faster with max_workers=8 for 200 birth-death pairs.</span>
+<span class="sd">    K-Means is used for clustering.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        optimal_or_stable (str): &quot;optimal_volume&quot; or &quot;stable_volume&quot;</span>
-<span class="sd">        pd (:class:`PD`): The diagram used in the volume computation</span>
-<span class="sd">        pairs_and_params (list[tuple[:class:`Pair`, dict]]): The list of tuples of</span>
-<span class="sd">            (pair, volume computation parameter). The computation parameter should be given</span>
-<span class="sd">            by dict whose keys are parameter names.</span>
-<span class="sd">        max_workers (Option[int]): The maximum number of concurrent computation workers.</span>
-<span class="sd">            This parameter is passed to concurrent.futures.ProcessPoolExecutor.</span>
-<span class="sd">            See the python&#39;s official documentation of concurrent.futures.</span>
+<span class="sd">        n_random_sampled_pairs (int): The number of randomly sampled pairs used when calculating clusters.</span>
+<span class="sd">        n_clusters (int): The number of clusters.</span>
+<span class="sd">        weighting_function (Callable[[float, float], float] | None):</span>
+<span class="sd">            Weighting function for sampling when calculating clusters.</span>
+<span class="sd">        random_state (int | None): The random seed for random sampling.</span>
+<span class="sd">        normalize (bool): The bow histogram is normalized when vectorizing a PD if True.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        list[VolumeFailure | OptimalVolume | StableVolume]: The list of volumes.</span>
-<span class="sd">        VolumeFailure object is used to represent the failure of a computation.</span>
+<span class="sd">    References:</span>
+<span class="sd">        * https://link.springer.com/article/10.1007/s10462-020-09897-4</span>
+<span class="sd">        * https://github.com/bziiuj/pcodebooks</span>
 
-<span class="sd">    Remarks:</span>
-<span class="sd">        The `save_to` option is required when persistence diagrams are computed if you want</span>
-<span class="sd">        to use this functionality.</span>
-<span class="sd">        If not, this function raises an ValueError exception.</span>
-<span class="sd">        This function is not thread safe. Do not call this function parallely.</span>
-<span class="sd">        Do not call this function under multi-thread environment.</span>
+<span class="sd">    Methods:</span>
+<span class="sd">        fit(diagrams)</span>
+<span class="sd">            Compute clusters in preparation for vectorization.</span>
 
-<span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; import homcloud.interface as hc</span>
-<span class="sd">        &gt;&gt;&gt;</span>
-<span class="sd">        &gt;&gt;&gt; hc.PDList(hc.example_data(&quot;tetrahedron&quot;), save_boundary_map=True, save_to=&quot;tetrahedron.pdgm&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; pd1 = hc.PDList(&quot;tetrahedron.pdgm&quot;).dth_diagram(1)</span>
-<span class="sd">        &gt;&gt;&gt; # Computes all stable volumes of pd1&#39;s pairs parallely with eight workers.</span>
-<span class="sd">        &gt;&gt;&gt; results = hc.parallel_volume_computation(</span>
-<span class="sd">        &gt;&gt;&gt;     &quot;stable_volume&quot;, pd1,  [(pair, {&quot;threshold&quot;: 0.01}) for pair in pd1.pairs()], 8</span>
-<span class="sd">        &gt;&gt;&gt; )</span>
-<span class="sd">        `results` has all stable volumes.</span>
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (list[:class:`PD`]): The list of digrams whose pairs are used for clustering.</span>
+
+<span class="sd">        vectorize(self, diagram):</span>
+<span class="sd">            Vecotrize a diagram.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (:class:`PD`): The diagram to be vecotrized.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                numpy.ndarary: A 1-dimensional array</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        cluster_centers (numpy.ndarary): The 2d array of centers of clusters.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">homcloud.interface.optimal_volume</span><span class="w"> </span><span class="kn">import</span> <span class="n">Volume</span>
 
-    <span class="k">assert</span> <span class="n">optimal_or_stable</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;optimal_volume&quot;</span><span class="p">,</span> <span class="s2">&quot;stable_volume&quot;</span><span class="p">]</span>
+    <span class="k">pass</span></div>
 
-    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;save_to must be given for parallel computation when PDs are computed&quot;</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span>
-        <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
-        <span class="n">initializer</span><span class="o">=</span><span class="n">_worker_init</span><span class="p">,</span>
-        <span class="n">initargs</span><span class="o">=</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">degree</span><span class="p">),</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
-            <span class="n">_parallel_task</span><span class="p">,</span>
-            <span class="p">[(</span><span class="n">optimal_or_stable</span><span class="p">,</span> <span class="n">pair</span><span class="o">.</span><span class="n">nth</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> <span class="ow">in</span> <span class="n">pairs_and_params</span><span class="p">],</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Volume</span><span class="o">.</span><span class="n">restore_from_dict</span><span class="p">(</span><span class="n">pd</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="StablePBoWSpec">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.codebook.StablePBoWSpec">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">StablePBoWSpec</span><span class="p">(</span><span class="n">homcloud</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">StablePBoW</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a specification of vectorization of persistence diagrams by</span>
+<span class="sd">    persistence codebook&#39;s stable PBoW (persistence bag-of-words representation) method.</span>
+
+<span class="sd">    Gaussian mixture model is used for clustering.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_random_sampled_pairs (int): The number of randomly sampled pairs used when calculating clusters.</span>
+<span class="sd">        n_clusters (int): The number of clusters.</span>
+<span class="sd">        weighting_function (Callable[[float, float], float] | None):</span>
+<span class="sd">            Weighting function for sampling when calculating clusters.</span>
+<span class="sd">        random_state (int | None): The random seed for random sampling.</span>
+<span class="sd">        normalize (bool): The bow histogram is normalized when vectorizing a PD if True.</span>
+
+<span class="sd">    References:</span>
+<span class="sd">        * https://link.springer.com/article/10.1007/s10462-020-09897-4</span>
+<span class="sd">        * https://github.com/bziiuj/pcodebooks</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        fit(diagrams)</span>
+<span class="sd">            Compute clusters in preparation for vectorization.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (list[:class:`PD`]): The list of digrams whose pairs are used for clustering.</span>
+
+<span class="sd">        vectorize(self, diagram):</span>
+<span class="sd">            Vecotrize a diagram.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (:class:`PD`): The diagram to be vecotrized.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                numpy.ndarary: A 1-dimensional array</span>
+
+<span class="sd">        plot_gmm_density_estimation(ax, x_range, x_num, y_range=None, y_num=None)</span>
+<span class="sd">            Plot a gaussian mixture distribution in a matplotlib&#39;s axes.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                ax (matplotlib.axes.Axes): Matplotlib&#39;s axes object to be plotted.</span>
+<span class="sd">                x_range (tuple[float, float]): The X range.</span>
+<span class="sd">                x_bins (int): The number of bins in the X direction.</span>
+<span class="sd">                y_range (tuple[float, float]): The Y range. Same as x_range if None.</span>
+<span class="sd">                y_bins (int): The number of bins in the Y direction. Same as x_bins if None.</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        cluster_centers (numpy.ndarary): The 2d array of centers of clusters (means of gaussian distributions)</span>
+<span class="sd">        cluster_covariances (numpy.ndarary): The 3d array of covariances of clusters</span>
+<span class="sd">                                             (covariance matrices of gaussian distributions)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="PFVSpec">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.codebook.PFVSpec">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PFVSpec</span><span class="p">(</span><span class="n">homcloud</span><span class="o">.</span><span class="n">codebook</span><span class="o">.</span><span class="n">StablePBoW</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a specification of vectorization of persistence diagrams by</span>
+<span class="sd">    persistence codebook&#39;s PFV (persistence Fisher vector) method.</span>
+
+<span class="sd">    Gaussian mixture model is used for clustering.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n_random_sampled_pairs (int): The number of randomly sampled pairs used when calculating clusters.</span>
+<span class="sd">        n_clusters (int): The number of clusters.</span>
+<span class="sd">        weighted_function (Callable[[float, float], float] | None):</span>
+<span class="sd">            Weighting function for sampling when calculating clusters.</span>
+<span class="sd">        random_state (int | None): The random seed for random sampling.</span>
+<span class="sd">        normalize (bool): The bow histogram is normalized when vectorizing a PD if True.</span>
+
+<span class="sd">    References:</span>
+<span class="sd">        * https://link.springer.com/article/10.1007/s10462-020-09897-4</span>
+<span class="sd">        * https://github.com/bziiuj/pcodebooks</span>
+<span class="sd">        * https://www.vlfeat.org/api/fisher-fundamentals.html</span>
+<span class="sd">        * F. Perronnin and C. Dance. Fisher kenrels on visual vocabularies</span>
+<span class="sd">          for image categorizaton. In Proc. CVPR, 2006.</span>
+<span class="sd">        * Florent Perronnin, Jorge Sánchez, and Thomas Mensink.</span>
+<span class="sd">          Improving the fisher kernel for large-scale image classification. In Proc. ECCV, 2010.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        fit(diagrams)</span>
+<span class="sd">            Compute clusters in preparation for vectorization.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (list[:class:`PD`]): The list of digrams whose pairs are used for clustering.</span>
+
+<span class="sd">        vectorize(self, diagram)</span>
+<span class="sd">            Vecotrize a diagram.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                diagrams (:class:`PD`): The diagram to be vecotrized.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                numpy.ndarary: A 1-dimensional array</span>
+
+<span class="sd">        plot_gmm_density_estimation(ax, x_range, x_num, y_range=None, y_num=None)</span>
+<span class="sd">            Plot a gaussian mixture distribution in a matplotlib&#39;s axes.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                ax (matplotlib.axes.Axes): Matplotlib&#39;s axes object to be plotted.</span>
+<span class="sd">                x_range (tuple[float, float]): The X range.</span>
+<span class="sd">                x_bins (int): The number of bins in the X direction.</span>
+<span class="sd">                y_range (tuple[float, float]): The Y range. Same as x_range if None.</span>
+<span class="sd">                y_bins (int): The number of bins in the Y direction. Same as x_bins if None.</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        cluster_centers (numpy.ndarary): The 2d array of centers of clusters (means of gaussian distributions).</span>
+<span class="sd">        cluster_covariances (numpy.ndarary): The 3d array of covariances of clusters</span>
+<span class="sd">                                             (covariance matrices of gaussian distributions).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
 
 </pre></div>
 

@@ -9,3 +9,6 @@ homcloud.interface module
 .. automodule:: homcloud.interface.distance
     :members:
 
+.. automodule:: homcloud.interface.codebook
+    :members:
+    
