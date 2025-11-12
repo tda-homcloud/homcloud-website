@@ -20,6 +20,7 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 * [グレイスケール画像](py-tutorial/grayscale_image.html)
 * [3次元二値画像](py-tutorial/binary_3d.html)
 * [機械学習との組み合わせ](py-tutorial/ml_pc.html)
+  * [ベクトル化をPersistence codebookのPBoWにしたバージョン](py-tutorial/ml_pc_codebook.html) - Persistence codebookについては <https://link.springer.com/article/10.1007/s10462-020-09897-4> を参照
 * 材料科学データの解析(原子配置データ)
   * [銅の結晶データ](py-tutorial/analysis_of_atomic_configurations_1.html)
   * [アモルファスシリカのデータ](py-tutorial/analysis_of_atomic_configurations_2.html)
