@@ -1,3 +1,10 @@
+# News for 5.2.0 (2025/12/29)
+* Breaking changes
+  * Remove groupname feature of alpha filtration PH
+* New features
+  * Add `PDList.from_alpha_voronoi_relative_mask_filtration`
+* Refactor codes
+
 # News for 5.1.0 (2025/11/12)
 * New features
   * Optimal and Stable volumes for relative PH

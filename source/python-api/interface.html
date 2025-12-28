@@ -2070,30 +2070,8 @@ should be the square of their own radii.</p></li>
 If squared is False, all computed birth/death times are
 not squared.</p></li>
 <li><p><strong>no_squared</strong> (<em>bool</em>) – See <cite>squared</cite> parameter.</p></li>
-<li><p><strong>subsets</strong> (<em>list</em><em>[</em><em>int</em><em>] or </em><em>bool</em><em> or </em><em>None</em>) – <p>This parameter is used to introduce equivalence relationship.</p>
-<p>This parameter allows you to analyze the interspace structures
-between two or more objects in your pointcloud.</p>
-<p>If the grouped sub-pointcloud constructs a contractible subcomplex,
-the relative homology is comptuted.
-If the grouped sub-pointcloud constructs a subcomplexes whose connected components
-are contractible, each connected component in the subcomplexes
-is shrinked into a single point and
-birth-death pairs corresponding to the connected components are removed from the 0th PD.
-In the homcloud’s code, minus infinity is assigned to the levels of
-all simplices in the subcomplex and PDs are comptuted, and all birth-death pairs whose
-birth time is -inf are removed from the diagrams.</p>
-<p>If <cite>subsets</cite> is None, normal persistent homology is computed.</p>
-<p>If <cite>subsets</cite> is a list of integers whose length is the same
-as the number of points, the points are grouped
-by the integers and the gaps in the points in the same
-group is filled. The integer -1 in this list means
-that the point does not belong to any group.</p>
-<p>If subsets is True, the last column of <cite>pointcloud</cite> is regarded
-as the list of group id.</p>
-</p></li>
-<li><p><strong>check_acyclicity</strong> (<em>bool</em>) – Checks the acyclicity of each grouped points in subsets
-if True. This parameter is used only if <cite>subsets</cite> parameter
-is used.</p></li>
+<li><p><strong>subsets</strong> (<em>list</em><em>[</em><em>int</em><em>] or </em><em>bool</em><em> or </em><em>None</em>) – This parameter is currently unused.</p></li>
+<li><p><strong>check_acyclicity</strong> (<em>bool</em>) – This parameter is currently unused.</p></li>
 <li><p><strong>algorithm</strong> (<em>string</em><em> or </em><em>None</em>) – <p>The name of the algorithm.
 An appropriate algorithm is
 automatically selected if None is given.</p>
@@ -2157,6 +2135,76 @@ Use meth:<cite>PD.load_phtrees</cite> to load the PH trees.</p></li>
 <span class="go">-&gt; Returns a new PDList</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="homcloud.interface.PDList.from_alpha_voronoi_relative_mask_filtration">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_alpha_voronoi_relative_mask_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pc_main</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pc_mask</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_main</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_symbols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suppl_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_boundary_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodicity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/homcloud/interface/pd.html#PDList.from_alpha_voronoi_relative_mask_filtration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#homcloud.interface.PDList.from_alpha_voronoi_relative_mask_filtration" title="Link to this definition">#</a></dt>
+<dd><p>Compute persistence diagrams from (weighted) alpha filtration with a mask constructed
+by voronoi cells using relative persistent homology.</p>
+<p>Normal PH for alpha filtration considers the homology of the growing balls
+$H_*(cup_{x} B_x(r))$.
+This method alternatively considers
+$H_*((cup_{x in P} B_x(r)) cup M, M)$,
+where $P$ is <cite>pc_main</cite>, $Q$ is <cite>pc_mask</cite>,
+${V_{x}}_{x in P cup Q}$ is the voronoi cells of $P cup Q$,
+and $M = cup_{q in Q} V_q$.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc_main</strong> (<em>numpy.ndarray</em>) – Point cloud data. Each row
+represents a single point.
+Only 2D or 3D pointclouds are available.</p></li>
+<li><p><strong>pc_mask</strong> (<em>numpy.ndarray</em>) – Point cloud data for mask.
+Each row represents a single point.
+The dimension should be the same sa pc_main.</p></li>
+<li><p><strong>squared</strong> (<em>bool</em>) – By default, all birth/death times are squared.
+If squared is False, all computed birth/death times are
+not squared.</p></li>
+<li><p><strong>weighted</strong> (<em>bool</em>) – If False, the pointcloud has no weight. If True,
+the last column of the pointcloud ndarray is regarded as
+weights. Please note that the weight paramters of points
+should be the square of their own radii.</p></li>
+<li><p><strong>weight_main</strong> (<em>numpy.ndarray</em><em> | </em><em>None</em>) – Weights for pc_main.</p></li>
+<li><p><strong>weight_mask</strong> (<em>numpy.ndarray</em><em> | </em><em>None</em>) – Weights for pc_mask.</p></li>
+<li><p><strong>algorithm</strong> (<em>string</em><em> or </em><em>None</em>) – <p>The name of the algorithm.
+An appropriate algorithm is
+automatically selected if None is given.</p>
+<p>The following algorithms are available:</p>
+<ul>
+<li><p>”phat-twist”</p></li>
+<li><p>”phat-chunk-parallel”</p></li>
+</ul>
+<p>In many cases, the parameter should be <cite>None</cite>.</p>
+</p></li>
+<li><p><strong>vertex_symbols</strong> (<em>list</em><em>[</em><em>string</em><em>] or </em><em>None</em>) – <p>The names of vertices.
+The names are used to represent some simplices, such as
+birth/death simplices or optimal volumes.</p>
+<p>If None is given, vertices are automatically named by
+“0”, “1”, “2”, …</p>
+</p></li>
+<li><p><strong>save_to</strong> (<em>string</em>) – The file path which the computation result is
+saved into. You can load the saved data by
+<code class="docutils literal notranslate"><span class="pre">homcloud.interface.PDList(FILE_PATH)</span></code>.
+Saving the result is recommended since the computation cost is
+often expensive.</p></li>
+<li><p><strong>save_suppl_info</strong> (<em>bool</em>) – Various supplimentary information is saved to
+the file <cite>save_to</cite>. The default is True. This information is
+required to show birth and death pixels and optimal volumes.
+If you do not use such HomCloud’s functionality and you want to
+reduce the size of the file, please set the argument <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+If False, only birth and death times are stored to the file.</p></li>
+<li><p><strong>save_boundary_map</strong> (<em>bool</em>) – The boundary map constructed by the given pointcloud is saved
+if this parameter is True. The boundary map is used to
+compute volume optimal cycles.</p></li>
+<li><p><strong>periodicity</strong> (<em>tuple</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>]</em><em>, </em><em>tuple</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>] or </em><em>None</em>) – # noqa E501
+Periodic boundary condition. Peridic boundary condition is not available for 2D alpha shape.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <a class="reference internal" href="#homcloud.interface.PDList" title="homcloud.interface.PDList"><code class="xref py py-class docutils literal notranslate"><span class="pre">PDList</span></code></a> object computed from the pointcloud.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -4715,6 +4763,7 @@ persistence codebook’s stable PBoW (persistence bag-of-words representation) m
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.close"><code class="docutils literal notranslate"><span class="pre">PDList.close()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.dth_diagram"><code class="docutils literal notranslate"><span class="pre">PDList.dth_diagram()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.from_alpha_filtration"><code class="docutils literal notranslate"><span class="pre">PDList.from_alpha_filtration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.from_alpha_voronoi_relative_mask_filtration"><code class="docutils literal notranslate"><span class="pre">PDList.from_alpha_voronoi_relative_mask_filtration()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.from_bitmap_distance_function"><code class="docutils literal notranslate"><span class="pre">PDList.from_bitmap_distance_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.from_bitmap_levelset"><code class="docutils literal notranslate"><span class="pre">PDList.from_bitmap_levelset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homcloud.interface.PDList.from_boundary_information"><code class="docutils literal notranslate"><span class="pre">PDList.from_boundary_information()</span></code></a></li>

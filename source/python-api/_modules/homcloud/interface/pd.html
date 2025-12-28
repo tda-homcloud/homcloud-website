@@ -358,6 +358,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.abstract_filtration</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">abstract_filtration</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.simplicial_levelset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">simplicial_levelset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.coupled_alpha</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">coupled_alpha</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.alpha_voronoi_relative_mask</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">alpha_voronoi_relative_mask</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.optvol</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optvol</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.int_reduction</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">int_reduction</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">homcloud.pdgm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pdgm</span>
@@ -476,35 +477,9 @@
 <span class="sd">                not squared.</span>
 <span class="sd">            no_squared (bool): See `squared` parameter.</span>
 <span class="sd">            subsets (list[int] or bool or None):</span>
-<span class="sd">                This parameter is used to introduce equivalence relationship.</span>
-
-<span class="sd">                This parameter allows you to analyze the interspace structures</span>
-<span class="sd">                between two or more objects in your pointcloud.</span>
-
-<span class="sd">                If the grouped sub-pointcloud constructs a contractible subcomplex,</span>
-<span class="sd">                the relative homology is comptuted.</span>
-<span class="sd">                If the grouped sub-pointcloud constructs a subcomplexes whose connected components</span>
-<span class="sd">                are contractible, each connected component in the subcomplexes</span>
-<span class="sd">                is shrinked into a single point and</span>
-<span class="sd">                birth-death pairs corresponding to the connected components are removed from the 0th PD.</span>
-<span class="sd">                In the homcloud&#39;s code, minus infinity is assigned to the levels of</span>
-<span class="sd">                all simplices in the subcomplex and PDs are comptuted, and all birth-death pairs whose</span>
-<span class="sd">                birth time is -inf are removed from the diagrams.</span>
-
-<span class="sd">                If `subsets` is None, normal persistent homology is computed.</span>
-
-<span class="sd">                If `subsets` is a list of integers whose length is the same</span>
-<span class="sd">                as the number of points, the points are grouped</span>
-<span class="sd">                by the integers and the gaps in the points in the same</span>
-<span class="sd">                group is filled. The integer -1 in this list means</span>
-<span class="sd">                that the point does not belong to any group.</span>
-
-<span class="sd">                If subsets is True, the last column of `pointcloud` is regarded</span>
-<span class="sd">                as the list of group id.</span>
+<span class="sd">                This parameter is currently unused.</span>
 <span class="sd">            check_acyclicity (bool):</span>
-<span class="sd">                Checks the acyclicity of each grouped points in subsets</span>
-<span class="sd">                if True. This parameter is used only if `subsets` parameter</span>
-<span class="sd">                is used.</span>
+<span class="sd">                This parameter is currently unused.</span>
 <span class="sd">            algorithm (string or None): The name of the algorithm.</span>
 <span class="sd">                An appropriate algorithm is</span>
 <span class="sd">                automatically selected if None is given.</span>
@@ -566,6 +541,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">indexed</span>
         <span class="k">assert</span> <span class="p">(</span><span class="n">save_phtrees</span> <span class="ow">and</span> <span class="n">save_boundary_map</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">save_phtrees</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">subsets</span> <span class="ow">is</span> <span class="kc">False</span>
+        <span class="k">assert</span> <span class="n">check_acyclicity</span> <span class="ow">is</span> <span class="kc">False</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">is_squared</span><span class="p">():</span>
             <span class="k">match</span> <span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">no_squared</span><span class="p">):</span>
@@ -583,24 +560,15 @@
 
         <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">num_points</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">dim</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">subsets</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="n">pointcloud</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">weight</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">weight</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
             <span class="n">weight</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subsets</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-            <span class="n">pointcloud</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">subsets</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
-            <span class="n">subsets</span> <span class="o">=</span> <span class="kc">True</span>
-
-        <span class="n">alpha_shape</span> <span class="o">=</span> <span class="n">alpha_filtration</span><span class="o">.</span><span class="n">AlphaShape</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">pointcloud</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">subsets</span><span class="p">,</span> <span class="n">periodicity</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">check_acyclicity</span><span class="p">:</span>
-            <span class="n">alpha_shape</span><span class="o">.</span><span class="n">check_subsets_acyclicity</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">subsets</span><span class="p">:</span>
-            <span class="n">alpha_shape</span><span class="o">.</span><span class="n">become_partial_shape</span><span class="p">()</span>
-
-        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_shape</span><span class="o">.</span><span class="n">create_filtration</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">,</span> <span class="n">save_phtrees</span><span class="p">)</span>
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_filtration</span><span class="o">.</span><span class="n">AlphaFiltration</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">pointcloud</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">periodicity</span><span class="p">,</span> <span class="n">squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">,</span> <span class="n">save_phtrees</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="n">parallels</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
@@ -1048,6 +1016,102 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">coupled_alpha_shape</span> <span class="o">=</span> <span class="n">coupled_alpha</span><span class="o">.</span><span class="n">CoupledAlphaShape</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
         <span class="n">filtration</span> <span class="o">=</span> <span class="n">coupled_alpha_shape</span><span class="o">.</span><span class="n">relative_ph_filtration</span><span class="p">(</span><span class="n">squared</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.from_alpha_voronoi_relative_mask_filtration">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_voronoi_relative_mask_filtration">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_alpha_voronoi_relative_mask_filtration</span><span class="p">(</span>
+        <span class="n">pc_main</span><span class="p">,</span>
+        <span class="n">pc_mask</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">weighted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">weight_main</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">weight_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">periodicity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute persistence diagrams from (weighted) alpha filtration with a mask constructed</span>
+<span class="sd">        by voronoi cells using relative persistent homology.</span>
+
+<span class="sd">        Normal PH for alpha filtration considers the homology of the growing balls</span>
+<span class="sd">        $H_*(\\cup_{x} B_x(r))$.</span>
+<span class="sd">        This method alternatively considers</span>
+<span class="sd">        $H_*((\\cup_{x \\in P} B_x(r)) \\cup M, M)$,</span>
+<span class="sd">        where $P$ is `pc_main`, $Q$ is `pc_mask`,</span>
+<span class="sd">        $\\{V_{x}\\}_{x \\in P \\cup Q}$ is the voronoi cells of $P \\cup Q$,</span>
+<span class="sd">        and $M = \\cup_{q \\in Q} V_q$.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pc_main (numpy.ndarray): Point cloud data. Each row</span>
+<span class="sd">                represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            pc_mask (numpy.ndarray): Point cloud data for mask. </span>
+<span class="sd">                Each row represents a single point.</span>
+<span class="sd">                The dimension should be the same sa pc_main.</span>
+<span class="sd">            squared (bool): By default, all birth/death times are squared.</span>
+<span class="sd">                If squared is False, all computed birth/death times are</span>
+<span class="sd">                not squared.</span>
+<span class="sd">            weighted (bool): If False, the pointcloud has no weight. If True,</span>
+<span class="sd">                the last column of the pointcloud ndarray is regarded as</span>
+<span class="sd">                weights. Please note that the weight paramters of points</span>
+<span class="sd">                should be the square of their own radii.</span>
+<span class="sd">            weight_main (numpy.ndarray | None): Weights for pc_main.</span>
+<span class="sd">            weight_mask (numpy.ndarray | None): Weights for pc_mask.</span>
+<span class="sd">            algorithm (string or None): The name of the algorithm.</span>
+<span class="sd">                An appropriate algorithm is</span>
+<span class="sd">                automatically selected if None is given.</span>
+
+<span class="sd">                The following algorithms are available:</span>
+
+<span class="sd">                * &quot;phat-twist&quot;</span>
+<span class="sd">                * &quot;phat-chunk-parallel&quot;</span>
+
+<span class="sd">                In many cases, the parameter should be `None`.</span>
+<span class="sd">            vertex_symbols (list[string] or None): The names of vertices.</span>
+<span class="sd">                The names are used to represent some simplices, such as</span>
+<span class="sd">                birth/death simplices or optimal volumes.</span>
+
+<span class="sd">                If None is given, vertices are automatically named by</span>
+<span class="sd">                &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, ...</span>
+<span class="sd">            save_to (string): The file path which the computation result is</span>
+<span class="sd">                saved into. You can load the saved data by</span>
+<span class="sd">                ``homcloud.interface.PDList(FILE_PATH)``.</span>
+<span class="sd">                Saving the result is recommended since the computation cost is</span>
+<span class="sd">                often expensive.</span>
+<span class="sd">            save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                the file `save_to`. The default is True. This information is</span>
+<span class="sd">                required to show birth and death pixels and optimal volumes.</span>
+<span class="sd">                If you do not use such HomCloud&#39;s functionality and you want to</span>
+<span class="sd">                reduce the size of the file, please set the argument ``False``.</span>
+<span class="sd">                If False, only birth and death times are stored to the file.</span>
+<span class="sd">            save_boundary_map (bool):</span>
+<span class="sd">                The boundary map constructed by the given pointcloud is saved</span>
+<span class="sd">                if this parameter is True. The boundary map is used to</span>
+<span class="sd">                compute volume optimal cycles.</span>
+<span class="sd">            periodicity (tuple[tuple[float, float], tuple[float, float]], tuple[tuple[float, float], tuple[float, float], tuple[float, float]] or None):  # noqa E501</span>
+<span class="sd">                Periodic boundary condition. Peridic boundary condition is not available for 2D alpha shape.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            The :class:`PDList` object computed from the pointcloud.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">weight_main</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">weighted</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">pc_main</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pc_main</span><span class="p">,</span> <span class="n">weight_main</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+            <span class="n">pc_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">pc_mask</span><span class="p">,</span> <span class="n">weight_mask</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="n">pc_main</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">weighted</span><span class="p">)</span>
+
+        <span class="n">filtration</span> <span class="o">=</span> <span class="n">alpha_voronoi_relative_mask</span><span class="o">.</span><span class="n">AlphaVoronoiRelativeMaskFiltration</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">pc_main</span><span class="p">,</span> <span class="n">pc_mask</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">weighted</span><span class="p">,</span> <span class="n">periodicity</span><span class="p">,</span> <span class="n">squared</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
 
