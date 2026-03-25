@@ -1,3 +1,11 @@
+# News for 5.3.0 (2026/03/25)
+* New features
+  * Experimental features
+    * Import mphhc: <https://github.com/tda-homcloud/mphhc>
+* Bug fixes
+  * Fix the labels of colorbars of "linear-midpoint" 
+* Internal refactoring
+
 # News for 5.2.0 (2025/12/29)
 * Breaking changes
   * Remove groupname feature of alpha filtration PH
