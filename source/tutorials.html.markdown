@@ -28,7 +28,9 @@ Pythonの科学技術計算エコシステムと組み合わせることでよ�
 * [周期境界3次元ポイントクラウド](py-tutorial/pointcloud_pbc.html)
 * [周期境界画像](py-tutorial/pbc_bitmap.html)
 * [インタラクティブUI](py-tutorial/interactive_plot.html)
-* [点群の相対PH](py-tutorial/relative.html)
+* 点群の相対PH
+  * [点群の相対PH](py-tutorial/relative.html)
+  * [相対ホモロジーによるマスク](py-tutorial/alpha_voronoi_relative_mask.html)
 
 3次元可視化にPlotlyを使ったバージョン:
 
