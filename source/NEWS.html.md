@@ -1,3 +1,8 @@
+# News for 5.4.0 (2026/06/27)
+* New features
+  * Experimental features
+    * Implement image/kernel/cokernel PH for coupled alpha ladders
+
 # News for 5.3.0 (2026/03/25)
 * New features
   * Experimental features

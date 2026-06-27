@@ -1019,6 +1019,210 @@
         <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="PDList.CoupledAlpha">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">CoupledAlpha</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Coupled alpha ladder filtration of a pair of point clouds.</span>
+<span class="sd">        This class is experimental.</span>
+
+<span class="sd">        The subset relation X ⊂ (X ∪ Y) is used.</span>
+
+<span class="sd">        See the folloiwng URLs if you want to know the details of coupled alpha complexes.</span>
+
+<span class="sd">        * &lt;https://jocg.org/index.php/jocg/article/view/4100&gt;</span>
+<span class="sd">        * &lt;https://github.com/yohaireani/cycle-registration-persistent-homology&gt;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            X (numpy.ndarray): Point cloud for the subspace. Each row represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            Y (numpy.ndarray): Point cloud for the space. Each row represents a single point.</span>
+<span class="sd">                Only 2D or 3D pointclouds are available.</span>
+<span class="sd">            squared (bool): By default, all birth/death times are squared.</span>
+<span class="sd">                If squared is False, all computed birth/death times are</span>
+<span class="sd">                not squared.</span>
+<span class="sd">            vertex_symbols (list[string] or None): The names of vertices.</span>
+<span class="sd">                The names are used to represent some simplices, such as</span>
+<span class="sd">                birth/death simplices or optimal volumes.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; import homcloud.interface as hc</span>
+<span class="sd">            &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; t = np.linspace(0, 2 * np.pi, 20)</span>
+<span class="sd">            &gt;&gt;&gt; X = np.vstack([np.sin(t), np.cos(t)]).transpose() + np.random.uniform(-0.1, 0.1, size=(20, 2))</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; Y = np.random.uniform(-1, 1, size=(50, 2))</span>
+<span class="sd">            &gt;&gt;&gt; mask = np.linalg.norm(Y, axis=1) &lt; 0.93</span>
+<span class="sd">            &gt;&gt;&gt; Y = Y[mask, :]</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; ca = hc.PDList.CoupledAlpha(X, Y)</span>
+<span class="sd">            &gt;&gt;&gt; ca.image_ph(save_to=&quot;image.pdgm&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; pd1 = hc.PDList(&quot;image.pdgm&quot;).dth_diagram(1)</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; # plot kernel PD1 </span>
+<span class="sd">            &gt;&gt;&gt; pd1 = pdlist.dth_diagram(1)</span>
+<span class="sd">            &gt;&gt;&gt; pd1.histogram((0, 1), 64).plot()</span>
+<span class="sd">            &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vertex_symbols</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coupled_alpha_shape</span> <span class="o">=</span> <span class="n">coupled_alpha</span><span class="o">.</span><span class="n">CoupledAlphaShape</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">squared</span> <span class="o">=</span> <span class="n">squared</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span> <span class="o">=</span> <span class="n">vertex_symbols</span>
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.relative_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.relative_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">relative_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for relative PH by using a coupled alpha filtration.</span>
+
+<span class="sd">            PH((X cup Y), X) is computed.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): Algorithm to be used</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    The boundary map is saved if this parameter is True.</span>
+<span class="sd">                    The boundary map is used to compute volume optimal cycles.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">filtration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coupled_alpha_shape</span><span class="o">.</span><span class="n">relative_ph_filtration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">squared</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="n">filtration</span><span class="p">,</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+        <span class="nd">@cached_property</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">ikc_ph_filtration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">coupled_alpha_shape</span><span class="o">.</span><span class="n">image_kernel_cokernel_ph_filtration</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">squared</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbols</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.fullcomplex_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.fullcomplex_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">fullcomplex_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for the standard PH using alpha filtration of X cup Y.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): This parameter must be None. Users cannot select algorithm.</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    Currently, this parameter must be False.</span>
+<span class="sd">                    The boundary map functionality is not supported now.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ikc_ph_filtration</span><span class="o">.</span><span class="n">fullcomplex</span><span class="p">(),</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.subcomplex_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.subcomplex_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">subcomplex_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for the standard PH using alpha filtration of Y.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): This parameter must be None. Users cannot select algorithm.</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    Currently, this parameter must be False.</span>
+<span class="sd">                    The boundary map functionality is not supported now.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ikc_ph_filtration</span><span class="o">.</span><span class="n">subcomplex</span><span class="p">(),</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.image_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.image_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">image_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for image PH using coupled alpha ladderf filtration.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): This parameter must be None. Users cannot select algorithm.</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    Currently, this parameter must be False.</span>
+<span class="sd">                    The boundary map functionality is not supported now.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ikc_ph_filtration</span><span class="o">.</span><span class="n">image</span><span class="p">(),</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.kernel_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.kernel_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">kernel_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for kernel PH using coupled alpha ladderf filtration.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): This parameter must be None. Users cannot select algorithm.</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    Currently, this parameter must be False.</span>
+<span class="sd">                    The boundary map functionality is not supported now.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ikc_ph_filtration</span><span class="o">.</span><span class="n">kernel</span><span class="p">(),</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PDList.CoupledAlpha.cokernel_ph">
+<a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.CoupledAlpha.cokernel_ph">[docs]</a>
+        <span class="k">def</span><span class="w"> </span><span class="nf">cokernel_ph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_to</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save_boundary_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute PDList for cokernel PH using coupled alpha ladderf filtration.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                algorithm (string or None): This parameter must be None. Users cannot select algorithm.</span>
+<span class="sd">                save_to (string or None): The file path which the computation result is</span>
+<span class="sd">                    saved into. You can load the saved data by</span>
+<span class="sd">                    `homcloud.interface.PDList(FILE_PATH)`.</span>
+<span class="sd">                    Saving the result is recommended since the computation cost is</span>
+<span class="sd">                    often expensive.</span>
+<span class="sd">                save_boundary_map (bool):</span>
+<span class="sd">                    Currently, this parameter must be False.</span>
+<span class="sd">                    The boundary map functionality is not supported now.</span>
+<span class="sd">                save_suppl_info (bool):</span>
+<span class="sd">                    save_suppl_info (bool): Various supplimentary information is saved to</span>
+<span class="sd">                    the file `save_to`.</span>
+<span class="sd">            Returns:</span>
+<span class="sd">                :class:`PDList`: The PDList computed from the coupled alpha ladder filtration.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">PDList</span><span class="o">.</span><span class="n">compute_pd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ikc_ph_filtration</span><span class="o">.</span><span class="n">cokernel</span><span class="p">(),</span> <span class="n">save_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">save_suppl_info</span><span class="p">)</span></div>
+</div>
+
+
 <div class="viewcode-block" id="PDList.from_alpha_voronoi_relative_mask_filtration">
 <a class="viewcode-back" href="../../../interface.html#homcloud.interface.PDList.from_alpha_voronoi_relative_mask_filtration">[docs]</a>
     <span class="nd">@staticmethod</span>
